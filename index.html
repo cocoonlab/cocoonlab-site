@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cocoon – Cursor for architects and designers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cocoon is an AI-powered workspace that turns messy early-stage constraints, zoning, and conversations into zoning-aware floor plans, simulations, and clean design intelligence." />
+  <meta name="theme-color" content="#050509" />
+  <meta property="og:title" content="Cocoon – Cursor for architects and designers" />
+  <meta property="og:description" content="AI workspace for architects and real estate developers. Generate zoning-aware floor plans, explore design options, and make better investment decisions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://cocoonlab.ai" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='64' height='64' rx='20' fill='%23050509'/%3E%3Cellipse cx='32' cy='32' rx='14' ry='20' stroke='%235E6AD2' stroke-width='2.5'/%3E%3Cpath d='M24 26h16M24 30h16M24 34h16M24 38h16' stroke='%235E6AD2' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body class="theme-dark">
+  <header class="site-header">
+    <div class="nav-shell">
+      <a href="/" class="nav-logo" aria-label="Cocoon home">
+        <span class="nav-logo-mark" aria-hidden="true"></span>
+        <span class="nav-logo-word">Cocoon</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+        <span class="nav-toggle-line"></span>
+        <span class="nav-toggle-line"></span>
+      </button>
+
+      <nav id="primary-nav" class="nav-main" aria-label="Primary navigation">
+        <div class="nav-links">
+          <a href="/#product" class="nav-link">Product</a>
+          <a href="/#how-it-works" class="nav-link">How it works</a>
+          <a href="/#use-cases" class="nav-link">Use cases</a>
+          <a href="/#customers" class="nav-link">Customers</a>
+          <a href="/#pricing" class="nav-link">Pricing</a>
+          <a href="/#resources" class="nav-link">Resources</a>
+        </div>
+        <div class="nav-actions">
+          <a href="/login" class="nav-link nav-link--ghost">Log in</a>
+          <a href="/app" class="btn btn-primary btn-nav">Get started</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="section section-hero">
+      <div class="container">
+        <div class="layout-grid hero-layout" data-animate>
+          <div class="hero-copy col-span-6 col-span-md-12">
+            <div class="eyebrow">
+              <span class="eyebrow-dot" aria-hidden="true"></span>
+              <span class="eyebrow-text">Cocoon Lab · AI workspace for early-stage design</span>
+            </div>
+            <h1 class="hero-title">
+              Cursor for architects and designers.
+            </h1>
+            <p class="hero-subtitle">
+              Cocoon turns meetings, briefs, and site constraints into zoning-aware floor plans, feasibility ranges, and clear design intelligence—so you spend more time designing and less time wrestling with admin, costing, and compliance.
+            </p>
+            <div class="hero-ctas">
+              <a href="/app" class="btn btn-primary" aria-label="Start designing with Cocoon">
+                Start designing
+              </a>
+              <a href="mailto:rashid@cocoonlab.ai?subject=Book%20a%20Cocoon%20demo" class="btn btn-secondary">
+                Book a demo
+              </a>
+            </div>
+            <div class="hero-metrics">
+              <div class="hero-metric">
+                <div class="hero-metric-label">Concepting speed</div>
+                <div class="hero-metric-value">~63% faster</div>
+                <p class="hero-metric-note">Fewer iterations to alignment in early pilots.</p>
+              </div>
+              <div class="hero-metric">
+                <div class="hero-metric-label">Admin &amp; compliance time</div>
+                <div class="hero-metric-value">−45%</div>
+                <p class="hero-metric-note">Cocoon handles notes, costing cues, and pre-checks.</p>
+              </div>
+              <div class="hero-metric">
+                <div class="hero-metric-label">Unpaid concept risk</div>
+                <div class="hero-metric-value">Down</div>
+                <p class="hero-metric-note">Cleaner alignment before you invest full design effort.</p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-preview col-span-6 col-span-md-12" aria-label="Cocoon interface preview">
+            <div class="hero-orbit" aria-hidden="true"></div>
+
+            <div class="preview-window">
+              <div class="preview-chrome">
+                <div class="preview-dots">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="preview-title">
+                  <span class="preview-title-main">Concept board · Mile‑End mid‑rise</span>
+                  <span class="preview-title-meta">Montreal · Residential / Retail</span>
+                </div>
+                <span class="chip chip--success">Live zoning check</span>
+              </div>
+
+              <div class="preview-shell">
+                <div class="preview-sidebar">
+                  <div class="preview-section">
+                    <p class="preview-label">Prompt</p>
+                    <p class="preview-prompt">
+                      “6–8 storey courtyard building with active ground floor, 40–60 units, emphasis on light and cross‑ventilation.”
+                    </p>
+                  </div>
+                  <div class="preview-section">
+                    <p class="preview-label">Constraints</p>
+                    <dl class="preview-list">
+                      <div class="preview-row">
+                        <dt>Lot</dt><dd>24 m × 36 m</dd>
+                      </div>
+                      <div class="preview-row">
+                        <dt>Max height</dt><dd>8 storeys</dd>
+                      </div>
+                      <div class="preview-row">
+                        <dt>Use mix</dt><dd>70% res · 30% retail</dd>
+                      </div>
+                      <div class="preview-row">
+                        <dt>Parking</dt><dd>0.6 / unit</dd>
+                      </div>
+                    </dl>
+                  </div>
+                  <button class="btn btn-ghost btn-small btn-full" type="button">
+                    Regenerate options
+                  </button>
+                </div>
+
+                <div class="preview-main">
+                  <div class="preview-tabs" role="tablist" aria-label="Cocoon views">
+                    <button class="preview-tab is-active" type="button" role="tab" aria-selected="true" data-preview-tab="plans">
+                      Floor plans
+                    </button>
+                    <button class="preview-tab" type="button" role="tab" aria-selected="false" data-preview-tab="timeline">
+                      Knowledge graph
+                    </button>
+                    <button class="preview-tab" type="button" role="tab" aria-selected="false" data-preview-tab="zoning">
+                      Zoning &amp; sims
+                    </button>
+                  </div>
+
+                  <div class="preview-panel" data-preview-panel="plans">
+                    <div class="preview-plan-card">
+                      <div class="preview-plan-grid" aria-hidden="true">
+                        <span class="cell cell--core"></span>
+                        <span class="cell cell--unit"></span>
+                        <span class="cell cell--unit"></span>
+                        <span class="cell cell--unit"></span>
+                        <span class="cell cell--void"></span>
+                        <span class="cell cell--unit"></span>
+                        <span class="cell cell--terrace"></span>
+                        <span class="cell cell--unit"></span>
+                      </div>
+                      <div class="preview-plan-meta">
+                        <div>
+                          <p class="preview-metric-label">Units</p>
+                          <p class="preview-metric-value">48</p>
+                        </div>
+                        <div>
+                          <p class="preview-metric-label">GFA</p>
+                          <p class="preview-metric-value">6,100 m²</p>
+                        </div>
+                        <div>
+                          <p class="preview-metric-label">Efficiency</p>
+                          <p class="preview-metric-value">82%</p>
+                        </div>
+                        <div>
+                          <p class="preview-metric-label">Yield vs. base</p>
+                          <p class="preview-metric-value">+14%</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="preview-panel is-hidden" data-preview-panel="timeline">
+                    <div class="preview-timeline">
+                      <p class="preview-label">Cocoon knowledge</p>
+                      <ul class="timeline-list">
+                        <li>
+                          <span class="timeline-dot"></span>
+                          <div class="timeline-content">
+                            <p class="timeline-title">Kick‑off meeting</p>
+                            <p class="timeline-body">Summarized 63 minutes of discussion into decisions, open questions, and next steps.</p>
+                          </div>
+                        </li>
+                        <li>
+                          <span class="timeline-dot"></span>
+                          <div class="timeline-content">
+                            <p class="timeline-title">Client email thread</p>
+                            <p class="timeline-body">Extracted must‑have amenities, budget bands, and risk flags.</p>
+                          </div>
+                        </li>
+                        <li>
+                          <span class="timeline-dot"></span>
+                          <div class="timeline-content">
+                            <p class="timeline-title">Cocoon suggestions</p>
+                            <p class="timeline-body">Three adjacency options and a cost‑sensitive stacking strategy.</p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="preview-panel is-hidden" data-preview-panel="zoning">
+                    <div class="preview-zoning">
+                      <div class="preview-zoning-grid">
+                        <div class="zoning-item">
+                          <p class="preview-metric-label">Height</p>
+                          <span class="chip chip--success">Compliant</span>
+                        </div>
+                        <div class="zoning-item">
+                          <p class="preview-metric-label">Coverage</p>
+                          <span class="chip chip--success">Compliant</span>
+                        </div>
+                        <div class="zoning-item">
+                          <p class="preview-metric-label">Parking</p>
+                          <span class="chip chip--warn">At risk</span>
+                        </div>
+                        <div class="zoning-item">
+                          <p class="preview-metric-label">Setbacks</p>
+                          <span class="chip chip--success">Compliant</span>
+                        </div>
+                      </div>
+                      <p class="preview-footnote">
+                        Every flag links back to the exact zoning or building code clause so you can document decisions with confidence.
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-floater" aria-hidden="true">
+              <p class="hero-floater-label">Concepting with Cocoon</p>
+              <p class="hero-floater-metric">Fewer spikes in revision cycles over time.</p>
+              <div class="hero-floater-chart">
+                <span class="hero-floater-line hero-floater-line--traditional"></span>
+                <span class="hero-floater-line hero-floater-line--cocoon"></span>
+              </div>
+              <p class="hero-floater-note">Less chaos, more clarity from first conversation to aligned concept.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <button class="scroll-indicator" type="button" aria-label="Scroll to product details">
+        <span class="scroll-indicator-dot"></span>
+      </button>
+    </section>
+
+    <!-- Trusted by -->
+    <section class="section section-trusted">
+      <div class="container" data-animate>
+        <div class="trusted-shell">
+          <p class="trusted-title">Pilot projects with teams in Montréal, New York, and London.</p>
+          <div class="trusted-logos" aria-label="Representative pilot customers">
+            <span class="trusted-logo">Studio A</span>
+            <span class="trusted-logo">Developer B</span>
+            <span class="trusted-logo">Civic Lab</span>
+            <span class="trusted-logo">Design Office</span>
+            <span class="trusted-logo">Urban Fund</span>
+            <span class="trusted-logo">Innovation Lab</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product overview -->
+    <section id="product" class="section">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Made for modern architects &amp; real estate developers.</h2>
+          <p>
+            Cocoon combines generative layout engines, zoning intelligence, and decision analytics into one workspace that mirrors how studios actually work.
+          </p>
+        </header>
+        <div class="grid grid-3 feature-grid">
+          <article class="card feature">
+            <h3>Generative design</h3>
+            <p>
+              Turn project briefs, transcripts, and site data into rich families of floor plans and massing options. Guide Cocoon with prompts or edit directly—no need to start from a blank canvas every time.
+            </p>
+            <ul class="feature-bullets">
+              <li>Rapid generation of residential &amp; mixed‑use schemes</li>
+              <li>Control over unit mix, circulation, and frontage typologies</li>
+              <li>Keep design intent as you iterate and refine</li>
+            </ul>
+          </article>
+          <article class="card feature">
+            <h3>Regulatory &amp; zoning intelligence</h3>
+            <p>
+              Instead of treating zoning and code as a late gate, Cocoon encodes them into the design loop. Every option is checked as it’s created.
+            </p>
+            <ul class="feature-bullets">
+              <li>Live checks on height, coverage, setbacks, and parking</li>
+              <li>Traceable links back to the underlying clauses</li>
+              <li>Configurable rule sets for different municipalities</li>
+            </ul>
+          </article>
+          <article class="card feature">
+            <h3>Decision intelligence</h3>
+            <p>
+              Move beyond “pretty options” into quantified choices. Cocoon surfaces cost, performance, and risk signals without asking you to become a data scientist.
+            </p>
+            <ul class="feature-bullets">
+              <li>Density, yield, and efficiency indicators per scheme</li>
+              <li>Early CAPEX ranges and schedule cues</li>
+              <li>Energy and sustainability hints where data is available</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="section section-alt">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>How Cocoon fits into your workflow.</h2>
+          <p>
+            From first conversation to export‑ready concepts in three clear steps.
+          </p>
+        </header>
+        <ol class="how-steps">
+          <li class="how-step">
+            <div class="how-step-index">1</div>
+            <div class="how-step-body">
+              <h3>Capture your site &amp; constraints</h3>
+              <p>
+                Start from an address, parcel ID, or uploaded plans. Cocoon ingests zoning overlays, meeting notes, and your own standards to build a living knowledge base for the project.
+              </p>
+              <ul class="bullet-list">
+                <li>Automatic summaries from meetings and email threads</li>
+                <li>Site geometry, orientation, and access conditions</li>
+                <li>Target program, budget bands, and risk flags</li>
+              </ul>
+            </div>
+          </li>
+          <li class="how-step">
+            <div class="how-step-index">2</div>
+            <div class="how-step-body">
+              <h3>Generate &amp; explore options</h3>
+              <p>
+                Cocoon produces multiple zoning‑aware schemes and keeps them organized by goals: yield, daylight, phasing, or risk. Steer with prompts or constraints; Cocoon keeps track of the reasoning.
+              </p>
+              <ul class="bullet-list">
+                <li>Multiple floor‑plan and massing families per site</li>
+                <li>Filters for unit mix, efficiency, and compliance status</li>
+                <li>Design notes and assumptions stored alongside each option</li>
+              </ul>
+            </div>
+          </li>
+          <li class="how-step">
+            <div class="how-step-index">3</div>
+            <div class="how-step-body">
+              <h3>Validate, align &amp; export</h3>
+              <p>
+                Before you commit, Cocoon compiles zoning pre‑checks, feasibility bands, and a clean narrative of decisions. Export to CAD/BIM and share crisp concept packs with clients, cities, and investors.
+              </p>
+              <ul class="bullet-list">
+                <li>Visual zoning summary and code citations</li>
+                <li>Quick density, cost, and schedule snapshots</li>
+                <li>Exports to DWG, IFC, RVT, PDF, and CSV</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Use cases -->
+    <section id="use-cases" class="section">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Project types Cocoon accelerates.</h2>
+          <p>
+            From infill lots to complex mixed‑use districts, Cocoon keeps feasibility, code, and value creation aligned.
+          </p>
+        </header>
+        <div class="grid grid-3 usecase-grid">
+          <article class="card usecase">
+            <h3>Multifamily</h3>
+            <p>
+              Optimize unit mix, cores, and amenity placement while keeping every scheme inside the envelope.
+            </p>
+            <p class="usecase-metric">Review 20+ options per site in a single working session.</p>
+          </article>
+          <article class="card usecase">
+            <h3>Single‑family communities</h3>
+            <p>
+              Lay out streets, parcels, and typologies with live checks on setbacks, coverage, and parking.
+            </p>
+            <p class="usecase-metric">Cut early layout iterations by up to half.</p>
+          </article>
+          <article class="card usecase">
+            <h3>Mixed‑use</h3>
+            <p>
+              Balance retail, office, and residential layers without losing sight of servicing and public realm requirements.
+            </p>
+            <p class="usecase-metric">Test FAR and program mixes in minutes, not weeks.</p>
+          </article>
+          <article class="card usecase">
+            <h3>Hospitality</h3>
+            <p>
+              Explore room keys, back‑of‑house adjacencies, and amenity stacks with early performance and cost cues.
+            </p>
+            <p class="usecase-metric">Surface 3–5 viable concepts per brief automatically.</p>
+          </article>
+          <article class="card usecase">
+            <h3>Industrial &amp; logistics</h3>
+            <p>
+              Plan bays, loading, and circulation while respecting access, buffers, and coverage limits.
+            </p>
+            <p class="usecase-metric">Quickly quantify buildable area and truck flow options.</p>
+          </article>
+          <article class="card usecase">
+            <h3>Office &amp; workplace</h3>
+            <p>
+              Shape cores, plates, and shared spaces with flexibility for future tenant splits and fit‑outs.
+            </p>
+            <p class="usecase-metric">Model multiple stacking plans from one constraint set.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section id="approach" class="section section-alt">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Our approach to AI‑assisted design.</h2>
+          <p>
+            Cocoon blends architect‑grade AI, curated zoning and cost data, and real‑world studio practice into one coherent system.
+          </p>
+        </header>
+        <div class="grid grid-3 feature-grid">
+          <article class="card">
+            <h3>Architect‑grade AI</h3>
+            <p>
+              Models tuned with architectural patterns, not generic imagery. Layouts respect circulation, structure zones, adjacencies, and proportions that make sense to designers.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Code‑aware by design</h3>
+            <p>
+              Zoning and building code rules are treated as first‑class inputs. Cocoon reasons over them directly instead of bolting compliance on at the end of the process.
+            </p>
+          </article>
+          <article class="card">
+            <h3>Built for real‑world constraints</h3>
+            <p>
+              Early‑stage work isn’t just geometry. Cocoon keeps cost, schedule, environmental cues, and stakeholder context in the loop from day one.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="section">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Outcomes for your practice.</h2>
+          <p>
+            Less chaos. More clarity, better projects, and happier clients.
+          </p>
+        </header>
+        <div class="grid grid-4 benefits-grid">
+          <article class="card benefit">
+            <h3>Faster approvals</h3>
+            <p>
+              Bring zoning‑aware options and documented assumptions into early conversations with planning, lenders, and partners.
+            </p>
+          </article>
+          <article class="card benefit">
+            <h3>Higher‑performing designs</h3>
+            <p>
+              Compare schemes by yield, efficiency, and basic sustainability indicators before you lock in a direction.
+            </p>
+          </article>
+          <article class="card benefit">
+            <h3>Shorter timelines</h3>
+            <p>
+              Replace weeks of scattered sketches, spreadsheets, and coordination with AI‑assisted exploration and clear concept packs.
+            </p>
+          </article>
+          <article class="card benefit">
+            <h3>Reduced risk &amp; rework</h3>
+            <p>
+              Cocoon tracks decisions, constraints, and interpretations, lowering the risk of costly redesigns as projects advance.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customers -->
+    <section id="customers" class="section section-alt">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Trusted by forward‑thinking teams.</h2>
+          <p>
+            Cocoon is built with input from architects, developers, and researchers who live with early‑stage design every day.
+          </p>
+        </header>
+        <div class="grid grid-3 testimonial-grid">
+          <article class="card testimonial">
+            <p class="testimonial-quote">
+              “Cocoon turned a full week of messy notes into one clear concept board with zoning, cost, and diagrams we could actually present.”
+            </p>
+            <p class="testimonial-meta">
+              <span class="testimonial-name">Amélie Gagnon</span>
+              <span class="testimonial-role">Partner, Meridian Atelier</span>
+            </p>
+          </article>
+          <article class="card testimonial">
+            <p class="testimonial-quote">
+              “Developers expect numbers and narratives, not just renderings. Cocoon lets us explore yield and risk in the same space as design.”
+            </p>
+            <p class="testimonial-meta">
+              <span class="testimonial-name">Daniel Ortiz</span>
+              <span class="testimonial-role">VP Development, Northline Capital</span>
+            </p>
+          </article>
+          <article class="card testimonial">
+            <p class="testimonial-quote">
+              “The fact that every zoning flag links back to a specific clause makes conversations with the city faster and more grounded.”
+            </p>
+            <p class="testimonial-meta">
+              <span class="testimonial-name">Sara Kim</span>
+              <span class="testimonial-role">Design Director, Fieldwork Studio</span>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Pricing for studios and portfolios of all sizes.</h2>
+          <p>
+            Start small, prove value on one project, and grow as Cocoon becomes part of your everyday workflow.
+          </p>
+        </header>
+        <div class="grid grid-3 pricing-grid">
+          <article class="card pricing-card">
+            <h3>Starter</h3>
+            <p class="pricing-tagline">For small studios and independent architects.</p>
+            <p class="pricing-price">
+              <span class="pricing-amount">$79</span>
+              <span class="pricing-meta">per user / month</span>
+            </p>
+            <ul class="pricing-features">
+              <li>Up to 5 active projects</li>
+              <li>Generative layouts &amp; zoning checks</li>
+              <li>Basic simulations &amp; reports</li>
+              <li>Email support</li>
+            </ul>
+            <a href="/app" class="btn btn-primary btn-full">Start free trial</a>
+          </article>
+
+          <article class="card pricing-card pricing-card--highlight">
+            <div class="pricing-badge">Most popular</div>
+            <h3>Growth</h3>
+            <p class="pricing-tagline">For growing teams and developers.</p>
+            <p class="pricing-price">
+              <span class="pricing-amount">$149</span>
+              <span class="pricing-meta">per user / month</span>
+            </p>
+            <ul class="pricing-features">
+              <li>Unlimited projects &amp; workspaces</li>
+              <li>Advanced simulations &amp; scenario exports</li>
+              <li>Team permissions &amp; centralized billing</li>
+              <li>Priority onboarding &amp; support</li>
+            </ul>
+            <a href="/pricing.html#contact-sales" class="btn btn-primary btn-full">Talk to sales</a>
+          </article>
+
+          <article class="card pricing-card">
+            <h3>Enterprise</h3>
+            <p class="pricing-tagline">For large organizations and portfolios.</p>
+            <p class="pricing-price">
+              <span class="pricing-amount">Let’s talk</span>
+              <span class="pricing-meta">Custom deployment</span>
+            </p>
+            <ul class="pricing-features">
+              <li>Custom data &amp; zoning libraries</li>
+              <li>Security review &amp; custom SLAs</li>
+              <li>Dedicated success partner</li>
+              <li>Private cloud or on‑prem options</li>
+            </ul>
+            <a href="mailto:rashid@cocoonlab.ai?subject=Enterprise%20pricing%20for%20Cocoon" class="btn btn-secondary btn-full">Contact sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section section-alt">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Frequently asked questions.</h2>
+          <p>
+            Everything architects and developers typically ask us before their first pilot.
+          </p>
+        </header>
+        <div class="faq-grid">
+          <details class="faq-item">
+            <summary>What kinds of projects is Cocoon best for?</summary>
+            <p>
+              Cocoon is optimized for early‑stage design and feasibility on residential, mixed‑use, hospitality, industrial, and office projects. It shines whenever there are multiple stakeholders, tight constraints, and pressure to align quickly.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Which regions and zoning codes are supported?</summary>
+            <p>
+              We’re rolling out localized zoning and building code libraries city by city. At launch we support a focused set of municipalities, then expand based on partner demand. For new regions, Cocoon can operate using your own rule sets and references.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How does Cocoon integrate with our existing tools?</summary>
+            <p>
+              Today, Cocoon exports design geometry, schedules, and reports into common formats like DWG, IFC, RVT, PDF, and CSV. Dedicated connectors for specific CAD/BIM and finance tools are on our roadmap.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>How is our project data stored and used?</summary>
+            <p>
+              Your workspaces are private to your organization. We don’t use your client data to train public models, and we follow industry best practices for encryption in transit and at rest. Enterprise customers can request stricter controls and retention policies.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Does Cocoon replace architects or planners?</summary>
+            <p>
+              No. Cocoon is a copilot. It captures messy context, generates options, and makes constraints visible so licensed professionals can exercise judgment with more time and better information.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Can Cocoon capture meetings and project communications?</summary>
+            <p>
+              Yes. Cocoon can ingest meeting notes and other project materials to keep a living project record. Upcoming modules add structured transcription and task extraction so nothing gets lost between conversations.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>What does onboarding look like?</summary>
+            <p>
+              Smaller teams can start self‑serve in minutes. Growth and Enterprise plans include guided onboarding: we calibrate templates to your markets, run pilot projects with your team, and help define internal best practices.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we run Cocoon on highly confidential projects?</summary>
+            <p>
+              Yes. We support stricter access controls, customer‑managed keys, and private deployments where required. We’ll work with your security team to match their expectations.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" class="section">
+      <div class="container" data-animate>
+        <header class="section-header">
+          <h2>Resources.</h2>
+          <p>
+            Guides, case studies, and documentation to help you bring AI into early‑stage design responsibly.
+          </p>
+        </header>
+        <div class="grid grid-3 resource-grid">
+          <article class="card resource-card">
+            <p class="resource-tag">Guide</p>
+            <h3>Designing faster without losing control.</h3>
+            <p>
+              A practical playbook on weaving AI into concepting while keeping authorship and judgment with the design team.
+            </p>
+            <a href="#" class="resource-link">Coming soon</a>
+          </article>
+          <article class="card resource-card">
+            <p class="resource-tag">Case study</p>
+            <h3>From scattered notes to aligned concepts.</h3>
+            <p>
+              How a mid‑size studio cut early design iterations while improving client confidence in every option.
+            </p>
+            <a href="#" class="resource-link">Coming soon</a>
+          </article>
+          <article class="card resource-card">
+            <p class="resource-tag">Webinar</p>
+            <h3>AI, zoning, and the future of feasibility.</h3>
+            <p>
+              Conversations with architects, developers, and code experts on using AI for serious projects.
+            </p>
+            <a href="#" class="resource-link">Join the waitlist</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-shell">
+      <div class="footer-brand">
+        <span class="footer-logo">Cocoon</span>
+        <p class="footer-copy">
+          Cursor for architects and designers. Built by Cocoon Lab.
+        </p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="/#product">Features</a></li>
+            <li><a href="/#pricing">Pricing</a></li>
+            <li><a href="/resources.html">Integrations</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="mailto:rashid@cocoonlab.ai?subject=About%20Cocoon">About</a></li>
+            <li><a href="mailto:rashid@cocoonlab.ai?subject=Careers%20at%20Cocoon">Careers</a></li>
+            <li><a href="mailto:rashid@cocoonlab.ai?subject=Contact%20Cocoon%20Lab">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/resources.html">Blog</a></li>
+            <li><a href="/resources.html">Docs</a></li>
+            <li><a href="/resources.html">Status</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-social">
+          <a href="https://x.com" aria-label="Cocoon on X">X</a>
+          <a href="https://www.linkedin.com" aria-label="Cocoon on LinkedIn">LinkedIn</a>
+        </div>
+        <p class="footer-meta">
+          © <span id="year"></span> Cocoon Lab. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
+</body>
+</html>
