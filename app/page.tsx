@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/Hero";
 import { MetricsStrip } from "@/components/home/MetricsStrip";
 import { TrustedByBand } from "@/components/home/TrustedByBand";
 import { MadeForSection } from "@/components/home/MadeForSection";
+import { AiAssistSection } from "@/components/home/AiAssistSection";
 import { ProductFeatures } from "@/components/home/ProductFeatures";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { UseCases } from "@/components/home/UseCases";
@@ -39,6 +40,7 @@ export default function HomePage() {
   return (
     <LayoutShell>
       <Hero />
+      <AiAssistSection />
       <TrustedByBand />
       <MadeForSection />
       <MetricsStrip />
