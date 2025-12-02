@@ -95,7 +95,7 @@ export function ProductFeatures() {
         </div>
 
         {/* Visual cluster */}
-        <div className="relative mx-auto mt-2 max-w-md lg:mt-0 lg:max-w-none lg:pl-6">
+        <div className="relative mx-auto mt-2 max-w-lg lg:mt-0 lg:max-w-none lg:pl-8">
           <motion.div
             initial={{ opacity: 0, y: 24, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -110,7 +110,7 @@ export function ProductFeatures() {
                 src={saasUiVisual}
                 alt="Main Cocoon interface with a project overview, brief, and zoning-aware options."
                 fill
-                sizes="(min-width: 1024px) 30rem, (min-width: 768px) 26rem, 100vw"
+                sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 32rem, (min-width: 768px) 26rem, 100vw"
                 className="pointer-events-none select-none object-cover"
               />
             </div>
@@ -121,14 +121,14 @@ export function ProductFeatures() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
-            className="card-surface absolute -left-4 bottom-4 hidden w-40 overflow-hidden shadow-inner-glow sm:block md:w-52 lg:-left-10 lg:bottom-10"
+            className="card-surface absolute -left-4 bottom-4 hidden w-44 overflow-hidden shadow-inner-glow sm:block md:w-56 lg:-left-12 lg:bottom-12"
           >
             <div className="relative aspect-[4/3]">
               <Image
                 src={knowledgeGraphCanvas}
                 alt="Architectural knowledge graph canvas inside Cocoon, capturing the full brief as connected nodes."
                 fill
-                sizes="14rem"
+                sizes="(min-width: 1024px) 16rem, (min-width: 768px) 14rem, 12rem"
                 className="pointer-events-none select-none object-cover"
               />
             </div>
@@ -142,14 +142,14 @@ export function ProductFeatures() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.22 }}
-            className="card-surface absolute -right-4 top-6 hidden w-40 overflow-hidden shadow-inner-glow sm:block md:w-52 lg:-right-10 lg:top-10"
+            className="card-surface absolute -right-4 top-6 hidden w-44 overflow-hidden shadow-inner-glow sm:block md:w-56 lg:-right-12 lg:top-12"
           >
             <div className="relative aspect-[4/3]">
               <Image
                 src={featureCards}
                 alt="Cocoon feature cards showing AI-generated concepts and design directions."
                 fill
-                sizes="14rem"
+                sizes="(min-width: 1024px) 16rem, (min-width: 768px) 14rem, 12rem"
                 className="pointer-events-none select-none object-cover"
               />
             </div>
@@ -196,7 +196,7 @@ export function ProductFeatures() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow"
         >
-          <div className="relative h-64 sm:h-72 lg:h-80">
+          <div className="relative h-64 sm:h-72 lg:h-[22rem]">
             <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-border-subtle/80 bg-surface-sunken/90 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-text-muted">
               <span>Zoning panel</span>
               <span className="rounded-full bg-accent-emerald/15 px-2 py-0.5 text-[10px] text-accent-emerald">
