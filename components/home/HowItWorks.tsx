@@ -14,18 +14,15 @@ type Step = {
 const steps: Step[] = [
   {
     title: "Capture your site & constraints",
-    body:
-      "Feed Cocoon with notes, PDFs, emails, and zoning references. We turn them into a structured brief for the project."
+    body: "Feed Cocoon notes, PDFs, emails, and zoning references. We turn them into a structured brief."
   },
   {
     title: "Generate zoning-aware options",
-    body:
-      "Explore massing options and floorplate strategies that respect height, coverage, and parking constraints from day one."
+    body: "Explore massing and floorplate strategies that respect height, coverage, and parking from day one."
   },
   {
     title: "Validate, align, and export",
-    body:
-      "Stress-test options, share the rationale with clients, and export clean packages into the tools you already use."
+    body: "Stress-test options, share the rationale, and export clean packages into the tools you already use."
   }
 ];
 
@@ -37,7 +34,7 @@ export function HowItWorks() {
       id="how-it-works"
       eyebrow="How it works"
       title="From messy inputs to aligned, defensible early-stage decisions."
-      kicker="Three steps designed around how studios already run feasibility, competitions, and early client work."
+      kicker="Three steps tuned for feasibility, competitions, and early client work."
       variant="subtle"
     >
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">

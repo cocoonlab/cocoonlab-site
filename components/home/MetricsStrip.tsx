@@ -42,16 +42,15 @@ export function MetricsStrip() {
           <div className="pointer-events-none absolute inset-x-[-20%] top-0 h-40 bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent opacity-70" />
           <div className="pointer-events-none absolute inset-x-[-20%] bottom-0 h-40 bg-gradient-to-r from-transparent via-accent-emerald/35 to-transparent opacity-70" />
 
-          <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.9fr)] lg:items-center">
+          <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
             <div className="space-y-4">
               <p className="badge-pill">Why studios pilot Cocoon</p>
               <h2 className="text-base font-semibold text-white md:text-lg">
-                A mini dashboard for shifting time back to design.
+                Shift hours back to design, not file wrangling.
               </h2>
               <p className="max-w-xl text-sm text-text-soft md:text-[15px]">
-                By centralising briefs, zoning, and options in one workspace,
-                Cocoon moves work out of spreadsheets and scattered files and
-                into a shared surface that can be queried and trusted.
+                Cocoon centralises briefs, zoning, and options so teams stop juggling spreadsheets and emails. Everyone sees the
+                same truth and can ask better "what if" questions.
               </p>
 
               <div className="grid gap-4 pt-1 text-sm sm:grid-cols-3">
