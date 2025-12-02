@@ -1,7 +1,6 @@
 import { getChangelog } from "@/lib/changelog";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { Metadata } from "next";
-import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: "Changelog – Cocoon Lab",
