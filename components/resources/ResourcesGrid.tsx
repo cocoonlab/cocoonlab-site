@@ -1,28 +1,29 @@
 import Image from "next/image";
+import type { Route } from "next";
 import Link from "next/link";
 
 import { Section } from "@/components/Section";
 import knowledgeGraphCanvas from "@/public/images/architectural-knowledge-graph-canvas.png";
 
-const resources = [
+const resources: { title: string; href: Route; tag: string }[] = [
   {
     title: "Why early-stage design deserves its own AI workspace",
-    href: "#",
+    href: "/resources",
     tag: "Essay"
   },
   {
     title: "Design brief template for feasibility studies",
-    href: "#",
+    href: "/resources",
     tag: "Template"
   },
   {
     title: "Checklist: data you need before a first massing session",
-    href: "#",
+    href: "/resources",
     tag: "Checklist"
   },
   {
     title: "Integrating Cocoon with your CAD/BIM stack",
-    href: "#",
+    href: "/resources",
     tag: "Guide"
   }
 ];
