@@ -50,7 +50,7 @@ export function Section({
     >
       <div className="container-x">
         {hasHeader && (
-          <header className="mb-10 max-w-3xl space-y-4">
+          <header className="mb-10 max-w-3xl space-y-4 md:mb-12 md:space-y-5 lg:mb-14">
             {eyebrow && <p className="badge-pill">{eyebrow}</p>}
             {title && (
               <h2 className="text-balance text-2xl font-semibold tracking-tight text-white md:text-3xl lg:text-4xl">
