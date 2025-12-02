@@ -1,0 +1,30 @@
+[
+  {
+    "id": "2024-06-alpha-pilot",
+    "date": "2024-06-12",
+    "title": "Alpha pilots with early architecture partners",
+    "summary": "We onboarded our first five firms across Montréal, Toronto, and Paris, validating Cocoon for early-stage concepting.",
+    "kind": "feature"
+  },
+  {
+    "id": "2024-05-zoning-engine",
+    "date": "2024-05-02",
+    "title": "Zoning-aware massing engine",
+    "summary": "Live checks for height, coverage, parking, and setbacks with early FAR yield indicators.",
+    "kind": "improvement"
+  },
+  {
+    "id": "2024-04-workspace-refresh",
+    "date": "2024-04-18",
+    "title": "Concept board workspace refresh",
+    "summary": "Sharper layout for brief, constraints, and options so teams can align faster around decisions.",
+    "kind": "improvement"
+  },
+  {
+    "id": "2024-03-initial-lab",
+    "date": "2024-03-05",
+    "title": "Cocoon Lab takes shape",
+    "summary": "We began Cocoon Lab to give architects a focused AI workspace instead of generic chatbots.",
+    "kind": "note"
+  }
+]
