@@ -6,6 +6,7 @@ import { TrustedByBand } from "@/components/home/TrustedByBand";
 import { MadeForSection } from "@/components/home/MadeForSection";
 import { AiAssistSection } from "@/components/home/AiAssistSection";
 import { ProductFeatures } from "@/components/home/ProductFeatures";
+import { FoundationsSection } from "@/components/home/FoundationsSection";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { UseCases } from "@/components/home/UseCases";
 import { Customers } from "@/components/home/Customers";
@@ -45,6 +46,7 @@ export default function HomePage() {
       <MadeForSection />
       <MetricsStrip />
       <ProductFeatures />
+      <FoundationsSection />
       <HowItWorks />
       <UseCases />
       <Customers />
