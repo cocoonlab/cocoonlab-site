@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { Hero } from "@/components/home/Hero";
 import { MetricsStrip } from "@/components/home/MetricsStrip";
+import { TrustedByBand } from "@/components/home/TrustedByBand";
 import { ProductFeatures } from "@/components/home/ProductFeatures";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { UseCases } from "@/components/home/UseCases";
@@ -37,6 +38,7 @@ export default function HomePage() {
   return (
     <LayoutShell>
       <Hero />
+      <TrustedByBand />
       <MetricsStrip />
       <ProductFeatures />
       <HowItWorks />
