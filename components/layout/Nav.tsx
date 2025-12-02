@@ -1,23 +1,43 @@
 "use client";
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { UrlObject } from "url";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "../Logo";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 
-const navItems = [
-  { href: "/#product", label: "Product" },
-  { href: "/#how-it-works", label: "How it works" },
-  { href: "/#pricing", label: "Pricing" },
-  { href: "/resources", label: "Resources" },
-  { href: "/changelog", label: "Changelog" }
-];
+type NavItem = {
+  label: string;
+  href: Route | UrlObject;
+  anchorId?: string;
+  activePath?: Route;
+};
 
-function isAnchorHref(href: string) {
-  return href.startsWith("/#");
-}
+const navItems: NavItem[] = [
+  {
+    label: "Product",
+    href: { pathname: "/", hash: "product" },
+    anchorId: "product",
+    activePath: "/"
+  },
+  {
+    label: "How it works",
+    href: { pathname: "/", hash: "how-it-works" },
+    anchorId: "how-it-works",
+    activePath: "/"
+  },
+  {
+    label: "Pricing",
+    href: { pathname: "/", hash: "pricing" },
+    anchorId: "pricing",
+    activePath: "/"
+  },
+  { label: "Resources", href: "/resources", activePath: "/resources" },
+  { label: "Changelog", href: "/changelog", activePath: "/changelog" }
+];
 
 export function Nav() {
   const pathname = usePathname() ?? "/";
@@ -70,14 +90,17 @@ export function Nav() {
           <Logo />
           <nav className="hidden items-center gap-2 text-sm md:flex">
             {navItems.map((item) => {
-              const anchorId = isAnchorHref(item.href)
-                ? item.href.split("#")[1]
-                : null;
-              const isAnchor = Boolean(anchorId);
+              const itemKey =
+                typeof item.href === "string"
+                  ? item.href
+                  : `${item.href.pathname ?? ""}#${item.anchorId ?? item.label}`;
+              const isAnchor = Boolean(item.anchorId);
               const isPageActive =
-                !isAnchor && (pathname === item.href || pathname.startsWith(item.href + "/"));
+                !isAnchor && item.activePath
+                  ? pathname === item.activePath || pathname.startsWith(item.activePath + "/")
+                  : false;
               const isAnchorActive =
-                isAnchor && pathname === "/" && activeAnchor === anchorId;
+                isAnchor && pathname === "/" && activeAnchor === item.anchorId;
               const isActive = isPageActive || isAnchorActive;
 
               const baseClasses =
@@ -89,14 +112,14 @@ export function Nav() {
 
               return (
                 <Link
-                  key={item.href}
+                  key={itemKey}
                   href={item.href}
                   className={`${baseClasses} ${
                     isActive ? activeClasses : inactiveClasses
                   }`}
                   onClick={() => {
-                    if (anchorId) {
-                      setActiveAnchor(anchorId);
+                    if (item.anchorId) {
+                      setActiveAnchor(item.anchorId);
                     }
                   }}
                 >
@@ -194,17 +217,17 @@ export function Nav() {
               <div className="container-x">
                 <nav className="space-y-1 text-sm">
                   {navItems.map((item) => {
-                    const anchorId = isAnchorHref(item.href)
-                      ? item.href.split("#")[1]
-                      : null;
-
+                    const itemKey =
+                      typeof item.href === "string"
+                        ? item.href
+                        : `${item.href.pathname ?? ""}#${item.anchorId ?? item.label}`;
                     return (
                       <Link
-                        key={item.href}
+                        key={itemKey}
                         href={item.href}
                         className="flex items-center justify-between rounded-xl px-3 py-2 text-text-soft transition-colors duration-150 hover:bg-surface-raised/80 hover:text-text"
                         onClick={() => {
-                          if (anchorId) setActiveAnchor(anchorId);
+                          if (item.anchorId) setActiveAnchor(item.anchorId);
                           closeMobile();
                         }}
                       >
