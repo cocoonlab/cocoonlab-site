@@ -6,49 +6,94 @@
   color-scheme: dark;
 }
 
-body {
-  @apply bg-bg text-text font-sans antialiased;
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-bg text-text font-sans antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent-blue/60 text-bg;
+  }
 }
 
-.section-pad {
-  @apply py-16 md:py-24 lg:py-28;
-}
+@layer components {
+  .section-pad {
+    @apply py-16 md:py-20 lg:py-24;
+  }
 
-.container-x {
-  @apply mx-auto max-w-6xl px-4 md:px-6 lg:px-8;
-}
+  .container-x {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
 
-.card-surface {
-  @apply rounded-2xl border border-border-subtle bg-surface-raised/80 shadow-soft backdrop-blur;
-}
+  .card-surface {
+    @apply rounded-2xl border border-border-subtle bg-surface-raised/80 shadow-soft backdrop-blur-sm transition-all duration-200 ease-out;
+  }
 
-.badge-pill {
-  @apply inline-flex items-center rounded-pill border border-border-subtle/80 bg-surface-sunken/80 px-3 py-1 text-xs font-medium text-text-muted;
-}
+  .card-surface:hover {
+    @apply -translate-y-0.5 border-border bg-surface-raised;
+  }
 
-.btn-primary {
-  @apply inline-flex items-center justify-center rounded-pill border border-transparent bg-gradient-to-r from-accent-blue to-accent-purple px-5 py-2.5 text-sm font-semibold text-white shadow-soft outline-none ring-0 transition hover:opacity-95 focus-visible:ring-2 focus-visible:ring-accent-blue/80;
-}
+  .badge-pill {
+    @apply inline-flex items-center gap-2 rounded-pill border border-border-subtle bg-surface-sunken/60 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-text-muted;
+  }
 
-.btn-ghost {
-  @apply inline-flex items-center justify-center rounded-pill border border-border-subtle bg-surface-sunken/80 px-5 py-2.5 text-sm font-medium text-text-soft shadow-soft outline-none ring-0 transition hover:bg-surface-raised/80 focus-visible:ring-2 focus-visible:ring-accent-blue/80;
-}
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill border border-transparent bg-accent-blue px-5 py-2.5 text-sm font-medium tracking-wide text-bg shadow-inner-glow transition-transform transition-colors duration-200 ease-out;
+  }
 
-.link-muted {
-  @apply text-text-muted underline-offset-4 hover:text-text-soft hover:underline;
-}
+  .btn-primary:hover {
+    @apply -translate-y-0.5 bg-accent-blue/90;
+  }
 
-input[type="email"],
-input[type="text"],
-select,
-textarea {
-  @apply w-full rounded-xl border border-border-subtle bg-surface-sunken/80 px-3 py-2 text-sm text-text shadow-inner-glow outline-none ring-0 transition placeholder:text-text-muted/60 focus:border-accent-blue/60 focus:ring-2 focus:ring-accent-blue/40;
-}
+  .btn-primary:focus-visible {
+    @apply outline-none ring-2 ring-accent-blue ring-offset-2 ring-offset-bg;
+  }
 
-label {
-  @apply text-xs font-medium uppercase tracking-wide text-text-muted;
-}
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill border border-border-subtle bg-surface-sunken/60 px-4 py-2 text-sm font-medium text-text-soft transition-all duration-200 ease-out;
+  }
 
-form .field {
-  @apply space-y-1;
+  .btn-ghost:hover {
+    @apply -translate-y-0.5 border-border bg-surface-raised/70 text-text;
+  }
+
+  .btn-ghost:focus-visible {
+    @apply outline-none ring-2 ring-accent-blue ring-offset-2 ring-offset-bg;
+  }
+
+  .link-muted {
+    @apply text-text-muted underline-offset-4 decoration-transparent transition-colors duration-150;
+  }
+
+  .link-muted:hover {
+    @apply text-accent-blue decoration-accent-blue underline;
+  }
+
+  input[type="email"],
+  input[type="text"],
+  input[type="search"],
+  select,
+  textarea {
+    @apply w-full rounded-xl border border-border-subtle bg-surface-sunken/60 px-3 py-2 text-sm text-text placeholder:text-text-muted/70 outline-none transition-colors transition-shadow duration-150;
+  }
+
+  input[type="email"]:focus,
+  input[type="text"]:focus,
+  input[type="search"]:focus,
+  select:focus,
+  textarea:focus {
+    @apply border-accent-blue/70 shadow-inner-glow;
+  }
+
+  label {
+    @apply text-xs font-medium uppercase tracking-wide text-text-muted;
+  }
+
+  form .field {
+    @apply space-y-1;
+  }
 }

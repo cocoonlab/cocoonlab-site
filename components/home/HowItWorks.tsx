@@ -1,20 +1,31 @@
-import { Section } from "@/components/Section";
+"use client";
 
-const steps = [
+import Image from "next/image";
+import { motion } from "framer-motion";
+
+import { Section } from "@/components/Section";
+import workflowDiagram from "@/public/images/three-step-workflow-diagram.png";
+
+type Step = {
+  title: string;
+  body: string;
+};
+
+const steps: Step[] = [
   {
     title: "Capture your site & constraints",
     body:
-      "Feed Cocoon with your notes, PDFs, and zoning references. We turn them into a structured brief for the project."
+      "Feed Cocoon with notes, PDFs, emails, and zoning references. We turn them into a structured brief for the project."
   },
   {
     title: "Generate zoning-aware options",
     body:
-      "Explore massing options and floorplate strategies that respect key constraints from day one."
+      "Explore massing options and floorplate strategies that respect height, coverage, and parking constraints from day one."
   },
   {
     title: "Validate, align, and export",
     body:
-      "Share concepts with stakeholders, capture feedback, and export to CAD/BIM once you are confident in the direction."
+      "Stress-test options, share the rationale with clients, and export clean packages into the tools you already use."
   }
 ];
 
@@ -23,25 +34,67 @@ export function HowItWorks() {
     <Section
       id="how-it-works"
       eyebrow="How it works"
-      title="From first conversation to export-ready concepts."
-      kicker="Three focused stages that fit naturally into your existing workflow."
+      title="From messy inputs to aligned, defensible early-stage decisions."
+      kicker="Three steps designed around how studios already run feasibility, competitions, and early client work."
     >
-      <ol className="grid gap-4 md:grid-cols-3">
-        {steps.map((step, index) => (
-          <li
-            key={step.title}
-            className="card-surface flex flex-col gap-3 p-5"
-          >
-            <div className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-surface-sunken text-sm font-semibold text-text-soft">
-              {index + 1}
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center">
+        <ol className="space-y-5">
+          {steps.map((step, index) => (
+            <motion.li
+              key={step.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.45, ease: "easeOut", delay: index * 0.08 }}
+              className="card-surface relative flex gap-4 p-5 sm:p-6"
+            >
+              <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-surface-sunken text-sm font-semibold text-text-soft">
+                {index + 1}
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-base font-semibold text-white md:text-lg">
+                  {step.title}
+                </h3>
+                <p className="text-sm text-text-muted md:text-[15px]">
+                  {step.body}
+                </p>
+              </div>
+            </motion.li>
+          ))}
+        </ol>
+
+        <motion.div
+          className="relative mt-2 lg:mt-0"
+          initial={{ opacity: 0, y: 24, scale: 0.96 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.4 }}
+          animate={{ y: [0, -6, 0] }}
+          transition={{
+            duration: 0.6,
+            ease: "easeOut",
+            y: {
+              duration: 10,
+              repeat: Infinity,
+              repeatType: "reverse",
+              ease: "easeInOut"
+            }
+          }}
+        >
+          <div className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow">
+            <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.45),_transparent_60%)]" />
+            <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_bottom,_rgba(16,185,129,0.3),_transparent_55%)]" />
+            <div className="relative aspect-[4/3] w-full">
+              <Image
+                src={workflowDiagram}
+                alt="Three-step workflow diagram showing capture, generate, and validate phases inside Cocoon."
+                fill
+                sizes="(min-width: 1024px) 26rem, 80vw"
+                className="pointer-events-none select-none object-cover"
+              />
             </div>
-            <h3 className="text-base font-semibold text-white">
-              {step.title}
-            </h3>
-            <p className="text-sm text-text-muted">{step.body}</p>
-          </li>
-        ))}
-      </ol>
+          </div>
+        </motion.div>
+      </div>
     </Section>
   );
 }

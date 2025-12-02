@@ -3,7 +3,8 @@ import type { Config } from "tailwindcss";
 const config: Config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}"
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx,mdx}"
   ],
   theme: {
     extend: {
@@ -13,27 +14,25 @@ const config: Config = {
       colors: {
         bg: {
           DEFAULT: "#050509",
-          alt: "#050509",
-          subtle: "#0B0C12"
+          alt: "#080812"
         },
-        accent: {
-          blue: "#3B82F6",
-          lime: "#A3E635",
-          purple: "#A855F7"
-        },
-        border: {
-          subtle: "#1C1D26",
-          strong: "#3F414F"
+        surface: {
+          sunken: "#050515",
+          raised: "#0B0B1C"
         },
         text: {
           DEFAULT: "#F9FAFB",
-          muted: "#A1A1AA",
-          soft: "#D4D4D8"
+          soft: "#E5E7EB",
+          muted: "#9CA3AF"
         },
-        surface: {
-          DEFAULT: "#0B0C12",
-          raised: "#10121A",
-          sunken: "#02030A"
+        border: {
+          DEFAULT: "#27272F",
+          subtle: "#111827"
+        },
+        accent: {
+          blue: "#4F46E5",
+          purple: "#8B5CF6",
+          emerald: "#10B981"
         }
       },
       borderRadius: {
@@ -42,8 +41,9 @@ const config: Config = {
         pill: "999px"
       },
       boxShadow: {
-        soft: "0 18px 45px rgba(0,0,0,0.45)",
-        "inner-glow": "0 0 0 1px rgba(255,255,255,0.04), 0 24px 60px rgba(0,0,0,0.7)"
+        soft: "0 24px 80px rgba(0,0,0,0.65)",
+        "inner-glow":
+          "0 0 0 1px rgba(148,163,184,0.35), 0 32px 120px rgba(0,0,0,0.9)"
       }
     }
   },

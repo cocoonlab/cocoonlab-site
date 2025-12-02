@@ -7,9 +7,9 @@ type Status = "idle" | "loading" | "success" | "error";
 export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string | null>(null);
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) {
       setStatus("error");
@@ -17,10 +17,10 @@ export function NewsletterForm() {
       return;
     }
 
-    setStatus("loading");
-    setMessage("");
-
     try {
+      setStatus("loading");
+      setMessage(null);
+
       const res = await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -28,48 +28,54 @@ export function NewsletterForm() {
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => null);
+        const data = (await res.json().catch(() => null)) as { error?: string } | null;
         throw new Error(data?.error ?? "Something went wrong.");
       }
 
       setStatus("success");
-      setMessage("Thanks — we'll be in touch soon.");
+      setMessage("Thanks — we'll share updates and pilot slots soon.");
       setEmail("");
-    } catch (err: any) {
+    } catch (err) {
+      const errorMessage =
+        err instanceof Error ? err.message : "Something went wrong. Please try again.";
       setStatus("error");
-      setMessage(err.message ?? "Something went wrong.");
+      setMessage(errorMessage);
     }
   }
 
+  const isLoading = status === "loading";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-3" noValidate>
-      <div className="field">
-        <label htmlFor="newsletter-email">Join the newsletter</label>
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full flex-col gap-3 md:flex-row md:items-center"
+      aria-busy={isLoading ? "true" : "false"}
+    >
+      <div className="field flex-1">
+        <label htmlFor="newsletter-email">Work email</label>
         <input
           id="newsletter-email"
-          name="email"
           type="email"
           autoComplete="email"
-          placeholder="you@studio.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          aria-invalid={status === "error"}
-          aria-describedby="newsletter-message"
+          placeholder="you@studio.com"
         />
       </div>
       <button
         type="submit"
-        className="btn-ghost text-xs"
-        disabled={status === "loading"}
+        className="btn-primary whitespace-nowrap"
+        disabled={isLoading}
       >
-        {status === "loading" ? "Submitting..." : "Get product updates"}
+        {isLoading ? "Subscribing…" : "Get updates"}
       </button>
       {message && (
         <p
           id="newsletter-message"
           className={`text-xs ${
-            status === "error" ? "text-rose-400" : "text-emerald-300"
+            status === "error" ? "text-rose-400" : "text-accent-emerald"
           }`}
+          aria-live="polite"
         >
           {message}
         </p>

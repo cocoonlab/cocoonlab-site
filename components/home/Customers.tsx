@@ -1,4 +1,7 @@
+import Image from "next/image";
+
 import { Section } from "@/components/Section";
+import uiSlice from "@/public/images/saas-ui-visual.png";
 
 const logos = [
   "Studio Nord",
@@ -40,17 +43,30 @@ export function Customers() {
             </div>
           ))}
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {quotes.map((q) => (
-            <figure key={q.name} className="card-surface p-5">
-              <blockquote className="text-sm text-text-soft">
-                “{q.quote}”
-              </blockquote>
-              <figcaption className="mt-3 text-xs text-text-muted">
-                {q.name}
-              </figcaption>
-            </figure>
-          ))}
+
+        <div className="relative">
+          <div className="pointer-events-none absolute -right-6 -top-8 hidden h-24 w-40 overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80 opacity-70 blur-[1px] sm:block">
+            <Image
+              src={uiSlice}
+              alt="Soft focus view of Cocoon's workspace, used as a background accent behind testimonials."
+              fill
+              sizes="12rem"
+              className="object-cover"
+            />
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {quotes.map((q) => (
+              <figure key={q.name} className="card-surface relative p-5 sm:p-6">
+                <blockquote className="text-sm text-text-soft">
+                  “{q.quote}”
+                </blockquote>
+                <figcaption className="mt-3 text-xs text-text-muted">
+                  {q.name}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </div>
     </Section>
