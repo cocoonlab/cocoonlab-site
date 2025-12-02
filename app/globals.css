@@ -31,7 +31,7 @@ body {
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center rounded-pill border border-border-subtle bg-surface-sunken/80 px-5 py-2.5 text-sm font-medium text-text-soft shadow-soft/40 outline-none ring-0 transition hover:bg-surface-raised/80 focus-visible:ring-2 focus-visible:ring-accent-blue/80;
+  @apply inline-flex items-center justify-center rounded-pill border border-border-subtle bg-surface-sunken/80 px-5 py-2.5 text-sm font-medium text-text-soft shadow-soft outline-none ring-0 transition hover:bg-surface-raised/80 focus-visible:ring-2 focus-visible:ring-accent-blue/80;
 }
 
 .link-muted {
