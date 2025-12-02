@@ -1,0 +1,10 @@
+<svg width="360" height="140" viewBox="0 0 360 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="360" height="140" rx="28" fill="url(#shadow)" opacity="0.14" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#F8FAFC" font-family="'Inter','Segoe UI',sans-serif" font-weight="700" font-size="26" letter-spacing="1.6">SID LEE ARCHITECTURE</text>
+  <defs>
+    <radialGradient id="shadow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(320 20) rotate(120) scale(320 200)">
+      <stop stop-color="#E0F2FE" stop-opacity="0.9" />
+      <stop offset="1" stop-color="#0B1220" stop-opacity="0.1" />
+    </radialGradient>
+  </defs>
+</svg>
