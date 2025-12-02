@@ -6,14 +6,15 @@ export function LayoutShell({ children }: { children: ReactNode }) {
   return (
     <div className="relative flex min-h-screen flex-col bg-bg text-text">
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.22),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,_rgba(16,185,129,0.18),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-bg/40 via-bg to-[#02020a]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(79,70,229,0.2),_transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(16,185,129,0.12),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_90%,_rgba(8,8,18,0.55),_transparent_65%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a14]/70 via-[#050509] to-[#020208]" />
       </div>
 
       <Nav />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-20 md:pt-24">
         {children}
       </main>
 

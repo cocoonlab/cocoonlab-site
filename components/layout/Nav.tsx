@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { UrlObject } from "url";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "../Logo";
@@ -35,8 +35,18 @@ const navItems: NavItem[] = [
     anchorId: "pricing",
     activePath: "/"
   },
-  { label: "Resources", href: "/resources", activePath: "/resources" },
-  { label: "Changelog", href: "/changelog", activePath: "/changelog" }
+  {
+    label: "Customers",
+    href: { pathname: "/", hash: "customers" },
+    anchorId: "customers",
+    activePath: "/"
+  },
+  {
+    label: "Resources",
+    href: "/resources",
+    activePath: "/resources"
+  },
+  { label: "Now", href: { pathname: "/", hash: "now" }, anchorId: "now", activePath: "/" }
 ];
 
 export function Nav() {
@@ -45,6 +55,11 @@ export function Nav() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
+
+  const anchorIds = useMemo(
+    () => navItems.filter((item) => item.anchorId).map((item) => item.anchorId as string),
+    []
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -61,34 +76,56 @@ export function Nav() {
     setOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    if (prefersReducedMotion || pathname !== "/") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+        if (visibleEntry?.target?.id) {
+          setActiveAnchor(visibleEntry.target.id);
+        }
+      },
+      {
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: [0.15, 0.4, 0.6]
+      }
+    );
+
+    anchorIds.forEach((anchorId) => {
+      const el = document.getElementById(anchorId);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [anchorIds, pathname, prefersReducedMotion]);
+
   function closeMobile() {
     setOpen(false);
   }
 
   const headerBase =
-    "sticky top-0 z-40 border-b border-border-subtle/70 backdrop-blur-xl transition-[background-color,border-color,transform,padding] duration-300";
+    "fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-gradient-to-b from-[#0c0c16]/95 via-[#050509]/95 to-[#050509]/90 backdrop-blur-xl transition-[background-color,border-color,transform,padding] duration-300";
   const headerScrolled = isScrolled
-    ? "bg-bg/90 shadow-[0_18px_40px_rgba(0,0,0,0.7)] border-border-subtle"
-    : "bg-bg/70";
+    ? "shadow-[0_18px_40px_rgba(0,0,0,0.7)]"
+    : "shadow-[0_10px_40px_rgba(0,0,0,0.35)]";
 
   const containerBase =
-    "container-x flex items-center justify-between gap-4 transition-[padding] duration-300";
-  const containerPadding = isScrolled ? "py-2" : "py-3";
+    "container-x flex items-center justify-between gap-6 transition-[padding] duration-300";
+  const containerPadding = isScrolled ? "py-2.5" : "py-3.5";
 
   return (
     <header className={`${headerBase} ${headerScrolled}`}>
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div
-          className={`h-full w-full bg-gradient-to-b from-surface-raised/40 via-transparent to-transparent transition-opacity duration-300 ${
-            isScrolled ? "opacity-100" : "opacity-0"
-          }`}
-        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_36%)]" />
       </div>
 
       <div className={`${containerBase} ${containerPadding}`}>
-        <div className="flex items-center gap-6">
+        <div className="flex flex-1 items-center gap-6">
           <Logo />
-          <nav className="hidden items-center gap-2 text-sm md:flex">
+          <nav className="hidden flex-1 items-center justify-center gap-1 text-sm font-medium tracking-tight text-text md:flex">
             {navItems.map((item) => {
               const itemKey =
                 typeof item.href === "string"
@@ -104,19 +141,15 @@ export function Nav() {
               const isActive = isPageActive || isAnchorActive;
 
               const baseClasses =
-                "group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 font-medium transition-colors duration-200";
-              const activeClasses =
-                "bg-surface-raised/80 text-text shadow-[0_0_0_1px_rgba(148,163,184,0.35)]";
-              const inactiveClasses =
-                "text-text-muted hover:text-text hover:bg-surface-sunken/70";
+                "group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors duration-200";
+              const activeClasses = "text-white";
+              const inactiveClasses = "text-text-muted hover:text-text";
 
               return (
                 <Link
                   key={itemKey}
                   href={item.href}
-                  className={`${baseClasses} ${
-                    isActive ? activeClasses : inactiveClasses
-                  }`}
+                  className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
                   onClick={() => {
                     if (item.anchorId) {
                       setActiveAnchor(item.anchorId);
@@ -127,33 +160,27 @@ export function Nav() {
                   <span
                     aria-hidden="true"
                     className={`
-                      pointer-events-none absolute inset-x-3 -bottom-px h-[2px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-accent-blue/80 via-accent-purple/80 to-accent-blue/80 transition-transform duration-300
+                      pointer-events-none absolute inset-x-3 -bottom-[2px] h-[3px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-accent-blue/80 via-accent-purple/80 to-accent-emerald/80 transition-transform duration-300
                       ${isActive ? "scale-x-100" : "group-hover:scale-x-100"}
                     `}
                   />
                 </Link>
               );
             })}
-            <Link
-              href="/contact"
-              className="inline-flex items-center rounded-full px-3 py-1.5 text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-text hover:underline"
-            >
-              Contact
-            </Link>
           </nav>
         </div>
 
         <div className="flex items-center gap-3">
           <Link
-            href="/contact"
-            className="hidden text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-text hover:underline md:inline-flex"
+            href="/app"
+            className="hidden text-sm font-medium text-text-muted underline-offset-4 transition-colors duration-150 hover:text-white hover:underline md:inline-flex"
           >
-            Contact
+            Log in
           </Link>
           <div className="hidden sm:block">
             <PrimaryCtaLink
               label="Get started"
-              className="btn-primary px-5 py-2.5 text-sm font-medium tracking-wide"
+              className="btn-primary px-5 py-2.5 text-sm font-semibold tracking-tight text-bg hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(0,0,0,0.6)]"
             />
           </div>
           <button
@@ -236,11 +263,11 @@ export function Nav() {
                     );
                   })}
                   <Link
-                    href="/contact"
+                    href="/app"
                     className="mt-1 flex items-center justify-between rounded-xl px-3 py-2 text-text-soft transition-colors duration-150 hover:bg-surface-raised/80 hover:text-text"
                     onClick={closeMobile}
                   >
-                    <span>Contact</span>
+                    <span>Log in</span>
                   </Link>
                   <div className="pt-3">
                     <PrimaryCtaLink
