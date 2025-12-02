@@ -1,8 +1,29 @@
 import type { ReactNode } from "react";
 import { Nav } from "./Nav";
 import { Footer } from "./Footer";
+import { ClosingCtaBand, type ClosingCtaProps } from "./ClosingCtaBand";
 
-export function LayoutShell({ children }: { children: ReactNode }) {
+type LayoutShellProps = {
+  children: ReactNode;
+  ctaOverride?: Partial<ClosingCtaProps>;
+  showCta?: boolean;
+};
+
+const defaultCta: ClosingCtaProps = {
+  title: "Plan the present.",
+  titleSecondLine: "Build the future.",
+  primaryLabel: "Get started",
+  secondaryLabel: "Contact sales",
+  secondaryHref: "/contact"
+};
+
+export function LayoutShell({
+  children,
+  ctaOverride,
+  showCta = true
+}: LayoutShellProps) {
+  const mergedCta = { ...defaultCta, ...ctaOverride };
+
   return (
     <div className="relative flex min-h-screen flex-col bg-bg text-text">
       <div className="pointer-events-none fixed inset-0 -z-10">
@@ -17,6 +38,17 @@ export function LayoutShell({ children }: { children: ReactNode }) {
       <main className="flex-1 pt-20 md:pt-24">
         {children}
       </main>
+
+      {showCta ? (
+        <ClosingCtaBand
+          title={mergedCta.title}
+          titleSecondLine={mergedCta.titleSecondLine}
+          primaryLabel={mergedCta.primaryLabel}
+          primaryHref={mergedCta.primaryHref}
+          secondaryLabel={mergedCta.secondaryLabel}
+          secondaryHref={mergedCta.secondaryHref}
+        />
+      ) : null}
 
       <Footer />
     </div>
