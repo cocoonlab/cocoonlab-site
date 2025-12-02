@@ -1,14 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 import { siteConfig } from "@/lib/config";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
-
-import heroIllustration from "@/public/images/saas-startup-hero-illustration.png";
 
 function useIsDesktop(minWidth = 768) {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -30,12 +27,30 @@ function useIsDesktop(minWidth = 768) {
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
   const isDesktop = useIsDesktop();
-  const enableFloat = isDesktop && !prefersReducedMotion;
+  const heroRef = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"]
+  });
+
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -48]);
+  const parallaxOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+
+  const shouldAnimate = !prefersReducedMotion && isDesktop;
 
   return (
-    <section className="section-pad pb-10 pt-20 md:pt-24 lg:pt-28">
-      <div className="container-x grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center">
-        {/* Copy column */}
+    <section
+      ref={heroRef}
+      className="section-pad relative overflow-hidden"
+    >
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c16]/70 via-[#050509]/90 to-[#03030a]" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,255,255,0.06),_transparent_55%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(79,70,229,0.15),transparent_38%,transparent_65%,rgba(16,185,129,0.12)_95%)]" />
+      </div>
+
+      <div className="container-x relative flex flex-col justify-center gap-10 lg:min-h-[80vh]">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -43,144 +58,86 @@ export function Hero() {
             duration: 0.5,
             ease: [0.22, 0.61, 0.36, 1]
           }}
-          className="space-y-8"
+          className="relative z-10 max-w-3xl space-y-7 text-center lg:max-w-4xl lg:text-left"
         >
-          <p className="inline-flex items-center gap-2 rounded-full border border-border-subtle/70 bg-surface-sunken/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-text-muted">
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-            <span>Built for architecture teams</span>
+            <span>AI workspace for architecture & cities</span>
           </p>
 
           <div className="space-y-5">
-            <h1 className="text-balance text-4xl font-semibold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
               Design faster.
               <br className="hidden sm:block" />
               Decide smarter.
+              <br className="hidden sm:block" />
+              On complex sites.
             </h1>
-            <p className="max-w-xl text-balance text-sm leading-relaxed text-text-soft md:text-base">
-              {(siteConfig.shortName ?? siteConfig.name)} pulls briefs, zoning, and site intelligence into one clean workspace.
-              Explore options with AI that respects constraints and keeps the team aligned.
+            <p className="mx-auto max-w-2xl text-balance text-base leading-relaxed text-text-soft lg:mx-0 lg:max-w-xl">
+              {(siteConfig.shortName ?? siteConfig.name)} pulls briefs, zoning, and site intelligence into one clean workspace. Explore options with AI that respects constraints and keeps teams aligned from sketch to submission.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <PrimaryCtaLink
               label="Join the private beta"
-              className="btn-primary hero-primary-cta relative overflow-hidden px-6 py-2.5 text-sm font-semibold tracking-wide
-                         hover:scale-[1.03] active:scale-[0.98] transition-transform duration-200 ease-out
-                         bg-gradient-to-r from-accent-purple via-accent-blue to-accent-emerald
-                         shadow-[0_0_0_1px_rgba(148,163,184,0.45),0_18px_50px_rgba(15,23,42,0.9)]
-                         hover:shadow-[0_0_0_1px_rgba(165,180,252,0.8),0_22px_60px_rgba(30,64,175,0.85)]
-                         focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              className="btn-primary px-7 py-3 text-base font-semibold tracking-tight text-bg shadow-[0_22px_70px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-[3px]"
             />
             <Link
-              href="/contact"
-              className="btn-ghost hero-secondary-cta group relative overflow-hidden px-5"
+              href="/resources"
+              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-6 py-[11px] text-sm font-medium text-text-soft transition-all duration-200 hover:-translate-y-[3px] hover:border-white/25 hover:text-white"
             >
-              <span className="relative z-10 flex items-center gap-1.5">
-                <span>Talk to us</span>
-                <span
-                  aria-hidden="true"
-                  className="text-[0.7rem] text-text-muted transition-transform duration-200 group-hover:translate-x-0.5"
-                >
-                  ↗
-                </span>
-              </span>
+              <span>New: Project Brain →</span>
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute inset-x-4 bottom-[7px] h-[2px] origin-left scale-x-0 rounded-full bg-gradient-to-r from-accent-blue/90 via-accent-purple/90 to-accent-blue/90 transition-transform duration-250 group-hover:scale-x-100"
-              />
+                className="text-xs transition-transform duration-200 group-hover:translate-x-1"
+              >
+                →
+              </span>
             </Link>
           </div>
 
-          <p className="text-xs leading-relaxed text-text-muted md:text-sm">
-            Made for architecture, urban design, and planning teams on complex sites.
+          <p className="text-center text-sm leading-relaxed text-text-muted lg:text-left">
+            Made for architecture, urban design, and planning teams working on demanding sites.
           </p>
         </motion.div>
 
-        {/* Visual column */}
         <motion.div
-          initial={prefersReducedMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{
-            duration: 0.6,
-            ease: [0.22, 0.61, 0.36, 1],
-            delay: 0.08
+          className="relative mx-auto w-full max-w-5xl lg:absolute lg:bottom-[-6%] lg:left-0 lg:max-w-[62rem] lg:-translate-y-2"
+          style={{
+            y: shouldAnimate ? parallaxY : 0,
+            opacity: shouldAnimate ? parallaxOpacity : 1,
+            perspective: "1400px"
           }}
-          className="relative"
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: shouldAnimate ? parallaxY : 0 }}
+          transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <motion.div
-            animate={
-              enableFloat
-                ? {
-                    y: [0, -6, 0, -3, 0],
-                    rotateX: [0, -1.2, 0],
-                    rotateY: [0, 1.2, 0]
-                  }
-                : undefined
-            }
-            transition={
-              enableFloat
-                ? {
-                    duration: 16,
-                    ease: "easeInOut",
-                    repeat: Infinity
-                  }
-                : undefined
-            }
-            whileHover={
-              prefersReducedMotion
-                ? undefined
-                : { scale: 1.015, rotateX: -3, rotateY: 3 }
-            }
-            className="card-surface hero-visual-high relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow"
-            style={{ transformStyle: "preserve-3d" }}
-          >
-            {/* Halo gradients / light pool */}
-            <div className="pointer-events-none absolute -inset-24 bg-[radial-gradient(circle_at_top,_rgba(79,70,229,0.7),_transparent_60%)]" />
-            <div className="pointer-events-none absolute -inset-24 bg-[radial-gradient(circle_at_bottom,_rgba(129,230,217,0.55),_transparent_55%)]" />
+          <div className="relative overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b14]/80 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur">
+            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.04),transparent_30%)]" />
+            <div className="absolute inset-y-0 right-0 w-36 bg-gradient-to-l from-bg via-bg/60 to-transparent" />
 
-            {/* Status chips */}
-            <div className="relative flex flex-wrap items-center gap-2 border-b border-border-subtle/70 bg-surface-sunken/80 px-4 py-3">
-              <span className="badge-pill bg-surface-raised/80 text-[10px] tracking-[0.16em]">
-                <span className="inline-flex h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-                Feasibility
-              </span>
-              <span className="badge-pill bg-surface-sunken/80 text-[10px] tracking-[0.16em]">
-                Zoning-aware
-              </span>
-              <span className="badge-pill bg-surface-sunken/80 text-[10px] tracking-[0.16em]">
-                Concept board
-              </span>
-            </div>
-
-            {/* Main illustration */}
-            <div className="relative aspect-[16/10] w-full">
-              <Image
-                src={heroIllustration}
-                alt="Cocoon workspace showing zoning-aware massing options and an architectural project overview."
-                fill
-                priority
-                sizes="(min-width: 1024px) 38rem, (min-width: 768px) 32rem, 100vw"
-                className="pointer-events-none select-none object-cover"
-              />
-
-              {/* Overlay callout */}
-              <div className="pointer-events-none absolute inset-x-4 bottom-4 flex flex-wrap items-center justify-between gap-3 rounded-xl border border-border-subtle/70 bg-bg/70 px-3 py-2 text-[11px] text-text-soft backdrop-blur-md md:inset-x-6 md:py-2.5">
-                <p className="flex items-center gap-2">
-                  <span className="inline-flex h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-                  <span>
-                    Capacity check:
-                    <span className="ml-1 font-medium text-white">
-                      +18% vs baseline
-                    </span>
+            <motion.div
+              className="relative rotate-[-2deg] bg-gradient-to-r from-white/4 via-white/2 to-white/4 p-2 sm:rotate-[-3deg] lg:rotate-[-6deg]"
+              style={{ transformStyle: "preserve-3d" }}
+            >
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#111122] via-[#0c0c18] to-[#050509]">
+                <div className="absolute inset-0">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_rgba(255,255,255,0.08),_transparent_38%),_radial-gradient(circle_at_80%_40%,_rgba(16,185,129,0.08),_transparent_42%),_linear-gradient(135deg,rgba(255,255,255,0.04),transparent_32%)]" />
+                  <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.06),transparent_36%)] mix-blend-screen" />
+                </div>
+                <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-2 text-center text-sm font-medium text-white/70">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold tracking-tight text-white/80">
+                    website-main-vis (placeholder)
                   </span>
-                </p>
-                <p className="hidden text-[10px] text-text-muted sm:block">
-                  Pulled from your brief, zoning envelope, and hours.
-                </p>
+                  <p className="max-w-sm text-xs text-white/60">
+                    Add <span className="font-semibold text-white">website-main-vis.png</span> to <code className="rounded bg-white/5 px-1.5 py-[2px]">public/images/</code> to replace this placeholder.
+                  </p>
+                </div>
+                <span className="sr-only">Hero visual placeholder; add website-main-vis.png to public/images to display the product screenshot.</span>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

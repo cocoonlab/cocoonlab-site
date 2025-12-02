@@ -47,6 +47,7 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=cocoonlab.ai  # if using Plausible
 
 - **Analytics**: switch between Plausible and Umami in `lib/analytics.tsx` + `lib/config.ts` using `NEXT_PUBLIC_ANALYTICS_PROVIDER` and related env vars.
 - **Images**: use `<Image />` from `next/image` for assets in `public/images` to get responsive sizing and built-in optimisation (WebP, AVIF, lazy loading).
+- **Hero visual**: drop your `website-main-vis.png` into `public/images/` to replace the placeholder graphic shown in the hero (keep the filename exactly the same).
 - **CTAs**: the primary “Get early access” / “Start designing” links are centralised in `components/PrimaryCtaLink.tsx` and depend on `useAuthUser` from `lib/auth.tsx` (see “Marketing → product flows”).
 - **Deployment**: optimised for Vercel; App Router enables static optimisation where possible. Configure additional cache headers in `next.config.mjs` or via middleware if needed. Use separate Vercel projects/environments for preview vs production and set `NEXT_PUBLIC_VERCEL_ENV` accordingly.
 
