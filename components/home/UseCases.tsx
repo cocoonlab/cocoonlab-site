@@ -16,23 +16,19 @@ type UseCase = {
 const useCases: UseCase[] = [
   {
     title: "Feasibility studies",
-    body:
-      "Quickly test yield under multiple zoning interpretations and share reasoned recommendations with clients."
+    body: "Quickly test yield under multiple zoning interpretations and share clear recommendations."
   },
   {
     title: "Competition entries",
-    body:
-      "Spend more time on the architectural idea and less on wrangling site data and compliance checks."
+    body: "Spend more time on the idea and less on wrangling site data and compliance checks."
   },
   {
     title: "Internal design reviews",
-    body:
-      "Anchor crits around a shared brief, options, and rationale instead of hunting through old decks and emails."
+    body: "Anchor crits around a shared brief and rationale instead of hunting through decks and emails."
   },
   {
     title: "Client-facing concept workshops",
-    body:
-      "Co-create options live with clients while Cocoon watches constraints and captures decisions."
+    body: "Co-create options live with clients while Cocoon watches constraints and captures decisions."
   }
 ];
 
@@ -43,7 +39,7 @@ export function UseCases() {
       eyebrow="Use cases"
       title="Built for early-stage decisions that carry real weight."
     >
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:items-start">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.95fr)] lg:items-start">
         {/* Before / after story */}
         <motion.article
           initial={{ opacity: 0, y: 18 }}
@@ -59,9 +55,8 @@ export function UseCases() {
               Before vs. with Cocoon
             </h3>
             <p className="text-sm text-text-soft md:text-[15px]">
-              Cocoon doesn&apos;t replace your tools&mdash;it sits in front of them. Instead of a maze
-              of PDFs, spreadsheets, and sticky notes, you get a single surface that understands the
-              brief and zoning.
+              Cocoon sits in front of your tools, not instead of them. Trade the maze of PDFs and spreadsheets for a single
+              surface that understands the brief and zoning.
             </p>
 
             <div className="mt-3 grid gap-4 text-xs text-text-muted sm:grid-cols-2">
@@ -70,8 +65,7 @@ export function UseCases() {
                   Before
                 </p>
                 <p>
-                  Hours spent reconciling emails, PDFs, Excel sheets, and memory to get a first pass
-                  at feasibility.
+                  Hours reconciling emails, PDFs, and spreadsheets to get a first pass at feasibility.
                 </p>
               </div>
               <div className="space-y-1">
@@ -79,8 +73,7 @@ export function UseCases() {
                   With Cocoon
                 </p>
                 <p>
-                  A live workspace that can answer &ldquo;what if&rdquo; questions in minutes, with every
-                  assumption documented.
+                  A live workspace that answers &ldquo;what if&rdquo; questions in minutes with every assumption documented.
                 </p>
               </div>
             </div>

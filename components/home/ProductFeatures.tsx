@@ -19,32 +19,26 @@ type Feature = {
 const features: Feature[] = [
   {
     title: "Capture the full brief",
-    body:
-      "Bring notes, PDFs, emails, and site references into one structured workspace—no more scattered folders.",
+    body: "Pull notes, PDFs, and site references into one structured workspace—no more scattered folders.",
     bullets: [
       "Import via voice, email forwarding, or PDF uploads",
-      "Client intent mapped into a reusable knowledge graph",
-      "Instant summaries you can share with the team"
+      "Client intent mapped into a reusable knowledge graph"
     ]
   },
   {
     title: "Zoning-aware concepting",
-    body:
-      "Sketch options with confidence that height, coverage, and parking constraints are being watched in the background.",
+    body: "Sketch options while Cocoon watches height, coverage, and parking in the background.",
     bullets: [
       "Live feedback on key zoning metrics as you explore",
-      "Configurable assumptions for ambiguous regulations",
-      "Envelope snapshots you can export into your modeling tools"
+      "Configurable assumptions for ambiguous regulations"
     ]
   },
   {
     title: "Shared decisions, not files",
-    body:
-      "Keep a single source of truth for options, rationale, and approvals across clients and internal teams.",
+    body: "Keep options, rationale, and approvals in one place for clients and internal teams.",
     bullets: [
       "Comment threads on briefs, options, and exports",
-      "One-click packages for client reviews and crits",
-      "Clear history of what changed, when, and why"
+      "One-click packages for client reviews and crits"
     ]
   }
 ];
@@ -61,9 +55,9 @@ export function ProductFeatures() {
       id="product"
       eyebrow="Product"
       title="A workspace built around the way architects actually work."
-      kicker="Cocoon wraps the messy early-stage inputs—brief, zoning, site intelligence—into one live surface that can generate options and explain the trade-offs."
+      kicker="Cocoon wraps messy early inputs—brief, zoning, site intelligence—into one live surface that can generate options and explain trade-offs."
     >
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-start">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
         {/* Feature list */}
         <div className="space-y-6">
           {features.map((feature, index) => (
@@ -139,7 +133,7 @@ export function ProductFeatures() {
               />
             </div>
             <p className="px-3 pb-3 pt-2 text-[11px] text-text-muted">
-              Capture the full brief as a living knowledge graph.
+              Capture the brief as a living knowledge graph.
             </p>
           </motion.div>
 
@@ -160,7 +154,7 @@ export function ProductFeatures() {
               />
             </div>
             <p className="px-3 pb-3 pt-2 text-[11px] text-text-muted">
-              Highlight key options, trade-offs, and next steps.
+              Highlight key options and next steps.
             </p>
           </motion.div>
         </div>
@@ -174,7 +168,7 @@ export function ProductFeatures() {
             Live constraints, explained in plain language.
           </h3>
           <p className="text-sm text-text-muted md:text-[15px]">
-            Cocoon continuously evaluates height, coverage, parking, and setbacks as you explore options, so you can see exactly what&apos;s driving each envelope.
+            Cocoon continuously checks height, coverage, parking, and setbacks as you explore options, so you see what&apos;s driving each envelope.
           </p>
           <dl className="mt-4 grid gap-3 text-xs text-text-muted sm:grid-cols-2">
             <div className="space-y-1">

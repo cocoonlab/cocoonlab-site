@@ -34,7 +34,7 @@ export function Hero() {
 
   return (
     <section className="section-pad pb-10 pt-20 md:pt-24 lg:pt-28">
-      <div className="container-x grid gap-12 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center">
+      <div className="container-x grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-center">
         {/* Copy column */}
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
@@ -47,7 +47,7 @@ export function Hero() {
         >
           <p className="inline-flex items-center gap-2 rounded-full border border-border-subtle/70 bg-surface-sunken/70 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-text-muted">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-            <span>AI workspace for architects</span>
+            <span>Built for architecture teams</span>
           </p>
 
           <div className="space-y-5">
@@ -55,14 +55,10 @@ export function Hero() {
               Design faster.
               <br className="hidden sm:block" />
               Decide smarter.
-              <br className="hidden lg:block" />
-              Deliver with confidence.
             </h1>
             <p className="max-w-xl text-balance text-sm leading-relaxed text-text-soft md:text-base">
-              {(siteConfig.shortName ?? siteConfig.name)} is a darkroom-like
-              workspace for early-stage architecture. Pull briefs, zoning, and
-              site intelligence into one place, then explore options with an AI
-              that understands constraints, not just geometry.
+              {(siteConfig.shortName ?? siteConfig.name)} pulls briefs, zoning, and site intelligence into one clean workspace.
+              Explore options with AI that respects constraints and keeps the team aligned.
             </p>
           </div>
 
@@ -97,8 +93,7 @@ export function Hero() {
           </div>
 
           <p className="text-xs leading-relaxed text-text-muted md:text-sm">
-            Designed for architecture, urban design, and planning teams working
-            on complex sites and multi-stakeholder projects.
+            Made for architecture, urban design, and planning teams on complex sites.
           </p>
         </motion.div>
 
@@ -174,14 +169,14 @@ export function Hero() {
                 <p className="flex items-center gap-2">
                   <span className="inline-flex h-1.5 w-1.5 rounded-full bg-accent-emerald" />
                   <span>
-                    Site capacity:
+                    Capacity check:
                     <span className="ml-1 font-medium text-white">
                       +18% vs baseline
                     </span>
                   </span>
                 </p>
                 <p className="hidden text-[10px] text-text-muted sm:block">
-                  Calculated from your brief, zoning envelope, and project hours.
+                  Pulled from your brief, zoning envelope, and hours.
                 </p>
               </div>
             </div>
