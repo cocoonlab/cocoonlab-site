@@ -2,16 +2,20 @@
 
 This is a dark, Cocoon-branded marketing site rebuilt on **Next.js 14 (App Router) with TypeScript and Tailwind CSS**.
 
+## Prerequisites
+- Node.js 18+
+- pnpm (preferred) or npm/yarn
+
 ## Getting started
 
 ```bash
-pnpm install    # or npm / yarn
-pnpm dev        # runs on http://localhost:3000
+pnpm install    # install dependencies
+pnpm dev        # start the dev server at http://localhost:3000
 ```
 
 ## Environment variables
 
-Create a `.env.local` file:
+Create a `.env.local` file with the values you need:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=https://cocoonlab.ai
@@ -39,18 +43,19 @@ NEXT_PUBLIC_PLAUSIBLE_DOMAIN=cocoonlab.ai  # if using Plausible
 - `/api/waitlist` – validates and stores waitlist entries in-memory + fires placeholder confirmation email
 - `/api/contact` – accepts basic contact messages for future CRM integration
 
-## Deployment notes
+## Development notes
 
-- Optimised for deployment on **Vercel**.
-- App Router automatically enables static optimisation where possible.
-- Images under `public/images` should be wired through `<Image />` from `next/image` for responsive sizing and built-in optimisation (WebP, AVIF, lazy loading).
-- For DALL·E / marketing assets, export at 2x resolution and keep under ~300–400 KB each. Next will generate multiple sizes.
-- You can configure cache headers for additional assets (fonts, etc.) via `next.config.mjs` or a custom `middleware.ts` if needed.
-- Use separate projects or environments in Vercel for `preview` vs `production` and set `NEXT_PUBLIC_VERCEL_ENV` accordingly to toggle analytics domains, feature flags, etc.
+- **Analytics**: switch between Plausible and Umami in `lib/analytics.tsx` + `lib/config.ts` using `NEXT_PUBLIC_ANALYTICS_PROVIDER` and related env vars.
+- **Images**: use `<Image />` from `next/image` for assets in `public/images` to get responsive sizing and built-in optimisation (WebP, AVIF, lazy loading).
+- **CTAs**: the primary “Get early access” / “Start designing” links are centralised in `components/PrimaryCtaLink.tsx` and depend on `useAuthUser` from `lib/auth.tsx` (see “Marketing → product flows”).
+- **Deployment**: optimised for Vercel; App Router enables static optimisation where possible. Configure additional cache headers in `next.config.mjs` or via middleware if needed. Use separate Vercel projects/environments for preview vs production and set `NEXT_PUBLIC_VERCEL_ENV` accordingly.
 
-## Swappable analytics
+## Running checks
 
-Analytics are wired via `lib/analytics.tsx` and configured in `lib/config.ts`. The provider can be switched between **Plausible** and **Umami** by changing `NEXT_PUBLIC_ANALYTICS_PROVIDER` and related env vars.
+```bash
+pnpm lint
+pnpm test   # if you add tests
+```
 
 ## Forms
 
