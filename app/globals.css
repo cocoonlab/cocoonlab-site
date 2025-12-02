@@ -90,10 +90,15 @@
   }
 
   label {
-    @apply text-xs font-medium uppercase tracking-wide text-text-muted;
+    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-text-muted;
   }
 
   form .field {
     @apply space-y-1;
+  }
+
+  /* Elevation tiers (used mainly via classes on hero / visuals) */
+  .hero-visual-high {
+    @apply shadow-[0_32px_120px_rgba(0,0,0,0.85)];
   }
 }

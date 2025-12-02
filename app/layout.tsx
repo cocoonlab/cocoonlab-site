@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { AnalyticsSnippet } from "@/lib/analytics";
 import { siteConfig } from "@/lib/config";
+import { RootLayoutClient } from "@/components/layout/RootLayoutClient";
 
 export const metadata: Metadata = {
   title: {
@@ -33,8 +34,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="bg-bg">
-      <body>
-        {children}
+      <body className="min-h-screen bg-bg text-text antialiased">
+        <RootLayoutClient>{children}</RootLayoutClient>
         <AnalyticsSnippet />
       </body>
     </html>

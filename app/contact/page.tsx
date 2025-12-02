@@ -1,7 +1,8 @@
 "use client";
 
-import { LayoutShell } from "@/components/layout/LayoutShell";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { LayoutShell } from "@/components/layout/LayoutShell";
 import { siteConfig } from "@/lib/config";
 
 export default function ContactPage() {
@@ -36,6 +37,8 @@ export default function ContactPage() {
     }
   }
 
+  const isLoading = status === "loading";
+
   return (
     <LayoutShell>
       <section className="section-pad">
@@ -48,13 +51,12 @@ export default function ContactPage() {
               Talk to the team behind Cocoon Lab.
             </h1>
             <p className="text-sm text-text-muted md:text-base">
-              Whether you&apos;re exploring pilots, have questions about
-              workflow fit, or just want to share feedback, we&apos;d love to
-              hear from you.
+              Whether you&apos;re exploring pilots, have questions about workflow fit,
+              or just want to share feedback, we&apos;d love to hear from you.
             </p>
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="btn-primary inline-flex w-fit text-sm"
+              className="btn-ghost inline-flex w-fit text-sm"
             >
               Email {siteConfig.contactEmail}
             </a>
@@ -62,8 +64,9 @@ export default function ContactPage() {
           <form
             onSubmit={handleSubmit}
             className="card-surface space-y-4 p-5 md:p-6"
+            aria-busy={isLoading ? "true" : "false"}
           >
-            <div className="field">
+            <div className="field space-y-1">
               <label htmlFor="contact-email">Your email</label>
               <input
                 id="contact-email"
@@ -72,9 +75,10 @@ export default function ContactPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className="w-full rounded-xl border border-border-subtle bg-surface-sunken/70 px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-border focus:border-accent-blue/80 focus:shadow-[0_0_0_1px_rgba(129,140,248,0.65),0_0_0_1px_rgba(15,23,42,1)]"
               />
             </div>
-            <div className="field">
+            <div className="field space-y-1">
               <label htmlFor="contact-message">Message</label>
               <textarea
                 id="contact-message"
@@ -82,24 +86,33 @@ export default function ContactPage() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
+                className="w-full rounded-xl border border-border-subtle bg-surface-sunken/70 px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-border focus:border-accent-blue/80 focus:shadow-[0_0_0_1px_rgba(129,140,248,0.65),0_0_0_1px_rgba(15,23,42,1)]"
               />
             </div>
             <button
               type="submit"
-              className="btn-ghost w-full justify-center text-sm"
-              disabled={status === "loading"}
+              className="btn-primary w-full justify-center text-sm disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={isLoading}
             >
-              {status === "loading" ? "Sending..." : "Send message"}
+              {isLoading ? "Sending..." : "Send message"}
             </button>
-            {feedback && (
-              <p
-                className={`text-xs ${
-                  status === "error" ? "text-rose-400" : "text-emerald-300"
-                }`}
-              >
-                {feedback}
-              </p>
-            )}
+            <AnimatePresence>
+              {feedback && (
+                <motion.p
+                  key={status + feedback}
+                  className={`text-xs ${
+                    status === "error" ? "text-rose-400" : "text-accent-emerald"
+                  }`}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+                  aria-live="polite"
+                >
+                  {feedback}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </form>
         </div>
       </section>
