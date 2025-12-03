@@ -66,7 +66,7 @@ export function Hero() {
               Calm, zoning-aware decisions in one workspace.
             </h1>
             <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
-              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, code, and AI options together so teams choose the right path faster.
+              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, zoning, and AI options together so you decide faster.
             </p>
           </div>
 
@@ -78,8 +78,8 @@ export function Hero() {
             <VideoLightbox
               videoSrc="/demo.mp4"
               posterSrc="/images/website-main-vis.png"
-              triggerLabel="Watch 35s demo"
-              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-[3px] hover:border-white/25"
+              triggerLabel="Watch demo"
+              className="btn-ghost px-7 py-3 text-sm font-semibold"
             />
           </div>
 

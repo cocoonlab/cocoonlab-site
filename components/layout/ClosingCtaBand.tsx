@@ -38,14 +38,6 @@ export function ClosingCtaBand({
           ) : null}
         </h2>
         <div className="flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row sm:gap-4">
-          {secondaryHref && secondaryLabel ? (
-            <Link
-              href={secondaryHref}
-              className="inline-flex items-center justify-center rounded-pill border border-white/40 bg-transparent px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B0B1C]"
-            >
-              {secondaryLabel}
-            </Link>
-          ) : null}
           {primaryHref ? (
             <Link
               href={primaryHref}
@@ -59,6 +51,14 @@ export function ClosingCtaBand({
               className="btn-primary px-7 py-3 text-base font-semibold text-bg"
             />
           )}
+          {secondaryHref && secondaryLabel ? (
+            <Link
+              href={secondaryHref}
+              className="btn-ghost px-6 py-2.5 text-sm font-semibold"
+            >
+              {secondaryLabel}
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>

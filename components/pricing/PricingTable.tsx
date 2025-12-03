@@ -17,39 +17,36 @@ type Tier = {
 const tiers: Tier[] = [
   {
     name: "Studio",
-    price: "Contact us",
-    description:
-      "For small teams running feasibility studies and early-stage projects across one region.",
+    price: "Contact",
+    description: "For small teams testing sites in one region.",
     highlights: [
       "Up to 10 active projects",
-      "Shared brief & concept boards",
-      "Zoning-aware options for a primary region",
-      "Email support and onboarding"
+      "Shared briefs and concept boards",
+      "Zoning-aware options for one region",
+      "Guided email onboarding"
     ]
   },
   {
     name: "Practice",
-    price: "Contact us",
-    description:
-      "For established practices coordinating multiple studios, sectors, or geographies.",
+    price: "Contact",
+    description: "For practices coordinating multiple studios or sectors.",
     highlights: [
       "Higher project limits",
-      "Multi-region zoning configurations",
-      "Advanced admin & permissions",
-      "Priority support and onboarding sessions"
+      "Multi-region zoning",
+      "Advanced admin and permissions",
+      "Priority onboarding"
     ],
     featured: true
   },
   {
     name: "Enterprise & public sector",
-    price: "Let’s talk",
-    description:
-      "For city agencies, large enterprises, or bespoke workflows that need deeper integrations.",
+    price: "Custom",
+    description: "For agencies or enterprises with bespoke workflows.",
     highlights: [
       "Custom data integrations",
-      "Security review & SSO",
+      "Security review and SSO",
       "Dedicated success partner",
-      "Flexible deployment options"
+      "Flexible deployment"
     ]
   }
 ];
@@ -59,8 +56,8 @@ export function PricingTable() {
     <Section
       id="pricing"
       eyebrow="Pricing"
-      title="Early access for studios that want to shape the product."
-      kicker="We’re working closely with a small number of teams. Pricing reflects the value of unblocking early-stage design work."
+      title="Early access pricing for pilot teams."
+      kicker="We’re partnering with a handful of studios. Pricing matches the value of unblocking early design."
     >
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-start">
         {/* Tiers */}
@@ -92,18 +89,14 @@ export function PricingTable() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-5">
-                <Link
-                  href="/contact"
-                  className={`inline-flex w-full items-center justify-center rounded-xl px-3 py-2 text-sm font-medium ${
-                    tier.featured
-                      ? "bg-accent-blue text-bg hover:bg-accent-blue/90"
-                      : "border border-border-subtle bg-surface-sunken hover:border-border"
-                  }`}
-                >
-                  {tier.name === "Practice" ? "Talk to us" : "Contact us"}
-                </Link>
-              </div>
+            <div className="mt-5">
+              <Link
+                href="/contact"
+                className="btn-ghost w-full justify-center text-sm font-semibold"
+              >
+                Contact
+              </Link>
+            </div>
             </article>
           ))}
         </div>
@@ -148,7 +141,7 @@ export function PricingTable() {
       </div>
 
       <p className="mt-6 text-xs text-text-muted">
-        Early pilots are discounted in exchange for regular feedback on product direction.
+        Pilot pricing includes regular product feedback sessions.
       </p>
     </Section>
   );
