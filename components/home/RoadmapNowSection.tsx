@@ -13,7 +13,7 @@ export function RoadmapNowSection() {
       id="now"
       eyebrow="Now"
       title="Alpha with partner studios."
-      kicker="Beta opens in 2026; we move with teams already shipping work."
+      kicker="Beta opens in 2026 with teams already shipping work."
       className="pt-16"
     >
       <div className="grid gap-6 lg:grid-cols-[1.05fr_minmax(0,1fr)] lg:items-start">
@@ -22,9 +22,7 @@ export function RoadmapNowSection() {
             <p className="text-sm font-semibold text-white">Status</p>
             <span className="badge-pill bg-white/5 text-xs text-white">Alpha</span>
           </div>
-          <p className="text-sm leading-relaxed text-text-muted">
-            Alpha with pilot firms. Beta planned for 2026.
-          </p>
+          <p className="text-sm leading-relaxed text-text-muted">Alpha with pilot firms. Beta lands 2026.</p>
           <ul className="space-y-2 text-sm text-text-soft">
             <li className="flex items-center gap-2">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" aria-hidden />

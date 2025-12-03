@@ -2,20 +2,24 @@
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { createPortal } from "react-dom";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, useId } from "react";
 
 type VideoLightboxProps = {
   videoSrc: string;
   posterSrc?: string;
   triggerLabel: string;
   className?: string;
+  fallbackHref?: string;
+  fallbackLabel?: string;
 };
 
 export function VideoLightbox({
   videoSrc,
   posterSrc,
   triggerLabel,
-  className
+  className,
+  fallbackHref,
+  fallbackLabel
 }: VideoLightboxProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -23,6 +27,10 @@ export function VideoLightbox({
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
   const previousFocusRef = useRef<Element | null>(null);
   const prefersReducedMotion = useReducedMotion();
+  const dialogId = useId();
+
+  const fallbackLink = fallbackHref ?? videoSrc;
+  const fallbackLinkLabel = fallbackLabel ?? "Open demo in a new tab";
 
   useEffect(() => {
     setIsMounted(true);
@@ -112,6 +120,8 @@ export function VideoLightbox({
           className ??
           "inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-[3px] hover:border-white/25"
         }
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
       >
         {triggerLabel}
       </button>
@@ -135,7 +145,7 @@ export function VideoLightbox({
               <motion.div
                 role="dialog"
                 aria-modal="true"
-                aria-label="Product demo video"
+                aria-labelledby={dialogId}
                 ref={dialogRef}
                 className="relative mx-auto flex h-full max-h-[90vh] max-w-5xl items-center justify-center px-4"
                 initial={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
@@ -146,7 +156,9 @@ export function VideoLightbox({
               >
                 <div className="card-surface relative w-full overflow-hidden rounded-[26px] border border-white/12 bg-[#0b0b14]/95 shadow-[0_26px_120px_rgba(0,0,0,0.8)]">
                   <div className="flex items-start justify-between px-5 pb-3 pt-4">
-                    <div className="text-sm font-semibold text-white">Watch the 35 second walkthrough</div>
+                    <div className="text-sm font-semibold text-white" id={dialogId}>
+                      Watch the 35 second walkthrough
+                    </div>
                     <button
                       ref={closeButtonRef}
                       type="button"
@@ -166,6 +178,18 @@ export function VideoLightbox({
                       <source src={videoSrc} type="video/mp4" />
                       Your browser does not support the video tag.
                     </video>
+                  </div>
+                  <div className="flex flex-col gap-2 border-t border-white/10 bg-[#090912] px-5 py-4 text-sm text-text-soft sm:flex-row sm:items-center sm:justify-between">
+                    <span className="text-xs uppercase tracking-[0.2em] text-text-muted">Need a fallback?</span>
+                    <a
+                      href={fallbackLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                    >
+                      {fallbackLinkLabel}
+                      <span aria-hidden>↗</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>

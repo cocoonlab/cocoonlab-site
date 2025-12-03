@@ -28,7 +28,7 @@ export function OutcomesSection() {
       id="outcomes"
       eyebrow="Outcomes"
       title="Aligned work moves faster."
-      kicker="Pilot studios cut review loops and keep early hours billable."
+      kicker="Pilot studios trim review loops and keep early hours billable."
       className="border-y border-border-subtle/70 bg-surface-raised/70"
       variant="default"
     >
@@ -45,7 +45,7 @@ export function OutcomesSection() {
             <p className="text-3xl font-semibold text-white md:text-4xl lg:text-[40px]">
               ~63% faster concepting
             </p>
-            <p className="text-sm text-text-muted md:text-base">Time from brief to first aligned option.</p>
+            <p className="text-sm text-text-muted md:text-base">Brief to first aligned option.</p>
           </div>
 
           <ul className="space-y-3 text-sm text-text-soft md:text-base">

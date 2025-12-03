@@ -12,12 +12,12 @@ const highlights = [
   },
   {
     title: "Guided options",
-    body: "Generate zoning-aware concepts with constraints visible up front. Swap assumptions without starting over.",
-    points: ["Live FAR, coverage, and parking checks", "Clear rationale for each envelope"]
+    body: "Generate zoning-aware concepts with constraints upfront. Swap assumptions without restarting.",
+    points: ["Live FAR and coverage checks", "Clear rationale for each envelope"]
   },
   {
     title: "Shared decisions",
-    body: "Comment, pin decisions, and package exports without hunting through threads. Clients stay in the loop.",
+    body: "Comment, pin decisions, and export without digging through threads.",
     points: ["Threads on briefs and options", "One-click packets for reviews"]
   }
 ];
@@ -27,8 +27,8 @@ export function WhatCocoonDoes() {
     <Section
       id="product"
       eyebrow="What Cocoon does"
-      title="One workspace that keeps early design calm and defensible."
-      kicker="Fewer clicks, fewer surprises. Cocoon blends AI assist with the guardrails architects need."
+      title="One workspace that keeps early design calm."
+      kicker="Fewer clicks, fewer surprises. Guardrails stay visible while you explore."
     >
       <div className="grid gap-4 md:grid-cols-3">
         {highlights.map((item) => (

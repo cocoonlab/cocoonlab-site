@@ -26,6 +26,12 @@ export function LayoutShell({
 
   return (
     <div className="relative flex min-h-screen flex-col bg-bg text-text">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-bg focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(79,70,229,0.2),_transparent_55%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(16,185,129,0.12),_transparent_60%)]" />
@@ -35,7 +41,7 @@ export function LayoutShell({
 
       <Nav />
 
-      <main className="flex-1 pt-20 md:pt-24">
+      <main id="main-content" className="flex-1 pt-20 md:pt-24">
         {children}
       </main>
 

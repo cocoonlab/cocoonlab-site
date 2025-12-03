@@ -20,7 +20,7 @@ export function DemoSection() {
       id="demo"
       eyebrow="Demo"
       title="See Cocoon keep pace with complex sites."
-      kicker="Play when ready. For slower connections, use the download link below."
+      kicker="Press play on your time. Slow connection? Grab the file below."
     >
       <motion.div
         className="card-surface overflow-hidden"

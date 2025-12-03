@@ -63,10 +63,10 @@ export function Hero() {
 
           <div className="space-y-5">
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
-              Calm, zoning-aware decisions in one workspace.
+              Zoning-aware decisions, one calm workspace.
             </h1>
             <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
-              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, zoning, and AI options together so you decide faster.
+              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, rules, and AI options in sync so teams choose quickly.
             </p>
           </div>
 
@@ -84,14 +84,14 @@ export function Hero() {
           </div>
 
           <div className="space-y-1 text-sm leading-relaxed text-text-muted">
-            <p>Built with pilot studios tackling dense infill, campuses, and public realm work.</p>
+            <p>Built with pilot studios shipping dense infill, campuses, and public realm work.</p>
             <a
               href={DEMO_FALLBACK_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
             >
-              If video fails, open demo in a new tab
+              If video stalls, open the demo in a new tab
               <span aria-hidden>↗</span>
             </a>
           </div>
@@ -99,7 +99,11 @@ export function Hero() {
 
         <motion.div
           className="relative order-last mx-auto w-full max-w-[36rem] sm:max-w-[42rem] lg:order-none lg:max-w-[48rem] xl:max-w-[54rem]"
-          style={{ y: shouldAnimate ? parallaxY : 0, opacity: shouldAnimate ? parallaxOpacity : 1, perspective: "1400px" }}
+          style={{
+            y: shouldAnimate ? parallaxY : 0,
+            opacity: shouldAnimate ? parallaxOpacity : 1,
+            perspective: shouldAnimate ? "1400px" : undefined
+          }}
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: shouldAnimate ? parallaxY.get() : 0 }}
           transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
