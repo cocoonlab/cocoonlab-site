@@ -58,12 +58,12 @@ export function Hero() {
         >
           <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-            <span>AI workspace for architecture teams</span>
+            <span>AI copilot for early-stage architectural design.</span>
           </p>
 
           <div className="space-y-5">
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
-              Zoning-aware decisions, one calm workspace.
+              AI copilot for early-stage architectural design.
             </h1>
             <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
               {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, rules, and AI options in sync so teams choose quickly.
