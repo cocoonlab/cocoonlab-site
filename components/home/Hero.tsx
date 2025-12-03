@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -127,13 +126,14 @@ export function Hero() {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_rgba(255,255,255,0.08),_transparent_38%),_radial-gradient(circle_at_80%_40%,_rgba(16,185,129,0.08),_transparent_42%),_linear-gradient(135deg,rgba(255,255,255,0.04),transparent_32%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.06),transparent_36%)] mix-blend-screen" />
                 </div>
-                <Image
-                  src="/images/website-main-vis.png"
-                  alt="Cocoon workspace showing zoning-aware AI design insights"
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 62rem, 100vw"
-                  className="relative z-10 h-full w-full object-cover"
+                <video
+                  src="/demo.mp4"
+                  className="relative z-10 h-full w-full object-contain"
+                  playsInline
+                  muted
+                  loop
+                  autoPlay
+                  aria-label="Cocoon workspace showing zoning-aware AI design insights"
                 />
               </div>
             </motion.div>
