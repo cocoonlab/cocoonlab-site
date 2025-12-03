@@ -217,7 +217,7 @@ export function Nav() {
               const isActive = !shouldPauseActiveState && (isPageActive || isAnchorActive);
 
               const baseClasses =
-                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200";
+                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
               const activeClasses =
                 "text-white bg-white/6 border-white/10 shadow-[0_14px_50px_rgba(0,0,0,0.45)]";
               const inactiveClasses = "text-text-muted hover:text-text";

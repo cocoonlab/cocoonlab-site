@@ -17,7 +17,7 @@ export function RoadmapSection() {
       id="roadmap"
       eyebrow="Roadmap"
       title="What we’re shipping with partners."
-      kicker="Cocoon ships weekly with pilot teams. Tell us what keeps your projects moving."
+      kicker="Shipping weekly with pilots; tell us what keeps your projects moving."
     >
       <div className="grid gap-4 md:grid-cols-2">
         {roadmapItems.map((entry) => (

@@ -46,7 +46,7 @@ export function TrustedByBand() {
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">Powering forward-looking design teams</p>
           <p className="mt-3 text-sm leading-relaxed text-text-soft md:text-base">
-            From experimental studios to established firms working on complex urban sites.
+            Studios shipping dense infill, campuses, and civic realm projects.
           </p>
         </div>
 
