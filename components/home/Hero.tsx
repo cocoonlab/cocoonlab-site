@@ -104,7 +104,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="relative mx-auto w-full max-w-5xl lg:absolute lg:bottom-[-6%] lg:left-0 lg:max-w-[62rem] lg:-translate-y-2"
+          className="relative mx-auto w-full max-w-5xl lg:max-w-[62rem] lg:mt-6"
           style={{
             y: shouldAnimate ? parallaxY : 0,
             opacity: shouldAnimate ? parallaxOpacity : 1,
