@@ -42,7 +42,7 @@ export function Hero() {
   const shouldAnimate = !prefersReducedMotion && isDesktop;
 
   return (
-    <section ref={heroRef} className="section-pad relative overflow-hidden pt-12 md:pt-14 lg:pt-16">
+    <section ref={heroRef} className="section-pad relative overflow-hidden pt-8 md:pt-10 lg:pt-12">
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c16]/85 via-[#050509]/92 to-[#02020a]" />
         <div className="absolute inset-x-0 top-0 h-60 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,255,255,0.07),_transparent_58%)]" />
