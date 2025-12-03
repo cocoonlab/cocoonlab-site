@@ -35,7 +35,7 @@ export function Hero() {
     offset: ["start end", "end start"]
   });
 
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -48]);
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -32]);
   const parallaxOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 
   const shouldAnimate = !prefersReducedMotion && isDesktop;
@@ -51,7 +51,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(79,70,229,0.15),transparent_38%,transparent_65%,rgba(16,185,129,0.12)_95%)]" />
       </div>
 
-      <div className="container-x relative flex flex-col justify-center gap-10 lg:min-h-[80vh]">
+      <div className="container-x relative grid items-center gap-12 lg:min-h-[80vh] lg:grid-cols-[1.04fr_0.96fr] xl:gap-16">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function Hero() {
             duration: 0.5,
             ease: [0.22, 0.61, 0.36, 1]
           }}
-          className="relative z-10 max-w-3xl space-y-7 text-center lg:max-w-4xl lg:text-left"
+          className="relative z-10 mx-auto max-w-3xl space-y-7 text-center lg:mx-0 lg:max-w-4xl lg:justify-self-start lg:space-y-8 lg:text-left"
         >
           <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
@@ -104,7 +104,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="relative mx-auto w-full max-w-5xl lg:max-w-[62rem] lg:mt-6"
+          className="relative order-last mx-auto w-full max-w-[34rem] lg:order-none lg:max-w-[50rem] xl:max-w-[62rem]"
           style={{
             y: shouldAnimate ? parallaxY : 0,
             opacity: shouldAnimate ? parallaxOpacity : 1,
