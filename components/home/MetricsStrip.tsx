@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
-import projectHoursCard from "@/public/images/project-hours-infographic-card.png";
+import projectHoursCard from "@/public/images/three-step-workflow-diagram.png";
 
 type MetricsStripProps = {
   className?: string;
@@ -81,7 +81,7 @@ export function MetricsStrip({ className }: MetricsStripProps) {
             />
           </div>
           <figcaption className="px-4 py-3 text-xs text-text-muted">
-            Project hours burn away reconciling inputs before design even starts.
+            Capture. Generate. Iterate. Validate. Cocoon speeds up early design with AI.
           </figcaption>
         </figure>
       </div>

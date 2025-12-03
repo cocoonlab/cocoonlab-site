@@ -36,7 +36,7 @@ export function DemoSection() {
             controls={isPlaying}
             muted
             playsInline
-            poster="/images/saas-ui-visual.png"
+            poster="/images/cocoon-cinematic.png"
             preload="metadata"
             aria-label="Cocoon workspace demo"
           >
