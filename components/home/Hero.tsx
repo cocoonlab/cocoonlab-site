@@ -43,15 +43,15 @@ export function Hero() {
   return (
     <section
       ref={heroRef}
-      className="section-pad relative overflow-hidden"
+      className="section-pad relative overflow-hidden pt-12 md:pt-14 lg:pt-16"
     >
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c16]/70 via-[#050509]/90 to-[#03030a]" />
-        <div className="absolute inset-x-0 top-0 h-48 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,255,255,0.06),_transparent_55%)]" />
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(79,70,229,0.15),transparent_38%,transparent_65%,rgba(16,185,129,0.12)_95%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0c16]/85 via-[#050509]/92 to-[#02020a]" />
+        <div className="absolute inset-x-0 top-0 h-60 bg-[radial-gradient(circle_at_50%_0%,_rgba(255,255,255,0.07),_transparent_58%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(79,70,229,0.12),transparent_36%,transparent_68%,rgba(16,185,129,0.14)_96%)]" />
       </div>
 
-      <div className="container-x relative grid items-center gap-12 lg:min-h-[80vh] lg:grid-cols-[1.04fr_0.96fr] xl:gap-16">
+      <div className="container-x relative grid max-w-[82rem] items-start gap-12 lg:min-h-[80vh] lg:grid-cols-[0.48fr_0.52fr] xl:gap-20">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function Hero() {
             duration: 0.5,
             ease: [0.22, 0.61, 0.36, 1]
           }}
-          className="relative z-10 mx-auto max-w-3xl space-y-7 text-center lg:mx-0 lg:max-w-4xl lg:justify-self-start lg:space-y-8 lg:text-left"
+          className="relative z-10 mx-auto flex max-w-3xl flex-col gap-7 text-left lg:mx-0 lg:max-w-4xl lg:justify-self-start lg:gap-8"
         >
           <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
@@ -74,19 +74,19 @@ export function Hero() {
               <br className="hidden sm:block" />
               On complex sites.
             </h1>
-            <p className="mx-auto max-w-2xl text-balance text-base leading-relaxed text-text-soft lg:mx-0 lg:max-w-xl">
+            <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
               {(siteConfig.shortName ?? siteConfig.name)} pulls briefs, zoning, and site intelligence into one clean workspace. Explore options with AI that respects constraints and keeps teams aligned from sketch to submission.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
             <PrimaryCtaLink
               label="Join the private beta"
-              className="btn-primary px-7 py-3 text-base font-semibold tracking-tight text-bg shadow-[0_22px_70px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-[3px]"
+              className="btn-primary w-full justify-center px-8 py-3 text-base font-semibold tracking-tight text-bg shadow-[0_22px_70px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-[3px] sm:w-auto"
             />
             <Link
               href="/resources"
-              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-6 py-[11px] text-sm font-medium text-text-soft transition-all duration-200 hover:-translate-y-[3px] hover:border-white/25 hover:text-white"
+              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium text-text-soft transition-all duration-200 hover:-translate-y-[3px] hover:border-white/25 hover:text-white"
             >
               <span>New: Project Brain →</span>
               <span
@@ -98,13 +98,13 @@ export function Hero() {
             </Link>
           </div>
 
-          <p className="text-center text-sm leading-relaxed text-text-muted lg:text-left">
+          <p className="text-sm leading-relaxed text-text-muted">
             Made for architecture, urban design, and planning teams working on demanding sites.
           </p>
         </motion.div>
 
         <motion.div
-          className="relative order-last mx-auto w-full max-w-[34rem] lg:order-none lg:max-w-[50rem] xl:max-w-[62rem]"
+          className="relative order-last mx-auto w-full max-w-[36rem] sm:max-w-[42rem] lg:order-none lg:max-w-[48rem] xl:max-w-[54rem]"
           style={{
             y: shouldAnimate ? parallaxY : 0,
             opacity: shouldAnimate ? parallaxOpacity : 1,
@@ -114,12 +114,12 @@ export function Hero() {
           animate={{ opacity: 1, y: shouldAnimate ? parallaxY : 0 }}
           transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <div className="relative overflow-hidden rounded-[28px] border border-white/8 bg-[#0b0b14]/80 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur">
-            <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.04),transparent_30%)]" />
-            <div className="absolute inset-y-0 right-0 w-36 bg-gradient-to-l from-bg via-bg/60 to-transparent" />
+          <div className="relative -mb-6 rounded-[30px] border border-white/10 bg-[#0b0b14]/85 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur lg:-mb-10 lg:mt-6 lg:pl-6">
+            <div className="absolute inset-0 rounded-[30px] bg-[linear-gradient(120deg,rgba(255,255,255,0.05),transparent_34%)]" />
+            <div className="absolute inset-y-0 right-0 w-40 rounded-[30px] bg-gradient-to-l from-bg via-bg/60 to-transparent" />
 
             <motion.div
-              className="relative rotate-[-2deg] bg-gradient-to-r from-white/4 via-white/2 to-white/4 p-2 sm:rotate-[-3deg] lg:rotate-[-6deg]"
+              className="relative bg-gradient-to-r from-white/4 via-white/2 to-white/4 p-2 sm:rotate-[-1deg] lg:rotate-[-4deg]"
               style={{ transformStyle: "preserve-3d" }}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#111122] via-[#0c0c18] to-[#050509]">
