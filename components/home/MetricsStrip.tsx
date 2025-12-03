@@ -59,7 +59,7 @@ export function MetricsStrip({ className }: MetricsStripProps) {
             {metrics.map((m) => (
               <div
                 key={m.label}
-                className="flex flex-col gap-2 border-t border-border-subtle/60 pt-3 first:border-none first:pt-0 sm:border-t-0 sm:border-l sm:pl-4 sm:first:border-none sm:first:pl-0"
+                className="flex flex-col gap-2 border-t border-border-subtle/60 pt-3 first:border-none first:pt-0 sm:border-t-0 sm:border-l sm:pl-4 sm:pt-0 sm:first:border-none sm:first:pl-0"
               >
                 <p className="text-[11px] uppercase tracking-wide text-text-muted/70">{m.label}</p>
                 <p className="text-2xl font-semibold text-white">{m.value}</p>
