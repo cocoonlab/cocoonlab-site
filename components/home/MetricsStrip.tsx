@@ -50,7 +50,7 @@ export function MetricsStrip() {
               </h2>
               <p className="max-w-xl text-sm text-text-soft md:text-[15px]">
                 Cocoon centralises briefs, zoning, and options so teams stop juggling spreadsheets and emails. Everyone sees the
-                same truth and can ask better "what if" questions.
+                same truth and can ask better what-if questions.
               </p>
 
               <div className="grid gap-4 pt-1 text-sm sm:grid-cols-3">

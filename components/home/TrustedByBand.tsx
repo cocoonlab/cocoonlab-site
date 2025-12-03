@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import type { MouseEvent } from "react";
+import { homeSectionHref } from "@/lib/sections";
 
 const partners = [
   {
@@ -84,7 +85,7 @@ export function TrustedByBand() {
           </div>
 
           <Link
-            href="/customers"
+            href={homeSectionHref("customers")}
             onClick={handleCtaClick}
             onFocus={() => setCtaFocused(true)}
             onBlur={() => setCtaFocused(false)}

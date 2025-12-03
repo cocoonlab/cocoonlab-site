@@ -1,41 +1,63 @@
 import type { ReactNode } from "react";
+import type { Route } from "next";
 import Link from "next/link";
 import { Logo } from "../Logo";
 import { siteConfig } from "@/lib/config";
+import { getHomeSection, homeSectionHref, type HomeSectionId } from "@/lib/sections";
 
-const footerSections = [
+type InternalFooterLink = {
+  label: string;
+  href: ReturnType<typeof homeSectionHref> | Route;
+  external?: false;
+};
+
+type ExternalFooterLink = {
+  label: string;
+  href: string;
+  external: true;
+};
+
+type FooterLink = InternalFooterLink | ExternalFooterLink;
+
+function makeSectionLink(id: HomeSectionId): FooterLink | null {
+  const section = getHomeSection(id);
+
+  if (!section) return null;
+
+  return { label: section.label, href: homeSectionHref(section.id) };
+}
+
+function compactLinks(links: (FooterLink | null)[]) {
+  return links.filter((link): link is FooterLink => Boolean(link));
+}
+
+const footerSections: { title: string; links: FooterLink[] }[] = [
   {
     title: "Product",
-    links: [
-      { label: "Overview", href: "/#product" },
-      { label: "AI assistants", href: "/#assistants" },
-      { label: "Planning timeline", href: "/#timeline" },
-      { label: "Issue tracking", href: "/#issues" }
-    ]
+    links: compactLinks([
+      makeSectionLink("product"),
+      makeSectionLink("how-it-works"),
+      makeSectionLink("use-cases"),
+      makeSectionLink("customers"),
+      makeSectionLink("pricing")
+    ])
   },
   {
     title: "Company",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Now / Changelog", href: "/changelog" },
-      { label: "Contact", href: "/contact" }
+      { label: "Changelog", href: "/changelog" as Route },
+      { label: "Pricing", href: "/pricing" as Route },
+      { label: "Contact", href: "/contact" as Route }
     ]
   },
   {
     title: "Resources",
     links: [
-      { label: "Guides", href: "/resources" },
-      { label: "Case studies", href: "/resources#cases" },
-      { label: "Newsletter", href: "/newsletter" }
-    ]
-  },
-  {
-    title: "For teams",
-    links: [
-      { label: "Architects", href: "/#architects" },
-      { label: "Urban designers", href: "/#urban" },
-      { label: "Cities & public agencies", href: "/#cities" }
-    ]
+      { label: "Resource library", href: "/resources" as Route },
+      makeSectionLink("resources"),
+      { label: "Privacy", href: "/privacy" as Route },
+      { label: "Terms", href: "/terms" as Route }
+    ].filter((link): link is FooterLink => Boolean(link))
   },
   {
     title: "Connect",

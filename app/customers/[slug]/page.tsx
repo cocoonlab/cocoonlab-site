@@ -1,6 +1,7 @@
 import Link from "next/link";
-import type { Metadata } from "next";
+import type { Metadata, Route } from "next";
 import { notFound } from "next/navigation";
+import type { UrlObject } from "url";
 
 import { LayoutShell } from "@/components/layout/LayoutShell";
 
@@ -259,14 +260,23 @@ export default function CaseStudyPage({ params }: PageProps) {
   );
 }
 
-const peopleCards = [
+type PeopleCard = {
+  avatar: string;
+  title: string;
+  subtitle: string;
+  body: string;
+  cta: string;
+  href: Route | UrlObject;
+};
+
+const peopleCards: PeopleCard[] = [
   {
     avatar: "S",
     title: "SOUR",
     subtitle: "Mixed-use infill partner",
     body: "“Cocoon doubled the number of zoning-ready options we could share without adding to meeting load.”",
     cta: "Read story",
-    href: "/customers/sour"
+    href: { pathname: "/customers/[slug]", query: { slug: "sour" } }
   },
   {
     avatar: "C",
@@ -274,7 +284,7 @@ const peopleCards = [
     subtitle: "Civic realm partner",
     body: "“Workshops now start with aligned constraints so we can spend time on better public-realm moves.”",
     cta: "Read story",
-    href: "/customers/civiliti"
+    href: { pathname: "/customers/[slug]", query: { slug: "civiliti" } }
   },
   {
     avatar: "SL",
@@ -282,7 +292,7 @@ const peopleCards = [
     subtitle: "Cultural venues & urban sites",
     body: "“Cocoon keeps ambitious concepts tied to the rules that make approvals smooth.”",
     cta: "Read story",
-    href: "/customers/sid-lee-architecture"
+    href: { pathname: "/customers/[slug]", query: { slug: "sid-lee-architecture" } }
   },
   {
     avatar: "RM",

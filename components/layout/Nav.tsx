@@ -8,6 +8,7 @@ import type { UrlObject } from "url";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "../Logo";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
+import { getHomeSection, homeSectionHref } from "@/lib/sections";
 
 type NavItem = {
   label: string;
@@ -18,37 +19,21 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  {
-    label: "Product",
-    href: { pathname: "/", hash: "product" },
-    anchorId: "product",
-    activePath: "/"
-  },
-  {
-    label: "How it works",
-    href: { pathname: "/", hash: "how-it-works" },
-    anchorId: "how-it-works",
-    activePath: "/"
-  },
-  {
-    label: "Pricing",
-    href: { pathname: "/", hash: "pricing" },
-    anchorId: "pricing",
-    activePath: "/"
-  },
-  {
-    label: "Customers",
-    href: { pathname: "/", hash: "customers" },
-    anchorId: "customers",
-    activePath: "/"
-  },
+  ...(["product", "how-it-works", "use-cases", "customers", "pricing"] as const)
+    .map((id) => getHomeSection(id))
+    .filter(Boolean)
+    .map((section) => ({
+      label: section!.label,
+      href: homeSectionHref(section!.id),
+      anchorId: section!.id,
+      activePath: "/" as Route
+    })),
   {
     label: "Resources",
     href: "/resources",
     activePath: "/resources",
     type: "resources"
-  },
-  { label: "Now", href: { pathname: "/", hash: "now" }, anchorId: "now", activePath: "/" }
+  }
 ];
 
 const resourceSections = [

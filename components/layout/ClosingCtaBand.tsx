@@ -1,13 +1,15 @@
 import Link from "next/link";
+import type { Route } from "next";
+import type { UrlObject } from "url";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 
 export type ClosingCtaProps = {
   title: string;
   titleSecondLine?: string;
   primaryLabel: string;
-  primaryHref?: string;
+  primaryHref?: Route | UrlObject;
   secondaryLabel?: string;
-  secondaryHref?: string;
+  secondaryHref?: Route | UrlObject;
   className?: string;
 };
 
