@@ -36,18 +36,18 @@ const pilots = [
 ];
 
 const priorities = [
-  "Rapid zoning clarity for complex sites.",
-  "Capacity math that holds up with planners.",
-  "Client-ready visuals teams can reuse." 
+  "Zoning clarity before design lock.",
+  "Capacity math planners can verify.",
+  "Client decks that stay on brand."
 ];
 
 export function Customers() {
   return (
     <Section
       id="customers"
-      eyebrow="Pilot programs"
+      eyebrow="Pilots"
       title="Piloted with architecture firms in Montréal, New York, London"
-      kicker="Live projects validating compliance checks and client storytelling."
+      kicker="Live pilots validating compliance and story."
     >
       <div className="grid gap-8 lg:grid-cols-[1.05fr,1fr] lg:items-start">
         <div className="card-surface space-y-4 border border-border-subtle/80 p-6 shadow-[0_1px_0_rgba(255,255,255,0.05)] sm:p-7">
@@ -74,7 +74,7 @@ export function Customers() {
                   alt={`${pilot.name} logo`}
                   width={pilot.width}
                   height={pilot.height}
-                  className="h-full w-full max-h-12 max-w-[10rem] object-contain brightness-110 contrast-110"
+                  className="h-full w-full max-h-12 max-w-[10rem] object-contain brightness-110 contrast-110 saturate-0 sm:saturate-100"
                   sizes="(min-width: 1024px) 14rem, (min-width: 768px) 12rem, 10rem"
                 />
               </div>
