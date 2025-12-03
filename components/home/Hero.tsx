@@ -5,9 +5,10 @@ import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-import { siteConfig } from "@/lib/config";
+import { DEMO_FALLBACK_URL, siteConfig } from "@/lib/config";
+import { VideoLightbox } from "@/components/media/VideoLightbox";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
-import heroPoster from "@/public/images/saas-ui-visual.png";
+import heroPoster from "@/public/images/website-main-vis.png";
 
 function useIsDesktop(minWidth = 768) {
   const [isDesktop, setIsDesktop] = useState(false);
@@ -63,10 +64,10 @@ export function Hero() {
 
           <div className="space-y-5">
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
-              Calm, zoning-aware design decisions.
+              Calm, zoning-aware decisions in one workspace.
             </h1>
             <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
-              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, zoning, and AI guidance in one surface so teams align on viable options faster.
+              {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, code, and AI options together so teams choose the right path faster.
             </p>
           </div>
 
@@ -75,20 +76,25 @@ export function Hero() {
               label="Join the private beta"
               className="btn-primary w-full justify-center px-8 py-3 text-base font-semibold tracking-tight text-bg shadow-[0_22px_70px_rgba(0,0,0,0.65),_0_0_0_1px_rgba(255,255,255,0.14)] transition-transform duration-200 hover:-translate-y-[3px] sm:w-auto"
             />
-            <Link
-              href="/contact"
-              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium text-text-soft transition-all duration-200 hover:-translate-y-[3px] hover:border-white/25 hover:text-white"
-            >
-              <span>Talk with the team →</span>
-              <span aria-hidden className="text-xs transition-transform duration-200 group-hover:translate-x-1">
-                →
-              </span>
-            </Link>
+            <VideoLightbox
+              videoSrc="/demo.mp4"
+              posterSrc="/images/website-main-vis.png"
+              triggerLabel="Watch 35s demo"
+              className="group inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-[3px] hover:border-white/25"
+            />
           </div>
 
-          <p className="text-sm leading-relaxed text-text-muted">
-            Made with pilot studios tackling dense infill, campuses, and public-realm work.
-          </p>
+          <div className="space-y-1 text-sm leading-relaxed text-text-muted">
+            <p>Built with pilot studios tackling dense infill, campuses, and public realm work.</p>
+            <Link
+              href={DEMO_FALLBACK_URL}
+              target="_blank"
+              className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
+            >
+              If video fails, open demo in a new tab
+              <span aria-hidden>↗</span>
+            </Link>
+          </div>
         </motion.div>
 
         <motion.div
