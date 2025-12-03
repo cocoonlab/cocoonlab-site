@@ -56,9 +56,13 @@ export function Hero() {
           transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
           className="relative z-10 mx-auto flex max-w-3xl flex-col gap-7 text-left lg:mx-0 lg:max-w-4xl lg:justify-self-start lg:gap-8"
         >
+          <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
+            <span>Cocoon Lab builds AI copilots for early‑stage design..</span>
+          </p>
           <div className="space-y-5">
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
-              Design faster with Cocoon.
+              AI copilot for early-stage architectural design.
             </h1>
             <p className="max-w-xl text-balance text-base leading-relaxed text-text-soft sm:text-lg">
               {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, rules, and AI options in sync so teams choose quickly.
@@ -76,6 +80,19 @@ export function Hero() {
               triggerLabel="Watch demo"
               className="btn-ghost px-7 py-3 text-sm font-semibold"
             />
+          </div>
+
+          <div className="space-y-1 text-sm leading-relaxed text-text-muted">
+            <p>Built with pilot studios shipping dense infill, campuses, and public realm work.</p>
+            <a
+              href={DEMO_FALLBACK_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
+            >
+              If video stalls, open the demo in a new tab
+              <span aria-hidden>↗</span>
+            </a>
           </div>
         </motion.div>
 
