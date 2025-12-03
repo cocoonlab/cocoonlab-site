@@ -278,33 +278,35 @@ export function Nav() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 6, scale: 0.97 }}
                           transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
-                          className="absolute left-1/2 top-full z-30 mt-4 w-[min(1120px,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-2xl border border-white/5 bg-surface/98 shadow-[0_30px_140px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+                          className="absolute left-0 right-0 top-full z-30 mt-4 px-4 md:px-6"
                         >
-                          <div className="grid gap-8 px-8 py-8 md:grid-cols-2 lg:grid-cols-4">
-                            {resourceSections.map((section) => (
-                              <div key={section.title} className="space-y-4">
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-text-subtle">
-                                  {section.title}
-                                </p>
-                                <div className="space-y-2.5">
-                                  {section.items.map((link) => (
-                                    <Link
-                                      key={`${section.title}-${link.label}`}
-                                      href={link.href}
-                                      className="group flex items-center justify-between gap-2 text-sm text-text-soft underline-offset-4 transition-colors duration-150 hover:text-white hover:underline"
-                                    >
-                                      <span>{link.label}</span>
-                                      <span
-                                        aria-hidden
-                                        className="text-xs text-text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white"
+                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/5 bg-surface/98 shadow-[0_30px_140px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                            <div className="grid gap-8 px-6 py-7 sm:grid-cols-2 lg:grid-cols-4">
+                              {resourceSections.map((section) => (
+                                <div key={section.title} className="space-y-4">
+                                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-text-subtle">
+                                    {section.title}
+                                  </p>
+                                  <div className="space-y-2.5">
+                                    {section.items.map((link) => (
+                                      <Link
+                                        key={`${section.title}-${link.label}`}
+                                        href={link.href}
+                                        className="group flex items-center justify-between gap-2 text-sm text-text-soft underline-offset-4 transition-colors duration-150 hover:text-white hover:underline"
                                       >
-                                        →
-                                      </span>
-                                    </Link>
-                                  ))}
+                                        <span className="min-w-0 flex-1">{link.label}</span>
+                                        <span
+                                          aria-hidden
+                                          className="text-xs text-text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white"
+                                        >
+                                          →
+                                        </span>
+                                      </Link>
+                                    ))}
+                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              ))}
+                            </div>
                           </div>
                         </motion.div>
                       )}
