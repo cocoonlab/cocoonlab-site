@@ -247,7 +247,7 @@ export function Nav() {
                 return (
                   <div
                     key={itemKey}
-                    className="relative"
+                    className="block"
                     onMouseEnter={() => setResourcesOpen(true)}
                     onMouseLeave={() => setResourcesOpen(false)}
                   >
