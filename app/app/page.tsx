@@ -29,10 +29,10 @@ export default function ProductShellPlaceholder() {
                 className="btn-primary px-6 py-[11px] text-sm font-semibold"
               />
               <Link
-                href={`mailto:${siteConfig.contactEmail}`}
-                className="inline-flex items-center gap-2 rounded-pill border border-white/12 bg-white/5 px-5 py-[10px] text-sm font-medium text-text-soft transition-all duration-200 hover:border-white/20 hover:text-white"
+                href="/contact"
+                className="btn-ghost px-5 py-[10px] text-sm font-semibold"
               >
-                <span>Contact Cocoon Lab</span>
+                <span>Contact</span>
                 <span aria-hidden className="text-xs">→</span>
               </Link>
             </div>

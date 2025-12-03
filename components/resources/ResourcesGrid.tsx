@@ -3,6 +3,7 @@ import type { Route } from "next";
 import Link from "next/link";
 
 import { Section } from "@/components/Section";
+import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 import knowledgeGraphCanvas from "@/public/images/architectural-knowledge-graph-canvas.png";
 
 const resources: { title: string; href: Route; tag: string }[] = [
@@ -39,8 +40,8 @@ export function ResourcesGrid({ compact }: Props) {
     <Section
       id="resources"
       eyebrow="Resources"
-      title="Tools and writing for forward-looking studios."
-      kicker="Short guides and templates to help you rethink early-stage design work."
+      title="Guides and templates for fast-moving studios."
+      kicker="Practical notes you can skim in a minute."
     >
       <div className="relative">
         <div className="pointer-events-none absolute -right-4 -top-16 hidden h-28 w-44 overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80 opacity-70 blur-[1px] sm:block">
@@ -62,16 +63,19 @@ export function ResourcesGrid({ compact }: Props) {
               <h3 className="mt-2 text-base font-semibold text-white">
                 {r.title}
               </h3>
-              <div className="mt-4">
-                <Link
-                  href={r.href}
-                  className="text-sm text-accent-blue underline-offset-4 hover:underline"
-                >
-                  Coming soon
-                </Link>
-              </div>
+              <p className="mt-3 text-sm text-text-muted">Available first to private beta teams.</p>
             </article>
           ))}
+        </div>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+          <PrimaryCtaLink className="btn-primary px-6 py-2.5 text-sm font-semibold" />
+          <Link
+            href={{ pathname: "/", hash: "demo" }}
+            className="btn-ghost px-5 py-2.5 text-sm font-semibold"
+          >
+            Watch demo
+          </Link>
         </div>
       </div>
     </Section>

@@ -347,7 +347,7 @@ export function Nav() {
           </Link>
           <div className="hidden sm:block">
             <PrimaryCtaLink
-              label="Get started"
+              label="Join the private beta"
               className="btn-primary px-5 py-2.5 text-sm font-semibold tracking-tight text-bg hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(0,0,0,0.6)]"
             />
           </div>
@@ -522,12 +522,12 @@ export function Nav() {
                   >
                     <span>Log in</span>
                   </Link>
-                  <div className="pt-3">
-                    <PrimaryCtaLink
-                      label="Get started"
-                      className="btn-primary flex w-full justify-center text-sm"
-                    />
-                  </div>
+                <div className="pt-3">
+                  <PrimaryCtaLink
+                    label="Join the private beta"
+                    className="btn-primary flex w-full justify-center text-sm"
+                  />
+                </div>
                 </nav>
               </div>
             </motion.div>

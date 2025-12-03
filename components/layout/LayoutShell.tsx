@@ -10,11 +10,11 @@ type LayoutShellProps = {
 };
 
 const defaultCta: ClosingCtaProps = {
-  title: "Plan the present.",
-  titleSecondLine: "Build the future.",
-  primaryLabel: "Get started",
-  secondaryLabel: "Contact sales",
-  secondaryHref: "/contact"
+  title: "See if Cocoon fits your next site.",
+  titleSecondLine: "Join the private beta or watch the demo.",
+  primaryLabel: "Join the private beta",
+  secondaryLabel: "Watch demo",
+  secondaryHref: { pathname: "/", hash: "demo" }
 };
 
 export function LayoutShell({
