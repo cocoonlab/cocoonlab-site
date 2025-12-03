@@ -6,8 +6,8 @@ import { siteConfig } from "@/lib/config";
 const founders = [
   {
     name: "Rashid Mushkani",
-    role: "CEO, Architect",
-    summary: "Led civic and cultural work at Mila",
+    role: "CEO, AI & design researcher",
+    summary: "PhD in AI & design from Mila, working at the intersection of architecture, design, and intelligent systems.",
     src: "/headshots/rashid-mushkani.png",
     emailSubject: "Hello%20Rashid%20%E2%80%93%20Cocoon"
   },
