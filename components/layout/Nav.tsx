@@ -262,7 +262,7 @@ export function Nav() {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
-                          className="pointer-events-none fixed inset-0 z-40 bg-gradient-to-b from-[#060612]/85 via-[#050510]/82 to-[#04040c]/85 backdrop-blur-md"
+                          className="pointer-events-none fixed inset-0 z-40 bg-gradient-to-b from-[#060612]/90 via-[#050510]/88 to-[#04040c]/90"
                         />
                       )}
                     </AnimatePresence>
