@@ -5,6 +5,7 @@ export const homeSections = [
   { id: "outcomes", label: "Outcomes" },
   { id: "use-cases", label: "Use cases" },
   { id: "team", label: "Team" },
+  { id: "now", label: "Now" },
   { id: "roadmap", label: "Roadmap" }
 ] as const;
 
