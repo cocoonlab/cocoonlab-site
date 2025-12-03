@@ -94,69 +94,71 @@ export function ProductFeatures() {
           ))}
         </div>
 
-        {/* Visual cluster */}
-        <div className="relative mx-auto mt-2 max-w-lg lg:mt-0 lg:max-w-none lg:pl-8">
-          <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.96 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow"
-          >
-            <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.55),_transparent_60%)]" />
-            <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_bottom,_rgba(45,212,191,0.45),_transparent_55%)]" />
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src={saasUiVisual}
-                alt="Main Cocoon interface with a project overview, brief, and zoning-aware options."
-                fill
-                sizes="(min-width: 1280px) 36rem, (min-width: 1024px) 32rem, (min-width: 768px) 26rem, 100vw"
-                className="pointer-events-none select-none object-cover"
-              />
-            </div>
-          </motion.div>
+        {/* Visual grid */}
+        <div className="relative lg:pl-8">
+          <div className="grid gap-4 sm:gap-5 sm:grid-cols-2">
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow sm:col-span-2"
+            >
+              <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.55),_transparent_60%)]" />
+              <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_bottom,_rgba(45,212,191,0.45),_transparent_55%)]" />
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src={saasUiVisual}
+                  alt="Main Cocoon interface with a project overview, brief, and zoning-aware options."
+                  fill
+                  sizes="(min-width: 1280px) 40rem, (min-width: 1024px) 34rem, (min-width: 768px) 28rem, 100vw"
+                  className="pointer-events-none select-none object-cover"
+                />
+              </div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 32, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.12 }}
-            className="card-surface absolute -left-4 bottom-4 hidden w-44 overflow-hidden shadow-inner-glow sm:block md:w-56 lg:-left-12 lg:bottom-12"
-          >
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={knowledgeGraphCanvas}
-                alt="Architectural knowledge graph canvas inside Cocoon, capturing the full brief as connected nodes."
-                fill
-                sizes="(min-width: 1024px) 16rem, (min-width: 768px) 14rem, 12rem"
-                className="pointer-events-none select-none object-cover"
-              />
-            </div>
-            <p className="px-3 pb-3 pt-2 text-[11px] text-text-muted">
-              Capture the brief as a living knowledge graph.
-            </p>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
+              className="card-surface relative overflow-hidden bg-surface-raised/80 shadow-inner-glow"
+            >
+              <div className="relative aspect-[5/4]">
+                <Image
+                  src={knowledgeGraphCanvas}
+                  alt="Architectural knowledge graph canvas inside Cocoon, capturing the full brief as connected nodes."
+                  fill
+                  sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 100vw"
+                  className="pointer-events-none select-none object-cover"
+                />
+              </div>
+              <p className="border-t border-border-subtle/70 px-4 py-3 text-[12px] text-text-muted">
+                Capture the brief as a living knowledge graph.
+              </p>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 32, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.22 }}
-            className="card-surface absolute -right-4 top-6 hidden w-44 overflow-hidden shadow-inner-glow sm:block md:w-56 lg:-right-12 lg:top-12"
-          >
-            <div className="relative aspect-[4/3]">
-              <Image
-                src={featureCards}
-                alt="Cocoon feature cards showing AI-generated concepts and design directions."
-                fill
-                sizes="(min-width: 1024px) 16rem, (min-width: 768px) 14rem, 12rem"
-                className="pointer-events-none select-none object-cover"
-              />
-            </div>
-            <p className="px-3 pb-3 pt-2 text-[11px] text-text-muted">
-              Highlight key options and next steps.
-            </p>
-          </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 24, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.14 }}
+              className="card-surface relative overflow-hidden bg-surface-raised/80 shadow-inner-glow"
+            >
+              <div className="relative aspect-[5/4]">
+                <Image
+                  src={featureCards}
+                  alt="Cocoon feature cards showing AI-generated concepts and design directions."
+                  fill
+                  sizes="(min-width: 1024px) 18rem, (min-width: 768px) 16rem, 100vw"
+                  className="pointer-events-none select-none object-cover"
+                />
+              </div>
+              <p className="border-t border-border-subtle/70 px-4 py-3 text-[12px] text-text-muted">
+                Highlight key options and next steps.
+              </p>
+            </motion.div>
+          </div>
         </div>
       </div>
 
