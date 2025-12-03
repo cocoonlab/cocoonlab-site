@@ -90,7 +90,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
             >
-              If video stalls, open the demo in a new tab
+              Demo, opens in new tabe
               <span aria-hidden>↗</span>
             </a>
           </div>
