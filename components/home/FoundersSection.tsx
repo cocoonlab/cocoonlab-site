@@ -7,7 +7,7 @@ const founders = [
   {
     name: "Rashid Mushkani",
     role: "CEO, Architect",
-    summary: "Led civic and cultural work at Sid Lee Architecture.",
+    summary: "Led civic and cultural work at Mila",
     src: "/headshots/rashid-mushkani.png",
     emailSubject: "Hello%20Rashid%20%E2%80%93%20Cocoon"
   },
@@ -30,7 +30,7 @@ const founders = [
 const researchLogos = [
   { name: "Mila", src: "/logos/mila-logo.png", width: 96, height: 32 },
   { name: "Centech", src: "/logos/centech-logo.png", width: 112, height: 32 },
-  { name: "Montreal Urban Lab", src: "/logos/montreal-urban-lab.svg", width: 120, height: 32 }
+  { name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 120, height: 32 }
 ];
 
 export function FoundersSection() {
