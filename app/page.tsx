@@ -3,16 +3,13 @@ import { LayoutShell } from "@/components/layout/LayoutShell";
 import { Hero } from "@/components/home/Hero";
 import { MetricsStrip } from "@/components/home/MetricsStrip";
 import { TrustedByBand } from "@/components/home/TrustedByBand";
-import { MadeForSection } from "@/components/home/MadeForSection";
-import { AiAssistSection } from "@/components/home/AiAssistSection";
-import { ProductFeatures } from "@/components/home/ProductFeatures";
-import { FoundationsSection } from "@/components/home/FoundationsSection";
-import { HowItWorks } from "@/components/home/HowItWorks";
 import { UseCases } from "@/components/home/UseCases";
-import { Customers } from "@/components/home/Customers";
-import { PricingTable } from "@/components/pricing/PricingTable";
-import { ResourcesGrid } from "@/components/resources/ResourcesGrid";
 import { NewsletterForm } from "@/components/NewsletterForm";
+import { WhatCocoonDoes } from "@/components/home/WhatCocoonDoes";
+import { DemoSection } from "@/components/home/DemoSection";
+import { OutcomesSection } from "@/components/home/OutcomesSection";
+import { TeamSection } from "@/components/home/TeamSection";
+import { RoadmapSection } from "@/components/home/RoadmapSection";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -41,17 +38,14 @@ export default function HomePage() {
   return (
     <LayoutShell>
       <Hero />
-      <AiAssistSection />
       <TrustedByBand />
-      <MadeForSection />
-      <MetricsStrip />
-      <ProductFeatures />
-      <FoundationsSection />
-      <HowItWorks />
+      <MetricsStrip id="problem" />
+      <WhatCocoonDoes />
+      <DemoSection />
+      <OutcomesSection />
       <UseCases />
-      <Customers />
-      <PricingTable />
-      <ResourcesGrid compact />
+      <TeamSection />
+      <RoadmapSection />
       <section className="section-pad pt-4">
         <div className="container-x grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center">
           <div className="space-y-3 max-w-xl">

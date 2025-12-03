@@ -85,7 +85,7 @@ export function TrustedByBand() {
           </div>
 
           <Link
-            href={homeSectionHref("customers")}
+            href={homeSectionHref("outcomes")}
             onClick={handleCtaClick}
             onFocus={() => setCtaFocused(true)}
             onBlur={() => setCtaFocused(false)}
@@ -95,7 +95,7 @@ export function TrustedByBand() {
               active ? "opacity-100 blur-0" : "opacity-0 blur-[1px]"
             }`}
           >
-            Meet our partners
+            See outcomes
             <span aria-hidden="true" className="text-base">
               →
             </span>

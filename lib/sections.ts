@@ -1,10 +1,11 @@
 export const homeSections = [
+  { id: "problem", label: "Problem" },
   { id: "product", label: "Product" },
-  { id: "how-it-works", label: "How it works" },
+  { id: "demo", label: "Demo" },
+  { id: "outcomes", label: "Outcomes" },
   { id: "use-cases", label: "Use cases" },
-  { id: "customers", label: "Customers" },
-  { id: "pricing", label: "Pricing" },
-  { id: "resources", label: "Resources" }
+  { id: "team", label: "Team" },
+  { id: "roadmap", label: "Roadmap" }
 ] as const;
 
 export type HomeSectionId = (typeof homeSections)[number]["id"];

@@ -36,28 +36,27 @@ const footerSections: { title: string; links: FooterLink[] }[] = [
     title: "Product",
     links: compactLinks([
       makeSectionLink("product"),
-      makeSectionLink("how-it-works"),
-      makeSectionLink("use-cases"),
-      makeSectionLink("customers"),
-      makeSectionLink("pricing")
+      makeSectionLink("demo"),
+      makeSectionLink("outcomes"),
+      makeSectionLink("use-cases")
     ])
   },
   {
     title: "Company",
-    links: [
+    links: compactLinks([
       { label: "Changelog", href: "/changelog" as Route },
-      { label: "Pricing", href: "/pricing" as Route },
+      makeSectionLink("team"),
+      makeSectionLink("roadmap"),
       { label: "Contact", href: "/contact" as Route }
-    ]
+    ])
   },
   {
     title: "Resources",
-    links: [
+    links: compactLinks([
       { label: "Resource library", href: "/resources" as Route },
-      makeSectionLink("resources"),
       { label: "Privacy", href: "/privacy" as Route },
       { label: "Terms", href: "/terms" as Route }
-    ].filter((link): link is FooterLink => Boolean(link))
+    ])
   },
   {
     title: "Connect",

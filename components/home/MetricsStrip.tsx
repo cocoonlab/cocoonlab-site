@@ -6,27 +6,32 @@ import { motion } from "framer-motion";
 import projectHoursCard from "@/public/images/project-hours-infographic-card.png";
 import revisionComparisonChart from "@/public/images/revision-comparison-chart.png";
 
+type MetricsStripProps = {
+  id?: string;
+};
+
 const metrics = [
   {
-    label: "Admin, costing & compliance",
+    label: "Hours lost to file wrangling",
     value: "45h",
     caption: "per 100 project hours"
   },
   {
-    label: "Rework from early misalignment",
-    value: "8h",
-    caption: "saved through clearer briefs"
+    label: "Cycles before alignment",
+    value: "↘ 63%",
+    caption: "when briefs live in one place"
   },
   {
     label: "Time to first zoning-read option",
-    value: "↘ 70%",
-    caption: "vs. manually assembling references"
+    value: "-70%",
+    caption: "vs. manual references"
   }
 ] as const;
 
-export function MetricsStrip() {
+export function MetricsStrip({ id }: MetricsStripProps) {
   return (
     <section
+      id={id}
       aria-label="Cocoon impact metrics"
       className="section-pad pt-4"
     >
@@ -44,13 +49,13 @@ export function MetricsStrip() {
 
           <div className="relative grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
             <div className="space-y-4">
-              <p className="badge-pill">Why studios pilot Cocoon</p>
+              <p className="badge-pill">Cost of chaos</p>
               <h2 className="text-base font-semibold text-white md:text-lg">
-                Shift hours back to design, not file wrangling.
+                Juggling PDFs and emails is burning the project clock.
               </h2>
               <p className="max-w-xl text-sm text-text-soft md:text-[15px]">
-                Cocoon centralises briefs, zoning, and options so teams stop juggling spreadsheets and emails. Everyone sees the
-                same truth and can ask better what-if questions.
+                Teams spend more time reconciling references than shaping options. Cocoon pulls the brief, zoning, and updates
+                into one place so decisions move with less friction.
               </p>
 
               <div className="grid gap-4 pt-1 text-sm sm:grid-cols-3">
@@ -79,7 +84,7 @@ export function MetricsStrip() {
                 <div className="relative h-44 sm:h-48 lg:h-52">
                   <Image
                     src={projectHoursCard}
-                    alt="Infographic card showing project hours saved by moving admin and compliance into Cocoon."
+                    alt="Hours saved when admin and compliance live inside Cocoon."
                     fill
                     sizes="(min-width: 1024px) 18rem, 60vw"
                     className="object-cover"
@@ -97,7 +102,7 @@ export function MetricsStrip() {
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={revisionComparisonChart}
-                    alt="Revision comparison chart illustrating fewer design revisions when using Cocoon."
+                    alt="Fewer revision loops when a shared brief stays current."
                     fill
                     sizes="12rem"
                     className="object-cover"

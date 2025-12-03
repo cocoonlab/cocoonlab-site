@@ -19,7 +19,7 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  ...(["product", "how-it-works", "use-cases", "customers", "pricing"] as const)
+  ...(["problem", "product", "demo", "outcomes", "use-cases", "team", "roadmap"] as const)
     .map((id) => getHomeSection(id))
     .filter(Boolean)
     .map((section) => ({
