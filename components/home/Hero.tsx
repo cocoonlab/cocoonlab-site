@@ -50,7 +50,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(79,70,229,0.12),transparent_36%,transparent_68%,rgba(16,185,129,0.14)_96%)]" />
       </div>
 
-      <div className="container-x relative grid max-w-[82rem] items-start gap-12 lg:min-h-[80vh] lg:grid-cols-[0.48fr_0.52fr] xl:gap-20">
+      <div className="container-x relative grid max-w-[82rem] items-center gap-12 lg:min-h-[82vh] lg:grid-cols-[0.48fr_0.52fr] xl:gap-20">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -113,12 +113,12 @@ export function Hero() {
           animate={{ opacity: 1, y: shouldAnimate ? parallaxY : 0 }}
           transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
         >
-          <div className="relative -mb-6 rounded-[30px] border border-white/10 bg-[#0b0b14]/85 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur lg:-mb-10 lg:mt-6 lg:pl-6">
+          <div className="relative rounded-[30px] border border-white/10 bg-[#0b0b14]/85 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur lg:pl-6">
             <div className="absolute inset-0 rounded-[30px] bg-[linear-gradient(120deg,rgba(255,255,255,0.05),transparent_34%)]" />
             <div className="absolute inset-y-0 right-0 w-40 rounded-[30px] bg-gradient-to-l from-bg via-bg/60 to-transparent" />
 
             <motion.div
-              className="relative bg-gradient-to-r from-white/4 via-white/2 to-white/4 p-2 sm:rotate-[-1deg] lg:rotate-[-4deg]"
+              className="relative bg-gradient-to-r from-white/4 via-white/2 to-white/4 p-2"
               style={{ transformStyle: "preserve-3d" }}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/8 bg-gradient-to-br from-[#111122] via-[#0c0c18] to-[#050509]">
@@ -128,7 +128,7 @@ export function Hero() {
                 </div>
                 <video
                   src="/demo.mp4"
-                  className="relative z-10 h-full w-full object-contain"
+                  className="relative z-10 h-full w-full object-cover"
                   playsInline
                   muted
                   loop
