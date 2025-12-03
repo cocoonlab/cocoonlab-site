@@ -8,7 +8,7 @@ import { NewsletterForm } from "@/components/NewsletterForm";
 import { WhatCocoonDoes } from "@/components/home/WhatCocoonDoes";
 import { DemoSection } from "@/components/home/DemoSection";
 import { OutcomesSection } from "@/components/home/OutcomesSection";
-import { TeamSection } from "@/components/home/TeamSection";
+import { FoundersSection } from "@/components/home/FoundersSection";
 import { RoadmapSection } from "@/components/home/RoadmapSection";
 import { siteConfig } from "@/lib/config";
 
@@ -44,7 +44,7 @@ export default function HomePage() {
       <DemoSection />
       <OutcomesSection />
       <UseCases />
-      <TeamSection />
+      <FoundersSection />
       <RoadmapSection />
       <section className="section-pad pt-4">
         <div className="container-x grid gap-6 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:items-center">
