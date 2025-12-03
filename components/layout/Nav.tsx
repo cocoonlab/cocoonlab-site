@@ -228,17 +228,20 @@ export function Nav() {
                   : false;
               const isAnchorActive =
                 isAnchor && pathname === "/" && activeAnchor === item.anchorId;
-              const isActive = isPageActive || isAnchorActive;
+              const shouldPauseActiveState = resourcesOpen;
+              const isActive = !shouldPauseActiveState && (isPageActive || isAnchorActive);
 
               const baseClasses =
-                "group relative inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 transition-colors duration-200";
-              const activeClasses = "text-white";
+                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200";
+              const activeClasses =
+                "text-white bg-white/6 border-white/10 shadow-[0_14px_50px_rgba(0,0,0,0.45)]";
               const inactiveClasses = "text-text-muted hover:text-text";
 
               if (item.type === "resources") {
-                const isResourcesActive = pathname.startsWith((item.activePath ?? "") as string);
+                const isResourcesActive =
+                  resourcesOpen || pathname.startsWith((item.activePath ?? "") as string);
                 const buttonClasses = `${baseClasses} ${
-                  isResourcesActive || resourcesOpen ? activeClasses : inactiveClasses
+                  isResourcesActive ? activeClasses : inactiveClasses
                 }`;
 
                 return (

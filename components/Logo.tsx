@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export function Logo() {
@@ -7,10 +8,15 @@ export function Logo() {
       className="inline-flex items-center gap-2 text-sm font-semibold tracking-tight text-text"
       aria-label="Cocoon Lab home"
     >
-      <span className="inline-flex h-6 w-6 items-center justify-center rounded-xl bg-gradient-to-tr from-accent-blue to-accent-purple text-xs font-bold text-white shadow-soft">
-        CL
-      </span>
-      <span>Cocoon Lab</span>
+      <Image
+        src="/logos/cocoon-logo-blue.png"
+        alt="Cocoon Lab"
+        width={132}
+        height={32}
+        priority
+        className="h-8 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+      />
+      <span className="sr-only">Cocoon Lab</span>
     </Link>
   );
 }
