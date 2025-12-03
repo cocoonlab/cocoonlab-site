@@ -58,7 +58,7 @@ export function Hero() {
         >
           <p className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[12px] font-semibold tracking-tight text-text-soft">
             <span className="h-1.5 w-1.5 rounded-full bg-accent-emerald" />
-            <span>Cocoon Lab builds AI copilots for early‑stage design..</span>
+            <span>Cocoon Lab is an AI-native design studio rethinking design — starting with Cocoon.</span>
           </p>
           <div className="space-y-5">
             <h1 className="text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl">
@@ -90,7 +90,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
             >
-              Demo, opens in new tabe
+              Demo (opens in new tab)
               <span aria-hidden>↗</span>
             </a>
           </div>
