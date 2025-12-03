@@ -25,3 +25,5 @@ export const siteConfig = {
       "https://analytics.umami.is/script.js"
   }
 } as const;
+
+export const DEMO_FALLBACK_URL = "/demo.mp4";
