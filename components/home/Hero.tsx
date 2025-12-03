@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -86,14 +85,15 @@ export function Hero() {
 
           <div className="space-y-1 text-sm leading-relaxed text-text-muted">
             <p>Built with pilot studios tackling dense infill, campuses, and public realm work.</p>
-            <Link
+            <a
               href={DEMO_FALLBACK_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-text-soft underline-offset-4 hover:text-white hover:underline"
             >
               If video fails, open demo in a new tab
               <span aria-hidden>↗</span>
-            </Link>
+            </a>
           </div>
         </motion.div>
 

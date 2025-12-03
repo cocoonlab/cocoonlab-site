@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { Hero } from "@/components/home/Hero";
-import { MetricsStrip } from "@/components/home/MetricsStrip";
 import { TrustedByBand } from "@/components/home/TrustedByBand";
+import { ProblemSection } from "@/components/home/ProblemSection";
 import { UseCases } from "@/components/home/UseCases";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import { WhatCocoonDoes } from "@/components/home/WhatCocoonDoes";
@@ -39,7 +39,7 @@ export default function HomePage() {
     <LayoutShell>
       <Hero />
       <TrustedByBand />
-      <MetricsStrip id="problem" />
+      <ProblemSection />
       <WhatCocoonDoes />
       <DemoSection />
       <OutcomesSection />
