@@ -100,9 +100,9 @@ export function FeatureModal({
     setTiltStyle({ transform: "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)" });
   };
 
-  if (!isOpen) return null;
-
   const paddedMetrics = useMemo(() => metrics.slice(0, 4), [metrics]);
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/60 px-4 py-8 sm:px-6 md:items-center md:py-12" role="dialog" aria-modal="true" aria-label={title}>

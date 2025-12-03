@@ -110,7 +110,7 @@ export function Hero() {
             perspective: "1400px"
           }}
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: shouldAnimate ? parallaxY : 0 }}
+          animate={{ opacity: 1, y: shouldAnimate ? parallaxY.get() : 0 }}
           transition={{ duration: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
         >
           <div className="relative rounded-[30px] border border-white/10 bg-[#0b0b14]/85 shadow-[0_32px_120px_rgba(0,0,0,0.82)] backdrop-blur lg:pl-6">
