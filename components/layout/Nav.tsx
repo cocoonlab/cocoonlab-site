@@ -278,7 +278,7 @@ export function Nav() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           exit={{ opacity: 0, y: 6, scale: 0.97 }}
                           transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
-                          className="absolute left-0 right-0 top-full z-30 mt-4 px-4 md:px-6"
+                          className="absolute left-0 right-0 top-full z-50 mt-4 px-4 md:px-6"
                         >
                           <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/5 bg-surface shadow-[0_30px_140px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
                             <div className="grid gap-8 px-6 py-7 sm:grid-cols-2 lg:grid-cols-4">
