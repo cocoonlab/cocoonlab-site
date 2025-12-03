@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -126,15 +127,14 @@ export function Hero() {
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_rgba(255,255,255,0.08),_transparent_38%),_radial-gradient(circle_at_80%_40%,_rgba(16,185,129,0.08),_transparent_42%),_linear-gradient(135deg,rgba(255,255,255,0.04),transparent_32%)]" />
                   <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.06),transparent_36%)] mix-blend-screen" />
                 </div>
-                <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-2 text-center text-sm font-medium text-white/70">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold tracking-tight text-white/80">
-                    website-main-vis (placeholder)
-                  </span>
-                  <p className="max-w-sm text-xs text-white/60">
-                    Add <span className="font-semibold text-white">website-main-vis.png</span> to <code className="rounded bg-white/5 px-1.5 py-[2px]">public/images/</code> to replace this placeholder.
-                  </p>
-                </div>
-                <span className="sr-only">Hero visual placeholder; add website-main-vis.png to public/images to display the product screenshot.</span>
+                <Image
+                  src="/images/website-main-vis.png"
+                  alt="Cocoon workspace showing zoning-aware AI design insights"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 62rem, 100vw"
+                  className="relative z-10 h-full w-full object-cover"
+                />
               </div>
             </motion.div>
           </div>
