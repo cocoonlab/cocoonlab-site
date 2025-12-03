@@ -182,7 +182,7 @@ export function Nav() {
   const resourceNavItem = navItems.find((item) => item.type === "resources");
 
           const headerBase =
-            "fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-gradient-to-b from-[#0c0c16]/95 via-[#050509]/95 to-[#050509]/90 backdrop-blur-xl transition-[background-color,border-color,transform,padding] duration-300";
+            "fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-gradient-to-b from-[#0c0c16]/95 via-[#050509]/95 to-[#050509]/90 transition-[background-color,border-color,transform,padding] duration-300";
   const headerScrolled = isScrolled
     ? "shadow-[0_18px_40px_rgba(0,0,0,0.7)]"
     : "shadow-[0_10px_40px_rgba(0,0,0,0.35)]";
@@ -278,7 +278,7 @@ export function Nav() {
                           transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
                           className="absolute left-0 right-0 top-full z-50 mt-4 px-4 md:px-6"
                         >
-                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/5 bg-surface shadow-[0_30px_140px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
+                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b16] shadow-[0_30px_140px_rgba(0,0,0,0.55)]">
                             <div className="grid gap-8 px-6 py-7 sm:grid-cols-2 lg:grid-cols-4">
                               {resourceSections.map((section) => (
                                 <div key={section.title} className="space-y-4">
