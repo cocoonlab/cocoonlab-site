@@ -79,14 +79,6 @@ export function UseCases() {
             </div>
 
             <div className="relative mt-5 overflow-hidden rounded-xl border border-border-subtle/70 bg-surface-sunken/60">
-              <div className="absolute left-4 top-3 z-10 flex gap-2 text-[11px] font-medium uppercase tracking-[0.18em]">
-                <span className="rounded-full bg-bg/80 px-2 py-0.5 text-text-muted">
-                  Before
-                </span>
-                <span className="rounded-full bg-bg/80 px-2 py-0.5 text-text-muted">
-                  With Cocoon
-                </span>
-              </div>
               <div className="relative aspect-[16/9] w-full">
                 <Image
                   src={splitComparison}
