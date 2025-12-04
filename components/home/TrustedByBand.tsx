@@ -8,8 +8,8 @@ import { homeSectionHref } from "@/lib/sections";
 
 const partners = [
   {
-    name: "SOUR",
-    src: "/logos/sour-logo.svg"
+    name: "NEUF",
+    src: "/logos/neuf-logo.png"
   },
   {
     name: "Civiliti",
