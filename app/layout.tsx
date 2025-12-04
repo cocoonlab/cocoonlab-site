@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { AnalyticsSnippet } from "@/lib/analytics";
 import { siteConfig } from "@/lib/config";
 import { RootLayoutClient } from "@/components/layout/RootLayoutClient";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 
 export const metadata: Metadata = {
   title: {
@@ -36,7 +36,7 @@ export default function RootLayout({
     <html lang="en" className="bg-bg">
       <body className="min-h-screen bg-bg text-text antialiased">
         <RootLayoutClient>{children}</RootLayoutClient>
-        <AnalyticsSnippet />
+        <CookieConsent />
       </body>
     </html>
   );
