@@ -91,12 +91,24 @@ export function TrustedByBand() {
             onBlur={() => setCtaFocused(false)}
             onMouseEnter={() => setCtaFocused(true)}
             onMouseLeave={() => setCtaFocused(false)}
-            className={`absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-[0_10px_45px_rgba(148,163,184,0.35)] ring-1 ring-white/40 transition duration-200 ease-out hover:-translate-y-1/2 hover:shadow-[0_12px_50px_rgba(148,163,184,0.48)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 ${
+            className={`absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-slate-900 shadow-[0_10px_45px_rgba(148,163,184,0.35)] ring-1 ring-white/40 transition duration-200 ease-out hover:-translate-y-1/2 hover:shadow-[0_12px_50px_rgba(148,163,184,0.48)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white/70 sm:flex ${
               active ? "opacity-100 blur-0" : "opacity-0 blur-[1px]"
             }`}
           >
             See outcomes
             <span aria-hidden="true" className="text-base">
+              →
+            </span>
+          </Link>
+        </div>
+
+        <div className="mt-6 flex justify-center sm:hidden">
+          <Link
+            href={homeSectionHref("outcomes")}
+            className="btn-ghost inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold"
+          >
+            See outcomes
+            <span aria-hidden>
               →
             </span>
           </Link>
