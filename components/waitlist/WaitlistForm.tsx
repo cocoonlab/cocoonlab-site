@@ -19,8 +19,33 @@ export function WaitlistForm() {
     setForm((prev) => ({ ...prev, [key]: value }));
   }
 
+  function validate(values: typeof form): string | null {
+    if (!values.email.trim()) return "Please enter your work email.";
+    if (!values.firmName.trim()) return "Tell us your firm name.";
+    if (!values.location.trim()) return "Let us know where you're based.";
+    if (!values.teamSize.trim()) return "Select your team size.";
+    if (!values.useCase.trim()) return "Share your primary use case.";
+    return null;
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    const trimmed = {
+      email: form.email.trim(),
+      firmName: form.firmName.trim(),
+      location: form.location.trim(),
+      teamSize: form.teamSize.trim(),
+      useCase: form.useCase.trim()
+    };
+
+    const validationError = validate(trimmed);
+    if (validationError) {
+      setStatus("error");
+      setMessage(validationError);
+      return;
+    }
+
     setStatus("loading");
     setMessage("");
 
@@ -28,12 +53,12 @@ export function WaitlistForm() {
       const res = await fetch("/api/waitlist", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form)
+        body: JSON.stringify(trimmed)
       });
 
       if (!res.ok) {
         const data = await res.json().catch(() => null);
-        throw new Error(data?.error ?? "Something went wrong.");
+        throw new Error(data?.error ?? "Something went wrong. Please try again.");
       }
 
       setStatus("success");
