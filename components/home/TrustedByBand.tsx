@@ -17,7 +17,7 @@ const partners = [
   },
   {
     name: "Sid Lee Architecture",
-    src: "/logos/sidlee-architecture-logo.svg"
+    src: "/logos/sidlee-architecture-logo.png"
   },
   {
     name: "Adamson and AAI",
