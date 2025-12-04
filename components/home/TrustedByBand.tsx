@@ -13,7 +13,7 @@ const partners = [
   },
   {
     name: "Civiliti",
-    src: "/logos/civiliti-logo.svg"
+    src: "/logos/civiliti-logo.png"
   },
   {
     name: "Sid Lee Architecture",
