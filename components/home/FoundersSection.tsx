@@ -28,9 +28,9 @@ const founders = [
 ];
 
 const researchLogos = [
-  { name: "Mila", src: "/logos/mila-logo.png", width: 96, height: 32 },
-  { name: "Centech", src: "/logos/centech-logo.png", width: 112, height: 32 },
-  { name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 120, height: 32 }
+  { name: "Mila", src: "/logos/mila-logo.png", width: 140, height: 44 },
+  { name: "Centech", src: "/logos/centech-logo.png", width: 156, height: 44 },
+  { name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 160, height: 44 }
 ];
 
 export function FoundersSection() {
@@ -73,22 +73,22 @@ export function FoundersSection() {
         ))}
       </div>
 
-      <div className="mt-10 flex flex-wrap items-center gap-4 rounded-2xl border border-white/5 bg-surface-sunken px-4 py-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-text-soft">
+      <div className="mt-10 flex flex-wrap items-center gap-5 rounded-2xl border border-white/5 bg-surface-sunken px-5 py-4">
+        <p className="text-sm font-semibold uppercase tracking-[0.14em] text-text-soft sm:text-base">
           Backed by research-grade AI
         </p>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-5">
           {researchLogos.map((logo) => (
             <div
               key={logo.name}
-              className="relative flex h-8 items-center justify-center rounded-lg bg-white/5 px-3"
+              className="relative flex h-10 items-center justify-center rounded-lg bg-white/5 px-4 sm:h-12 sm:px-5"
             >
               <Image
                 src={logo.src}
                 alt={`${logo.name} logo`}
                 width={logo.width}
                 height={logo.height}
-                className="h-6 w-auto object-contain"
+                className="h-8 w-auto object-contain sm:h-9"
               />
             </div>
           ))}
