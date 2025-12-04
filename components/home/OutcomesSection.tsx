@@ -32,7 +32,7 @@ export function OutcomesSection() {
       className="border-y border-border-subtle/70 bg-surface-raised/70"
       variant="default"
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-center">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export function OutcomesSection() {
               className="group relative overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80 sm:min-h-[240px] lg:min-h-[300px]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <div className="relative h-full w-full sm:aspect-[5/4]">
+              <div className="relative h-full w-full sm:aspect-[3/2] lg:aspect-[16/10]">
                 <Image
                   src={visual.src}
                   alt={visual.alt}
