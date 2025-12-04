@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { caseStudySlugs } from "@/app/customers/[slug]/page";
+import { caseStudySlugs } from "@/app/customers/caseStudies";
 import { siteConfig } from "@/lib/config";
 
 const staticRoutes = [
