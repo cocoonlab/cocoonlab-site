@@ -81,7 +81,7 @@ export function MetricsStrip({ className }: MetricsStripProps) {
             />
           </div>
           <figcaption className="px-4 py-3 text-xs text-text-muted">
-            Capture. Generate. Iterate. Validate. Cocoon speeds up early design with AI.
+            Cocoon: Capture. Generate. Iterate. Validate. Cocoon speeds up early design with AI.
           </figcaption>
         </figure>
       </div>
