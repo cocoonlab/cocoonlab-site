@@ -32,7 +32,7 @@ export function OutcomesSection() {
       className="border-y border-border-subtle/70 bg-surface-raised/70"
       variant="default"
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,21 +58,23 @@ export function OutcomesSection() {
           </ul>
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
           {visuals.map((visual) => (
             <figure
               key={visual.src}
-              className="group relative overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80"
+              className="group relative overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80 sm:min-h-[240px] lg:min-h-[300px]"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-              <Image
-                src={visual.src}
-                alt={visual.alt}
-                width={640}
-                height={420}
-                className="h-full w-full object-cover"
-                loading="lazy"
-              />
+              <div className="relative h-full w-full sm:aspect-[5/4]">
+                <Image
+                  src={visual.src}
+                  alt={visual.alt}
+                  fill
+                  sizes="(min-width: 1024px) 26rem, (min-width: 640px) 50vw, 90vw"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
               <figcaption className="absolute inset-x-4 bottom-4 rounded-full bg-black/45 px-3 py-2 text-center text-xs font-medium text-white backdrop-blur">
                 {visual.label}
               </figcaption>
