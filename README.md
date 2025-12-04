@@ -1,16 +1,16 @@
-# Cocoon Lab marketing site (Next.js)
+# Cocoon Lab site
 
-This is a dark, Cocoon-branded marketing site rebuilt on **Next.js 14 (App Router) with TypeScript and Tailwind CSS**.
+This is Cocoon-branded site built on **Next.js 14 (App Router) with TypeScript and Tailwind CSS**.
 
 ## Prerequisites
 - Node.js 18+
-- pnpm (preferred) or npm/yarn
+- npm
 
 ## Getting started
 
 ```bash
-pnpm install    # install dependencies
-pnpm dev        # start the dev server at http://localhost:3000
+npm install    # install dependencies
+npm dev        # start the dev server at http://localhost:3000
 ```
 
 ## Environment variables
