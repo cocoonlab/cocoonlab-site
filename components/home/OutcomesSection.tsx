@@ -16,7 +16,7 @@ const visuals = [
   {
     src: "/images/architectural-knowledge-graph-canvas.png",
     alt: "Split-screen showing a consolidated workspace versus scattered tools.",
-    label: "Single source of truth"
+    label: "All connected — a single source of truth."
   }
 ];
 
