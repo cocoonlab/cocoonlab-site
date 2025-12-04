@@ -108,6 +108,8 @@ const caseStudies = {
   }
 } as const;
 
+export const caseStudySlugs = Object.keys(caseStudies);
+
 type CaseStudy = (typeof caseStudies)[keyof typeof caseStudies];
 
 type PageProps = { params: { slug: keyof typeof caseStudies } };

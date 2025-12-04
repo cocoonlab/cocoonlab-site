@@ -15,6 +15,14 @@ export default function ContactPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    const payload = { email: email.trim(), message: message.trim() };
+    if (!payload.email || !payload.message) {
+      setStatus("error");
+      setFeedback("Please fill in both email and message.");
+      return;
+    }
+
     setStatus("loading");
     setFeedback("");
 
@@ -22,15 +30,18 @@ export default function ContactPage() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, message })
+        body: JSON.stringify(payload)
       });
 
       if (!res.ok) {
-        throw new Error("Please fill in email and message.");
+        const data = await res.json().catch(() => null);
+        throw new Error(data?.error ?? "Something went wrong. Please try again.");
       }
 
       setStatus("success");
       setFeedback("Thanks — we'll get back to you shortly.");
+      setEmail("");
+      setMessage("");
     } catch (err: any) {
       setStatus("error");
       setFeedback(err.message ?? "Something went wrong.");

@@ -9,10 +9,12 @@
 @layer base {
   html {
     @apply scroll-smooth;
+    overflow-x: hidden;
   }
 
   body {
     @apply bg-bg text-text font-sans antialiased;
+    overflow-x: hidden;
   }
 
   ::selection {
