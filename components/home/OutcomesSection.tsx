@@ -14,7 +14,7 @@ const visuals = [
     label: "Review rounds trimmed"
   },
   {
-    src: "/images/split-screen-comparison-illustration.png",
+    src: "/images/architectural-knowledge-graph-canvas.png",
     alt: "Split-screen showing a consolidated workspace versus scattered tools.",
     label: "Single source of truth"
   }
