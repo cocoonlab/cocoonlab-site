@@ -20,8 +20,8 @@ const partners = [
     src: "/logos/sidlee-architecture-logo.svg"
   },
   {
-    name: "Montreal Urban Lab",
-    src: "/logos/montreal-urban-lab.svg"
+    name: "Adamson and AAI",
+    src: "/logos/adamsonandaai-logo.png"
   }
 ];
 
