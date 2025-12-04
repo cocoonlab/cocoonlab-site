@@ -49,7 +49,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(115deg,rgba(79,70,229,0.12),transparent_36%,transparent_68%,rgba(16,185,129,0.14)_96%)]" />
       </div>
 
-      <div className="container-x relative grid max-w-[82rem] items-center gap-12 lg:min-h-[82vh] lg:grid-cols-[0.48fr_0.52fr] xl:gap-20">
+      <div className="container-x relative grid max-w-[86rem] items-center gap-12 lg:min-h-[82vh] lg:grid-cols-[0.48fr_0.52fr] xl:gap-20">
         <motion.div
           initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -97,7 +97,7 @@ export function Hero() {
         </motion.div>
 
         <motion.div
-          className="relative order-last mx-auto w-full max-w-[36rem] sm:max-w-[42rem] lg:order-none lg:max-w-[48rem] xl:max-w-[54rem]"
+          className="relative order-last mx-auto w-full max-w-[40rem] sm:max-w-[46rem] lg:order-none lg:max-w-[54rem] xl:max-w-[60rem]"
           style={{
             y: shouldAnimate ? parallaxY : 0,
             opacity: shouldAnimate ? parallaxOpacity : 1,
@@ -115,7 +115,7 @@ export function Hero() {
                 src={heroPoster}
                 alt="Cocoon workspace with a live brief and zoning-aware options"
                 fill
-                sizes="(min-width: 1280px) 46rem, (min-width: 1024px) 40rem, (min-width: 768px) 34rem, 100vw"
+                sizes="(min-width: 1280px) 50rem, (min-width: 1024px) 44rem, (min-width: 768px) 38rem, 100vw"
                 className="object-cover"
                 priority
               />
