@@ -83,7 +83,7 @@ export function Hero() {
           </div>
 
           <div className="space-y-1 text-sm leading-relaxed text-text-muted">
-            <p>Built with pilot studios shipping dense infill, campuses, and public realm work.</p>
+            <p>Built with studios designing housing, institutional buildings, and civic spaces.</p>
             <a
               href={DEMO_FALLBACK_URL}
               target="_blank"
