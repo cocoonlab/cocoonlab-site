@@ -41,6 +41,12 @@ const priorities = [
   "Client decks that stay on brand."
 ];
 
+const blurredLogoNames = new Set([
+  "Sid Lee Architecture",
+  "Neuf Architects",
+  "Civiliti"
+]);
+
 export function Customers() {
   return (
     <Section
@@ -74,7 +80,11 @@ export function Customers() {
                   alt={`${pilot.name} logo`}
                   width={pilot.width}
                   height={pilot.height}
-                  className="h-full w-full max-h-12 max-w-[10rem] object-contain brightness-110 contrast-110 saturate-0 sm:saturate-100"
+                  className={`h-full w-full max-h-12 max-w-[10rem] object-contain brightness-110 contrast-110 saturate-0 sm:saturate-100 ${
+                    blurredLogoNames.has(pilot.name)
+                      ? "blur-[14px] brightness-90 contrast-75"
+                      : ""
+                  }`}
                   sizes="(min-width: 1024px) 14rem, (min-width: 768px) 12rem, 10rem"
                 />
               </div>
