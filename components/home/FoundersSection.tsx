@@ -29,8 +29,8 @@ const founders = [
 
 const researchLogos = [
   { name: "Mila", src: "/logos/mila-logo.png", width: 140, height: 44 },
-  //{ name: "Centech", src: "/logos/centech-logo.png", width: 156, height: 44 },
-  //{ name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 160, height: 44 }
+  { name: "Centech", src: "/logos/centech-logo.png", width: 156, height: 44 },
+  { name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 160, height: 44 }
 ];
 
 export function FoundersSection() {
