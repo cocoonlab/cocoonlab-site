@@ -33,6 +33,8 @@ const researchLogos = [
   { name: "NEUF architect(e)s", src: "/logos/neuf-logo.png", width: 160, height: 44 }
 ];
 
+const blurredLogoNames = new Set(["Centech", "NEUF architect(e)s"]);
+
 export function FoundersSection() {
   return (
     <Section
@@ -88,7 +90,11 @@ export function FoundersSection() {
                 alt={`${logo.name} logo`}
                 width={logo.width}
                 height={logo.height}
-                className="h-8 w-auto object-contain sm:h-9"
+                className={`h-8 w-auto object-contain sm:h-9 ${
+                  blurredLogoNames.has(logo.name)
+                    ? "blur-[14px] brightness-90 contrast-75 saturate-0"
+                    : ""
+                }`}
               />
             </div>
           ))}

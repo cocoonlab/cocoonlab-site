@@ -25,6 +25,18 @@ const partners = [
   }
 ];
 
+const blurredLogoNames = new Set([
+  "NEUF",
+  "Civiliti",
+  "Sid Lee Architecture",
+  "Adamson and AAI"
+]);
+
+const getLogoBlurClass = (name: string) =>
+  blurredLogoNames.has(name)
+    ? "blur-[14px] brightness-90 contrast-75 saturate-0"
+    : "";
+
 export function TrustedByBand() {
   const [isHovered, setIsHovered] = useState(false);
   const [ctaFocused, setCtaFocused] = useState(false);
@@ -73,7 +85,7 @@ export function TrustedByBand() {
                     alt={`${partner.name} logo`}
                     width={260}
                     height={110}
-                    className="h-auto w-52 max-w-full object-contain sm:w-60"
+                    className={`h-auto w-52 max-w-full object-contain sm:w-60 ${getLogoBlurClass(partner.name)}`}
                   />
                 ) : (
                   <span className="text-sm font-semibold uppercase tracking-[0.22em] text-text-soft">
