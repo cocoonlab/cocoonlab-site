@@ -6,24 +6,24 @@ import { useState } from "react";
 import type { MouseEvent } from "react";
 import { homeSectionHref } from "@/lib/sections";
 
-const partners = [
-  {
-    name: "NEUF",
-    src: "/logos/neuf-logo.png"
-  },
-  {
-    name: "Civiliti",
-    src: "/logos/civiliti-logo.png"
-  },
-  {
-    name: "Sid Lee Architecture",
-    src: "/logos/sidlee-architecture-logo.png"
-  },
-  {
-    name: "Adamson and AAI",
-    src: "/logos/adamsonandaai-logo.png"
-  }
-];
+//const partners = [
+ // {
+  //  name: "NEUF",
+  //  src: "/logos/neuf-logo.png"
+ // },
+ // {
+ //   name: "Civiliti",
+  //  src: "/logos/civiliti-logo.png"
+ // },
+ // {
+ //   name: "Sid Lee Architecture",
+ //   src: "/logos/sidlee-architecture-logo.png"
+ // },
+ // {
+ //   name: "Adamson and AAI",
+ //   src: "/logos/adamsonandaai-logo.png"
+ // }
+//];
 
 export function TrustedByBand() {
   const [isHovered, setIsHovered] = useState(false);
