@@ -10,14 +10,6 @@ const nextConfig = {
         hostname: "**"
       }
     ]
-  },
-  async rewrites() {
-    return [
-      {
-        source: "/favicon.ico",
-        destination: "/logos/cocoon-logo.ico"
-      }
-    ];
   }
 };
 

@@ -15,13 +15,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteConfig.url
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any", rel: "icon" },
-      { url: "/logos/cocoon-logo.ico", type: "image/x-icon", rel: "shortcut icon" }
-    ],
-    apple: [{ url: "/logos/cocoon-logo.ico" }]
-  },
   keywords: [
     "AI workspace",
     "architectural design",
