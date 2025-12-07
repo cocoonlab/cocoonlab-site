@@ -63,12 +63,12 @@ const footerSections: { title: string; links: FooterLink[] }[] = [
     links: [
       {
         label: "Twitter/X",
-        href: "https://twitter.com/cocoonlab",
+        href: "https://twitter.com/",
         external: true
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com/company/cocoon-lab",
+        href: "https://www.linkedin.com/company/cocoonlab-ai/",
         external: true
       },
       { label: "Email", href: "mailto:hello@cocoonlab.ai", external: true }
@@ -131,11 +131,11 @@ export function Footer() {
               English (US)
             </button>
             <div className="flex items-center gap-2">
-              <SocialIcon href="https://twitter.com/cocoonlab" label="Twitter/X">
+              <SocialIcon href="https://twitter.com/" label="Twitter/X">
                 <XIcon />
               </SocialIcon>
               <SocialIcon
-                href="https://www.linkedin.com/company/cocoon-lab"
+                href="https://www.linkedin.com/company/cocoonlab-ai/"
                 label="LinkedIn"
               >
                 <LinkedInIcon />
