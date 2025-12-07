@@ -9,7 +9,7 @@ export function Logo() {
       aria-label="Cocoon Lab home"
     >
       <Image
-        src="/logos/cocoon-logo-blue.png"
+        src="/logos/cocoonlab-logo-transparent-background-no-text.png"
         alt="Cocoon Lab"
         width={132}
         height={32}
