@@ -16,7 +16,7 @@ export function Logo() {
         priority
         className="h-8 w-auto drop-shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
       />
-      <span className="text-sm font-semibold tracking-tight text-white">Cocoon Lab</span>
+      <span className="sr-only">Cocoon Lab</span>
     </Link>
   );
 }
