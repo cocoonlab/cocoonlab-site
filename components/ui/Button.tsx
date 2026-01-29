@@ -17,13 +17,13 @@ type ButtonAsButtonProps = ButtonBaseProps &
   };
 
 type ButtonAsNextLinkProps = ButtonBaseProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
     href: Route | UrlObject;
     useAnchor?: false;
   };
 
 type ButtonAsAnchorProps = ButtonBaseProps &
-  AnchorHTMLAttributes<HTMLAnchorElement> & {
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
     href: string;
     useAnchor: true;
   };
