@@ -5,8 +5,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useEffect, useRef, useState } from "react";
 
 import { DEMO_FALLBACK_URL, siteConfig } from "@/lib/config";
-import { VideoLightbox } from "@/components/media/VideoLightbox";
-import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 import heroPoster from "@/public/images/website-main-vis.png";
 
 function useIsDesktop(minWidth = 768) {
@@ -66,19 +64,6 @@ export function Hero() {
             <p className="text-measure text-balance text-base leading-relaxed text-text-muted sm:text-lg">
               {(siteConfig.shortName ?? siteConfig.name)} keeps briefs, rules, and AI options in sync so teams choose quickly.
             </p>
-          </div>
-
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <PrimaryCtaLink
-              label="Join the private beta"
-              className="btn-primary w-full justify-center px-8 py-3 text-base font-semibold tracking-tight text-bg sm:w-auto"
-            />
-            <VideoLightbox
-              videoSrc="/demo.mp4"
-              posterSrc="/images/website-main-vis.png"
-              triggerLabel="Watch demo"
-              className="btn-secondary px-7 py-3 text-sm font-semibold"
-            />
           </div>
 
           <div className="space-y-1 text-sm leading-relaxed text-text-muted">

@@ -3,9 +3,8 @@
 import Link from "next/link";
 import type { Route } from "next";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { UrlObject } from "url";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Logo } from "../Logo";
 import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 import { getHomeSection, homeSectionHref } from "@/lib/sections";
@@ -15,11 +14,10 @@ type NavItem = {
   href: Route | UrlObject;
   anchorId?: string;
   activePath?: Route;
-  type?: "resources";
 };
 
 const navItems: NavItem[] = [
-  ...(["problem", "product", "demo", "outcomes", "use-cases", "team", "now", "roadmap"] as const)
+  ...(["product", "demo", "outcomes", "team"] as const)
     .map((id) => getHomeSection(id))
     .filter(Boolean)
     .map((section) => ({
@@ -31,51 +29,14 @@ const navItems: NavItem[] = [
   {
     label: "Resources",
     href: "/resources",
-    activePath: "/resources",
-    type: "resources"
-  }
-];
-
-const resourceSections = [
-  {
-    title: "Guides",
-    items: [
-      { label: "Getting started with Cocoon", href: "/resources" as Route },
-      { label: "Running zoning-aware studies", href: "/resources" as Route },
-      { label: "Bringing cities and architects into one workspace", href: "/resources" as Route }
-    ]
-  },
-  {
-    title: "Use cases",
-    items: [
-      { label: "Complex infill sites", href: "/resources" as Route },
-      { label: "Campus and district planning", href: "/resources" as Route },
-      { label: "Housing & mixed-use programs", href: "/resources" as Route }
-    ]
-  },
-  {
-    title: "Company",
-    items: [
-      { label: "Changelog / Now", href: "/changelog" as Route },
-      { label: "Contact the team", href: "/contact" as Route },
-      { label: "Newsletter", href: "/waitlist" as Route }
-    ]
+    activePath: "/resources"
   }
 ];
 
 export function Nav() {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [activeAnchor, setActiveAnchor] = useState<string | null>(null);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
-  const [mobileResourceSectionsOpen, setMobileResourceSectionsOpen] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(resourceSections.map((section) => [section.title, true]))
-  );
-  const prefersReducedMotion = useReducedMotion();
-  const resourcesTriggerRef = useRef<HTMLButtonElement | null>(null);
-  const resourcesPanelRef = useRef<HTMLDivElement | null>(null);
 
   const anchorIds = useMemo(
     () => navItems.filter((item) => item.anchorId).map((item) => item.anchorId as string),
@@ -83,65 +44,12 @@ export function Nav() {
   );
 
   useEffect(() => {
-    const onScroll = () => {
-      setIsScrolled(window.scrollY > 8);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    // Reset active section when changing routes
     setActiveAnchor(null);
     setOpen(false);
-    setResourcesOpen(false);
-    setMobileResourcesOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    if (!open) {
-      setMobileResourcesOpen(false);
-      setMobileResourceSectionsOpen(
-        Object.fromEntries(resourceSections.map((section) => [section.title, true]))
-      );
-    }
-  }, [open]);
-
-  useEffect(() => {
-    if (!resourcesOpen) return;
-
-    const handlePointerDown = (event: PointerEvent) => {
-      const target = event.target as Node;
-      if (
-        resourcesTriggerRef.current?.contains(target) ||
-        resourcesPanelRef.current?.contains(target)
-      ) {
-        return;
-      }
-
-      setResourcesOpen(false);
-    };
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        setResourcesOpen(false);
-        resourcesTriggerRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("pointerdown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [resourcesOpen]);
-
-  useEffect(() => {
-    if (prefersReducedMotion || pathname !== "/") return;
+    if (pathname !== "/") return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -164,35 +72,19 @@ export function Nav() {
     });
 
     return () => observer.disconnect();
-  }, [anchorIds, pathname, prefersReducedMotion]);
+  }, [anchorIds, pathname]);
 
   function closeMobile() {
     setOpen(false);
   }
 
-  const nonResourceNavItems = navItems.filter((item) => item.type !== "resources");
-  const resourceNavItem = navItems.find((item) => item.type === "resources");
-
-  const headerBase =
-    "fixed inset-x-0 top-0 z-50 border-b border-divider bg-bg/90 backdrop-blur transition-[background-color,border-color,transform,padding] duration-300";
-  const headerScrolled = isScrolled
-    ? "shadow-[0_12px_28px_rgba(45,46,40,0.15)]"
-    : "shadow-[0_8px_20px_rgba(45,46,40,0.08)]";
-
-  const containerBase =
-    "container-x flex items-center justify-between gap-6 transition-[padding] duration-300";
-  const containerPadding = isScrolled ? "py-2.5" : "py-3.5";
-
   return (
-    <header className={`${headerBase} ${headerScrolled}`}>
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(45,46,40,0.04)_0%,rgba(45,46,40,0)_36%)]" />
-      </div>
+    <header className="sticky top-0 z-50 border-b border-divider bg-bg/95 backdrop-blur">
+      <div className="container-x flex items-center justify-between gap-6 py-3 md:py-4">
+        <Logo />
 
-      <div className={`${containerBase} ${containerPadding}`}>
-        <div className="flex flex-1 items-center gap-6">
-          <Logo />
-          <nav className="relative hidden flex-1 items-center justify-center gap-1 text-sm font-medium tracking-tight text-text md:flex">
+        <div className="flex items-center gap-6">
+          <nav className="hidden items-center gap-6 md:flex">
             {navItems.map((item) => {
               const itemKey =
                 typeof item.href === "string"
@@ -203,328 +95,89 @@ export function Nav() {
                 !isAnchor && item.activePath
                   ? pathname === item.activePath || pathname.startsWith(item.activePath + "/")
                   : false;
-              const isAnchorActive =
-                isAnchor && pathname === "/" && activeAnchor === item.anchorId;
-              const shouldPauseActiveState = resourcesOpen;
-              const isActive = !shouldPauseActiveState && (isPageActive || isAnchorActive);
-
-              const baseClasses =
-                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
-              const activeClasses = "text-ink bg-surface-sunken border-divider";
-              const inactiveClasses = "text-text-muted hover:text-ink";
-
-              if (item.type === "resources") {
-                const isResourcesActive =
-                  resourcesOpen || pathname.startsWith((item.activePath ?? "") as string);
-                const buttonClasses = `${baseClasses} ${
-                  isResourcesActive ? activeClasses : inactiveClasses
-                }`;
-
-                return (
-                  <div
-                    key={itemKey}
-                    className="block"
-                    onMouseEnter={() => setResourcesOpen(true)}
-                    onMouseLeave={() => setResourcesOpen(false)}
-                  >
-                    <button
-                      ref={resourcesTriggerRef}
-                      type="button"
-                      className={`${buttonClasses} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg`}
-                      aria-expanded={resourcesOpen}
-                      aria-haspopup="true"
-                      onClick={() => setResourcesOpen((prev) => !prev)}
-                    >
-                      <span>{item.label}</span>
-                      <span
-                        aria-hidden="true"
-                        className={`
-                          pointer-events-none absolute inset-x-3 -bottom-[2px] h-[3px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-accent-blue/80 via-accent-purple/80 to-accent-emerald/80 transition-transform duration-300
-                          ${isResourcesActive || resourcesOpen ? "scale-x-100" : "group-hover:scale-x-100"}
-                        `}
-                      />
-                    </button>
-
-                    <AnimatePresence>
-                      {resourcesOpen && (
-                        <motion.div
-                          key="resources-overlay"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
-                          className="pointer-events-none fixed inset-0 z-40 bg-gradient-to-b from-[#060612]/90 via-[#050510]/88 to-[#04040c]/90"
-                        />
-                      )}
-                    </AnimatePresence>
-
-                    <AnimatePresence>
-                      {resourcesOpen && (
-                        <motion.div
-                          key="resources-menu"
-                          ref={resourcesPanelRef}
-                          initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 6, scale: 0.97 }}
-                          transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
-                          className="absolute left-0 right-0 top-full z-50 mt-4 px-4 md:px-6"
-                        >
-                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-divider bg-surface-raised shadow-[0_18px_60px_rgba(45,46,40,0.12)]">
-                            <div className="grid gap-8 px-6 py-7 sm:grid-cols-2 lg:grid-cols-4">
-                              {resourceSections.map((section) => (
-                                <div key={section.title} className="space-y-4">
-                                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-text-subtle">
-                                    {section.title}
-                                  </p>
-                                  <div className="space-y-2.5">
-                                    {section.items.map((link) => (
-                                      <Link
-                                        key={`${section.title}-${link.label}`}
-                                        href={link.href}
-                                        className="group flex items-center justify-between gap-2 text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline"
-                                      >
-                                        <span className="min-w-0 flex-1">{link.label}</span>
-                                        <span
-                                          aria-hidden
-                                          className="text-xs text-text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
-                                        >
-                                          →
-                                        </span>
-                                      </Link>
-                                    ))}
-                                  </div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              }
+              const isAnchorActive = isAnchor && pathname === "/" && activeAnchor === item.anchorId;
+              const isActive = isPageActive || isAnchorActive;
 
               return (
                 <Link
                   key={itemKey}
                   href={item.href}
-                  className={`${baseClasses} ${isActive ? activeClasses : inactiveClasses}`}
+                  className={`relative inline-flex items-center pb-2 text-[15px] font-medium text-text/80 transition-opacity duration-150 hover:opacity-70 hover:underline hover:decoration-current hover:underline-offset-8 ${
+                    isActive ? "text-text" : ""
+                  }`}
                   onClick={() => {
                     if (item.anchorId) {
                       setActiveAnchor(item.anchorId);
                     }
                   }}
                 >
-                  <span>{item.label}</span>
+                  {item.label}
                   <span
                     aria-hidden="true"
-                    className={`
-                      pointer-events-none absolute inset-x-3 -bottom-[2px] h-[3px] origin-center scale-x-0 rounded-full bg-gradient-to-r from-accent-blue/80 via-accent-purple/80 to-accent-emerald/80 transition-transform duration-300
-                      ${isActive ? "scale-x-100" : "group-hover:scale-x-100"}
-                    `}
+                    className={`absolute left-1/2 -bottom-1 h-1 w-4 -translate-x-1/2 rounded-full bg-text transition-opacity duration-150 ${
+                      isActive ? "opacity-100" : "opacity-0"
+                    }`}
                   />
                 </Link>
               );
             })}
           </nav>
-        </div>
 
-        <div className="flex items-center gap-3">
-          <Link
-            href="/app"
-            className="hidden text-sm font-medium text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline md:inline-flex"
-          >
-            Log in
-          </Link>
-          <div className="hidden sm:block">
+          <div className="hidden md:block">
             <PrimaryCtaLink
               label="Join the private beta"
-              className="btn-primary px-5 py-2.5 text-sm font-semibold tracking-tight text-bg hover:-translate-y-0.5 hover:shadow-[0_24px_70px_rgba(0,0,0,0.6)]"
+              className="btn-primary px-4 py-2 text-sm font-semibold"
             />
           </div>
+
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-border-subtle bg-surface-sunken/80 text-text md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-divider bg-bg text-text md:hidden"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             onClick={() => setOpen((prev) => !prev)}
           >
             <span className="sr-only">Toggle navigation</span>
-            <div className="flex flex-col items-center justify-center gap-1.5">
-              <span
-                className={`h-[1px] w-4 origin-center bg-text transition-transform duration-200 ${
-                  open ? "translate-y-[4px] rotate-45" : ""
-                }`}
-              />
-              <span
-                className={`h-[1px] w-4 bg-text transition-opacity duration-150 ${
-                  open ? "opacity-0" : "opacity-80"
-                }`}
-              />
-              <span
-                className={`h-[1px] w-4 origin-center bg-text transition-transform duration-200 ${
-                  open ? "-translate-y-[4px] -rotate-45" : ""
-                }`}
-              />
-            </div>
+            {open ? (
+              <span className="text-xs font-semibold">Close</span>
+            ) : (
+              <span className="text-xs font-semibold">Menu</span>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile overlay + menu */}
-      <AnimatePresence>
-        {open && (
-          <>
-            {/* Dimmed background */}
-            <motion.div
-              key="nav-overlay"
-              className="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.2
-              }}
-              onClick={closeMobile}
-            />
-
-            {/* Sliding panel */}
-            <motion.div
-              key="nav-panel"
-              className="fixed inset-x-0 top-0 z-40 border-b border-border-subtle bg-surface-sunken/95 pb-4 pt-[4.1rem] shadow-soft backdrop-blur-xl md:hidden"
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{
-                duration: prefersReducedMotion ? 0 : 0.25,
-                ease: [0.22, 0.61, 0.36, 1]
-              }}
-            >
-              <div className="container-x">
-                <nav className="space-y-1 text-sm">
-                  {nonResourceNavItems.map((item) => {
-                    const itemKey =
-                      typeof item.href === "string"
-                        ? item.href
-                        : `${item.href.pathname ?? ""}#${item.anchorId ?? item.label}`;
-                    return (
-                      <Link
-                        key={itemKey}
-                        href={item.href}
-                        className="flex items-center justify-between rounded-xl px-3 py-2 text-text-soft transition-colors duration-150 hover:bg-surface-raised/80 hover:text-text"
-                        onClick={() => {
-                          if (item.anchorId) setActiveAnchor(item.anchorId);
-                          closeMobile();
-                        }}
-                      >
-                        <span>{item.label}</span>
-                      </Link>
-                    );
-                  })}
-
-                  {resourceNavItem ? (
-                    <div className="overflow-hidden rounded-xl border border-border-subtle/70 bg-surface/90">
-                      <button
-                        type="button"
-                        className="flex w-full items-center justify-between px-3 py-2 text-left text-text-soft transition-colors duration-150 hover:bg-surface-raised/80 hover:text-text"
-                        aria-expanded={mobileResourcesOpen}
-                        onClick={() => setMobileResourcesOpen((prev) => !prev)}
-                      >
-                        <span>{resourceNavItem.label}</span>
-                        <span
-                          aria-hidden
-                          className={`text-xs transition-transform duration-200 ${mobileResourcesOpen ? "rotate-90" : "rotate-0"}`}
-                        >
-                          →
-                        </span>
-                      </button>
-
-                      <AnimatePresence initial={false}>
-                        {mobileResourcesOpen && (
-                          <motion.div
-                            key="mobile-resources"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: prefersReducedMotion ? 0 : 0.2 }}
-                            className="space-y-2 border-t border-border-subtle/60 bg-surface-sunken/70 px-2 py-2"
-                          >
-                            {resourceSections.map((section) => {
-                              const isOpen = mobileResourceSectionsOpen[section.title];
-                              return (
-                                <div key={section.title} className="overflow-hidden rounded-lg border border-border-subtle/60">
-                                  <button
-                                    type="button"
-                                    className="flex w-full items-center justify-between px-3 py-2 text-left text-text-soft transition-colors duration-150 hover:bg-surface-raised/70 hover:text-text"
-                                    aria-expanded={isOpen}
-                                    onClick={() =>
-                                      setMobileResourceSectionsOpen((prev) => ({
-                                        ...prev,
-                                        [section.title]: !prev[section.title]
-                                      }))
-                                    }
-                                  >
-                                    <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-text-subtle">
-                                      {section.title}
-                                    </span>
-                                    <span
-                                      aria-hidden
-                                      className={`text-xs transition-transform duration-200 ${isOpen ? "rotate-90" : "rotate-0"}`}
-                                    >
-                                      →
-                                    </span>
-                                  </button>
-
-                                  <AnimatePresence initial={false}>
-                                    {isOpen && (
-                                      <motion.div
-                                        key={`${section.title}-items`}
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: "auto" }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        transition={{ duration: prefersReducedMotion ? 0 : 0.18 }}
-                                        className="space-y-2 bg-surface/80 px-3 py-2"
-                                      >
-                                        {section.items.map((link) => (
-                                          <Link
-                                            key={`${section.title}-${link.label}-mobile`}
-                                            href={link.href}
-                                            className="block text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline"
-                                            onClick={closeMobile}
-                                          >
-                                            {link.label}
-                                          </Link>
-                                        ))}
-                                      </motion.div>
-                                    )}
-                                  </AnimatePresence>
-                                </div>
-                              );
-                            })}
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  ) : null}
-                  <Link
-                    href="/app"
-                    className="mt-1 flex items-center justify-between rounded-xl px-3 py-2 text-text-soft transition-colors duration-150 hover:bg-surface-raised/80 hover:text-text"
-                    onClick={closeMobile}
-                  >
-                    <span>Log in</span>
-                  </Link>
-                <div className="pt-3">
-                  <PrimaryCtaLink
-                    label="Join the private beta"
-                    className="btn-primary flex w-full justify-center text-sm"
-                  />
-                </div>
-                </nav>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+      {open ? (
+        <div className="border-t border-divider bg-bg md:hidden">
+          <nav className="container-x flex flex-col gap-3 py-4">
+            {navItems.map((item) => {
+              const itemKey =
+                typeof item.href === "string"
+                  ? item.href
+                  : `${item.href.pathname ?? ""}#${item.anchorId ?? item.label}`;
+              return (
+                <Link
+                  key={itemKey}
+                  href={item.href}
+                  className="text-[15px] font-medium text-text/80 underline-offset-8 hover:opacity-70 hover:underline"
+                  onClick={() => {
+                    if (item.anchorId) setActiveAnchor(item.anchorId);
+                    closeMobile();
+                  }}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <div className="pt-2">
+              <PrimaryCtaLink
+                label="Join the private beta"
+                className="btn-primary w-full justify-center text-sm font-semibold"
+              />
+            </div>
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

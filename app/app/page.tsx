@@ -1,6 +1,3 @@
-import Link from "next/link";
-
-import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { siteConfig } from "@/lib/config";
 
@@ -21,20 +18,6 @@ export default function ProductShellPlaceholder() {
               <p className="text-measure text-base leading-relaxed text-text-muted">
                 The Cocoon app runs as a secure workspace for private beta teams. If you have an invite, use your personalized link to sign in. If you’re evaluating Cocoon for your studio, reach out and we’ll onboard you with real project data.
               </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <PrimaryCtaLink
-                label="Join the private beta"
-                className="btn-primary px-6 py-[11px] text-sm font-semibold"
-              />
-              <Link
-                href="/contact"
-                className="btn-secondary px-5 py-[10px] text-sm font-semibold"
-              >
-                <span>Contact</span>
-                <span aria-hidden className="text-xs">→</span>
-              </Link>
             </div>
           </div>
 
