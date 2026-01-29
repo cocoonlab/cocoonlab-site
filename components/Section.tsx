@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { Container } from "@/components/ui/Container";
 
 type SectionVariant = "subtle" | "default" | "strong";
 
@@ -48,7 +49,7 @@ export function Section({
       id={id}
       className={["section-pad", className].filter(Boolean).join(" ")}
     >
-      <div className="container-x">
+      <Container>
         {hasHeader && (
           <header className="mb-10 max-w-3xl space-y-4 md:mb-12 md:space-y-5 lg:mb-14">
             {eyebrow && <p className="badge-pill">{eyebrow}</p>}
@@ -75,7 +76,7 @@ export function Section({
         >
           {children}
         </motion.div>
-      </div>
+      </Container>
     </section>
   );
 }

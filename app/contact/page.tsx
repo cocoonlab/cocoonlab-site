@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { LayoutShell } from "@/components/layout/LayoutShell";
+import { Section } from "@/components/Section";
 import { siteConfig } from "@/lib/config";
 
 export default function ContactPage() {
@@ -52,33 +53,35 @@ export default function ContactPage() {
 
   return (
     <LayoutShell>
-      <section className="section-pad">
-        <div className="container-x grid gap-10 md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+      <Section
+        eyebrow="Contact"
+        title="Talk to the team behind Cocoon Lab."
+        kicker="Tell us about your studio, a project you&apos;re evaluating, or where you want help moving faster."
+      >
+        <div className="grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
           <div className="space-y-4">
-            <p className="badge-pill text-[11px] uppercase tracking-wide text-text-muted">
-              Contact
+            <p className="text-sm text-text-muted">
+              Direct line:{" "}
+              <a
+                href={`mailto:${siteConfig.contactEmail}`}
+                className="font-semibold text-ink underline decoration-divider underline-offset-4 transition-colors hover:text-clay"
+              >
+                {siteConfig.contactEmail}
+              </a>
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">
-              Talk to the team behind Cocoon Lab.
-            </h1>
-            <p className="text-measure text-sm text-text-muted md:text-base">
-              Whether you&apos;re exploring pilots, have questions about workflow fit,
-              or just want to share feedback, we&apos;d love to hear from you.
-            </p>
-            <a
-              href={`mailto:${siteConfig.contactEmail}`}
-              className="btn-secondary inline-flex w-fit text-sm"
-            >
-              Email {siteConfig.contactEmail}
-            </a>
           </div>
           <form
             onSubmit={handleSubmit}
-            className="card-surface space-y-4 p-5 md:p-6"
+            className="rounded-2xl border border-divider/80 bg-surface-raised/70 p-5 shadow-[0_12px_40px_rgba(45,46,40,0.08)] md:p-6"
             aria-busy={isLoading ? "true" : "false"}
           >
-            <div className="field space-y-1">
-              <label htmlFor="contact-email">Your email</label>
+            <div className="field space-y-2">
+              <label
+                htmlFor="contact-email"
+                className="text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted"
+              >
+                Your email
+              </label>
               <input
                 id="contact-email"
                 type="email"
@@ -86,23 +89,28 @@ export default function ContactPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-divider focus:border-clay/70 focus:shadow-inner-glow"
+                className="w-full rounded-xl border border-divider/80 bg-surface px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow] duration-150 hover:border-divider focus:border-muted focus:ring-2 focus:ring-muted/40"
               />
             </div>
-            <div className="field space-y-1">
-              <label htmlFor="contact-message">Message</label>
+            <div className="field mt-4 space-y-2">
+              <label
+                htmlFor="contact-message"
+                className="text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted"
+              >
+                Message
+              </label>
               <textarea
                 id="contact-message"
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
-                className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-divider focus:border-clay/70 focus:shadow-inner-glow"
+                className="w-full rounded-xl border border-divider/80 bg-surface px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow] duration-150 hover:border-divider focus:border-muted focus:ring-2 focus:ring-muted/40"
               />
             </div>
             <button
               type="submit"
-              className="btn-primary w-full justify-center text-sm disabled:cursor-not-allowed disabled:opacity-70"
+              className="btn-primary mt-5 w-full justify-center text-sm disabled:cursor-not-allowed disabled:opacity-70"
               disabled={isLoading}
             >
               {isLoading ? "Sending..." : "Send message"}
@@ -111,7 +119,7 @@ export default function ContactPage() {
               {feedback && (
                 <motion.p
                   key={status + feedback}
-                  className={`text-xs ${
+                  className={`mt-3 text-xs ${
                     status === "error" ? "text-rose-400" : "text-clay"
                   }`}
                   initial={{ opacity: 0, y: 6 }}
@@ -126,7 +134,7 @@ export default function ContactPage() {
             </AnimatePresence>
           </form>
         </div>
-      </section>
+      </Section>
     </LayoutShell>
   );
 }
