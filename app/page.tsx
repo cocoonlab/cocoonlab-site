@@ -5,11 +5,11 @@ import { TrustedByBand } from "@/components/home/TrustedByBand";
 import { ProblemSection } from "@/components/home/ProblemSection";
 import { UseCases } from "@/components/home/UseCases";
 import { WhatCocoonDoes } from "@/components/home/WhatCocoonDoes";
-import { DemoSection } from "@/components/home/DemoSection";
 import { OutcomesSection } from "@/components/home/OutcomesSection";
 import { FoundersSection } from "@/components/home/FoundersSection";
-import { RoadmapNowSection } from "@/components/home/RoadmapNowSection";
-import { RoadmapSection } from "@/components/home/RoadmapSection";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { EarlySignalsStrip } from "@/components/home/EarlySignalsStrip";
+import { FinalCtaSection } from "@/components/home/FinalCtaSection";
 import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
@@ -40,13 +40,13 @@ export default function HomePage() {
       <Hero />
       <TrustedByBand />
       <ProblemSection />
+      <HowItWorks />
       <WhatCocoonDoes />
-      <DemoSection />
+      <EarlySignalsStrip />
       <OutcomesSection />
       <UseCases />
       <FoundersSection />
-      <RoadmapNowSection />
-      <RoadmapSection />
+      <FinalCtaSection />
     </LayoutShell>
   );
 }
