@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface IssueCardProps {
   title: string;
@@ -24,6 +24,14 @@ export function IssueTrackingHero({
   primaryCard,
   backgroundCards = []
 }: IssueTrackingHeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const hoverMotionClasses = prefersReducedMotion
+    ? ""
+    : "transition duration-500 group-hover:scale-[1.01] group-hover:blur-[2px] group-hover:opacity-25";
+  const primaryHoverClasses = prefersReducedMotion
+    ? ""
+    : "transition duration-500 group-hover:-translate-y-3 group-hover:rotate-[-1deg] group-hover:shadow-[0_42px_160px_rgba(0,0,0,0.65)]";
+
   return (
     <section className="section-pad overflow-hidden">
       <div className="container-x grid gap-12 lg:grid-cols-[1.05fr_minmax(0,1.05fr)] lg:items-center">
@@ -46,13 +54,21 @@ export function IssueTrackingHero({
               {backgroundCards.map((card, index) => (
                 <motion.div
                   key={card.title + index}
-                  initial={{ opacity: 0, y: 14 }}
+                  initial={prefersReducedMotion ? { opacity: 0.22, y: 0 } : { opacity: 0, y: 14 }}
                   animate={{ opacity: 0.22, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.6, ease: [0.25, 0.6, 0.3, 1] }}
-                  className={`absolute left-1/2 top-1/2 h-[220px] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/5 bg-white/5 blur-[1px] transition duration-500 group-hover:scale-[1.01] group-hover:blur-[2px] group-hover:opacity-25 ${
-                    index % 2 === 0
-                      ? "rotate-2 group-hover:translate-y-2"
-                      : "-rotate-2 group-hover:-translate-y-2"
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { delay: 0.1 * index, duration: 0.6, ease: [0.25, 0.6, 0.3, 1] }
+                  }
+                  className={`absolute left-1/2 top-1/2 h-[220px] w-full max-w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-3xl border border-white/5 bg-white/5 blur-[1px] ${hoverMotionClasses} ${
+                    index % 2 === 0 ? "rotate-2" : "-rotate-2"
+                  } ${
+                    prefersReducedMotion
+                      ? ""
+                      : index % 2 === 0
+                        ? "group-hover:translate-y-2"
+                        : "group-hover:-translate-y-2"
                   }`}
                 >
                   <div className="flex h-full items-center justify-center text-sm font-semibold uppercase tracking-[0.14em] text-ink/30">
@@ -62,10 +78,14 @@ export function IssueTrackingHero({
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: [0.25, 0.6, 0.3, 1] }}
-                className="relative rotate-[-3deg] rounded-[28px] border border-white/10 bg-gradient-to-br from-white/15 via-white/8 to-white/0 p-1 shadow-[0_30px_140px_rgba(0,0,0,0.55)] backdrop-blur transition duration-500 group-hover:-translate-y-3 group-hover:rotate-[-1deg] group-hover:shadow-[0_42px_160px_rgba(0,0,0,0.65)]"
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { duration: 0.6, ease: [0.25, 0.6, 0.3, 1] }
+                }
+                className={`relative rotate-[-3deg] rounded-[28px] border border-white/10 bg-gradient-to-br from-white/15 via-white/8 to-white/0 p-1 shadow-[0_30px_140px_rgba(0,0,0,0.55)] backdrop-blur ${primaryHoverClasses}`}
               >
                 <div className="rounded-[22px] border border-white/10 bg-gradient-to-br from-bg/90 via-bg/80 to-bg-alt/70 p-6">
                   <div className="flex items-center justify-between gap-4">

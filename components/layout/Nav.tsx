@@ -102,7 +102,7 @@ export function Nav() {
                 <Link
                   key={itemKey}
                   href={item.href}
-                  className={`relative inline-flex items-center pb-2 text-[15px] font-medium text-text/80 transition-opacity duration-150 hover:opacity-70 hover:underline hover:decoration-current hover:underline-offset-8 ${
+                  className={`relative inline-flex items-center rounded-sm pb-2 text-[15px] font-medium text-text/80 transition-opacity duration-150 hover:opacity-70 hover:underline hover:decoration-current hover:underline-offset-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/70 focus-visible:ring-offset-4 focus-visible:ring-offset-bg ${
                     isActive ? "text-text" : ""
                   }`}
                   onClick={() => {
@@ -132,7 +132,7 @@ export function Nav() {
 
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-divider bg-bg text-text md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-divider bg-bg text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-bg md:hidden"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}
             onClick={() => setOpen((prev) => !prev)}
@@ -159,7 +159,7 @@ export function Nav() {
                 <Link
                   key={itemKey}
                   href={item.href}
-                  className="text-[15px] font-medium text-text/80 underline-offset-8 hover:opacity-70 hover:underline"
+                  className="rounded-sm text-[15px] font-medium text-text/80 underline-offset-8 hover:opacity-70 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/70 focus-visible:ring-offset-4 focus-visible:ring-offset-bg"
                   onClick={() => {
                     if (item.anchorId) setActiveAnchor(item.anchorId);
                     closeMobile();

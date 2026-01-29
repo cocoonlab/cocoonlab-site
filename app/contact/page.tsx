@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { Section } from "@/components/Section";
 import { siteConfig } from "@/lib/config";
@@ -13,6 +13,7 @@ export default function ContactPage() {
     "idle"
   );
   const [feedback, setFeedback] = useState("");
+  const prefersReducedMotion = useReducedMotion();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -64,7 +65,7 @@ export default function ContactPage() {
               Direct line:{" "}
               <a
                 href={`mailto:${siteConfig.contactEmail}`}
-                className="font-semibold text-ink underline decoration-divider underline-offset-4 transition-colors hover:text-clay"
+                className="rounded-sm font-semibold text-ink underline decoration-divider underline-offset-4 transition-colors hover:text-clay focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/70 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 {siteConfig.contactEmail}
               </a>
@@ -122,10 +123,14 @@ export default function ContactPage() {
                   className={`mt-3 text-xs ${
                     status === "error" ? "text-rose-400" : "text-clay"
                   }`}
-                  initial={{ opacity: 0, y: 6 }}
+                  initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 4 }}
-                  transition={{ duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }}
+                  exit={prefersReducedMotion ? { opacity: 0, y: 0 } : { opacity: 0, y: 4 }}
+                  transition={
+                    prefersReducedMotion
+                      ? { duration: 0 }
+                      : { duration: 0.2, ease: [0.22, 0.61, 0.36, 1] }
+                  }
                   aria-live="polite"
                 >
                   {feedback}

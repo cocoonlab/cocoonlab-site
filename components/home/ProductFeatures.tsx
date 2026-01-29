@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Section } from "@/components/Section";
 
@@ -50,6 +50,19 @@ const featureVisualLabels = [
 ];
 
 export function ProductFeatures() {
+  const prefersReducedMotion = useReducedMotion();
+
+  const buildMotionProps = (delay = 0) => ({
+    initial: prefersReducedMotion
+      ? { opacity: 1, y: 0, scale: 1 }
+      : { opacity: 0, y: 24, scale: 0.96 },
+    whileInView: { opacity: 1, y: 0, scale: 1 },
+    viewport: { once: true, amount: 0.4 },
+    transition: prefersReducedMotion
+      ? { duration: 0 }
+      : { duration: 0.6, ease: "easeOut", delay }
+  });
+
   return (
     <Section
       id="product"
@@ -98,10 +111,7 @@ export function ProductFeatures() {
         <div className="relative lg:pl-8">
           <div className="grid gap-4 sm:gap-5 sm:grid-cols-2">
             <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              {...buildMotionProps()}
               className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow sm:col-span-2"
             >
               <div className="pointer-events-none absolute -inset-16 bg-[radial-gradient(circle_at_top,_rgba(129,140,248,0.55),_transparent_60%)]" />
@@ -118,10 +128,7 @@ export function ProductFeatures() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.08 }}
+              {...buildMotionProps(0.08)}
               className="card-surface relative overflow-hidden bg-surface-raised/80 shadow-inner-glow"
             >
               <div className="relative aspect-[5/4]">
@@ -139,10 +146,7 @@ export function ProductFeatures() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.4 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.14 }}
+              {...buildMotionProps(0.14)}
               className="card-surface relative overflow-hidden bg-surface-raised/80 shadow-inner-glow"
             >
               <div className="relative aspect-[5/4]">
@@ -192,10 +196,12 @@ export function ProductFeatures() {
           </dl>
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 26 }}
+          initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 26 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={
+            prefersReducedMotion ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }
+          }
           className="card-surface relative overflow-hidden bg-gradient-to-b from-surface-raised/80 via-surface-raised/95 to-bg/80 shadow-inner-glow"
         >
           <div className="relative h-64 sm:h-72 lg:h-[22rem]">

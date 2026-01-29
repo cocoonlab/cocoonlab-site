@@ -61,44 +61,49 @@ export function PricingTable() {
     >
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.9fr)] lg:items-start">
         {/* Tiers */}
-        <div className="grid gap-4 md:grid-cols-3">
-          {tiers.map((tier) => (
-            <article
-              key={tier.name}
-              className={`card-surface flex flex-col justify-between p-5 sm:p-6 ${
-                tier.featured
-                  ? "border-accent-blue/80 bg-surface-raised/80 shadow-inner-glow"
-                  : ""
-              }`}
-            >
-              <div className="space-y-3">
-                <p className="text-xs font-medium uppercase tracking-[0.18em] text-text-muted">
-                  {tier.name}
-                </p>
-                <p className="text-sm text-text-soft">{tier.description}</p>
-                <p className="text-base font-semibold text-ink">{tier.price}</p>
-              </div>
-              <ul className="mt-4 space-y-2 text-sm text-text-muted">
-                {tier.highlights.map((item) => (
-                  <li key={item} className="flex gap-2">
-                    <span
-                      aria-hidden="true"
-                      className="mt-1 h-1.5 w-1.5 rounded-full bg-accent-emerald"
-                    />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            <div className="mt-5">
-              <Link
-                href="/contact"
-                className="btn-ghost w-full justify-center text-sm font-semibold"
+        <div className="space-y-6">
+          <div className="grid gap-4 md:grid-cols-3">
+            {tiers.map((tier) => (
+              <article
+                key={tier.name}
+                className={`card-surface flex flex-col justify-between p-5 sm:p-6 ${
+                  tier.featured
+                    ? "border-accent-blue/80 bg-surface-raised/80 shadow-inner-glow"
+                    : ""
+                }`}
               >
-                Contact
-              </Link>
-            </div>
-            </article>
-          ))}
+                <div className="space-y-3">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-text-muted">
+                    {tier.name}
+                  </p>
+                  <p className="text-sm text-text-soft">{tier.description}</p>
+                  <p className="text-base font-semibold text-ink">{tier.price}</p>
+                </div>
+                <ul className="mt-4 space-y-2 text-sm text-text-muted">
+                  {tier.highlights.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="mt-1 h-1.5 w-1.5 rounded-full bg-accent-emerald"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          <div className="flex flex-col items-start gap-3">
+            <p className="text-sm text-text-muted">
+              Let’s pick the tier that matches your studio’s workflow.
+            </p>
+            <Link
+              href="/contact"
+              className="btn-primary w-full justify-center text-sm font-semibold sm:w-auto"
+            >
+              Contact sales
+            </Link>
+          </div>
         </div>
 
         {/* Efficiency visuals */}

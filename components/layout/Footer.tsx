@@ -73,7 +73,7 @@ export function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-text-muted transition hover:text-text hover:underline hover:underline-offset-4"
+                        className="rounded-sm text-text-muted transition hover:text-text hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                       >
                         {link.label}
                       </Link>

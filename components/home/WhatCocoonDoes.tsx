@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Section } from "@/components/Section";
 
@@ -69,6 +69,12 @@ const highlights = [
 ];
 
 export function WhatCocoonDoes() {
+  const prefersReducedMotion = useReducedMotion();
+  const initial = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 };
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.35, ease: "easeOut" };
+
   return (
     <Section
       id="product"
@@ -81,10 +87,10 @@ export function WhatCocoonDoes() {
           <motion.article
             key={item.title}
             className="card-surface space-y-3 p-5 sm:p-6"
-            initial={{ opacity: 0, y: 16 }}
+            initial={initial}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
+            transition={transition}
           >
             <div className="flex items-center gap-3">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-divider bg-surface-sunken">
