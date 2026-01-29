@@ -173,11 +173,11 @@ export function Nav() {
   const nonResourceNavItems = navItems.filter((item) => item.type !== "resources");
   const resourceNavItem = navItems.find((item) => item.type === "resources");
 
-          const headerBase =
-            "fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-gradient-to-b from-[#0c0c16]/95 via-[#050509]/95 to-[#050509]/90 transition-[background-color,border-color,transform,padding] duration-300";
+  const headerBase =
+    "fixed inset-x-0 top-0 z-50 border-b border-divider bg-bg/90 backdrop-blur transition-[background-color,border-color,transform,padding] duration-300";
   const headerScrolled = isScrolled
-    ? "shadow-[0_18px_40px_rgba(0,0,0,0.7)]"
-    : "shadow-[0_10px_40px_rgba(0,0,0,0.35)]";
+    ? "shadow-[0_12px_28px_rgba(45,46,40,0.15)]"
+    : "shadow-[0_8px_20px_rgba(45,46,40,0.08)]";
 
   const containerBase =
     "container-x flex items-center justify-between gap-6 transition-[padding] duration-300";
@@ -186,7 +186,7 @@ export function Nav() {
   return (
     <header className={`${headerBase} ${headerScrolled}`}>
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0)_36%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(45,46,40,0.04)_0%,rgba(45,46,40,0)_36%)]" />
       </div>
 
       <div className={`${containerBase} ${containerPadding}`}>
@@ -209,10 +209,9 @@ export function Nav() {
               const isActive = !shouldPauseActiveState && (isPageActive || isAnchorActive);
 
               const baseClasses =
-                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
-              const activeClasses =
-                "text-white bg-white/6 border-white/10 shadow-[0_14px_50px_rgba(0,0,0,0.45)]";
-              const inactiveClasses = "text-text-muted hover:text-text";
+                "group relative inline-flex items-center gap-1.5 rounded-full border border-transparent px-3 py-1.5 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+              const activeClasses = "text-ink bg-surface-sunken border-divider";
+              const inactiveClasses = "text-text-muted hover:text-ink";
 
               if (item.type === "resources") {
                 const isResourcesActive =
@@ -270,7 +269,7 @@ export function Nav() {
                           transition={{ duration: prefersReducedMotion ? 0 : 0.18, ease: [0.2, 0.8, 0.4, 1] }}
                           className="absolute left-0 right-0 top-full z-50 mt-4 px-4 md:px-6"
                         >
-                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/10 bg-[#0b0b16] shadow-[0_30px_140px_rgba(0,0,0,0.55)]">
+                          <div className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-divider bg-surface-raised shadow-[0_18px_60px_rgba(45,46,40,0.12)]">
                             <div className="grid gap-8 px-6 py-7 sm:grid-cols-2 lg:grid-cols-4">
                               {resourceSections.map((section) => (
                                 <div key={section.title} className="space-y-4">
@@ -282,12 +281,12 @@ export function Nav() {
                                       <Link
                                         key={`${section.title}-${link.label}`}
                                         href={link.href}
-                                        className="group flex items-center justify-between gap-2 text-sm text-text-soft underline-offset-4 transition-colors duration-150 hover:text-white hover:underline"
+                                        className="group flex items-center justify-between gap-2 text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline"
                                       >
                                         <span className="min-w-0 flex-1">{link.label}</span>
                                         <span
                                           aria-hidden
-                                          className="text-xs text-text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white"
+                                          className="text-xs text-text-muted transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-ink"
                                         >
                                           →
                                         </span>
@@ -333,7 +332,7 @@ export function Nav() {
         <div className="flex items-center gap-3">
           <Link
             href="/app"
-            className="hidden text-sm font-medium text-text-muted underline-offset-4 transition-colors duration-150 hover:text-white hover:underline md:inline-flex"
+            className="hidden text-sm font-medium text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline md:inline-flex"
           >
             Log in
           </Link>
@@ -490,7 +489,7 @@ export function Nav() {
                                           <Link
                                             key={`${section.title}-${link.label}-mobile`}
                                             href={link.href}
-                                            className="block text-sm text-text-soft underline-offset-4 transition-colors duration-150 hover:text-white hover:underline"
+                                            className="block text-sm text-text-muted underline-offset-4 transition-colors duration-150 hover:text-ink hover:underline"
                                             onClick={closeMobile}
                                           >
                                             {link.label}

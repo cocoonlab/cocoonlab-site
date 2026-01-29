@@ -46,7 +46,7 @@ export function AiAssistSection() {
           </span>
 
           <div className="space-y-3">
-            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h2 className="text-balance text-3xl font-semibold leading-[1.05] tracking-tight text-ink md:text-4xl lg:text-5xl">
               AI-assisted design operations
             </h2>
             <p className="mx-auto max-w-3xl text-pretty text-base leading-relaxed text-text-soft md:text-lg">
@@ -106,18 +106,18 @@ export function AiAssistSection() {
                       {agent.name.charAt(0)}
                     </span>
                     <div>
-                      <p className="text-sm font-semibold text-white">{agent.name}</p>
+                      <p className="text-sm font-semibold text-ink">{agent.name}</p>
                       <p className="text-xs text-text-muted">Keeps your project in sync</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded-full border border-white/12 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-soft">
+                    <span className="rounded-full border border-divider bg-surface-sunken px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-text-muted">
                       {agent.role}
                     </span>
                     {agent.highlighted && (
                       <span
                         aria-hidden
-                        className="flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-accent-emerald/20 text-accent-emerald"
+                        className="flex h-6 w-6 items-center justify-center rounded-full border border-divider bg-sage/20 text-ink"
                       >
                         <svg
                           aria-hidden
@@ -140,7 +140,7 @@ export function AiAssistSection() {
 
         <div className="mt-14 grid gap-10 text-left md:mt-16 md:grid-cols-2 md:gap-12">
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
+            <h3 className="text-xl font-semibold tracking-tight text-ink md:text-2xl">
               Self-updating project operations
             </h3>
             <p className="text-base leading-relaxed text-text-soft">
@@ -152,7 +152,7 @@ export function AiAssistSection() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold tracking-tight text-white md:text-2xl">
+            <h3 className="text-xl font-semibold tracking-tight text-ink md:text-2xl">
               Built for architecture tools
             </h3>
             <p className="text-base leading-relaxed text-text-soft">

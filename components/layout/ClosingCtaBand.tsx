@@ -24,11 +24,11 @@ export function ClosingCtaBand({
 }: ClosingCtaProps) {
   return (
     <section
-      className={`relative overflow-hidden border-t border-white/5 bg-[#0B0B1C] ${className ?? ""}`.trim()}
+      className={`relative overflow-hidden border-t border-divider bg-surface-raised ${className ?? ""}`.trim()}
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-white/10 via-white/40 to-white/10" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-divider to-transparent" />
       <div className="container-x flex flex-col items-center gap-6 py-16 text-center md:py-20">
-        <h2 className="text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl">
+        <h2 className="text-3xl font-semibold leading-tight tracking-tight text-ink md:text-4xl">
           <span className="block sm:inline">{title}</span>
           {titleSecondLine ? (
             <>
@@ -54,7 +54,7 @@ export function ClosingCtaBand({
           {secondaryHref && secondaryLabel ? (
             <Link
               href={secondaryHref}
-              className="btn-ghost px-6 py-2.5 text-sm font-semibold"
+              className="btn-secondary px-6 py-2.5 text-sm font-semibold"
             >
               {secondaryLabel}
             </Link>

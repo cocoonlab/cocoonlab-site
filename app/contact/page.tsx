@@ -58,16 +58,16 @@ export default function ContactPage() {
             <p className="badge-pill text-[11px] uppercase tracking-wide text-text-muted">
               Contact
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">
               Talk to the team behind Cocoon Lab.
             </h1>
-            <p className="text-sm text-text-muted md:text-base">
+            <p className="text-measure text-sm text-text-muted md:text-base">
               Whether you&apos;re exploring pilots, have questions about workflow fit,
               or just want to share feedback, we&apos;d love to hear from you.
             </p>
             <a
               href={`mailto:${siteConfig.contactEmail}`}
-              className="btn-ghost inline-flex w-fit text-sm"
+              className="btn-secondary inline-flex w-fit text-sm"
             >
               Email {siteConfig.contactEmail}
             </a>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full rounded-xl border border-border-subtle bg-surface-sunken/70 px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-border focus:border-accent-blue/80 focus:shadow-[0_0_0_1px_rgba(129,140,248,0.65),0_0_0_1px_rgba(15,23,42,1)]"
+                className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-divider focus:border-clay/70 focus:shadow-inner-glow"
               />
             </div>
             <div className="field space-y-1">
@@ -97,7 +97,7 @@ export default function ContactPage() {
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 required
-                className="w-full rounded-xl border border-border-subtle bg-surface-sunken/70 px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-border focus:border-accent-blue/80 focus:shadow-[0_0_0_1px_rgba(129,140,248,0.65),0_0_0_1px_rgba(15,23,42,1)]"
+                className="w-full rounded-xl border border-border bg-surface-sunken px-3 py-2 text-sm text-text placeholder:text-text-muted/60 outline-none transition-[border-color,box-shadow,background-color] duration-150 hover:border-divider focus:border-clay/70 focus:shadow-inner-glow"
               />
             </div>
             <button
@@ -112,7 +112,7 @@ export default function ContactPage() {
                 <motion.p
                   key={status + feedback}
                   className={`text-xs ${
-                    status === "error" ? "text-rose-400" : "text-accent-emerald"
+                    status === "error" ? "text-rose-400" : "text-clay"
                   }`}
                   initial={{ opacity: 0, y: 6 }}
                   animate={{ opacity: 1, y: 0 }}

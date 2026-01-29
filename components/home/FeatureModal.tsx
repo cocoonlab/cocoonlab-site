@@ -142,7 +142,7 @@ export function FeatureModal({
             </div>
 
             <div className="space-y-4">
-              <h3 className="text-3xl font-semibold tracking-tight text-white sm:text-[34px]">{title}</h3>
+              <h3 className="text-3xl font-semibold tracking-tight text-ink sm:text-[34px]">{title}</h3>
               <div className="space-y-3 text-base leading-relaxed text-text-muted sm:text-lg">
                 {body.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
@@ -160,7 +160,7 @@ export function FeatureModal({
                       key={metric.label}
                       className="rounded-xl bg-surface-sunken/60 px-4 py-3 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                     >
-                      <div className="text-3xl font-semibold text-white sm:text-4xl">{metric.value}</div>
+                      <div className="text-3xl font-semibold text-ink sm:text-4xl">{metric.value}</div>
                       <div className="mt-1 text-[13px] text-text-muted">{metric.label}</div>
                     </div>
                   ))}

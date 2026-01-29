@@ -84,7 +84,7 @@ export function NewsletterForm() {
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }}
             className={`text-xs ${
-              status === "error" ? "text-rose-400" : "text-accent-emerald"
+              status === "error" ? "text-rose-400" : "text-clay"
             }`}
             aria-live="polite"
           >

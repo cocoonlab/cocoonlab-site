@@ -40,7 +40,7 @@ export function WhatCocoonDoes() {
             viewport={{ once: true, amount: 0.35 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
           >
-            <h3 className="text-base font-semibold text-white md:text-lg">{item.title}</h3>
+            <h3 className="text-base font-semibold text-ink md:text-lg">{item.title}</h3>
             <p className="text-sm text-text-soft">{item.body}</p>
             <ul className="space-y-2 text-xs text-text-muted md:text-[13px]">
               {item.points.map((point) => (

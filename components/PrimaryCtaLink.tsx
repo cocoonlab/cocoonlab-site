@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 type PrimaryCtaLinkProps = {
   label?: string;
   className?: string;
@@ -19,12 +19,12 @@ export function PrimaryCtaLink({
   const href = "/waitlist";
 
   return (
-    <Link
+    <Button
       href={href}
       className={className ?? "btn-primary"}
       aria-label={ariaLabel ?? label}
     >
       {label}
-    </Link>
+    </Button>
   );
 }

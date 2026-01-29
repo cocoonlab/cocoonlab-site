@@ -19,8 +19,8 @@ export function RoadmapNowSection() {
       <div className="grid gap-6 lg:grid-cols-[1.05fr_minmax(0,1fr)] lg:items-start">
         <div className="card-surface space-y-4 p-5 sm:p-6">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold text-white">Status</p>
-            <span className="badge-pill bg-white/5 text-xs text-white">Alpha</span>
+            <p className="text-sm font-semibold text-ink">Status</p>
+            <span className="badge-pill bg-white/5 text-xs text-ink">Alpha</span>
           </div>
           <p className="text-sm leading-relaxed text-text-muted">Alpha with pilot firms. Beta lands 2026.</p>
           <ul className="space-y-2 text-sm text-text-soft">
@@ -48,7 +48,7 @@ export function RoadmapNowSection() {
                     className="absolute left-[-0.35rem] top-1.5 h-2 w-2 rounded-full bg-accent-emerald shadow-[0_0_0_6px_rgba(99,255,181,0.14)]"
                     aria-hidden
                   />
-                  <p className="text-sm font-semibold text-white">{milestone.label}</p>
+                  <p className="text-sm font-semibold text-ink">{milestone.label}</p>
                   <p className="text-sm text-text-muted">{milestone.detail}</p>
                 </li>
               ))}

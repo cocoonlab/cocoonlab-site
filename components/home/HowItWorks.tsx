@@ -58,7 +58,7 @@ export function HowItWorks() {
                 {index + 1}
               </div>
               <div className="space-y-2">
-                <h3 className="text-base font-semibold text-white md:text-lg">
+                <h3 className="text-base font-semibold text-ink md:text-lg">
                   {step.title}
                 </h3>
                 <p className="text-sm text-text-muted md:text-[15px]">

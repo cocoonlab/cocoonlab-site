@@ -57,7 +57,7 @@ export function Customers() {
     >
       <div className="grid gap-8 lg:grid-cols-[1.05fr,1fr] lg:items-start">
         <div className="card-surface space-y-4 border border-border-subtle/80 p-6 shadow-[0_1px_0_rgba(255,255,255,0.05)] sm:p-7">
-          <h3 className="text-base font-semibold tracking-tight text-white">What these teams care about</h3>
+          <h3 className="text-base font-semibold tracking-tight text-ink">What these teams care about</h3>
           <ul className="space-y-2 text-sm leading-relaxed text-text-soft md:text-base">
             {priorities.map((item) => (
               <li key={item} className="flex items-start gap-2">

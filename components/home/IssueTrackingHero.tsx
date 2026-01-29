@@ -32,7 +32,7 @@ export function IssueTrackingHero({
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-text-soft">
               {eyebrow}
             </span>
-            <h1 className="text-balance text-3xl font-semibold leading-tight text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-balance text-3xl font-semibold leading-tight text-ink md:text-4xl lg:text-5xl">
               {headline}
             </h1>
             <p className="max-w-2xl text-lg text-text-soft">{description}</p>
@@ -55,7 +55,7 @@ export function IssueTrackingHero({
                       : "-rotate-2 group-hover:-translate-y-2"
                   }`}
                 >
-                  <div className="flex h-full items-center justify-center text-sm font-semibold uppercase tracking-[0.14em] text-white/30">
+                  <div className="flex h-full items-center justify-center text-sm font-semibold uppercase tracking-[0.14em] text-ink/30">
                     {card.title}
                   </div>
                 </motion.div>
@@ -71,7 +71,7 @@ export function IssueTrackingHero({
                   <div className="flex items-center justify-between gap-4">
                     <div className="space-y-1">
                       <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-soft">Issue</p>
-                      <p className="text-2xl font-semibold text-white">{primaryCard.title}</p>
+                      <p className="text-2xl font-semibold text-ink">{primaryCard.title}</p>
                     </div>
                     <span className="rounded-full border border-white/15 bg-gradient-to-r from-amber-400/20 via-amber-300/15 to-amber-200/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-100">
                       {primaryCard.priority}
@@ -82,7 +82,7 @@ export function IssueTrackingHero({
                     {primaryCard.tags.map(tag => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-white"
+                        className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-ink"
                       >
                         {tag}
                       </span>
@@ -96,7 +96,7 @@ export function IssueTrackingHero({
                         {primaryCard.assignees.map(person => (
                           <div
                             key={person.name}
-                            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-semibold text-white"
+                            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm font-semibold text-ink"
                           >
                             <span
                               className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-bg"
@@ -116,7 +116,7 @@ export function IssueTrackingHero({
                         {primaryCard.stats.map(stat => (
                           <div key={stat.label} className="flex items-center justify-between gap-4">
                             <span>{stat.label}</span>
-                            <span className="text-white">{stat.value}</span>
+                            <span className="text-ink">{stat.value}</span>
                           </div>
                         ))}
                       </div>

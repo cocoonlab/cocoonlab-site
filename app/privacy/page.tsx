@@ -6,10 +6,10 @@ export default function PrivacyPage() {
       <section className="section-pad">
         <div className="container-x space-y-8">
           <div className="space-y-3">
-            <h1 className="text-3xl font-semibold tracking-tight text-white">
+            <h1 className="text-3xl font-semibold tracking-tight text-ink">
               Privacy Policy
             </h1>
-            <p className="max-w-3xl text-sm leading-relaxed text-text-muted md:text-base">
+            <p className="text-measure text-sm leading-relaxed text-text-muted md:text-base">
               We build Cocoon to protect sensitive project data. This notice explains what we collect, how we use it, and the choices you have.
               If you have questions, contact us at privacy@cocoonlab.ai.
             </p>
@@ -17,9 +17,9 @@ export default function PrivacyPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-white">Information we collect</h2>
-              <ul className="space-y-3 text-sm leading-relaxed text-text-soft">
+            <div className="space-y-4 rounded-2xl border border-divider bg-surface-sunken p-6">
+              <h2 className="text-lg font-semibold tracking-tight text-ink">Information we collect</h2>
+              <ul className="space-y-3 text-sm leading-relaxed text-text-muted">
                 <li>
                   Account details you provide, such as name, work email, and company.
                 </li>
@@ -32,9 +32,9 @@ export default function PrivacyPage() {
               </ul>
             </div>
 
-            <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-white">How we use data</h2>
-              <ul className="space-y-3 text-sm leading-relaxed text-text-soft">
+            <div className="space-y-4 rounded-2xl border border-divider bg-surface-sunken p-6">
+              <h2 className="text-lg font-semibold tracking-tight text-ink">How we use data</h2>
+              <ul className="space-y-3 text-sm leading-relaxed text-text-muted">
                 <li>To provide and secure the Cocoon workspace for your team.</li>
                 <li>To improve design assistance quality and performance.</li>
                 <li>To communicate updates, support, and onboarding guidance.</li>
@@ -44,16 +44,16 @@ export default function PrivacyPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
-            <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-white">Data sharing</h2>
-              <p className="text-sm leading-relaxed text-text-soft">
+            <div className="space-y-4 rounded-2xl border border-divider bg-surface-sunken p-6">
+              <h2 className="text-lg font-semibold tracking-tight text-ink">Data sharing</h2>
+              <p className="text-sm leading-relaxed text-text-muted">
                 We do not sell your data. We only share it with vetted sub-processors needed to run Cocoon (e.g., hosting, analytics) and only under confidentiality and security obligations.
               </p>
             </div>
 
-            <div className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6">
-              <h2 className="text-lg font-semibold tracking-tight text-white">Your choices</h2>
-              <ul className="space-y-3 text-sm leading-relaxed text-text-soft">
+            <div className="space-y-4 rounded-2xl border border-divider bg-surface-sunken p-6">
+              <h2 className="text-lg font-semibold tracking-tight text-ink">Your choices</h2>
+              <ul className="space-y-3 text-sm leading-relaxed text-text-muted">
                 <li>Request access, correction, or deletion of your personal data.</li>
                 <li>Limit analytics tracking where supported by your browser.</li>
                 <li>Close your workspace and export project data on request.</li>
@@ -61,8 +61,8 @@ export default function PrivacyPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-sm leading-relaxed text-text-soft">
-            <p className="font-semibold text-white">Security</p>
+          <div className="rounded-2xl border border-divider bg-surface-sunken p-6 text-sm leading-relaxed text-text-muted">
+            <p className="font-semibold text-ink">Security</p>
             <p className="mt-2 text-text-muted">
               We encrypt data in transit and at rest, enforce access controls for Cocoon staff, and review our infrastructure regularly. Contact security@cocoonlab.ai to report a vulnerability or request our sub-processor list.
             </p>

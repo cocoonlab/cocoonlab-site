@@ -22,7 +22,7 @@ export function RoadmapSection() {
       <div className="grid gap-4 md:grid-cols-2">
         {roadmapItems.map((entry) => (
           <div key={entry.title} className="card-surface space-y-3 p-5 sm:p-6">
-            <div className="flex items-center justify-between text-sm font-semibold text-white">
+            <div className="flex items-center justify-between text-sm font-semibold text-ink">
               <span>{entry.title}</span>
             </div>
             <ul className="space-y-2 text-sm text-text-muted">

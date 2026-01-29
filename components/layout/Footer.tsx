@@ -126,8 +126,8 @@ export function Footer() {
             © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
-            <button className="inline-flex items-center gap-2 rounded-full border border-border-subtle/80 bg-[#070712] px-3 py-1.5 text-[0.78rem] font-medium text-text-soft transition hover:border-text-muted/80 hover:text-text">
-              <span className="inline-block h-2 w-2 rounded-full bg-accent-blue/80 shadow-inner" aria-hidden />
+            <button className="inline-flex items-center gap-2 rounded-full border border-divider bg-surface-sunken px-3 py-1.5 text-[0.78rem] font-medium text-text-muted transition hover:border-divider hover:text-text">
+              <span className="inline-block h-2 w-2 rounded-full bg-accent/80 shadow-inner" aria-hidden />
               English (US)
             </button>
             <div className="flex items-center gap-2">
@@ -163,7 +163,7 @@ function SocialIcon({
       aria-label={label}
       target="_blank"
       rel="noreferrer"
-      className="flex h-9 w-9 items-center justify-center rounded-full border border-border-subtle/80 bg-[#070712] text-text-muted transition hover:border-text-muted/80 hover:text-text"
+      className="flex h-9 w-9 items-center justify-center rounded-full border border-divider bg-surface-sunken text-text-muted transition hover:border-divider hover:text-text"
     >
       {children}
     </a>

@@ -28,15 +28,14 @@ export function LayoutShell({
     <div className="relative flex min-h-screen flex-col bg-bg text-text">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-bg focus:shadow-lg"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-bg focus:shadow-lg"
       >
         Skip to main content
       </a>
       <div className="pointer-events-none fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(79,70,229,0.2),_transparent_55%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(16,185,129,0.12),_transparent_60%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_90%,_rgba(8,8,18,0.55),_transparent_65%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a14]/70 via-[#050509] to-[#020208]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(235,192,77,0.14),_transparent_55%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(179,106,94,0.12),_transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_90%,_rgba(168,181,138,0.12),_transparent_65%)]" />
       </div>
 
       <Nav />

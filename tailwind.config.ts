@@ -9,41 +9,48 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["system-ui", "SF Pro Text", "ui-sans-serif", "sans-serif"]
+        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "system-ui", "sans-serif"]
       },
       colors: {
         bg: {
-          DEFAULT: "#050509",
-          alt: "#080812"
+          DEFAULT: "var(--bg)",
+          alt: "#F1F1EA"
         },
         surface: {
-          sunken: "#050515",
-          raised: "#0B0B1C"
+          sunken: "#F1F1EB",
+          raised: "#FCFCF7"
         },
         text: {
-          DEFAULT: "#F9FAFB",
-          soft: "#E5E7EB",
-          muted: "#9CA3AF"
+          DEFAULT: "var(--ink)",
+          soft: "rgba(45,46,40,0.78)",
+          muted: "var(--muted)"
         },
-        border: {
-          DEFAULT: "#27272F",
-          subtle: "#111827"
-        },
+        ink: "var(--ink)",
+        muted: "var(--muted)",
         accent: {
-          blue: "#4F46E5",
-          purple: "#8B5CF6",
-          emerald: "#10B981"
-        }
+          DEFAULT: "var(--accent)",
+          blue: "var(--accent)",
+          purple: "var(--clay)",
+          emerald: "var(--sage)"
+        },
+        sage: "var(--sage)",
+        clay: "var(--clay)",
+        border: {
+          DEFAULT: "var(--border)",
+          subtle: "var(--divider)"
+        },
+        divider: "var(--divider)"
       },
       borderRadius: {
         xl: "1rem",
-        "2xl": "1.5rem",
+        "2xl": "1rem",
         pill: "999px"
       },
       boxShadow: {
-        soft: "0 24px 80px rgba(0,0,0,0.65)",
+        soft: "0 12px 40px rgba(45,46,40,0.12)",
         "inner-glow":
-          "0 0 0 1px rgba(148,163,184,0.35), 0 32px 120px rgba(0,0,0,0.9)"
+          "0 0 0 1px rgba(45,46,40,0.08), 0 16px 40px rgba(45,46,40,0.08)"
       }
     }
   },
