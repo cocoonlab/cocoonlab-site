@@ -16,12 +16,19 @@ type ButtonAsButtonProps = ButtonBaseProps &
     href?: undefined;
   };
 
-type ButtonAsLinkProps = ButtonBaseProps &
+type ButtonAsNextLinkProps = ButtonBaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement> & {
     href: Route | UrlObject;
+    useAnchor?: false;
   };
 
-type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
+type ButtonAsAnchorProps = ButtonBaseProps &
+  AnchorHTMLAttributes<HTMLAnchorElement> & {
+    href: string;
+    useAnchor: true;
+  };
+
+type ButtonProps = ButtonAsButtonProps | ButtonAsNextLinkProps | ButtonAsAnchorProps;
 
 const VARIANT_STYLES: Record<ButtonVariant, string> = {
   primary: "btn-primary",
@@ -29,17 +36,21 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
   accent: "btn-accent"
 };
 
-export function Button({
-  children,
-  className,
-  variant = "primary",
-  href,
-  ...rest
-}: ButtonProps) {
+export function Button(props: ButtonProps) {
+  const { children, className, variant = "primary", ...rest } = props;
   const classes = [VARIANT_STYLES[variant], className].filter(Boolean).join(" ");
 
-  if (href) {
-    const linkProps = rest as AnchorHTMLAttributes<HTMLAnchorElement>;
+  if ("href" in rest && rest.href) {
+    if ("useAnchor" in rest && rest.useAnchor) {
+      const { useAnchor, href, ...anchorProps } = rest as ButtonAsAnchorProps;
+      return (
+        <a href={href} className={classes} {...anchorProps}>
+          {children}
+        </a>
+      );
+    }
+
+    const { href, ...linkProps } = rest as ButtonAsNextLinkProps;
     return (
       <Link href={href} className={classes} {...linkProps}>
         {children}
@@ -47,7 +58,7 @@ export function Button({
     );
   }
 
-  const buttonProps = rest as ButtonHTMLAttributes<HTMLButtonElement>;
+  const buttonProps = rest as ButtonAsButtonProps;
   return (
     <button className={classes} {...buttonProps}>
       {children}

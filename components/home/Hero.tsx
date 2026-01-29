@@ -39,7 +39,7 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-3">
             <PrimaryCtaLink label="Join private beta" />
-            <Button variant="secondary" href={DEMO_FALLBACK_URL}>
+            <Button variant="secondary" href={DEMO_FALLBACK_URL} useAnchor>
               Watch demo
             </Button>
           </div>
