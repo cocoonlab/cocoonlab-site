@@ -44,7 +44,7 @@ export default function WaitlistPage() {
                 <p className="mt-1">
                   Early pilots suggest{" "}
                   <span className="font-semibold text-accent-lime">
-                    ~63% faster concepting
+                    10x faster
                   </span>{" "}
                   with fewer back-and-forth cycles in the first two weeks of a
                   project.
