@@ -44,11 +44,10 @@ export function ResourcesGrid({ compact }: Props) {
     <Section
       id="resources"
       eyebrow="Resources"
-      title="Field notes we share with pilots."
-      kicker="Skimmable references, no filler."
+      title="A quiet library of guides, templates, and notes we keep close during early feasibility."
     >
       <div className="relative">
-        <div className="pointer-events-none absolute -right-4 -top-16 hidden h-28 w-44 overflow-hidden rounded-2xl border border-divider bg-surface-sunken opacity-70 blur-[1px] sm:block">
+        <div className="pointer-events-none absolute -right-6 -top-20 hidden h-24 w-40 overflow-hidden rounded-2xl border border-divider/70 bg-surface-sunken opacity-60 blur-[1px] md:block">
           <Image
             src={knowledgeGraphCanvas}
             alt="Soft focus of Cocoon's architectural knowledge graph canvas behind the resources header."
@@ -58,7 +57,7 @@ export function ResourcesGrid({ compact }: Props) {
           />
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {items.map((r) => (
             <Link
               key={r.title}
@@ -66,27 +65,29 @@ export function ResourcesGrid({ compact }: Props) {
               className="card-surface group flex h-full flex-col justify-between rounded-2xl p-5 transition-[border-color,transform] duration-200 hover:-translate-y-[1px] hover:border-divider focus-visible:-translate-y-[1px] focus-visible:border-divider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 sm:p-6"
             >
               <div className="space-y-2.5">
-                <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
-                  <span className="h-[1px] w-8 bg-divider" aria-hidden />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-text-muted">
                   {r.tag}
                 </p>
                 <h3 className="text-base font-semibold text-ink">{r.title}</h3>
-                <p className="text-sm text-text-muted">{r.description}</p>
+                <p className="text-sm text-text-muted">
+                  <span className="block overflow-hidden text-ellipsis whitespace-nowrap">
+                    {r.description}
+                  </span>
+                </p>
               </div>
               <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-clay">
-                Open {r.tag.toLowerCase()}
-                <span aria-hidden>→</span>
+                Open <span aria-hidden>→</span>
               </span>
             </Link>
           ))}
         </div>
 
-        <div className="mt-6 rounded-2xl border border-divider bg-surface-sunken p-4 sm:p-5">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-            <div>
-              <p className="text-sm font-semibold text-ink">We share updates monthly.</p>
-              <p className="text-xs text-text-muted">Pilot invites, launch notes, no spam.</p>
-            </div>
+        <div className="mt-10 flex flex-col gap-4 border-t border-divider/60 pt-6 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-1">
+            <p className="text-sm font-semibold text-ink">Monthly studio updates.</p>
+            <p className="text-xs text-text-muted">Pilot invites, launch notes, no spam.</p>
+          </div>
+          <div className="w-full md:max-w-md">
             <NewsletterForm />
           </div>
         </div>
