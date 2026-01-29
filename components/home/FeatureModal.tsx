@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 const focusableSelectors = [
   "a[href]",
@@ -44,7 +44,10 @@ export function FeatureModal({
   onClose
 }: FeatureModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [tiltStyle, setTiltStyle] = useState({ transform: "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)" });
+  const prefersReducedMotion = useReducedMotion();
+  const [tiltStyle, setTiltStyle] = useState({
+    transform: "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)"
+  });
 
   useEffect(() => {
     if (!isOpen) return undefined;
@@ -88,6 +91,7 @@ export function FeatureModal({
   }, [isOpen, onClose]);
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (prefersReducedMotion) return;
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - 0.5;
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
@@ -97,6 +101,7 @@ export function FeatureModal({
   };
 
   const handlePointerLeave = () => {
+    if (prefersReducedMotion) return;
     setTiltStyle({ transform: "perspective(1400px) rotateX(0deg) rotateY(0deg) scale(1)" });
   };
 
@@ -130,9 +135,17 @@ export function FeatureModal({
               style={tiltStyle}
             >
               <motion.div
-                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                initial={
+                  prefersReducedMotion
+                    ? { opacity: 1, y: 0, scale: 1 }
+                    : { opacity: 0, y: 24, scale: 0.98 }
+                }
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0 }
+                    : { duration: 0.5, ease: "easeOut" }
+                }
                 className="relative aspect-[16/9] w-full overflow-hidden"
               >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(129,140,248,0.32),transparent_45%),_radial-gradient(circle_at_80%_10%,rgba(45,212,191,0.32),transparent_40%),_radial-gradient(circle_at_50%_90%,rgba(148,163,184,0.22),transparent_45%)]" />

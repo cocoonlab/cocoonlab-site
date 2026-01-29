@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Section } from "@/components/Section";
 
@@ -25,6 +25,12 @@ const useCases: UseCase[] = [
 ];
 
 export function UseCases() {
+  const prefersReducedMotion = useReducedMotion();
+  const initial = prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 };
+  const transition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.3, ease: "easeOut" };
+
   return (
     <Section
       id="use-cases"
@@ -35,10 +41,10 @@ export function UseCases() {
         {useCases.map((u) => (
           <motion.article
             key={u.title}
-            initial={{ opacity: 0, y: 12 }}
+            initial={initial}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={transition}
             className="card-surface space-y-2 p-5 sm:p-6"
           >
             <h3 className="text-base font-semibold text-ink">{u.title}</h3>

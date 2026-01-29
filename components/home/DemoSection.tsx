@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 import { Section } from "@/components/Section";
 
 export function DemoSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (!isPlaying) return;
@@ -24,10 +25,12 @@ export function DemoSection() {
     >
       <motion.div
         className="card-surface overflow-hidden"
-        initial={{ opacity: 0, y: 18 }}
+        initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.4, ease: "easeOut" }}
+        transition={
+          prefersReducedMotion ? { duration: 0 } : { duration: 0.4, ease: "easeOut" }
+        }
       >
         <div className="relative bg-surface-sunken">
           <video

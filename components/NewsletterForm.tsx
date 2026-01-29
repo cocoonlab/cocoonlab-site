@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 
 type Status = "idle" | "loading" | "success" | "error";
 
@@ -9,6 +9,7 @@ export function NewsletterForm() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState<string | null>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -79,10 +80,14 @@ export function NewsletterForm() {
           <motion.p
             key={status + message}
             id="newsletter-message"
-            initial={{ opacity: 0, y: 8 }}
+            initial={prefersReducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
-            transition={{ duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }}
+            exit={prefersReducedMotion ? { opacity: 0, y: 0 } : { opacity: 0, y: 4 }}
+            transition={
+              prefersReducedMotion
+                ? { duration: 0 }
+                : { duration: 0.22, ease: [0.22, 0.61, 0.36, 1] }
+            }
             className={`text-xs ${
               status === "error" ? "text-rose-400" : "text-clay"
             }`}
