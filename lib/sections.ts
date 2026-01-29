@@ -2,6 +2,7 @@ export const homeSections = [
   { id: "problem", label: "Problem" },
   { id: "workflow", label: "Workflow" },
   { id: "product", label: "Product" },
+  { id: "demo", label: "Demo" },
   { id: "outcomes", label: "Outcomes" },
   { id: "use-cases", label: "Use cases" },
   { id: "team", label: "Team" }

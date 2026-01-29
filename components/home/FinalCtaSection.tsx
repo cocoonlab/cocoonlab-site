@@ -18,7 +18,12 @@ export function FinalCtaSection() {
               label="Join private beta"
               className="btn-primary border-bg bg-bg text-ink"
             />
-            <Button variant="secondary" href={DEMO_FALLBACK_URL} className="border-bg/40 text-bg">
+            <Button
+              variant="secondary"
+              href={DEMO_FALLBACK_URL}
+              useAnchor
+              className="border-bg/40 text-bg"
+            >
               Watch demo
             </Button>
           </div>

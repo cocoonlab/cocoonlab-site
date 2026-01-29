@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +13,8 @@
   --clay: #b36a5e;
   --border: rgba(45, 46, 40, 0.12);
   --divider: rgba(45, 46, 40, 0.1);
+  --font-heading: "Outfit", "Plus Jakarta Sans", "system-ui", sans-serif;
+  --font-body: "Plus Jakarta Sans", "system-ui", sans-serif;
   color-scheme: light;
 }
 

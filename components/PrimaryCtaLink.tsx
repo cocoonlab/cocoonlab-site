@@ -1,5 +1,6 @@
 "use client";
 
+import type { Route } from "next";
 import { Button } from "@/components/ui/Button";
 type PrimaryCtaLinkProps = {
   label?: string;
@@ -16,7 +17,7 @@ export function PrimaryCtaLink({
   className,
   ariaLabel
 }: PrimaryCtaLinkProps) {
-  const href = "/waitlist";
+  const href: Route = "/waitlist";
 
   return (
     <Button
