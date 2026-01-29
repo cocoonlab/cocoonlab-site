@@ -44,7 +44,7 @@ export function TeamSection() {
               />
             </div>
             <div className="space-y-1">
-              <p className="text-sm font-semibold text-white">{person.name}</p>
+              <p className="text-sm font-semibold text-ink">{person.name}</p>
               <p className="text-xs text-text-muted">{person.role}</p>
             </div>
           </div>

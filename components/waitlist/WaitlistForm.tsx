@@ -149,7 +149,7 @@ export function WaitlistForm() {
         <p
           id="waitlist-message"
           className={`text-xs ${
-            status === "error" ? "text-rose-400" : "text-emerald-300"
+            status === "error" ? "text-rose-400" : "text-clay"
           }`}
         >
           {message}

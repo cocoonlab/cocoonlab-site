@@ -60,7 +60,7 @@ export function FoundersSection() {
             </div>
             <div className="space-y-2">
               <div>
-                <h3 className="text-lg font-semibold text-white">{person.name}</h3>
+                <h3 className="text-lg font-semibold text-ink">{person.name}</h3>
                 <p className="text-sm text-text-soft">{person.role}</p>
               </div>
               <p className="text-sm leading-relaxed text-text-muted">{person.summary}</p>

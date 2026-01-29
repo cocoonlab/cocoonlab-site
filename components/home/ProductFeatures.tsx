@@ -67,7 +67,7 @@ export function ProductFeatures() {
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="space-y-2">
-                  <h3 className="text-base font-semibold text-white md:text-lg">
+                  <h3 className="text-base font-semibold text-ink md:text-lg">
                     {feature.title}
                   </h3>
                   <p className="text-sm text-text-muted md:text-[15px]">
@@ -84,7 +84,7 @@ export function ProductFeatures() {
                   <li key={bullet} className="flex gap-2">
                     <span
                       aria-hidden="true"
-                      className="mt-1 h-1.5 w-1.5 rounded-full bg-accent-blue"
+                      className="mt-1 h-1.5 w-1.5 rounded-full bg-accent"
                     />
                     <span>{bullet}</span>
                   </li>
@@ -166,7 +166,7 @@ export function ProductFeatures() {
       <div className="mt-12 grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:items-center">
         <div className="space-y-3">
           <p className="badge-pill">Zoning-aware options</p>
-          <h3 className="text-base font-semibold text-white md:text-lg">
+          <h3 className="text-base font-semibold text-ink md:text-lg">
             Live constraints, explained in plain language.
           </h3>
           <p className="text-sm text-text-muted md:text-[15px]">
@@ -201,7 +201,7 @@ export function ProductFeatures() {
           <div className="relative h-64 sm:h-72 lg:h-[22rem]">
             <div className="absolute inset-x-0 top-0 flex items-center justify-between border-b border-border-subtle/80 bg-surface-sunken/90 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.16em] text-text-muted">
               <span>Zoning panel</span>
-              <span className="rounded-full bg-accent-emerald/15 px-2 py-0.5 text-[10px] text-accent-emerald">
+              <span className="rounded-full bg-sage/20 px-2 py-0.5 text-[10px] text-ink">
                 Live checks
               </span>
             </div>

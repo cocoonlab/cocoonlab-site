@@ -41,7 +41,7 @@ export function UseCases() {
             transition={{ duration: 0.3, ease: "easeOut" }}
             className="card-surface space-y-2 p-5 sm:p-6"
           >
-            <h3 className="text-base font-semibold text-white">{u.title}</h3>
+            <h3 className="text-base font-semibold text-ink">{u.title}</h3>
             <p className="text-sm text-text-muted">{u.body}</p>
           </motion.article>
         ))}

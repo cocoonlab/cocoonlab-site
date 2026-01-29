@@ -46,7 +46,7 @@ export function FoundationsSection() {
       <div className="relative space-y-10 lg:space-y-12">
         <div className="max-w-3xl space-y-4">
           <span className="badge-pill bg-white/10 text-[10px] uppercase tracking-[0.16em] text-text-soft">Under the hood</span>
-          <h1 className="text-3xl font-semibold tracking-tight text-white md:text-4xl lg:text-5xl">
+          <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl lg:text-5xl">
             Built on strong foundations.
           </h1>
           <p className="text-sm leading-relaxed text-text-soft md:text-base">
@@ -63,10 +63,10 @@ export function FoundationsSection() {
                 className="group flex w-full items-center justify-between gap-4 rounded-2xl border border-border-subtle/80 bg-surface-sunken/70 p-5 text-left transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-surface-sunken/90"
               >
                 <div className="space-y-1">
-                  <p className="text-base font-semibold text-white md:text-lg">{feature.title}</p>
+                  <p className="text-base font-semibold text-ink md:text-lg">{feature.title}</p>
                   <p className="text-sm leading-relaxed text-text-muted md:text-[15px]">{feature.description}</p>
                 </div>
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-subtle/80 bg-white/5 text-text-soft transition group-hover:border-white/30 group-hover:text-white">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border-subtle/80 bg-white/5 text-text-soft transition group-hover:border-white/30 group-hover:text-ink">
                   <svg
                     aria-hidden
                     viewBox="0 0 24 24"
@@ -126,7 +126,7 @@ export function FoundationsSection() {
                   <div className="relative flex h-full items-center justify-between px-5 py-4">
                     <div className="flex items-center gap-3">
                       <span className="h-2.5 w-2.5 rounded-full bg-white/70 shadow-[0_0_0_6px_rgba(255,255,255,0.08)]" />
-                      <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/90">
+                      <p className="text-sm font-semibold uppercase tracking-[0.14em] text-ink/90">
                         {stack.label}
                       </p>
                     </div>
@@ -143,7 +143,7 @@ export function FoundationsSection() {
         <div className="relative flex flex-wrap items-center gap-5 border-t border-border-subtle/70 pt-6">
           {badges.map((badge) => (
             <div key={badge.label} className="flex flex-col items-center gap-2 text-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border-subtle/80 bg-white/5 text-[12px] font-semibold text-white shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full border border-border-subtle/80 bg-white/5 text-[12px] font-semibold text-ink shadow-[0_10px_40px_rgba(0,0,0,0.35)]">
                 {badge.label.split(" ")[0]}
               </div>
               <p className="text-xs font-medium uppercase tracking-[0.12em] text-text-soft">

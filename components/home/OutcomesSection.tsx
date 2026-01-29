@@ -42,7 +42,7 @@ export function OutcomesSection() {
         >
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-soft">Pilot median</p>
-            <p className="text-3xl font-semibold text-white md:text-4xl lg:text-[40px]">
+            <p className="text-3xl font-semibold text-ink md:text-4xl lg:text-[40px]">
               10x faster
             </p>
             <p className="text-sm text-text-muted md:text-base">Brief to first aligned option.</p>
@@ -75,7 +75,7 @@ export function OutcomesSection() {
                   loading="lazy"
                 />
               </div>
-              <figcaption className="absolute inset-x-4 bottom-4 rounded-full bg-black/45 px-3 py-2 text-center text-xs font-medium text-white backdrop-blur">
+              <figcaption className="absolute inset-x-4 bottom-4 rounded-full bg-ink/70 px-3 py-2 text-center text-xs font-medium text-bg backdrop-blur">
                 {visual.label}
               </figcaption>
             </figure>

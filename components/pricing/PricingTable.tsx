@@ -76,7 +76,7 @@ export function PricingTable() {
                   {tier.name}
                 </p>
                 <p className="text-sm text-text-soft">{tier.description}</p>
-                <p className="text-base font-semibold text-white">{tier.price}</p>
+                <p className="text-base font-semibold text-ink">{tier.price}</p>
               </div>
               <ul className="mt-4 space-y-2 text-sm text-text-muted">
                 {tier.highlights.map((item) => (
@@ -116,7 +116,7 @@ export function PricingTable() {
             <div className="border-t border-border-subtle/70 px-4 py-3 text-xs text-text-muted sm:px-5 sm:py-4">
               <p>
                 Early pilots see{" "}
-                <span className="font-medium text-white">dozens of hours</span>{" "}
+                <span className="font-medium text-ink">dozens of hours</span>{" "}
                 saved per project by consolidating feasibility, admin, and
                 compliance work into Cocoon.
               </p>

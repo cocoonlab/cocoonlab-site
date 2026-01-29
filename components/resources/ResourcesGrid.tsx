@@ -49,7 +49,7 @@ export function ResourcesGrid({ compact }: Props) {
       kicker="Skimmable references, no filler."
     >
       <div className="relative">
-        <div className="pointer-events-none absolute -right-4 -top-16 hidden h-28 w-44 overflow-hidden rounded-2xl border border-border-subtle/70 bg-surface-sunken/80 opacity-70 blur-[1px] sm:block">
+        <div className="pointer-events-none absolute -right-4 -top-16 hidden h-28 w-44 overflow-hidden rounded-2xl border border-divider bg-surface-sunken opacity-70 blur-[1px] sm:block">
           <Image
             src={knowledgeGraphCanvas}
             alt="Soft focus of Cocoon's architectural knowledge graph canvas behind the resources header."
@@ -64,17 +64,17 @@ export function ResourcesGrid({ compact }: Props) {
             <Link
               key={r.title}
               href={r.href}
-              className="card-surface group flex h-full flex-col justify-between rounded-2xl p-5 transition-[border-color,transform,box-shadow] duration-200 hover:-translate-y-[1px] hover:border-border focus-visible:-translate-y-[1px] focus-visible:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue/60 sm:p-6"
+              className="card-surface group flex h-full flex-col justify-between rounded-2xl p-5 transition-[border-color,transform] duration-200 hover:-translate-y-[1px] hover:border-divider focus-visible:-translate-y-[1px] focus-visible:border-divider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay/60 sm:p-6"
             >
               <div className="space-y-2.5">
                 <p className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-text-muted">
-                  <span className="h-[1px] w-8 bg-border-muted" aria-hidden />
+                  <span className="h-[1px] w-8 bg-divider" aria-hidden />
                   {r.tag}
                 </p>
-                <h3 className="text-base font-semibold text-white">{r.title}</h3>
+                <h3 className="text-base font-semibold text-ink">{r.title}</h3>
                 <p className="text-sm text-text-muted">{r.description}</p>
               </div>
-              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-accent-blue">
+              <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-clay">
                 Open {r.tag.toLowerCase()}
                 <span aria-hidden>→</span>
               </span>
@@ -89,16 +89,16 @@ export function ResourcesGrid({ compact }: Props) {
           />
           <Link
             href={{ pathname: "/", hash: "demo" }}
-            className="btn-ghost px-5 py-2.5 text-sm font-semibold"
+            className="btn-secondary px-5 py-2.5 text-sm font-semibold"
           >
             See the live demo
           </Link>
         </div>
 
-        <div className="mt-6 rounded-2xl border border-border-subtle bg-surface-sunken/70 p-4 sm:p-5">
+        <div className="mt-6 rounded-2xl border border-divider bg-surface-sunken p-4 sm:p-5">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
             <div>
-              <p className="text-sm font-semibold text-white">We share updates monthly.</p>
+              <p className="text-sm font-semibold text-ink">We share updates monthly.</p>
               <p className="text-xs text-text-muted">Pilot invites, launch notes, no spam.</p>
             </div>
             <NewsletterForm />

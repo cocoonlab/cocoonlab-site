@@ -19,10 +19,10 @@ export default function ChangelogPage() {
             <p className="badge-pill text-[11px] uppercase tracking-wide text-text-muted">
               Changelog
             </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-ink md:text-4xl">
               Building Cocoon in the open.
             </h1>
-            <p className="text-sm text-text-muted md:text-base">
+            <p className="text-measure text-sm text-text-muted md:text-base">
               A running log of product improvements, pilot learnings, and
               behind-the-scenes work.
             </p>
@@ -34,7 +34,7 @@ export default function ChangelogPage() {
                 className="card-surface flex flex-col gap-3 p-5 md:flex-row md:items-start md:justify-between"
               >
                 <div className="space-y-2">
-                  <h2 className="text-base font-semibold text-white">
+                  <h2 className="text-base font-semibold text-ink">
                     {entry.title}
                   </h2>
                   <p className="text-sm text-text-muted">{entry.summary}</p>

@@ -38,7 +38,7 @@ export default function CaseStudyPage({ params }: PageProps) {
         <div className="container-x space-y-10 md:space-y-12">
           <div className="space-y-4 text-center">
             <p className="text-xs uppercase tracking-[0.18em] text-text-muted">Customers / {study.name}</p>
-            <h1 className="text-balance text-3xl font-semibold tracking-tight text-white md:text-4xl lg:text-5xl">
+            <h1 className="text-balance text-3xl font-semibold tracking-tight text-ink md:text-4xl lg:text-5xl">
               {study.headline}
             </h1>
           </div>
@@ -51,7 +51,7 @@ export default function CaseStudyPage({ params }: PageProps) {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(0,0,0,0.35),transparent_55%)]" />
               <div className="absolute inset-3 rounded-3xl border border-white/20 bg-white/5 backdrop-blur-[2px]" />
               <div className="relative flex h-full items-center justify-center">
-                <div className="rounded-full border border-white/30 bg-white/15 px-6 py-3 text-lg font-semibold uppercase tracking-[0.28em] text-white shadow-lg">
+                <div className="rounded-full border border-white/30 bg-white/15 px-6 py-3 text-lg font-semibold uppercase tracking-[0.28em] text-ink shadow-lg">
                   {study.name}
                 </div>
               </div>
@@ -76,7 +76,7 @@ export default function CaseStudyPage({ params }: PageProps) {
             {study.metadata.map((item) => (
               <div key={item.label} className="space-y-2">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">{item.label}</p>
-                <p className="text-base font-medium text-white md:text-lg">{item.value}</p>
+                <p className="text-base font-medium text-ink md:text-lg">{item.value}</p>
               </div>
             ))}
           </div>
@@ -99,7 +99,7 @@ export default function CaseStudyPage({ params }: PageProps) {
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="space-y-3 md:max-w-2xl">
               <p className="badge-pill">Customer stories</p>
-              <h2 className="text-2xl font-semibold tracking-tight text-white md:text-3xl">
+              <h2 className="text-2xl font-semibold tracking-tight text-ink md:text-3xl">
                 Meet the teams behind Cocoon and our partners
               </h2>
               <p className="text-sm leading-relaxed text-text-soft md:text-base">
@@ -108,7 +108,7 @@ export default function CaseStudyPage({ params }: PageProps) {
             </div>
             <Link
               href="/contact"
-              className="self-start text-sm font-semibold text-accent-blue underline decoration-transparent underline-offset-4 transition-colors duration-150 hover:decoration-accent-blue"
+              className="self-start text-sm font-semibold text-clay underline decoration-transparent underline-offset-4 transition-colors duration-150 hover:decoration-clay"
             >
               Make the switch →
             </Link>
@@ -130,12 +130,12 @@ export default function CaseStudyPage({ params }: PageProps) {
                 />
                 <div className="relative flex items-center gap-3">
                   <div
-                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-black/30 text-sm font-semibold uppercase tracking-wide text-white shadow-inner-glow"
+                    className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-black/30 text-sm font-semibold uppercase tracking-wide text-ink shadow-inner-glow"
                   >
                     {card.avatar}
                   </div>
                   <div className="space-y-1">
-                    <p className="text-base font-semibold text-white md:text-lg">{card.title}</p>
+                    <p className="text-base font-semibold text-ink md:text-lg">{card.title}</p>
                     <p className="text-sm text-text-muted">{card.subtitle}</p>
                   </div>
                 </div>
@@ -144,7 +144,7 @@ export default function CaseStudyPage({ params }: PageProps) {
                 </p>
                 <Link
                   href={card.href}
-                  className="relative mt-4 inline-flex text-sm font-semibold text-accent-blue underline decoration-transparent underline-offset-4 transition-colors duration-150 hover:decoration-accent-blue"
+                  className="relative mt-4 inline-flex text-sm font-semibold text-clay underline decoration-transparent underline-offset-4 transition-colors duration-150 hover:decoration-clay"
                 >
                   {card.cta}
                 </Link>

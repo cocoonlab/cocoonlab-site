@@ -53,12 +53,12 @@ export function Section({
           <header className="mb-10 max-w-3xl space-y-4 md:mb-12 md:space-y-5 lg:mb-14">
             {eyebrow && <p className="badge-pill">{eyebrow}</p>}
             {title && (
-              <h2 className="text-balance text-2xl font-semibold tracking-tight text-white md:text-3xl lg:text-4xl">
+              <h2 className="text-balance text-2xl font-semibold tracking-tight text-ink md:text-3xl lg:text-4xl">
                 {title}
               </h2>
             )}
             {kicker && (
-              <p className="text-sm leading-relaxed text-text-soft md:text-base">
+              <p className="text-measure text-sm leading-relaxed text-text-muted md:text-base">
                 {kicker}
               </p>
             )}

@@ -55,7 +55,7 @@ function FeatureIllustration({ variant }: { variant: Feature["illustration"] }) 
                 <div className="h-2 w-20 rounded-full bg-white/50" />
                 <div className="h-2 w-28 rounded-full bg-white/30" />
               </div>
-              <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
+              <span className="ml-auto text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
                 {label}
               </span>
             </div>
@@ -76,13 +76,13 @@ function FeatureIllustration({ variant }: { variant: Feature["illustration"] }) 
                 className="w-full rounded-lg bg-gradient-to-br from-white/50 to-white/15"
                 style={{ height }}
               />
-              <div className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/50">
+              <div className="flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/50">
                 <span className="h-5 w-[2px] rounded-full bg-white/40" />
                 <span>{idx === 0 ? "T1" : idx === 1 ? "T2" : "T3"}</span>
               </div>
             </div>
           ))}
-          <div className="absolute inset-x-5 bottom-4 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
+          <div className="absolute inset-x-5 bottom-4 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
             <span>Height</span>
             <span>Setback</span>
             <span>FAR</span>
@@ -100,7 +100,7 @@ function FeatureIllustration({ variant }: { variant: Feature["illustration"] }) 
         {[0, 1, 2, 3].map((_, idx) => (
           <div key={idx} className="relative -mt-2 flex flex-col items-center gap-2">
             <div className="h-11 w-[3px] rounded-full bg-white/50" />
-            <div className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/60">
+            <div className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-ink/60">
               <span className="h-2 w-2 rounded-full bg-white" />
               <span>{idx === 0 ? "Brief" : idx === 1 ? "Option" : idx === 2 ? "Review" : "Decision"}</span>
             </div>
@@ -122,9 +122,9 @@ function ProjectBrainHero() {
             className="flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)]"
             style={{ transform: `translateY(${index % 2 === 0 ? "0" : "6"}px)` }}
           >
-            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-white/60">
+            <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-ink/60">
               <span className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-accent-blue/80" />
+                <span className="h-2 w-2 rounded-full bg-accent/80" />
                 {label}
               </span>
               <span className="rounded-full bg-white/5 px-2 py-1 text-[10px] text-text-muted">Live</span>
@@ -135,11 +135,11 @@ function ProjectBrainHero() {
               <div className="h-2 w-4/6 rounded-full bg-white/10" />
             </div>
             <div className="space-y-2 rounded-xl bg-surface-sunken/80 p-3 text-[12px] text-text-soft">
-              <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.16em] text-white/40">
+              <div className="flex items-center justify-between text-[11px] uppercase tracking-[0.16em] text-ink/40">
                 <span>Signals</span>
                 <span>Linked</span>
               </div>
-              <div className="h-2 rounded-full bg-accent-blue/40" />
+              <div className="h-2 rounded-full bg-accent/40" />
               <div className="h-2 rounded-full bg-accent-green/40" />
             </div>
           </div>
@@ -158,7 +158,7 @@ function CraftedHero() {
       <div className="absolute inset-x-8 bottom-10 h-40 rounded-3xl border border-dashed border-white/20 bg-gradient-to-b from-white/5 via-white/0 to-white/0 blur-[1px]" />
       <div className="relative mx-auto flex h-full max-w-2xl items-center justify-center px-6">
         <div className="relative w-full max-w-xl -rotate-2 rounded-2xl border border-white/15 bg-gradient-to-br from-surface-raised/90 to-surface-sunken/90 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
-          <div className="mb-4 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+          <div className="mb-4 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
             <span className="flex items-center gap-2">
               <span className="h-2 w-2 rounded-full bg-accent-green" />
               Create study
@@ -168,38 +168,38 @@ function CraftedHero() {
           <div className="space-y-3 text-[13px] text-text-muted">
             <div className="flex items-center justify-between rounded-xl bg-white/5 p-3">
               <div>
-                <div className="text-sm font-semibold text-white">Narrative</div>
+                <div className="text-sm font-semibold text-ink">Narrative</div>
                 <p className="text-xs text-text-muted">Align story for city review</p>
               </div>
-              <span className="rounded-full bg-accent-blue/20 px-3 py-1 text-[11px] font-semibold text-accent-blue">In progress</span>
+              <span className="rounded-full bg-accent/20 px-3 py-1 text-[11px] font-semibold text-ink">In progress</span>
             </div>
             <div className="rounded-xl bg-white/5 p-3">
-              <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-white/50">
+              <div className="mb-2 flex items-center justify-between text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
                 <span>Checks</span>
                 <span>Auto</span>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center text-[11px] text-text-muted">
-                <div className="rounded-lg bg-accent-blue/15 px-2 py-3">
-                  <div className="text-sm font-semibold text-white">Daylight</div>
+                <div className="rounded-lg bg-accent/15 px-2 py-3">
+                  <div className="text-sm font-semibold text-ink">Daylight</div>
                   <p>North + core</p>
                 </div>
                 <div className="rounded-lg bg-accent-green/15 px-2 py-3">
-                  <div className="text-sm font-semibold text-white">Program</div>
+                  <div className="text-sm font-semibold text-ink">Program</div>
                   <p>Optimised</p>
                 </div>
                 <div className="rounded-lg bg-white/10 px-2 py-3">
-                  <div className="text-sm font-semibold text-white">Access</div>
+                  <div className="text-sm font-semibold text-ink">Access</div>
                   <p>Shared</p>
                 </div>
               </div>
             </div>
             <div className="flex items-center justify-between rounded-xl bg-white/5 p-3">
               <div className="space-y-1">
-                <div className="text-sm font-semibold text-white">City packet</div>
+                <div className="text-sm font-semibold text-ink">City packet</div>
                 <p className="text-xs text-text-muted">Auto-sync diagrams, updates, and rationale.</p>
               </div>
               <div className="flex flex-col items-end gap-1 text-right text-[11px] text-text-muted">
-                <span className="rounded-full bg-white/10 px-2 py-1 font-semibold text-white">Ready</span>
+                <span className="rounded-full bg-white/10 px-2 py-1 font-semibold text-ink">Ready</span>
                 <span>Last edited 6m</span>
               </div>
             </div>
@@ -216,9 +216,9 @@ function ZoningHero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(45,212,191,0.28),transparent_40%),_radial-gradient(circle_at_10%_40%,rgba(129,140,248,0.28),transparent_38%)]" />
       <div className="relative h-full w-full p-6">
         <div className="relative h-full rounded-2xl border border-white/10 bg-white/5 p-5 shadow-[0_20px_70px_rgba(0,0,0,0.45)]">
-          <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-white/60">
+          <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
             <span className="flex items-center gap-2">
-              <span className="h-2 w-2 rounded-full bg-accent-blue" />
+              <span className="h-2 w-2 rounded-full bg-accent" />
               Feasibility
             </span>
             <span className="rounded-full bg-white/10 px-2 py-1 text-[10px] text-text-muted">Auto-updates</span>
@@ -226,26 +226,26 @@ function ZoningHero() {
           <div className="mt-5 grid grid-cols-3 gap-3 text-[12px] text-text-muted">
             {["Height", "Coverage", "Parking"].map((metric, idx) => (
               <div key={metric} className="rounded-xl bg-surface-sunken/80 p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-                <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
+                <div className="mb-2 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
                   <span>{metric}</span>
                   <span>{idx === 0 ? "+12%" : idx === 1 ? "OK" : "Shared"}</span>
                 </div>
-                <div className="h-2 rounded-full bg-accent-blue/40" />
+                <div className="h-2 rounded-full bg-accent/40" />
                 <div className="mt-2 h-2 rounded-full bg-white/10" />
               </div>
             ))}
           </div>
           <div className="mt-6 space-y-2 rounded-xl bg-white/5 p-3 text-[12px] text-text-muted">
-            <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-white/50">
+            <div className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.16em] text-ink/50">
               <span>Assumptions</span>
               <span>Explain</span>
             </div>
-            <div className="flex items-center gap-2 text-white">
+            <div className="flex items-center gap-2 text-ink">
               <span className="h-2 w-2 rounded-full bg-accent-green" />
               Mixed-use corridor → shared lobby allowed.
             </div>
-            <div className="flex items-center gap-2 text-white">
-              <span className="h-2 w-2 rounded-full bg-accent-blue" />
+            <div className="flex items-center gap-2 text-ink">
+              <span className="h-2 w-2 rounded-full bg-accent" />
               Mid-block relief → reduced rear setback verified.
             </div>
           </div>
@@ -331,7 +331,7 @@ export function MadeForSection() {
     <Section className="bg-gradient-to-b from-bg via-bg/95 to-bg/90">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:items-baseline md:gap-10">
         <div className="md:col-span-6 space-y-3">
-          <h2 className="text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-4xl lg:text-5xl">
             Made for architecture,
             <br />
             urban design, and cities.
@@ -355,7 +355,7 @@ export function MadeForSection() {
               <FeatureIllustration variant={feature.illustration} />
             </div>
             <div className="mt-auto flex items-end justify-between gap-4">
-              <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
+              <h3 className="text-lg font-semibold text-ink">{feature.title}</h3>
               <button
                 type="button"
                 aria-label={`Open more about ${feature.title}`}
@@ -363,7 +363,7 @@ export function MadeForSection() {
                   triggerRefs.current[feature.key] = node;
                 }}
                 onClick={() => setOpenFeature(feature.key)}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-lg font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.45)] transition-all duration-200 hover:scale-105 hover:border-white/30 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-blue focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-divider bg-surface-sunken text-lg font-semibold text-ink shadow-[0_10px_30px_rgba(45,46,40,0.12)] transition-all duration-200 hover:scale-105 hover:border-divider hover:bg-surface-raised focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 +
               </button>

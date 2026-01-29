@@ -118,7 +118,7 @@ export function VideoLightbox({
         onClick={() => setIsOpen(true)}
         className={
           className ??
-          "inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-white transition-transform duration-200 hover:-translate-y-[3px] hover:border-white/25"
+          "inline-flex items-center justify-center gap-2 rounded-pill border border-white/15 bg-white/5 px-7 py-3 text-sm font-semibold text-ink transition-transform duration-200 hover:-translate-y-[3px] hover:border-white/25"
         }
         aria-haspopup="dialog"
         aria-expanded={isOpen}
@@ -154,21 +154,21 @@ export function VideoLightbox({
                 transition={{ duration: prefersReducedMotion ? 0 : 0.25, ease: [0.22, 0.61, 0.36, 1] }}
                 onClick={(event) => event.stopPropagation()}
               >
-                <div className="card-surface relative w-full overflow-hidden rounded-[26px] border border-white/12 bg-[#0b0b14]/95 shadow-[0_26px_120px_rgba(0,0,0,0.8)]">
+                <div className="card-surface relative w-full overflow-hidden rounded-[26px] border border-divider bg-surface-raised shadow-[0_26px_80px_rgba(45,46,40,0.18)]">
                   <div className="flex items-start justify-between px-5 pb-3 pt-4">
-                    <div className="text-sm font-semibold text-white" id={dialogId}>
+                    <div className="text-sm font-semibold text-ink" id={dialogId}>
                       Watch the 35 second walkthrough
                     </div>
                     <button
                       ref={closeButtonRef}
                       type="button"
                       onClick={close}
-                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/30 hover:bg-white/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                      className="rounded-full border border-divider bg-surface-sunken px-3 py-1 text-xs font-semibold text-ink transition hover:border-divider hover:bg-bg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                     >
                       Esc to close
                     </button>
                   </div>
-                  <div className="relative border-t border-white/10 bg-black">
+                  <div className="relative border-t border-divider bg-black">
                     <video
                       controls
                       preload="metadata"
@@ -179,13 +179,13 @@ export function VideoLightbox({
                       Your browser does not support the video tag.
                     </video>
                   </div>
-                  <div className="flex flex-col gap-2 border-t border-white/10 bg-[#090912] px-5 py-4 text-sm text-text-soft sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex flex-col gap-2 border-t border-divider bg-surface-sunken px-5 py-4 text-sm text-text-muted sm:flex-row sm:items-center sm:justify-between">
                     <span className="text-xs uppercase tracking-[0.2em] text-text-muted">Need a fallback?</span>
                     <a
                       href={fallbackLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-white/15 px-3 py-2 text-sm font-semibold text-white transition hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-emerald focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                      className="inline-flex items-center gap-2 rounded-full border border-divider px-3 py-2 text-sm font-semibold text-ink transition hover:border-divider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-clay focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
                     >
                       {fallbackLinkLabel}
                       <span aria-hidden>↗</span>

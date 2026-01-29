@@ -30,7 +30,7 @@ export function MetricsStrip({ className }: MetricsStripProps) {
 
       <div className="relative grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
         <div className="space-y-4">
-          <p className="text-sm font-semibold text-white md:text-base">Cocoon keeps early design aligned.</p>
+          <p className="text-sm font-semibold text-ink md:text-base">Cocoon keeps early design aligned.</p>
           <p className="max-w-xl text-sm text-text-soft md:text-[15px]">
             Capture inputs, consolidate context, and move into concepting with the whole team on the same page.
           </p>
