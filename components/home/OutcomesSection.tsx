@@ -43,7 +43,7 @@ export function OutcomesSection() {
           <div className="space-y-2">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-text-soft">Pilot median</p>
             <p className="text-3xl font-semibold text-white md:text-4xl lg:text-[40px]">
-              ~63% faster concepting
+              10x faster
             </p>
             <p className="text-sm text-text-muted md:text-base">Brief to first aligned option.</p>
           </div>
