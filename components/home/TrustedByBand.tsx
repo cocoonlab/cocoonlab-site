@@ -8,29 +8,12 @@ import { homeSectionHref } from "@/lib/sections";
 
 const partners = [
   {
-    name: "NEUF",
-    src: "/logos/neuf-logo.png"
-  },
-  {
-    name: "Civiliti",
-    src: "/logos/civiliti-logo.png"
-  },
-  {
-    name: "Sid Lee Architecture",
-    src: "/logos/sidlee-architecture-logo.png"
-  },
-  {
     name: "Adamson and AAI",
     src: "/logos/adamsonandaai-logo.png"
   }
 ];
 
-const blurredLogoNames = new Set([
-  "NEUF",
-  "Civiliti",
-  "Sid Lee Architecture",
-  "Adamson and AAI"
-]);
+const blurredLogoNames = new Set(["Adamson and AAI"]);
 
 const getLogoBlurClass = (name: string) =>
   blurredLogoNames.has(name)
@@ -55,15 +38,8 @@ export function TrustedByBand() {
     <section className="relative overflow-hidden border-y border-border-subtle/70 bg-surface-sunken/80 py-14 sm:py-16 lg:py-20">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/[0.02] via-transparent to-white/[0.02]" />
       <div className="container-x relative">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-text-muted">Powering forward-looking design teams</p>
-          <p className="mt-3 text-sm leading-relaxed text-text-soft md:text-base">
-            Studios shipping dense infill, campuses, and civic realm projects.
-          </p>
-        </div>
-
         <div
-          className="relative mx-auto mt-9 max-w-5xl"
+          className="relative mx-auto max-w-5xl"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onFocus={() => setIsHovered(true)}
