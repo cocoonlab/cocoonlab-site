@@ -3,7 +3,6 @@ import type { Route } from "next";
 import Link from "next/link";
 
 import { Section } from "@/components/Section";
-import { PrimaryCtaLink } from "@/components/PrimaryCtaLink";
 import { NewsletterForm } from "@/components/NewsletterForm";
 import knowledgeGraphCanvas from "@/public/images/architectural-knowledge-graph-canvas.png";
 
@@ -80,19 +79,6 @@ export function ResourcesGrid({ compact }: Props) {
               </span>
             </Link>
           ))}
-        </div>
-
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-          <PrimaryCtaLink
-            label="Talk with us"
-            className="btn-primary px-6 py-2.5 text-sm font-semibold"
-          />
-          <Link
-            href={{ pathname: "/", hash: "demo" }}
-            className="btn-secondary px-5 py-2.5 text-sm font-semibold"
-          >
-            See the live demo
-          </Link>
         </div>
 
         <div className="mt-6 rounded-2xl border border-divider bg-surface-sunken p-4 sm:p-5">
