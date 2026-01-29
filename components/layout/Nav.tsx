@@ -54,14 +54,6 @@ const resourceSections = [
     ]
   },
   {
-    title: "Stories",
-    items: [
-      { label: "SOUR: Iterating massing options faster", href: "/resources" as Route },
-      { label: "Civiliti: Coordinating public-realm projects", href: "/resources" as Route },
-      { label: "Sid Lee Architecture: Keeping creative work grounded in constraints", href: "/resources" as Route }
-    ]
-  },
-  {
     title: "Company",
     items: [
       { label: "Changelog / Now", href: "/changelog" as Route },
