@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { LayoutShell } from "@/components/layout/LayoutShell";
 import { siteConfig } from "@/lib/config";
 
@@ -54,4 +55,17 @@ export default function ProductShellPlaceholder() {
       </section>
     </LayoutShell>
   );
+=======
+import type { Metadata } from "next";
+import { ArchitecturalWorkspacePage } from "@/components/architectural/ArchitecturalWorkspacePage";
+
+export const metadata: Metadata = {
+  title: "Workspace preview",
+  description:
+    "Preview Cocoon's editorial architectural workspace: portfolio command, massing review, and technical dossier screens."
+};
+
+export default function ProductShellPlaceholder() {
+  return <ArchitecturalWorkspacePage />;
+>>>>>>> 5ac96a1 (v2 of the page)
 }

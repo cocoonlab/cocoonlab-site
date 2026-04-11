@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
+import { Manrope, Newsreader } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { RootLayoutClient } from "@/components/layout/RootLayoutClient";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { StructuredData } from "@/components/seo/StructuredData";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap"
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+  adjustFontFallback: false
+});
 
 export const metadata: Metadata = {
   title: {
@@ -60,8 +74,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+<<<<<<< HEAD
     <html lang="en" className="bg-bg">
       <body className="min-h-screen bg-bg text-text antialiased font-sans">
+=======
+    <html lang="en" className={`${manrope.variable} ${newsreader.variable} bg-bg`}>
+      <body className="min-h-screen bg-bg text-text antialiased">
+>>>>>>> 5ac96a1 (v2 of the page)
         <StructuredData />
         <RootLayoutClient>{children}</RootLayoutClient>
         <CookieConsent />

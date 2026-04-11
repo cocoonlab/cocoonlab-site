@@ -169,4 +169,77 @@
       linear-gradient(90deg, rgba(45, 46, 40, 0.04) 1px, transparent 1px);
     background-size: 24px 24px;
   }
+
+  .architectural-theme {
+    @apply relative min-h-screen bg-studio-background font-editorial text-studio-ink;
+    color-scheme: light;
+  }
+
+  .studio-container {
+    @apply mx-auto w-full max-w-[90rem] px-6 sm:px-8 lg:px-12;
+  }
+
+  .studio-grid {
+    background-image:
+      linear-gradient(rgba(90, 96, 94, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(90, 96, 94, 0.07) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+
+  .studio-primary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold tracking-[0.02em] text-studio-lowest transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-studio-primary focus-visible:ring-offset-2 focus-visible:ring-offset-studio-background;
+    background-image: linear-gradient(15deg, #4e5450 0%, #5a605c 100%);
+    box-shadow: 0 18px 40px rgba(45, 52, 50, 0.12);
+  }
+
+  .studio-primary-button:hover {
+    background-image: linear-gradient(15deg, #5a605c 0%, #636864 100%);
+  }
+
+  .studio-secondary-button {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-studio-line/15 bg-transparent px-5 py-3 text-sm italic text-studio-primary transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-studio-primary focus-visible:ring-offset-2 focus-visible:ring-offset-studio-background;
+    font-family: var(--font-newsreader), Georgia, serif;
+  }
+
+  .studio-secondary-button:hover {
+    @apply bg-studio-lowest;
+  }
+
+  .blueprint-chip {
+    @apply inline-flex items-center gap-2 rounded-full bg-studio-high px-4 py-1 text-[0.7rem] text-studio-primary;
+    font-family: var(--font-newsreader), Georgia, serif;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+
+  .glass-panel {
+    background: rgba(236, 239, 236, 0.6);
+    backdrop-filter: blur(24px);
+  }
+
+  .ambient-panel {
+    box-shadow: 0 40px 120px rgba(45, 52, 50, 0.06);
+  }
+
+  .ghost-border {
+    border-color: rgba(173, 179, 176, 0.15);
+  }
+
+  .paper-lift {
+    box-shadow:
+      0 20px 70px rgba(45, 52, 50, 0.06),
+      0 0 0 1px rgba(173, 179, 176, 0.12);
+  }
+
+  .editorial-kicker {
+    @apply font-display text-xs italic tracking-[0.12em] text-studio-sand;
+  }
+
+  .studio-input {
+    @apply rounded-none border-0 border-b border-studio-line/40 bg-transparent px-0 py-3 text-sm text-studio-ink placeholder:text-studio-muted/70 focus:border-b-2 focus:border-studio-primary focus:outline-none focus:ring-0;
+  }
+
+  .mask-radial-fade {
+    mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  }
 }

@@ -5,6 +5,13 @@ import { siteConfig } from "./config";
 
 export function AnalyticsSnippet() {
   const provider = siteConfig.analytics.provider;
+  const isLocalhostDomain =
+    siteConfig.analytics.plausibleDomain === "localhost" ||
+    siteConfig.analytics.plausibleDomain === "127.0.0.1";
+
+  if (process.env.NODE_ENV !== "production" && isLocalhostDomain) {
+    return null;
+  }
 
   if (provider === "plausible") {
     return (
