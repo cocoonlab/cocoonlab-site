@@ -74,13 +74,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-<<<<<<< HEAD
-    <html lang="en" className="bg-bg">
-      <body className="min-h-screen bg-bg text-text antialiased font-sans">
-=======
     <html lang="en" className={`${manrope.variable} ${newsreader.variable} bg-bg`}>
       <body className="min-h-screen bg-bg text-text antialiased">
->>>>>>> 5ac96a1 (v2 of the page)
         <StructuredData />
         <RootLayoutClient>{children}</RootLayoutClient>
         <CookieConsent />
