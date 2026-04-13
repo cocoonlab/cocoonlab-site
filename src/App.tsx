@@ -41,11 +41,106 @@ const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
 const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
 
+const lensContent = {
+  Site: {
+    chip: "Site lens: parcel fit, adjacencies, movement, and buildable envelope",
+    imageSrc: "/placeholders/lens-site.svg",
+    imageAlt: "Architectural site massing study with a highlighted parcel and surrounding urban context",
+    imageFilter: "grayscale(0.12) saturate(0.92)",
+    metricLabel: "Site Signal",
+    metricValue: "Parcel fit resolved",
+    metricNote: "Frontage, daylight, and neighboring conditions stay visible from the first move.",
+    callout: "CONTEXT FIRST",
+    calloutNote: "Ground the scheme in the city around it.",
+    icon: Map,
+  },
+  Cost: {
+    chip: "Cost lens: early quantity logic and budget sensitivity tied to each massing move",
+    imageSrc: "/placeholders/lens-cost.svg",
+    imageAlt: "Architectural feasibility study with cost overlays, quantity bars, and a massing model",
+    imageFilter: "grayscale(0.04) saturate(1)",
+    metricLabel: "Cost Signal",
+    metricValue: "$285-$325 / sf live",
+    metricNote: "Area mix, envelope depth, and system choices update the range in seconds.",
+    callout: "COST IN VIEW",
+    calloutNote: "Every design shift carries an immediate financial read.",
+    icon: Banknote,
+  },
+  Carbon: {
+    chip: "Carbon lens: embodied impact surfaced before details become expensive to change",
+    imageSrc: "/placeholders/lens-carbon.svg",
+    imageAlt: "Architectural massing study with embodied carbon analysis and material comparison overlays",
+    imageFilter: "grayscale(0.02) saturate(1.04)",
+    metricLabel: "Carbon Signal",
+    metricValue: "-31% vs baseline",
+    metricNote: "Structure, envelope, and material swaps stay comparable while the concept is still fluid.",
+    callout: "CARBON EARLY",
+    calloutNote: "Bring LCA into concept work, not only late validation.",
+    icon: Leaf,
+  },
+  Code: {
+    chip: "Code lens: zoning logic, setbacks, and compliance flags organized in one readable layer",
+    imageSrc: "/placeholders/lens-code.svg",
+    imageAlt: "Architectural zoning and code study with parcel lines, setback envelopes, and compliance annotations",
+    imageFilter: "grayscale(0.08) saturate(0.95)",
+    metricLabel: "Code Signal",
+    metricValue: "Setbacks + FAR aligned",
+    metricNote: "Height, frontage, access, and egress checks stay visible while testing options.",
+    callout: "RULES MADE CLEAR",
+    calloutNote: "Compliance stays legible while design remains open.",
+    icon: Gavel,
+  },
+  Visuals: {
+    chip: "Visuals lens: atmosphere, massing, and material intent aligned to the design signal",
+    imageSrc: "/placeholders/lens-visuals.svg",
+    imageAlt: "Atmospheric architectural rendering with stacked green volumes, glass, and warm light",
+    imageFilter: "saturate(1.02)",
+    metricLabel: "Visual Signal",
+    metricValue: "Intent becomes legible",
+    metricNote: "Preview the proposal's character without drifting away from the scheme itself.",
+    callout: "INTENT, SEEN",
+    calloutNote: "Visuals stay anchored to what the project is becoming.",
+    icon: Sparkles,
+  },
+} as const;
+
+const lensFeatures = [
+  {
+    icon: Map,
+    title: "Site Intelligence",
+    desc: "Parcel geometry, adjacencies, solar access, and movement patterns clarified before design locks in.",
+  },
+  {
+    icon: Banknote,
+    title: "Cost Intelligence",
+    desc: "Early quantity logic and budget sensitivity remain attached to every massing iteration.",
+  },
+  {
+    icon: Sprout,
+    title: "Carbon Intelligence",
+    desc: "Embodied impact is surfaced early enough to compare structural and material decisions meaningfully.",
+  },
+  {
+    icon: Gavel,
+    title: "Code Intelligence",
+    desc: "Setbacks, frontage, access, height, and zoning logic are organized into one readable compliance layer.",
+  },
+  {
+    icon: Sparkles,
+    title: "Visual Intelligence",
+    desc: "Atmospheric previews stay grounded in real massing and material intent instead of generic imagery.",
+  },
+] as const;
+
+type LensName = keyof typeof lensContent;
+
 export default function App() {
-  const [activeLens, setActiveLens] = useState("Site");
+  const [activeLens, setActiveLens] = useState<LensName>("Site");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const lenses = ["Site", "Cost", "Carbon", "Code", "Visuals"];
+  const lenses = Object.keys(lensContent) as LensName[];
+  const activeLensContent = lensContent[activeLens];
+  const ActiveLensIcon = activeLensContent.icon;
   const currentYear = new Date().getFullYear();
 
   const fadeInUp = {
@@ -159,29 +254,45 @@ export default function App() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="group relative aspect-[16/9] overflow-hidden rounded-xl bg-surface-container shadow-sm"
             >
-              <img
-                className="h-full w-full object-cover opacity-90 grayscale-[0.5] transition-transform duration-1000 group-hover:scale-105"
-                src="/placeholders/hero-study.svg"
-                alt="Placeholder architectural massing study"
+              <motion.img
+                key={activeLens}
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.55, ease: "easeOut" }}
+                className="h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
+                src={activeLensContent.imageSrc}
+                alt={activeLensContent.imageAlt}
+                style={{ filter: activeLensContent.imageFilter }}
               />
 
               <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-12">
                 <div className="flex items-start justify-between">
                   <div className="pointer-events-auto">
-                    <span className="blueprint-chip rounded-full border border-white/20 bg-surface-container-highest/80 px-4 py-1 text-xs backdrop-blur-md md:text-sm">
-                      Site: Placeholder coordinates, replace with project context
-                    </span>
+                    <motion.span
+                      key={`${activeLens}-chip`}
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      className="blueprint-chip inline-flex rounded-full border border-white/20 bg-surface-container-highest/80 px-4 py-1 text-xs backdrop-blur-md md:text-sm"
+                    >
+                      {activeLensContent.chip}
+                    </motion.span>
                   </div>
                   <div className="pointer-events-auto flex flex-col gap-4">
                     <motion.div
+                      key={`${activeLens}-metric`}
                       initial={{ x: 20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
                       className="flex items-center gap-4 rounded-xl border border-outline-variant/15 bg-surface/80 p-4 backdrop-blur-md"
                     >
-                      <Leaf className="text-primary" size={24} />
+                      <ActiveLensIcon className="text-primary" size={24} />
                       <div>
-                        <div className="text-[10px] uppercase tracking-widest text-outline">Carbon Forecast</div>
-                        <div className="font-headline text-lg font-bold text-on-surface">Placeholder metric</div>
+                        <div className="text-[10px] uppercase tracking-widest text-outline">{activeLensContent.metricLabel}</div>
+                        <div className="font-headline text-lg font-bold text-on-surface">{activeLensContent.metricValue}</div>
+                        <div className="mt-1 max-w-[15rem] text-xs leading-relaxed text-on-surface-variant">
+                          {activeLensContent.metricNote}
+                        </div>
                       </div>
                     </motion.div>
                   </div>
@@ -231,28 +342,7 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 gap-px bg-outline-variant/10 sm:grid-cols-2 md:col-span-8">
-              {[
-                {
-                  icon: Map,
-                  title: "Site Intelligence",
-                  desc: "Topography, sunlight, and surrounding context parsed into actionable geometric constraints.",
-                },
-                {
-                  icon: Banknote,
-                  title: "Early-Stage Cost",
-                  desc: "Dynamic financial modeling that updates with every massing change. Placeholder values stand in until your project data is ready.",
-                },
-                {
-                  icon: Sprout,
-                  title: "LCA Analysis",
-                  desc: "Material impact assessments that prioritize timber and recycled components for net-zero goals.",
-                },
-                {
-                  icon: Gavel,
-                  title: "Regulatory Audit",
-                  desc: "Real-time zoning and building code verification based on local municipal datasets.",
-                },
-              ].map((feature, index) => (
+              {lensFeatures.map((feature, index) => (
                 <div key={index} className="group bg-surface-container-low p-10 transition-colors duration-500 hover:bg-surface">
                   <feature.icon className="mb-6 text-primary" size={32} strokeWidth={1.5} />
                   <h3 className="mb-4 font-body text-xl font-semibold">{feature.title}</h3>
