@@ -117,18 +117,13 @@ const lensFeatures = [
   },
   {
     icon: Sprout,
-    title: "Carbon Intelligence",
+    title: "Carbon Analysis",
     desc: "Embodied impact is surfaced early enough to compare structural and material decisions meaningfully.",
   },
   {
     icon: Gavel,
-    title: "Code Intelligence",
+    title: "Regulatory Audit",
     desc: "Setbacks, frontage, access, height, and zoning logic are organized into one readable compliance layer.",
-  },
-  {
-    icon: Sparkles,
-    title: "Visual Intelligence",
-    desc: "Atmospheric previews stay grounded in real massing and material intent instead of generic imagery.",
   },
 ] as const;
 
@@ -327,7 +322,7 @@ export default function App() {
               <h2 className="serif mb-8 text-5xl text-on-surface">
                 One workspace.
                 <br />
-                Five lenses.
+                Four lenses.
               </h2>
               <p className="mb-12 font-body leading-relaxed text-on-surface-variant">
                 Cocoon doesn&apos;t just generate; it validates. Each lens provides a specific architectural truth, synchronized in real-time as your
@@ -525,6 +520,9 @@ export default function App() {
               { label: "Terms", href: "/terms/" },
               { label: "Studio", href: "/studio/" },
               { label: "Contact", href: "/contact/" },
+              { label: "Partners", href: "/partners/" },
+              { label: "Team", href: "/team/" },
+              { label: "Blog", href: "/blog/" },
             ].map((link) => (
               <a
                 key={link.label}
