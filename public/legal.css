@@ -1,0 +1,124 @@
+:root {
+  color-scheme: light;
+  --canvas: #f5f1e9;
+  --panel: #fbf8f2;
+  --ink: #11261d;
+  --muted: #53685d;
+  --line: #cad5ce;
+  --brand: #1f6a4d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(239, 195, 135, 0.2), transparent 22rem),
+    linear-gradient(180deg, #fbf8f2 0%, #f5f1e9 100%);
+}
+
+a {
+  color: var(--brand);
+}
+
+.shell {
+  width: min(100% - 2rem, 72rem);
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.badge {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--ink);
+  color: white;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+}
+
+.panel {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 1px solid rgba(202, 213, 206, 0.75);
+  border-radius: 2rem;
+  background: rgba(251, 248, 242, 0.9);
+  box-shadow: 0 24px 90px rgba(17, 38, 29, 0.08);
+}
+
+h1 {
+  margin: 0.5rem 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  line-height: 0.96;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.35rem;
+}
+
+p,
+li {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+ul {
+  padding-left: 1.2rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(31, 106, 77, 0.12);
+  color: var(--brand);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    padding: 1.4rem;
+    border-radius: 1.5rem;
+  }
+
+  .shell {
+    width: min(100% - 1.25rem, 72rem);
+  }
+}

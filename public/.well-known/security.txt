@@ -1,0 +1,4 @@
+Contact: mailto:rashid@cocoonlab.ai
+Canonical: https://cocoonlab.ai/.well-known/security.txt
+Preferred-Languages: en
+Expires: 2027-04-13T00:00:00.000Z

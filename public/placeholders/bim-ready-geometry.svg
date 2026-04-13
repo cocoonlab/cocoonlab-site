@@ -1,0 +1,14 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="900" fill="#E5E9E6"/>
+  <rect x="70" y="70" width="760" height="760" rx="40" fill="#F9F9F7"/>
+  <path d="M220 624L450 258L662 406L470 708L220 624Z" fill="#DEE4DF"/>
+  <path d="M450 258V708" stroke="#5A605C" stroke-width="6"/>
+  <path d="M220 624L450 708L662 406" stroke="#5A605C" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M220 624L432 520L662 406" stroke="#ADB3B0" stroke-width="4" stroke-dasharray="10 12"/>
+  <text x="130" y="150" fill="#2D3432" font-family="Newsreader, Georgia, serif" font-size="48">
+    Placeholder output
+  </text>
+  <text x="130" y="202" fill="#5A605E" font-family="Manrope, Arial, sans-serif" font-size="22">
+    BIM Ready Geometry
+  </text>
+</svg>

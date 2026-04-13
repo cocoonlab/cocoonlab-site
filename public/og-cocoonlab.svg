@@ -1,0 +1,30 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F5F1E9"/>
+  <rect x="48" y="48" width="1104" height="534" rx="40" fill="url(#paint0_linear)"/>
+  <rect x="92" y="104" width="492" height="422" rx="36" fill="#11261D"/>
+  <rect x="124" y="138" width="210" height="16" rx="8" fill="#DCECE2" fill-opacity="0.9"/>
+  <rect x="124" y="176" width="348" height="82" rx="24" fill="#1A3B2E"/>
+  <rect x="124" y="278" width="348" height="82" rx="24" fill="#204637"/>
+  <rect x="124" y="380" width="348" height="82" rx="24" fill="#2A5443"/>
+  <rect x="617" y="118" width="486" height="394" rx="36" fill="#FBF8F2"/>
+  <rect x="657" y="166" width="162" height="16" rx="8" fill="#1F6A4D" fill-opacity="0.2"/>
+  <text x="657" y="256" fill="#11261D" font-size="72" font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    Cocoon Lab
+  </text>
+  <text x="657" y="322" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
+    Architectural feasibility AI for site,
+  </text>
+  <text x="657" y="360" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
+    cost, carbon, code, and planning decisions.
+  </text>
+  <rect x="657" y="410" width="236" height="54" rx="27" fill="#1F6A4D"/>
+  <text x="705" y="444" fill="white" font-size="22" font-family="'Avenir Next', 'Segoe UI', sans-serif" font-weight="600">
+    cocoonlab.ai
+  </text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="112" y1="76" x2="1097" y2="560" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF7EC"/>
+      <stop offset="1" stop-color="#ECF3EE"/>
+    </linearGradient>
+  </defs>
+</svg>

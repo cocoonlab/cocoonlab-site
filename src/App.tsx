@@ -1,0 +1,424 @@
+import { motion } from "motion/react";
+import {
+  Leaf,
+  Map,
+  Banknote,
+  Sprout,
+  Gavel,
+  ArrowRight,
+  Sparkles,
+  Menu,
+  X,
+} from "lucide-react";
+import { useState } from "react";
+
+const demoMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20studio%20demo";
+const monographMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20monograph";
+const exploreMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20engine%20exploration";
+
+export default function App() {
+  const [activeLens, setActiveLens] = useState("Site");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const lenses = ["Site", "Cost", "Carbon", "Code", "Visuals"];
+  const currentYear = new Date().getFullYear();
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" },
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  return (
+    <div className="min-h-screen bg-surface selection:bg-primary/20">
+      <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/5 bg-surface/60 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1920px] items-center justify-between px-6 py-6 md:px-12">
+          <a href="#top" className="font-headline text-2xl font-bold tracking-tighter text-on-surface">
+            COCOON
+          </a>
+
+          <div className="hidden items-center gap-10 md:flex">
+            {["Lenses", "Outputs", "Workflow"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="font-headline text-lg italic text-on-surface-variant transition-colors duration-300 hover:text-on-surface"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-4">
+            <a
+              href={demoMailto}
+              className="hidden rounded-md bg-primary px-6 py-2 font-label text-sm text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:block"
+            >
+              Request Studio Demo
+            </a>
+            <button
+              type="button"
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              className="p-2 text-on-surface md:hidden"
+              onClick={() => setIsMenuOpen((open) => !open)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            className="flex flex-col gap-6 border-b border-outline-variant/10 bg-surface px-6 py-8 md:hidden"
+          >
+            {["Lenses", "Outputs", "Workflow"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="font-headline text-2xl italic text-on-surface"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+            <a
+              href={demoMailto}
+              className="w-full rounded-md bg-primary px-6 py-4 text-center font-label text-lg text-on-primary"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Request Studio Demo
+            </a>
+          </motion.div>
+        )}
+      </nav>
+
+      <main className="pt-32">
+        <section id="top" className="mb-32 px-6 md:px-12">
+          <div className="mx-auto max-w-[1400px]">
+            <motion.div
+              initial="initial"
+              animate="animate"
+              variants={staggerContainer}
+              className="mb-20 flex flex-col justify-between md:flex-row md:items-baseline"
+            >
+              <motion.h1
+                variants={fadeInUp}
+                className="serif max-w-4xl text-6xl leading-tight tracking-tight text-on-surface md:text-9xl"
+              >
+                Clear design <br />
+                signals, <span className="italic">early.</span>
+              </motion.h1>
+              <motion.div variants={fadeInUp} className="mt-8 max-w-xs text-on-surface-variant md:mt-0">
+                <p className="font-body leading-relaxed">
+                  The AI collaborator for early-stage feasibility. Moving from intuition to architectural proof in seconds.
+                </p>
+              </motion.div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="group relative aspect-[16/9] overflow-hidden rounded-xl bg-surface-container shadow-sm"
+            >
+              <img
+                className="h-full w-full object-cover opacity-90 grayscale-[0.5] transition-transform duration-1000 group-hover:scale-105"
+                src="/placeholders/hero-study.svg"
+                alt="Placeholder architectural massing study"
+              />
+
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-12">
+                <div className="flex items-start justify-between">
+                  <div className="pointer-events-auto">
+                    <span className="blueprint-chip rounded-full border border-white/20 bg-surface-container-highest/80 px-4 py-1 text-xs backdrop-blur-md md:text-sm">
+                      Site: Placeholder coordinates, replace with project context
+                    </span>
+                  </div>
+                  <div className="pointer-events-auto flex flex-col gap-4">
+                    <motion.div
+                      initial={{ x: 20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      className="flex items-center gap-4 rounded-xl border border-outline-variant/15 bg-surface/80 p-4 backdrop-blur-md"
+                    >
+                      <Leaf className="text-primary" size={24} />
+                      <div>
+                        <div className="text-[10px] uppercase tracking-widest text-outline">Carbon Forecast</div>
+                        <div className="font-headline text-lg font-bold text-on-surface">Placeholder metric</div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+
+                <div className="flex w-full justify-center">
+                  <div className="glass-panel pointer-events-auto flex gap-1 rounded-full border border-white/20 p-1.5 shadow-xl">
+                    {lenses.map((lens) => (
+                      <button
+                        key={lens}
+                        type="button"
+                        onClick={() => setActiveLens(lens)}
+                        className={`rounded-full px-4 py-2 text-xs font-medium transition-all duration-300 md:px-6 ${
+                          activeLens === lens
+                            ? "bg-primary text-on-primary shadow-lg"
+                            : "text-on-surface-variant hover:bg-surface-variant/40"
+                        }`}
+                      >
+                        {lens}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="lenses" className="bg-surface-container-low px-6 py-32 md:px-12">
+          <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-16 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <h2 className="serif mb-8 text-5xl text-on-surface">
+                One workspace.
+                <br />
+                Five lenses.
+              </h2>
+              <p className="mb-12 font-body leading-relaxed text-on-surface-variant">
+                Cocoon doesn&apos;t just generate; it validates. Each lens provides a specific architectural truth, synchronized in real-time as your
+                design evolves.
+              </p>
+              <a href={exploreMailto} className="group flex items-center gap-4 text-primary">
+                <span className="serif border-b border-outline-variant/30 text-xl italic transition-all group-hover:border-primary">
+                  Request to explore the engine
+                </span>
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+
+            <div className="grid grid-cols-1 gap-px bg-outline-variant/10 sm:grid-cols-2 md:col-span-8">
+              {[
+                {
+                  icon: Map,
+                  title: "Site Intelligence",
+                  desc: "Topography, sunlight, and surrounding context parsed into actionable geometric constraints.",
+                },
+                {
+                  icon: Banknote,
+                  title: "Early-Stage Cost",
+                  desc: "Dynamic financial modeling that updates with every massing change. Placeholder values stand in until your project data is ready.",
+                },
+                {
+                  icon: Sprout,
+                  title: "LCA Analysis",
+                  desc: "Material impact assessments that prioritize timber and recycled components for net-zero goals.",
+                },
+                {
+                  icon: Gavel,
+                  title: "Regulatory Audit",
+                  desc: "Real-time zoning and building code verification based on local municipal datasets.",
+                },
+              ].map((feature, index) => (
+                <div key={index} className="group bg-surface-container-low p-10 transition-colors duration-500 hover:bg-surface">
+                  <feature.icon className="mb-6 text-primary" size={32} strokeWidth={1.5} />
+                  <h3 className="mb-4 font-body text-xl font-semibold">{feature.title}</h3>
+                  <p className="font-body text-sm leading-relaxed text-on-surface-variant">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="outputs" className="px-6 py-32 md:px-12">
+          <div className="mx-auto max-w-[1400px]">
+            <div className="mb-24 flex flex-col items-center text-center">
+              <span className="blueprint-chip mb-6 rounded-full bg-tertiary-container px-4 py-1 text-xs text-on-tertiary-container">
+                The Handover
+              </span>
+              <h2 className="serif mb-6 text-6xl text-on-surface">Clear outputs.</h2>
+              <p className="max-w-xl font-body text-on-surface-variant">
+                Every iteration produces a comprehensive data pack ready for client review or planning submission.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+              {[
+                {
+                  img: "/placeholders/bim-ready-geometry.svg",
+                  title: "BIM Ready Geometry",
+                  desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
+                },
+                {
+                  img: "/placeholders/technical-dossiers.svg",
+                  title: "Technical Dossiers",
+                  desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
+                },
+                {
+                  img: "/placeholders/atmospheric-previews.svg",
+                  title: "Atmospheric Previews",
+                  desc: "High-fidelity renders that capture the material intent of your design.",
+                },
+              ].map((card, index) => (
+                <motion.div key={index} whileHover={{ y: -8 }} className="group cursor-pointer">
+                  <div className="relative mb-6 aspect-square overflow-hidden rounded-xl bg-surface-container-low">
+                    <img
+                      className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                      src={card.img}
+                      alt={`${card.title} placeholder artwork`}
+                    />
+                  </div>
+                  <h4 className="mb-2 font-body text-lg font-semibold">{card.title}</h4>
+                  <p className="font-body text-sm text-on-surface-variant">{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="workflow" className="relative overflow-hidden bg-surface-container px-6 py-32 md:px-12">
+          <div className="workflow-grid pointer-events-none absolute inset-0 opacity-[0.03]" />
+
+          <div className="relative z-10 mx-auto max-w-[1400px]">
+            <div className="flex flex-col gap-20 md:flex-row">
+              <div className="md:w-1/2">
+                <h2 className="serif mb-12 text-6xl text-on-surface">
+                  Studio workflow,
+                  <br />
+                  digital speed.
+                </h2>
+                <div className="space-y-12">
+                  {[
+                    {
+                      id: "01",
+                      title: "Ingestion",
+                      desc: "Upload site surveys, zoning documents, or simple sketches to seed the AI model.",
+                    },
+                    {
+                      id: "02",
+                      title: "Synthesize",
+                      desc: "Review 50+ valid massing options generated against your specific constraints.",
+                    },
+                    {
+                      id: "03",
+                      title: "Refine",
+                      desc: "Fine-tune the chosen direction with interactive sliders and manual geometry overrides.",
+                    },
+                  ].map((step, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      className={`flex gap-8 border-l-2 pl-8 py-2 transition-colors duration-500 ${
+                        index === 0 ? "border-primary" : "border-outline-variant/20 hover:border-primary"
+                      }`}
+                    >
+                      <span className="font-headline text-4xl italic text-outline-variant/40">{step.id}</span>
+                      <div>
+                        <h4 className="mb-2 font-body text-xl font-bold">{step.title}</h4>
+                        <p className="font-body text-sm text-on-surface-variant">{step.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center md:w-1/2">
+                <motion.div
+                  initial={{ rotate: 0, scale: 0.9 }}
+                  whileInView={{ rotate: 2, scale: 1 }}
+                  transition={{ duration: 1, ease: "easeOut" }}
+                  className="relative w-full max-w-md rounded-sm bg-surface p-1 shadow-2xl aspect-[4/5]"
+                >
+                  <div className="flex h-full w-full flex-col border border-outline-variant/10 bg-surface-container-lowest p-8">
+                    <div className="mb-12 flex items-center justify-between">
+                      <div className="h-4 w-24 bg-surface-container" />
+                      <div className="h-8 w-8 rounded-full bg-primary-container" />
+                    </div>
+                    <div className="flex-1 space-y-6">
+                      <div className="h-32 w-full rounded-sm bg-surface-container-low" />
+                      <div className="h-4 w-3/4 bg-surface-container" />
+                      <div className="h-4 w-1/2 bg-surface-container" />
+                      <div className="mt-8 grid grid-cols-2 gap-4">
+                        <div className="h-20 rounded-sm bg-primary/5" />
+                        <div className="h-20 rounded-sm bg-primary/5" />
+                      </div>
+                    </div>
+                    <div className="mt-auto flex justify-between border-t border-outline-variant/10 pt-8">
+                      <div className="h-3 w-12 bg-surface-container" />
+                      <div className="h-3 w-12 bg-surface-container" />
+                    </div>
+                  </div>
+
+                  <motion.div
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -left-4 top-1/4 max-w-[120px] rounded-sm bg-on-surface p-3 font-body text-[10px] text-surface shadow-xl md:-left-12"
+                  >
+                    <Sparkles size={14} className="mb-1" />
+                    OPTIMIZED FOR PLACEHOLDER REVIEW
+                  </motion.div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="px-6 py-40 text-center md:px-12">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="serif mb-8 text-6xl text-on-surface md:text-7xl">Design the next horizon.</h2>
+            <p className="serif mb-12 text-xl italic text-on-surface-variant">Join the studios defining the future of practice.</p>
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <a
+                href={demoMailto}
+                className="rounded-md bg-primary px-10 py-4 font-bold tracking-tight text-on-primary transition-all hover:bg-primary-dim active:scale-95"
+              >
+                Request Studio Demo
+              </a>
+              <a
+                href={monographMailto}
+                className="serif rounded-md border border-outline-variant/30 px-10 py-4 font-bold italic text-primary transition-all hover:bg-surface-container-low active:scale-95"
+              >
+                Read the Monograph
+              </a>
+            </div>
+          </motion.div>
+        </section>
+      </main>
+
+      <footer className="w-full bg-surface-container px-6 py-20 md:px-12">
+        <div className="mx-auto flex max-w-[1920px] flex-col justify-between md:flex-row md:items-end">
+          <div className="flex w-full flex-col items-start gap-6 md:w-auto">
+            <div className="font-headline text-xl font-semibold text-on-surface">COCOON</div>
+            <div className="font-body text-sm tracking-wide text-on-surface-variant">
+              © {currentYear} The Digital Curator. Built for the Architect.
+            </div>
+          </div>
+          <div className="mt-10 flex flex-wrap gap-8 md:mt-0">
+            {[
+              { label: "Privacy", href: "/privacy/" },
+              { label: "Terms", href: "/terms/" },
+              { label: "Studio", href: demoMailto },
+              { label: "Contact", href: "mailto:rashid@cocoonlab.ai" },
+            ].map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-body text-sm tracking-wide text-on-surface-variant opacity-60 underline-offset-4 transition-opacity hover:opacity-100 hover:underline"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
