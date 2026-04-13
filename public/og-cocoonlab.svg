@@ -8,13 +8,16 @@
   <rect x="124" y="380" width="348" height="82" rx="24" fill="#2A5443"/>
   <rect x="617" y="118" width="486" height="394" rx="36" fill="#FBF8F2"/>
   <rect x="657" y="166" width="162" height="16" rx="8" fill="#1F6A4D" fill-opacity="0.2"/>
-  <text x="657" y="256" fill="#11261D" font-size="72" font-family="Georgia, 'Times New Roman', serif" font-weight="700">
-    Cocoon Lab
+  <text x="657" y="244" fill="#11261D" font-size="72" font-family="Georgia, 'Times New Roman', serif" font-weight="700">
+    Cocoon
   </text>
-  <text x="657" y="322" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
+  <text x="657" y="292" fill="#53685D" font-size="24" font-family="'Avenir Next', 'Segoe UI', sans-serif" font-weight="600">
+    by Cocoon Lab
+  </text>
+  <text x="657" y="350" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
     Architectural feasibility AI for site,
   </text>
-  <text x="657" y="360" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
+  <text x="657" y="388" fill="#53685D" font-size="28" font-family="'Avenir Next', 'Segoe UI', sans-serif">
     cost, carbon, code, and planning decisions.
   </text>
   <rect x="657" y="410" width="236" height="54" rx="27" fill="#1F6A4D"/>

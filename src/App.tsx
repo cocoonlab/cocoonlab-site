@@ -12,9 +12,34 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const demoMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20studio%20demo";
-const monographMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20monograph";
-const exploreMailto = "mailto:rashid@cocoonlab.ai?subject=Cocoon%20Lab%20engine%20exploration";
+const contactEmail = "rashid@cocoonlab.ai";
+
+function buildMailtoLink(subject: string, body?: string) {
+  const params = new URLSearchParams({ subject });
+
+  if (body) {
+    params.set("body", body);
+  }
+
+  return `mailto:${contactEmail}?${params.toString()}`;
+}
+
+const demoMailBody = [
+  "Hi Rashid,",
+  "",
+  "I'd like to request a demo of Cocoon.",
+  "",
+  "Name:",
+  "Company:",
+  "Project:",
+  "Preferred timing:",
+  "",
+  "Thanks,",
+].join("\n");
+
+const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
+const exploreMailto = buildMailtoLink("Cocoon product exploration");
+const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
 
 export default function App() {
   const [activeLens, setActiveLens] = useState("Site");
@@ -60,6 +85,7 @@ export default function App() {
           <div className="flex items-center gap-4">
             <a
               href={demoMailto}
+              aria-label={demoAriaLabel}
               className="hidden rounded-md bg-primary px-6 py-2 font-label text-sm text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:block"
             >
               Request Studio Demo
@@ -94,6 +120,7 @@ export default function App() {
             ))}
             <a
               href={demoMailto}
+              aria-label={demoAriaLabel}
               className="w-full rounded-md bg-primary px-6 py-4 text-center font-label text-lg text-on-primary"
               onClick={() => setIsMenuOpen(false)}
             >
@@ -121,7 +148,7 @@ export default function App() {
               </motion.h1>
               <motion.div variants={fadeInUp} className="mt-8 max-w-xs text-on-surface-variant md:mt-0">
                 <p className="font-body leading-relaxed">
-                  The AI collaborator for early-stage feasibility. Moving from intuition to architectural proof in seconds.
+                  Cocoon is the AI collaborator for early-stage feasibility. Moving from intuition to architectural proof in seconds.
                 </p>
               </motion.div>
             </motion.div>
@@ -303,7 +330,7 @@ export default function App() {
                     {
                       id: "02",
                       title: "Synthesize",
-                      desc: "Review 50+ valid massing options generated against your specific constraints.",
+                      desc: "Review 5+ valid design analysis generated against your specific constraints.",
                     },
                     {
                       id: "03",
@@ -378,12 +405,13 @@ export default function App() {
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href={demoMailto}
+                aria-label={demoAriaLabel}
                 className="rounded-md bg-primary px-10 py-4 font-bold tracking-tight text-on-primary transition-all hover:bg-primary-dim active:scale-95"
               >
                 Request Studio Demo
               </a>
               <a
-                href={monographMailto}
+                href="/monograph/"
                 className="serif rounded-md border border-outline-variant/30 px-10 py-4 font-bold italic text-primary transition-all hover:bg-surface-container-low active:scale-95"
               >
                 Read the Monograph
@@ -398,15 +426,15 @@ export default function App() {
           <div className="flex w-full flex-col items-start gap-6 md:w-auto">
             <div className="font-headline text-xl font-semibold text-on-surface">COCOON</div>
             <div className="font-body text-sm tracking-wide text-on-surface-variant">
-              © {currentYear} The Digital Curator. Built for the Architect.
+              © {currentYear} Cocoon Lab. Cocoon is built for the architect.
             </div>
           </div>
           <div className="mt-10 flex flex-wrap gap-8 md:mt-0">
             {[
               { label: "Privacy", href: "/privacy/" },
               { label: "Terms", href: "/terms/" },
-              { label: "Studio", href: demoMailto },
-              { label: "Contact", href: "mailto:rashid@cocoonlab.ai" },
+              { label: "Studio", href: "/studio/" },
+              { label: "Contact", href: "/contact/" },
             ].map((link) => (
               <a
                 key={link.label}

@@ -1,7 +1,7 @@
 {
-  "name": "Cocoon Lab",
-  "short_name": "Cocoon Lab",
-  "description": "Architectural feasibility AI for early-stage design decisions.",
+  "name": "Cocoon",
+  "short_name": "Cocoon",
+  "description": "Cocoon is the architectural feasibility AI product by Cocoon Lab.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f5f1e9",
