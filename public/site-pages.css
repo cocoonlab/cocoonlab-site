@@ -193,8 +193,6 @@ strong {
   padding: clamp(2.5rem, 5vw, 4.5rem) 0 0;
 }
 
-.eyebrow,
-.label,
 .person-role {
   display: inline-flex;
   align-items: center;
@@ -277,26 +275,6 @@ strong {
   margin-right: auto;
   max-width: 40rem;
   font-size: clamp(1.24rem, 2vw, 1.7rem);
-}
-
-.page-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.page-meta span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 2.05rem;
-  padding: 0.38rem 0.78rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(236, 239, 236, 0.82);
-  color: var(--muted);
-  font-size: 0.88rem;
-  white-space: normal;
-  overflow-wrap: anywhere;
 }
 
 .page-grid {
@@ -415,6 +393,23 @@ strong {
   max-width: var(--page-prose-width);
 }
 
+.monograph-intro {
+  max-width: min(100%, 58rem);
+}
+
+.monograph-section {
+  display: grid;
+  gap: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+.monograph-card-grid {
+  margin-top: 0;
+}
+
+.monograph-card-grid .card {
+  min-height: 100%;
+}
+
 .page-prose h2 {
   margin-top: 1rem;
 }
@@ -432,24 +427,6 @@ strong {
   transform: translateY(-2px);
   border-color: rgba(90, 96, 94, 0.28);
   box-shadow: 0 18px 50px rgba(45, 52, 50, 0.08);
-}
-
-.article-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.article-meta span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 1.9rem;
-  padding: 0.28rem 0.7rem;
-  border: 1px solid rgba(173, 179, 176, 0.24);
-  border-radius: 999px;
-  background: rgba(236, 239, 236, 0.84);
-  color: var(--muted);
-  font-size: 0.82rem;
 }
 
 .card-grid,
@@ -841,11 +818,6 @@ strong {
   .terms-content,
   .section-divider {
     width: 100%;
-  }
-
-  .page-meta span {
-    width: 100%;
-    justify-content: center;
   }
 
   .studio-feature {
