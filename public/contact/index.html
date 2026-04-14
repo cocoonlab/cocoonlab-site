@@ -68,7 +68,7 @@
         </a>
         <a
           class="page-topbar-cta"
-          href="mailto:rashid@cocoonlab.ai?subject=Cocoon%20studio%20demo&body=Hi%20Rashid%2C%0A%0AI%27d%20like%20to%20request%20a%20demo%20of%20Cocoon.%0A%0AName%3A%0ACompany%3A%0AProject%3A%0APreferred%20timing%3A%0A%0AThanks%2C"
+          href="/contact/?intent=studio-demo#contact-form"
         >
           Request Studio Demo
         </a>
@@ -131,7 +131,13 @@
             </article>
           </div>
 
-          <form class="contact-form" data-contact-form novalidate>
+          <form id="contact-form" class="contact-form" data-contact-form novalidate>
+            <input type="hidden" name="intent" value="contact" data-contact-intent />
+
+            <p class="contact-form-note contact-form-context" data-contact-intent-note hidden>
+              Tell us a bit about your team, project, and timeline so we can route the right Cocoon studio demo.
+            </p>
+
             <label class="contact-field">
               <span>Name</span>
               <input type="text" name="name" placeholder="Your Name" autocomplete="name" maxlength="120" required />
@@ -145,6 +151,16 @@
             <label class="contact-field">
               <span>Company</span>
               <input type="text" name="company" placeholder="Your Company" autocomplete="organization" maxlength="160" />
+            </label>
+
+            <label class="contact-field" data-contact-demo-field hidden>
+              <span>Project</span>
+              <input type="text" name="project" placeholder="Project or site context" maxlength="200" />
+            </label>
+
+            <label class="contact-field" data-contact-demo-field hidden>
+              <span>Preferred Timing</span>
+              <input type="text" name="preferredTiming" placeholder="When would you like the demo?" maxlength="160" />
             </label>
 
             <label class="contact-field contact-field-message">

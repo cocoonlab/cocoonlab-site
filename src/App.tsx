@@ -11,6 +11,7 @@ import {
 import { useState } from "react";
 
 const contactEmail = "rashid@cocoonlab.ai";
+const demoRequestHref = "/contact/?intent=studio-demo#contact-form";
 
 function buildMailtoLink(subject: string, body?: string) {
   const params = new URLSearchParams({ subject });
@@ -22,25 +23,13 @@ function buildMailtoLink(subject: string, body?: string) {
   return `mailto:${contactEmail}?${params.toString()}`;
 }
 
-const demoMailBody = [
-  "Hi Rashid,",
-  "",
-  "I'd like to request a demo of Cocoon.",
-  "",
-  "Name:",
-  "Company:",
-  "Project:",
-  "Preferred timing:",
-  "",
-  "Thanks,",
-].join("\n");
-
-const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
 const exploreMailto = buildMailtoLink("Cocoon product exploration");
-const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
+const demoAriaLabel = "Open the Cocoon studio demo request form";
 const lensAssetVersion = "20260413-lenses-1";
 const demoButtonClassName =
-  "rounded-md bg-primary px-6 py-2 font-label text-sm text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95";
+  "items-center justify-center rounded-md bg-primary px-6 py-2 font-label text-sm leading-none text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95";
+const secondaryCtaClassName =
+  "rounded-md border border-outline-variant/25 bg-surface-container-low px-6 py-2 font-label text-sm text-on-surface shadow-sm transition-all duration-200 hover:border-outline-variant/40 hover:bg-surface-container active:scale-95";
 
 const lensContent = {
   Site: {
@@ -208,7 +197,7 @@ export default function App() {
 
           <div className="flex items-center gap-4">
             <a
-              href={demoMailto}
+              href={demoRequestHref}
               aria-label={demoAriaLabel}
               className={`hidden sm:inline-flex ${demoButtonClassName}`}
             >
@@ -556,7 +545,7 @@ export default function App() {
             <p className="serif mb-12 text-xl italic text-on-surface-variant">Join the studios defining the future of practice.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
-                href={demoMailto}
+                href={demoRequestHref}
                 aria-label={demoAriaLabel}
                 className={`inline-flex w-full justify-center sm:w-auto ${demoButtonClassName}`}
               >
@@ -564,7 +553,7 @@ export default function App() {
               </a>
               <a
                 href="/monograph/"
-                className="serif w-full rounded-md border border-outline-variant/30 px-8 py-4 font-bold italic text-primary transition-all hover:bg-surface-container-low active:scale-95 sm:w-auto sm:px-10"
+                className={`inline-flex w-full justify-center sm:w-auto ${secondaryCtaClassName}`}
               >
                 Read the Monograph
               </a>

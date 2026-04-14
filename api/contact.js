@@ -2,6 +2,8 @@ const MAX_BODY_BYTES = 32_000;
 const MAX_NAME_LENGTH = 120;
 const MAX_EMAIL_LENGTH = 160;
 const MAX_COMPANY_LENGTH = 160;
+const MAX_PROJECT_LENGTH = 200;
+const MAX_TIMING_LENGTH = 160;
 const MAX_MESSAGE_LENGTH = 4_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -89,19 +91,29 @@ function getAssignees() {
     .filter(Boolean);
 }
 
-function issueTitle({ name, company }) {
-  const suffix = company ? `${name} - ${company}` : name;
-  return truncate(`[Contact] ${suffix}`, 240);
+function normalizeIntent(value) {
+  return value === "studio-demo" ? "studio-demo" : "contact";
 }
 
-function issueBody({ name, email, company, message, page, submittedAt, sourceIp, userAgent }) {
+function issueTitle({ intent, name, company }) {
+  const prefix = intent === "studio-demo" ? "[Studio Demo]" : "[Contact]";
+  const suffix = company ? `${name} - ${company}` : name;
+  return truncate(`${prefix} ${suffix}`, 240);
+}
+
+function issueBody({ intent, name, email, company, project, preferredTiming, message, page, submittedAt, sourceIp, userAgent }) {
   return [
     "New contact submission from cocoonlab.ai.",
+    "",
+    "## Intake",
+    `- Type: ${intent === "studio-demo" ? "Studio demo request" : "General contact message"}`,
     "",
     "## Contact",
     `- Name: ${escapeInline(name)}`,
     `- Email: ${escapeInline(email)}`,
     company ? `- Company: ${escapeInline(company)}` : "",
+    project ? `- Project: ${escapeInline(project)}` : "",
+    preferredTiming ? `- Preferred timing: ${escapeInline(preferredTiming)}` : "",
     `- Submitted at: ${escapeInline(submittedAt)}`,
     page ? `- Page: ${escapeInline(page)}` : "",
     sourceIp ? `- Source IP: ${escapeInline(sourceIp)}` : "",
@@ -118,6 +130,9 @@ function validatePayload(payload) {
   const name = truncate(normalizeText(payload.name), MAX_NAME_LENGTH);
   const email = truncate(normalizeText(payload.email).toLowerCase(), MAX_EMAIL_LENGTH);
   const company = truncate(normalizeText(payload.company), MAX_COMPANY_LENGTH);
+  const project = truncate(normalizeText(payload.project), MAX_PROJECT_LENGTH);
+  const preferredTiming = truncate(normalizeText(payload.preferredTiming), MAX_TIMING_LENGTH);
+  const intent = normalizeIntent(normalizeText(payload.intent));
   const message = truncate(normalizeText(payload.message), MAX_MESSAGE_LENGTH);
   const website = normalizeText(payload.website);
   const page = normalizeText(payload.page);
@@ -143,6 +158,9 @@ function validatePayload(payload) {
       name,
       email,
       company,
+      intent,
+      project,
+      preferredTiming,
       message,
       page,
     },
