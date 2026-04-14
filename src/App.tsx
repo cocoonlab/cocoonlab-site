@@ -418,23 +418,119 @@ export default function App() {
                   transition={{ duration: 1, ease: "easeOut" }}
                   className="relative aspect-[4/5] w-full max-w-[22rem] rounded-sm bg-surface p-1.5 shadow-2xl sm:max-w-md sm:p-1"
                 >
-                  <div className="flex h-full w-full flex-col border border-outline-variant/10 bg-surface-container-lowest p-5 sm:p-8">
-                    <div className="mb-8 flex items-center justify-between sm:mb-12">
-                      <div className="h-3 w-20 bg-surface-container sm:h-4 sm:w-24" />
-                      <div className="h-7 w-7 rounded-full bg-primary-container sm:h-8 sm:w-8" />
+                  <div className="relative flex h-full w-full flex-col overflow-hidden border border-outline-variant/10 bg-surface-container-lowest p-5 sm:p-8">
+                    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(253,231,211,0.2),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(214,231,217,0.18),transparent_28%)]" />
+
+                    <div className="relative mb-8 flex items-center justify-between sm:mb-10">
+                      <div className="space-y-2">
+                        <div className="h-3 w-20 bg-surface-container sm:h-4 sm:w-24" />
+                        <div className="h-2 w-12 bg-surface-container-low sm:h-2.5 sm:w-14" />
+                      </div>
+                      <div className="h-7 w-7 rounded-[0.85rem] bg-primary-container sm:h-8 sm:w-8" />
                     </div>
-                    <div className="flex-1 space-y-5 sm:space-y-6">
-                      <div className="h-24 w-full rounded-sm bg-surface-container-low sm:h-32" />
-                      <div className="h-4 w-3/4 bg-surface-container" />
-                      <div className="h-4 w-1/2 bg-surface-container" />
-                      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4">
-                        <div className="h-16 rounded-sm bg-primary/5 sm:h-20" />
-                        <div className="h-16 rounded-sm bg-primary/5 sm:h-20" />
+
+                    <div className="relative flex-1 space-y-4 sm:space-y-5">
+                      <div className="grid gap-3 sm:grid-cols-[1.35fr_0.85fr]">
+                        <div className="rounded-[1.1rem] border border-outline-variant/10 bg-surface/65 p-3 shadow-[0_10px_24px_rgba(45,52,50,0.05)]">
+                          <div className="mb-3 h-2.5 w-20 rounded-full bg-[#adc0a4]/90 sm:w-24" />
+                          <div className="h-24 rounded-[0.95rem] border border-outline-variant/10 bg-[linear-gradient(to_top,rgba(90,96,92,0.04)_1px,transparent_1px),linear-gradient(to_right,rgba(90,96,92,0.04)_1px,transparent_1px)] bg-[size:100%_24px,42px_100%] p-2 sm:h-28">
+                            <svg viewBox="0 0 240 120" className="h-full w-full" aria-hidden="true">
+                              <path
+                                d="M10 84 C35 80, 48 44, 76 54 S120 98, 148 73 S188 26, 214 36 S228 63, 232 27"
+                                fill="none"
+                                stroke="#90a688"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                              />
+                              <path
+                                d="M10 96 C34 88, 58 76, 84 82 S124 60, 154 66 S192 90, 232 58"
+                                fill="none"
+                                stroke="#d8c3a5"
+                                strokeWidth="2.5"
+                                strokeLinecap="round"
+                                opacity="0.95"
+                              />
+                              <circle cx="76" cy="54" r="3.5" fill="#90a688" />
+                              <circle cx="148" cy="73" r="3.5" fill="#90a688" />
+                              <circle cx="214" cy="36" r="3.5" fill="#90a688" />
+                            </svg>
+                          </div>
+                        </div>
+
+                        <div className="rounded-[1.1rem] border border-outline-variant/10 bg-surface/65 p-3 shadow-[0_10px_24px_rgba(45,52,50,0.05)]">
+                          <div className="mb-3 h-2.5 w-16 rounded-full bg-[#d8c3a5]/95 sm:w-20" />
+                          <div className="grid h-24 place-items-center sm:h-28">
+                            <div
+                              className="relative h-20 w-20 rounded-full sm:h-24 sm:w-24"
+                              style={{
+                                background:
+                                  "conic-gradient(#90a688 0 36%, #d8c3a5 36% 68%, #b7bdb6 68% 86%, rgba(90,96,92,0.08) 86% 100%)",
+                              }}
+                            >
+                              <div className="absolute inset-[18px] rounded-full border border-outline-variant/10 bg-surface-container-lowest sm:inset-[20px]" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-3">
+                        <div className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_10px_24px_rgba(45,52,50,0.04)]">
+                          <div className="mb-3 h-2 w-16 rounded-full bg-[#b9c1bc] sm:w-20" />
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-2">
+                              <div className="h-1.5 w-8 rounded-full bg-surface-container" />
+                              <div className="h-2 flex-1 rounded-full bg-surface-container">
+                                <div className="h-full w-[76%] rounded-full bg-[linear-gradient(90deg,#90a688,#bcc9b6)]" />
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="h-1.5 w-8 rounded-full bg-surface-container" />
+                              <div className="h-2 flex-1 rounded-full bg-surface-container">
+                                <div className="h-full w-[62%] rounded-full bg-[linear-gradient(90deg,#d8c3a5,#e8dcc9)]" />
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="h-1.5 w-8 rounded-full bg-surface-container" />
+                              <div className="h-2 flex-1 rounded-full bg-surface-container">
+                                <div className="h-full w-[48%] rounded-full bg-[linear-gradient(90deg,#a8afb0,#c8cecf)]" />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_10px_24px_rgba(45,52,50,0.04)]">
+                          <div className="mb-3 h-2 w-16 rounded-full bg-[#adc0a4]/85 sm:w-20" />
+                          <div className="space-y-2">
+                            <div className="h-3 rounded-full bg-surface-container" />
+                            <div className="h-3 w-4/5 rounded-full bg-surface-container" />
+                            <div className="h-3 rounded-full bg-surface-container" />
+                            <div className="h-3 w-1/2 rounded-full bg-surface-container" />
+                          </div>
+                        </div>
+
+                        <div className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_10px_24px_rgba(45,52,50,0.04)]">
+                          <div className="mb-3 h-2 w-16 rounded-full bg-[#d8c3a5]/90 sm:w-20" />
+                          <div className="space-y-2.5">
+                            <div className="flex items-center gap-2">
+                              <div className="h-2.5 w-2.5 rounded-full bg-[#d8c3a5]" />
+                              <div className="h-2 w-3/4 rounded-full bg-surface-container" />
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="h-2.5 w-2.5 rounded-full bg-[#90a688]" />
+                              <div className="h-2 w-1/2 rounded-full bg-surface-container" />
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="h-2.5 w-2.5 rounded-full bg-[#a8afb0]" />
+                              <div className="h-2 w-full rounded-full bg-surface-container" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div className="mt-auto flex justify-between border-t border-outline-variant/10 pt-6 sm:pt-8">
-                      <div className="h-3 w-12 bg-surface-container" />
-                      <div className="h-3 w-12 bg-surface-container" />
+
+                    <div className="relative mt-auto flex items-center justify-between border-t border-outline-variant/10 pt-5 sm:pt-6">
+                      <div className="h-3 w-12 bg-surface-container sm:w-14" />
+                      <div className="h-3 w-12 bg-surface-container sm:w-14" />
                     </div>
                   </div>
 

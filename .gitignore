@@ -39,6 +39,15 @@ logs
 *.log.*
 
 # -----------------------
+# Playwright artifacts
+# -----------------------
+.playwright-cli/
+playwright-report/
+test-results/
+blob-report/
+output/playwright/
+
+# -----------------------
 # Python leftovers (from your example)
 # -----------------------
 __pycache__/
