@@ -454,6 +454,29 @@ strong {
   gap: 1rem;
 }
 
+.partner-card {
+  gap: clamp(1.2rem, 2.4vw, 1.6rem);
+}
+
+.partner-card-body {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.partner-card-body h3 {
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  line-height: 1.1;
+}
+
+.partner-card-body .person-role {
+  margin-top: 0.15rem;
+}
+
+.partner-card-body p {
+  max-width: 30rem;
+  margin-top: 0.15rem;
+}
+
 .partner-logo-frame,
 .portrait-frame {
   overflow: hidden;
@@ -468,13 +491,13 @@ strong {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 7.4rem;
-  padding: 1.2rem;
+  min-height: clamp(8.5rem, 14vw, 10.5rem);
+  padding: clamp(1.4rem, 2.4vw, 1.9rem);
 }
 
 .partner-logo {
-  max-width: 100%;
-  max-height: 3rem;
+  width: min(100%, 15rem);
+  max-height: clamp(4rem, 6vw, 4.8rem);
   object-fit: contain;
   filter: grayscale(1) contrast(1.18) brightness(0.55);
   mix-blend-mode: multiply;
@@ -831,6 +854,33 @@ strong {
 
   .actions .button {
     width: 100%;
+  }
+
+  .partner-grid {
+    gap: 1.35rem;
+  }
+
+  .partner-card {
+    gap: 1.2rem;
+  }
+
+  .partner-card-body {
+    gap: 1rem;
+  }
+
+  .partner-card-body .person-role {
+    margin-top: 0.35rem;
+  }
+
+  .partner-logo-frame {
+    min-height: 11rem;
+    padding: 1.5rem;
+    border-radius: 1.35rem;
+  }
+
+  .partner-logo {
+    width: min(100%, 16rem);
+    max-height: 5rem;
   }
 
   .page-footer {
