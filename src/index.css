@@ -71,6 +71,15 @@
 
   body {
     @apply bg-surface font-body text-on-surface antialiased;
+    overflow-x: hidden;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  section[id] {
+    scroll-margin-top: 6.5rem;
   }
 
   .serif {
@@ -93,6 +102,12 @@
   :focus-visible {
     outline: 2px solid var(--color-primary);
     outline-offset: 3px;
+  }
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 8rem;
   }
 }
 

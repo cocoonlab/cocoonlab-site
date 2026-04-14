@@ -1,5 +1,7 @@
 {
   "name": "Cocoon",
-  "description": "Cocoon is the architectural feasibility AI product by Cocoon Lab.",
+  "description": "Cocoon is architectural feasibility software by Cocoon Lab.",
+  "website": "https://cocoonlab.ai/",
+  "company": "Cocoon Lab",
   "requestFramePermissions": []
 }

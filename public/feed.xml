@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Cocoon Lab Blog</title>
+    <link>https://cocoonlab.ai/blog/</link>
+    <description>Articles and updates from Cocoon Lab about Cocoon, architectural feasibility, and responsible AI.</description>
+    <language>en-ca</language>
+    <lastBuildDate>Mon, 13 Apr 2026 00:00:00 GMT</lastBuildDate>
+    <item>
+      <title>Cocoon Lab in partnership with Mila</title>
+      <link>https://cocoonlab.ai/blog/mila-partnership/</link>
+      <guid>https://cocoonlab.ai/blog/mila-partnership/</guid>
+      <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
+      <description>
+        Why the Mila partnership matters to Cocoon Lab and how it supports Cocoon, architectural feasibility, and responsible AI product building.
+      </description>
+    </item>
+  </channel>
+</rss>

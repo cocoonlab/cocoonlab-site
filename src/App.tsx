@@ -40,11 +40,13 @@ const demoMailBody = [
 const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
 const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
+const lensAssetVersion = "20260413-lenses-1";
+const navItems = ["Lenses", "Outputs", "Workflow"] as const;
 
 const lensContent = {
   Site: {
     chip: "Site lens: parcel fit, adjacencies, movement, and buildable envelope",
-    imageSrc: "/assets/site-cocoon.png",
+    imageSrc: `/assets/lenses/site-cocoon.png?v=${lensAssetVersion}`,
     imageAlt: "Architectural site massing study with a highlighted parcel and surrounding urban context",
     imageFilter: "none",
     metricLabel: "Site",
@@ -56,7 +58,7 @@ const lensContent = {
   },
   Cost: {
     chip: "Cost lens: early quantity logic and budget sensitivity tied to each massing move",
-    imageSrc: "/assets/cost-cocoon.png",
+    imageSrc: `/assets/lenses/cost-cocoon.png?v=${lensAssetVersion}`,
     imageAlt: "Architectural feasibility study with cost overlays, quantity bars, and a massing model",
     imageFilter: "none",
     metricLabel: "Cost",
@@ -68,7 +70,7 @@ const lensContent = {
   },
   Carbon: {
     chip: "Carbon lens: embodied impact surfaced before details become expensive to change",
-    imageSrc: "/assets/carbon-cocoon.png",
+    imageSrc: `/assets/lenses/carbon-cocoon.png?v=${lensAssetVersion}`,
     imageAlt: "Architectural massing study with embodied carbon analysis and material comparison overlays",
     imageFilter: "none",
     metricLabel: "Carbon",
@@ -80,7 +82,7 @@ const lensContent = {
   },
   Code: {
     chip: "Code lens: zoning logic, setbacks, and compliance flags organized in one readable layer",
-    imageSrc: "/assets/code-cocoon.png",
+    imageSrc: `/assets/lenses/code-cocoon.png?v=${lensAssetVersion}`,
     imageAlt: "Architectural zoning and code study with parcel lines, setback envelopes, and compliance annotations",
     imageFilter: "none",
     metricLabel: "Code",
@@ -92,7 +94,7 @@ const lensContent = {
   },
   Visuals: {
     chip: "Visuals lens: atmosphere, massing, and material intent aligned to the design signal",
-    imageSrc: "/assets/visual-cocoon.png",
+    imageSrc: `/assets/lenses/visual-cocoon.png?v=${lensAssetVersion}`,
     imageAlt: "Atmospheric architectural rendering with stacked green volumes, glass, and warm light",
     imageFilter: "none",
     metricLabel: "Visuals",
@@ -127,6 +129,52 @@ const lensFeatures = [
   },
 ] as const;
 
+const outputCards = [
+  {
+    img: "/assets/outputs/bim-ready-geometry.png",
+    title: "BIM Ready Geometry",
+    desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
+  },
+  {
+    img: "/assets/outputs/technical-dossiers.png",
+    title: "Technical Dossiers",
+    desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
+  },
+  {
+    img: "/assets/outputs/atmospheric-previews.png",
+    title: "Atmospheric Previews",
+    desc: "High-fidelity renders that capture the material intent of your design.",
+  },
+] as const;
+
+const workflowSteps = [
+  {
+    id: "01",
+    title: "Ingestion",
+    desc: "Upload site surveys, zoning documents, or simple sketches to seed the AI model.",
+  },
+  {
+    id: "02",
+    title: "Synthesize",
+    desc: "Review 5+ valid design analysis generated against your specific constraints.",
+  },
+  {
+    id: "03",
+    title: "Refine",
+    desc: "Fine-tune the chosen direction with interactive sliders and manual geometry overrides.",
+  },
+] as const;
+
+const footerLinks = [
+  { label: "Privacy", href: "/privacy/" },
+  { label: "Terms", href: "/terms/" },
+  { label: "Studio", href: "/studio/" },
+  { label: "Contact", href: "/contact/" },
+  { label: "Partners", href: "/partners/" },
+  { label: "Team", href: "/team/" },
+  { label: "Blog", href: "/blog/" },
+] as const;
+
 type LensName = keyof typeof lensContent;
 
 export default function App() {
@@ -155,13 +203,13 @@ export default function App() {
   return (
     <div className="min-h-screen bg-surface selection:bg-primary/20">
       <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/5 bg-surface/60 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1920px] items-center justify-between px-6 py-6 md:px-12">
+        <div className="mx-auto flex max-w-[1920px] items-center justify-between px-4 py-4 sm:px-6 sm:py-6 md:px-12">
           <a href="#top" className="font-headline text-2xl font-bold tracking-tighter text-on-surface">
             COCOON
           </a>
 
           <div className="hidden items-center gap-10 md:flex">
-            {["Lenses", "Outputs", "Workflow"].map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -198,7 +246,7 @@ export default function App() {
             animate={{ opacity: 1, height: "auto" }}
             className="flex flex-col gap-6 border-b border-outline-variant/10 bg-surface px-6 py-8 md:hidden"
           >
-            {["Lenses", "Outputs", "Workflow"].map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -220,23 +268,23 @@ export default function App() {
         )}
       </nav>
 
-      <main className="pt-32">
-        <section id="top" className="mb-32 px-6 md:px-12">
+      <main className="pt-28 sm:pt-32">
+        <section id="top" className="mb-24 scroll-mt-28 px-4 sm:mb-32 sm:scroll-mt-32 sm:px-6 md:px-12">
           <div className="mx-auto max-w-[1400px]">
             <motion.div
               initial="initial"
               animate="animate"
               variants={staggerContainer}
-              className="mb-20 flex flex-col justify-between md:flex-row md:items-baseline"
+              className="mb-14 flex flex-col justify-between gap-8 sm:mb-20 md:flex-row md:items-baseline"
             >
               <motion.h1
                 variants={fadeInUp}
-                className="serif max-w-4xl text-6xl leading-tight tracking-tight text-on-surface md:text-9xl"
+                className="serif max-w-4xl text-5xl leading-tight tracking-tight text-on-surface sm:text-6xl md:text-9xl"
               >
                 Clear design <br />
                 signals, <span className="italic">early.</span>
               </motion.h1>
-              <motion.div variants={fadeInUp} className="mt-8 max-w-xs text-on-surface-variant md:mt-0">
+              <motion.div variants={fadeInUp} className="max-w-sm text-on-surface-variant md:mt-0">
                 <p className="font-body leading-relaxed">
                   Cocoon is the AI collaborator for early-stage feasibility. Moving from intuition to architectural proof in seconds.
                 </p>
@@ -247,7 +295,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="group relative aspect-[16/9] overflow-hidden rounded-xl bg-surface-container shadow-sm"
+              className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container shadow-sm sm:aspect-[16/11] lg:aspect-[16/9]"
             >
               <motion.img
                 key={activeLens}
@@ -257,29 +305,31 @@ export default function App() {
                 className="h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
                 src={activeLensContent.imageSrc}
                 alt={activeLensContent.imageAlt}
+                fetchPriority="high"
+                decoding="async"
                 style={{ filter: activeLensContent.imageFilter }}
               />
 
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-6 md:p-12">
-                <div className="flex items-start justify-between">
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-4 sm:p-6 md:p-12">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                   <div className="pointer-events-auto">
                     <motion.span
                       key={`${activeLens}-chip`}
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="blueprint-chip inline-flex rounded-full border border-white/20 bg-surface-container-highest/80 px-4 py-1 text-xs backdrop-blur-md md:text-sm"
+                      className="blueprint-chip inline-flex max-w-full rounded-full border border-white/20 bg-surface-container-highest/80 px-3 py-1 text-[11px] leading-relaxed backdrop-blur-md sm:text-sm"
                     >
                       {activeLensContent.chip}
                     </motion.span>
                   </div>
-                  <div className="pointer-events-auto flex flex-col gap-4">
+                  <div className="pointer-events-auto w-full sm:w-auto">
                     <motion.div
                       key={`${activeLens}-metric`}
                       initial={{ x: 20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="flex items-center gap-4 rounded-xl border border-outline-variant/15 bg-surface/80 p-4 backdrop-blur-md"
+                      className="flex w-full max-w-[18rem] items-start gap-4 rounded-xl border border-outline-variant/15 bg-surface/80 p-4 backdrop-blur-md sm:w-auto"
                     >
                       <ActiveLensIcon className="text-primary" size={24} />
                       <div>
@@ -294,13 +344,14 @@ export default function App() {
                 </div>
 
                 <div className="flex w-full justify-center">
-                  <div className="glass-panel pointer-events-auto flex gap-1 rounded-full border border-white/20 p-1.5 shadow-xl">
+                  <div className="glass-panel pointer-events-auto grid w-full max-w-[32rem] grid-cols-3 gap-1 rounded-[1.5rem] border border-white/20 p-1.5 shadow-xl sm:flex sm:w-auto sm:max-w-none sm:rounded-full">
                     {lenses.map((lens) => (
                       <button
                         key={lens}
                         type="button"
                         onClick={() => setActiveLens(lens)}
-                        className={`rounded-full px-4 py-2 text-xs font-medium transition-all duration-300 md:px-6 ${
+                        aria-pressed={activeLens === lens}
+                        className={`min-w-0 rounded-full px-3 py-2.5 text-[11px] font-medium transition-all duration-300 sm:px-4 sm:py-2 sm:text-xs md:px-6 ${
                           activeLens === lens
                             ? "bg-primary text-on-primary shadow-lg"
                             : "text-on-surface-variant hover:bg-surface-variant/40"
@@ -316,10 +367,10 @@ export default function App() {
           </div>
         </section>
 
-        <section id="lenses" className="bg-surface-container-low px-6 py-32 md:px-12">
+        <section id="lenses" className="scroll-mt-28 bg-surface-container-low px-4 py-24 sm:scroll-mt-32 sm:px-6 sm:py-32 md:px-12">
           <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-16 md:grid-cols-12">
             <div className="md:col-span-4">
-              <h2 className="serif mb-8 text-5xl text-on-surface">
+              <h2 className="serif mb-8 text-4xl text-on-surface sm:text-5xl">
                 One workspace.
                 <br />
                 Four lenses.
@@ -338,7 +389,7 @@ export default function App() {
 
             <div className="grid grid-cols-1 gap-px bg-outline-variant/10 sm:grid-cols-2 md:col-span-8">
               {lensFeatures.map((feature, index) => (
-                <div key={index} className="group bg-surface-container-low p-10 transition-colors duration-500 hover:bg-surface">
+                <div key={index} className="group bg-surface-container-low p-6 transition-colors duration-500 hover:bg-surface sm:p-8 md:p-10">
                   <feature.icon className="mb-6 text-primary" size={32} strokeWidth={1.5} />
                   <h3 className="mb-4 font-body text-xl font-semibold">{feature.title}</h3>
                   <p className="font-body text-sm leading-relaxed text-on-surface-variant">{feature.desc}</p>
@@ -348,42 +399,28 @@ export default function App() {
           </div>
         </section>
 
-        <section id="outputs" className="px-6 py-32 md:px-12">
+        <section id="outputs" className="scroll-mt-28 px-4 py-24 sm:scroll-mt-32 sm:px-6 sm:py-32 md:px-12">
           <div className="mx-auto max-w-[1400px]">
             <div className="mb-24 flex flex-col items-center text-center">
               <span className="blueprint-chip mb-6 rounded-full bg-tertiary-container px-4 py-1 text-xs text-on-tertiary-container">
                 The Handover
               </span>
-              <h2 className="serif mb-6 text-6xl text-on-surface">Clear outputs.</h2>
+              <h2 className="serif mb-6 text-5xl text-on-surface sm:text-6xl">Clear outputs.</h2>
               <p className="max-w-xl font-body text-on-surface-variant">
                 Every iteration produces a comprehensive data pack ready for client review or planning submission.
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {[
-                {
-                  img: "/placeholders/bim-ready-geometry.svg",
-                  title: "BIM Ready Geometry",
-                  desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
-                },
-                {
-                  img: "/placeholders/technical-dossiers.svg",
-                  title: "Technical Dossiers",
-                  desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
-                },
-                {
-                  img: "/placeholders/atmospheric-previews.svg",
-                  title: "Atmospheric Previews",
-                  desc: "High-fidelity renders that capture the material intent of your design.",
-                },
-              ].map((card, index) => (
-                <motion.div key={index} whileHover={{ y: -8 }} className="group cursor-pointer">
+              {outputCards.map((card, index) => (
+                <motion.div key={index} whileHover={{ y: -8 }} className="group">
                   <div className="relative mb-6 aspect-square overflow-hidden rounded-xl bg-surface-container-low">
                     <img
                       className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                       src={card.img}
-                      alt={`${card.title} placeholder artwork`}
+                      alt={`${card.title} illustration`}
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                   <h4 className="mb-2 font-body text-lg font-semibold">{card.title}</h4>
@@ -394,47 +431,31 @@ export default function App() {
           </div>
         </section>
 
-        <section id="workflow" className="relative overflow-hidden bg-surface-container px-6 py-32 md:px-12">
+        <section id="workflow" className="relative scroll-mt-28 overflow-hidden bg-surface-container px-4 py-24 sm:scroll-mt-32 sm:px-6 sm:py-32 md:px-12">
           <div className="workflow-grid pointer-events-none absolute inset-0 opacity-[0.03]" />
 
           <div className="relative z-10 mx-auto max-w-[1400px]">
             <div className="flex flex-col gap-20 md:flex-row">
               <div className="md:w-1/2">
-                <h2 className="serif mb-12 text-6xl text-on-surface">
+                <h2 className="serif mb-12 text-5xl text-on-surface sm:text-6xl">
                   Studio workflow,
                   <br />
                   digital speed.
                 </h2>
                 <div className="space-y-12">
-                  {[
-                    {
-                      id: "01",
-                      title: "Ingestion",
-                      desc: "Upload site surveys, zoning documents, or simple sketches to seed the AI model.",
-                    },
-                    {
-                      id: "02",
-                      title: "Synthesize",
-                      desc: "Review 5+ valid design analysis generated against your specific constraints.",
-                    },
-                    {
-                      id: "03",
-                      title: "Refine",
-                      desc: "Fine-tune the chosen direction with interactive sliders and manual geometry overrides.",
-                    },
-                  ].map((step, index) => (
+                  {workflowSteps.map((step, index) => (
                     <motion.div
                       key={index}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      className={`flex gap-8 border-l-2 pl-8 py-2 transition-colors duration-500 ${
+                      className={`flex gap-4 border-l-2 py-2 pl-5 transition-colors duration-500 sm:gap-8 sm:pl-8 ${
                         index === 0 ? "border-primary" : "border-outline-variant/20 hover:border-primary"
                       }`}
                     >
-                      <span className="font-headline text-4xl italic text-outline-variant/40">{step.id}</span>
+                      <span className="font-headline text-3xl italic text-outline-variant/40 sm:text-4xl">{step.id}</span>
                       <div>
-                        <h4 className="mb-2 font-body text-xl font-bold">{step.title}</h4>
+                        <h4 className="mb-2 font-body text-lg font-bold sm:text-xl">{step.title}</h4>
                         <p className="font-body text-sm text-on-surface-variant">{step.desc}</p>
                       </div>
                     </motion.div>
@@ -447,23 +468,23 @@ export default function App() {
                   initial={{ rotate: 0, scale: 0.9 }}
                   whileInView={{ rotate: 2, scale: 1 }}
                   transition={{ duration: 1, ease: "easeOut" }}
-                  className="relative w-full max-w-md rounded-sm bg-surface p-1 shadow-2xl aspect-[4/5]"
+                  className="relative aspect-[4/5] w-full max-w-[22rem] rounded-sm bg-surface p-1.5 shadow-2xl sm:max-w-md sm:p-1"
                 >
-                  <div className="flex h-full w-full flex-col border border-outline-variant/10 bg-surface-container-lowest p-8">
-                    <div className="mb-12 flex items-center justify-between">
-                      <div className="h-4 w-24 bg-surface-container" />
-                      <div className="h-8 w-8 rounded-full bg-primary-container" />
+                  <div className="flex h-full w-full flex-col border border-outline-variant/10 bg-surface-container-lowest p-5 sm:p-8">
+                    <div className="mb-8 flex items-center justify-between sm:mb-12">
+                      <div className="h-3 w-20 bg-surface-container sm:h-4 sm:w-24" />
+                      <div className="h-7 w-7 rounded-full bg-primary-container sm:h-8 sm:w-8" />
                     </div>
-                    <div className="flex-1 space-y-6">
-                      <div className="h-32 w-full rounded-sm bg-surface-container-low" />
+                    <div className="flex-1 space-y-5 sm:space-y-6">
+                      <div className="h-24 w-full rounded-sm bg-surface-container-low sm:h-32" />
                       <div className="h-4 w-3/4 bg-surface-container" />
                       <div className="h-4 w-1/2 bg-surface-container" />
-                      <div className="mt-8 grid grid-cols-2 gap-4">
-                        <div className="h-20 rounded-sm bg-primary/5" />
-                        <div className="h-20 rounded-sm bg-primary/5" />
+                      <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4">
+                        <div className="h-16 rounded-sm bg-primary/5 sm:h-20" />
+                        <div className="h-16 rounded-sm bg-primary/5 sm:h-20" />
                       </div>
                     </div>
-                    <div className="mt-auto flex justify-between border-t border-outline-variant/10 pt-8">
+                    <div className="mt-auto flex justify-between border-t border-outline-variant/10 pt-6 sm:pt-8">
                       <div className="h-3 w-12 bg-surface-container" />
                       <div className="h-3 w-12 bg-surface-container" />
                     </div>
@@ -472,10 +493,10 @@ export default function App() {
                   <motion.div
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute -left-4 top-1/4 max-w-[120px] rounded-sm bg-on-surface p-3 font-body text-[10px] text-surface shadow-xl md:-left-12"
+                    className="absolute right-3 top-3 max-w-[8.5rem] rounded-sm bg-on-surface p-3 font-body text-[9px] text-surface shadow-xl sm:-left-12 sm:right-auto sm:top-1/4 sm:max-w-[120px] sm:text-[10px]"
                   >
                     <Sparkles size={14} className="mb-1" />
-                    OPTIMIZED FOR PLACEHOLDER REVIEW
+                    DESIGNED FOR LOWER CARBON IMPACT
                   </motion.div>
                 </motion.div>
               </div>
@@ -483,21 +504,21 @@ export default function App() {
           </div>
         </section>
 
-        <section className="px-6 py-40 text-center md:px-12">
+        <section className="px-4 py-32 text-center sm:px-6 sm:py-40 md:px-12">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="serif mb-8 text-6xl text-on-surface md:text-7xl">Design the next horizon.</h2>
+            <h2 className="serif mb-8 text-5xl text-on-surface sm:text-6xl md:text-7xl">Design the next horizon.</h2>
             <p className="serif mb-12 text-xl italic text-on-surface-variant">Join the studios defining the future of practice.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href={demoMailto}
                 aria-label={demoAriaLabel}
-                className="rounded-md bg-primary px-10 py-4 font-bold tracking-tight text-on-primary transition-all hover:bg-primary-dim active:scale-95"
+                className="w-full rounded-md bg-primary px-8 py-4 font-bold tracking-tight text-on-primary transition-all hover:bg-primary-dim active:scale-95 sm:w-auto sm:px-10"
               >
                 Request Studio Demo
               </a>
               <a
                 href="/monograph/"
-                className="serif rounded-md border border-outline-variant/30 px-10 py-4 font-bold italic text-primary transition-all hover:bg-surface-container-low active:scale-95"
+                className="serif w-full rounded-md border border-outline-variant/30 px-8 py-4 font-bold italic text-primary transition-all hover:bg-surface-container-low active:scale-95 sm:w-auto sm:px-10"
               >
                 Read the Monograph
               </a>
@@ -506,7 +527,7 @@ export default function App() {
         </section>
       </main>
 
-      <footer className="w-full bg-surface-container px-6 py-20 md:px-12">
+      <footer className="w-full bg-surface-container px-4 py-16 sm:px-6 sm:py-20 md:px-12">
         <div className="mx-auto flex max-w-[1920px] flex-col justify-between md:flex-row md:items-end">
           <div className="flex w-full flex-col items-start gap-6 md:w-auto">
             <div className="font-headline text-xl font-semibold text-on-surface">COCOON</div>
@@ -514,16 +535,8 @@ export default function App() {
               © {currentYear} Cocoon Lab. Cocoon is built for the architect.
             </div>
           </div>
-          <div className="mt-10 flex flex-wrap gap-8 md:mt-0">
-            {[
-              { label: "Privacy", href: "/privacy/" },
-              { label: "Terms", href: "/terms/" },
-              { label: "Studio", href: "/studio/" },
-              { label: "Contact", href: "/contact/" },
-              { label: "Partners", href: "/partners/" },
-              { label: "Team", href: "/team/" },
-              { label: "Blog", href: "/blog/" },
-            ].map((link) => (
+          <div className="mt-10 flex flex-wrap gap-5 sm:gap-8 md:mt-0">
+            {footerLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
