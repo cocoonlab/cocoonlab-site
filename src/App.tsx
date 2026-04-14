@@ -27,7 +27,7 @@ const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Open the Cocoon studio demo request form";
 const lensAssetVersion = "20260413-lenses-1";
 const demoButtonClassName =
-  "items-center justify-center rounded-md bg-primary px-6 py-2 font-label text-sm leading-none text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95";
+  "inline-flex min-h-9 items-center justify-center rounded-md bg-primary px-4 py-2 font-label text-[0.8125rem] leading-none text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:px-6 sm:text-sm";
 const secondaryCtaClassName =
   "rounded-md border border-outline-variant/25 bg-surface-container-low px-6 py-2 font-label text-sm text-on-surface shadow-sm transition-all duration-200 hover:border-outline-variant/40 hover:bg-surface-container active:scale-95";
 
@@ -199,7 +199,7 @@ export default function App() {
             <a
               href={demoRequestHref}
               aria-label={demoAriaLabel}
-              className={`hidden sm:inline-flex ${demoButtonClassName}`}
+              className={demoButtonClassName}
             >
               Request Studio Demo
             </a>

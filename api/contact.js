@@ -6,6 +6,7 @@ const MAX_PROJECT_LENGTH = 200;
 const MAX_TIMING_LENGTH = 160;
 const MAX_MESSAGE_LENGTH = 4_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const DEFAULT_GITHUB_API_URL = "https://api.github.com";
 
 function sendJson(res, status, payload, extraHeaders = {}) {
   Object.entries({
@@ -91,6 +92,52 @@ function getAssignees() {
     .filter(Boolean);
 }
 
+function getGitHubConfig() {
+  const repo = normalizeText(process.env.CONTACT_GITHUB_REPO);
+  const token = normalizeText(process.env.CONTACT_GITHUB_TOKEN);
+  const apiUrl = normalizeText(process.env.CONTACT_GITHUB_API_URL) || DEFAULT_GITHUB_API_URL;
+
+  if (!repo || !token) {
+    const error = new Error("Missing contact intake configuration.");
+    error.code = "CONTACT_INTAKE_NOT_CONFIGURED";
+    throw error;
+  }
+
+  const match = repo.match(/^([^/\s]+)\/([^/\s]+)$/);
+
+  if (!match) {
+    const error = new Error("Invalid CONTACT_GITHUB_REPO format.");
+    error.code = "CONTACT_INTAKE_INVALID_REPO";
+    throw error;
+  }
+
+  return {
+    apiUrl: apiUrl.replace(/\/+$/, ""),
+    owner: match[1],
+    repo: match[2],
+    token,
+  };
+}
+
+async function requestGitHubJson(url, token, payload) {
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Accept: "application/vnd.github+json",
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+      "User-Agent": "cocoonlab-contact-intake",
+      "X-GitHub-Api-Version": "2022-11-28",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  const contentType = String(response.headers.get("content-type") ?? "");
+  const data = contentType.includes("application/json") ? await response.json() : await response.text();
+
+  return { response, data };
+}
+
 function normalizeIntent(value) {
   return value === "studio-demo" ? "studio-demo" : "contact";
 }
@@ -168,40 +215,53 @@ function validatePayload(payload) {
 }
 
 async function createGitHubIssue(payload) {
-  const repo = process.env.CONTACT_GITHUB_REPO;
-  const token = process.env.CONTACT_GITHUB_TOKEN;
-
-  if (!repo || !token) {
-    throw new Error("Contact intake is not configured.");
-  }
+  const { apiUrl, owner, repo, token } = getGitHubConfig();
 
   const labels = getLabels();
   const assignees = getAssignees();
-  const issuePayload = {
+  const issueUrl = `${apiUrl}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/issues`;
+  const baseIssuePayload = {
     title: issueTitle(payload),
     body: issueBody(payload),
-    ...(labels.length ? { labels } : {}),
-    ...(assignees.length ? { assignees } : {}),
   };
 
-  const response = await fetch(`https://api.github.com/repos/${repo}/issues`, {
-    method: "POST",
-    headers: {
-      Accept: "application/vnd.github+json",
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-      "User-Agent": "cocoonlab-contact-intake",
-      "X-GitHub-Api-Version": "2022-11-28",
-    },
-    body: JSON.stringify(issuePayload),
-  });
+  const { response, data } = await requestGitHubJson(issueUrl, token, baseIssuePayload);
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`GitHub issue creation failed: ${response.status} ${errorText}`);
+    throw new Error(
+      `GitHub issue creation failed: ${response.status} ${
+        typeof data === "string" ? data : JSON.stringify(data)
+      }`,
+    );
   }
 
-  return response.json();
+  const createdIssue = data;
+
+  if (labels.length) {
+    const labelUrl = `${apiUrl}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/issues/${createdIssue.number}/labels`;
+    const labelResult = await requestGitHubJson(labelUrl, token, { labels });
+
+    if (!labelResult.response.ok) {
+      console.warn("[contact-api] Could not apply labels to contact issue.", {
+        status: labelResult.response.status,
+        labels,
+      });
+    }
+  }
+
+  if (assignees.length) {
+    const assigneeUrl = `${apiUrl}/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/issues/${createdIssue.number}/assignees`;
+    const assigneeResult = await requestGitHubJson(assigneeUrl, token, { assignees });
+
+    if (!assigneeResult.response.ok) {
+      console.warn("[contact-api] Could not assign contact issue.", {
+        status: assigneeResult.response.status,
+        assignees,
+      });
+    }
+  }
+
+  return createdIssue;
 }
 
 export default async function handler(req, res) {
@@ -256,13 +316,14 @@ export default async function handler(req, res) {
   } catch (error) {
     console.error("[contact-api]", error);
 
-    const message = error instanceof Error ? error.message : "Unexpected error.";
-    const status = message === "Contact intake is not configured." ? 503 : 502;
+    const code = error && typeof error === "object" && "code" in error ? error.code : "";
+    const status =
+      code === "CONTACT_INTAKE_NOT_CONFIGURED" || code === "CONTACT_INTAKE_INVALID_REPO" ? 503 : 502;
 
     return sendJson(res, status, {
       error:
         status === 503
-          ? "Contact intake is not configured yet."
+          ? "The contact form is temporarily unavailable. Please email rashid@cocoonlab.ai directly while we restore it."
           : "We could not send your message right now. Please try again shortly.",
     });
   }

@@ -16,6 +16,10 @@
   --warm: rgba(253, 231, 211, 0.32);
   --cool: rgba(214, 231, 217, 0.26);
   --shadow-soft: 0 16px 42px rgba(45, 52, 50, 0.05);
+  --page-width: 76rem;
+  --page-prose-width: 46rem;
+  --page-intro-width: 54rem;
+  --page-grid-gap: clamp(2rem, 4vw, 4rem);
 }
 
 * {
@@ -186,7 +190,7 @@ strong {
 .document-stage,
 .terms-stage,
 .contact-stage {
-  padding: clamp(2rem, 5vw, 4rem) 0 0;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 0;
 }
 
 .eyebrow,
@@ -211,21 +215,21 @@ strong {
 .document-hero,
 .terms-hero {
   display: grid;
-  gap: 1rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  gap: clamp(1.15rem, 2vw, 1.45rem);
+  margin-bottom: clamp(3rem, 5vw, 4.75rem);
 }
 
 .page-intro {
-  max-width: 64rem;
+  max-width: var(--page-intro-width);
 }
 
 .contact-intro {
-  max-width: 60rem;
+  max-width: var(--page-intro-width);
 }
 
 .document-hero,
 .terms-hero {
-  max-width: 56rem;
+  max-width: var(--page-intro-width);
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -238,9 +242,10 @@ strong {
   max-width: none;
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
   font-weight: 400;
-  line-height: 0.92;
+  line-height: 0.96;
   letter-spacing: -0.055em;
   color: var(--ink);
+  text-wrap: balance;
 }
 
 .page-intro h1,
@@ -257,19 +262,20 @@ strong {
 .contact-intro p,
 .document-hero p,
 .terms-hero p {
-  max-width: 48rem;
+  max-width: 43rem;
   color: rgba(90, 96, 94, 0.9);
   font-family: "Newsreader", Georgia, "Times New Roman", serif;
   font-size: clamp(1.32rem, 2.3vw, 2.06rem);
   font-style: italic;
   line-height: 1.46;
+  text-wrap: pretty;
 }
 
 .document-hero p,
 .terms-hero p {
   margin-left: auto;
   margin-right: auto;
-  max-width: 42rem;
+  max-width: 40rem;
   font-size: clamp(1.24rem, 2vw, 1.7rem);
 }
 
@@ -295,15 +301,17 @@ strong {
 
 .page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.06fr) minmax(18rem, 0.94fr);
-  gap: clamp(1.4rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, 0.82fr);
+  gap: var(--page-grid-gap);
   align-items: start;
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
 }
 
 .page-stack,
 .article-stack {
   display: grid;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 .page-card,
@@ -403,12 +411,12 @@ strong {
 
 .page-prose {
   display: grid;
-  gap: 1rem;
-  max-width: 50rem;
+  gap: 1.1rem;
+  max-width: var(--page-prose-width);
 }
 
 .page-prose h2 {
-  margin-top: 0.65rem;
+  margin-top: 1rem;
 }
 
 .article-card {
@@ -449,7 +457,8 @@ strong {
 .people-grid {
   display: grid;
   gap: 1rem;
-  margin-top: 1.5rem;
+  width: min(100%, var(--page-width));
+  margin: clamp(2rem, 4vw, 2.75rem) auto 0;
 }
 
 .card-grid {
@@ -538,10 +547,12 @@ strong {
 
 .contact-layout {
   display: grid;
-  grid-template-columns: minmax(17rem, 24rem) minmax(0, 1fr);
-  gap: clamp(2rem, 4vw, 4rem);
+  grid-template-columns: minmax(16.5rem, 22rem) minmax(0, 1fr);
+  gap: clamp(2.25rem, 4vw, 4.5rem);
   align-items: start;
-  padding-top: clamp(1.6rem, 3vw, 2.5rem);
+  width: min(100%, var(--page-width));
+  margin: 0 auto;
+  padding-top: clamp(2rem, 3vw, 3rem);
   border-top: 1px solid rgba(173, 179, 176, 0.28);
 }
 
@@ -684,14 +695,20 @@ strong {
 .document-content,
 .terms-content {
   display: grid;
-  gap: 2.5rem;
-  max-width: 48rem;
+  gap: 2.75rem;
+  width: min(100%, var(--page-prose-width));
   margin: 0 auto;
+}
+
+.document-block,
+.terms-block {
+  display: grid;
+  gap: 0.95rem;
 }
 
 .document-block h2,
 .terms-block h2 {
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .actions {
@@ -702,9 +719,14 @@ strong {
 }
 
 .section-divider {
-  margin-top: 2rem;
-  padding-top: 1.6rem;
+  width: min(100%, var(--page-width));
+  margin: clamp(2.5rem, 4vw, 3.25rem) auto 0;
+  padding-top: clamp(1.8rem, 3vw, 2.35rem);
   border-top: 1px solid rgba(173, 179, 176, 0.3);
+}
+
+.section-divider > .page-prose {
+  max-width: var(--page-prose-width);
 }
 
 .page-footer {
@@ -808,6 +830,17 @@ strong {
   .document-hero p,
   .terms-hero p {
     font-size: clamp(1.12rem, 5vw, 1.5rem);
+  }
+
+  .page-grid,
+  .contact-layout,
+  .card-grid,
+  .partner-grid,
+  .people-grid,
+  .document-content,
+  .terms-content,
+  .section-divider {
+    width: 100%;
   }
 
   .page-meta span {
