@@ -39,6 +39,8 @@ const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
 const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
 const lensAssetVersion = "20260413-lenses-1";
+const demoButtonClassName =
+  "rounded-md bg-primary px-6 py-2 font-label text-sm text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95";
 
 const lensContent = {
   Site: {
@@ -208,7 +210,7 @@ export default function App() {
             <a
               href={demoMailto}
               aria-label={demoAriaLabel}
-              className="hidden rounded-md bg-primary px-6 py-2 font-label text-sm text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:block"
+              className={`hidden sm:inline-flex ${demoButtonClassName}`}
             >
               Request Studio Demo
             </a>
@@ -556,7 +558,7 @@ export default function App() {
               <a
                 href={demoMailto}
                 aria-label={demoAriaLabel}
-                className="w-full rounded-md bg-primary px-8 py-4 font-bold tracking-tight text-on-primary transition-all hover:bg-primary-dim active:scale-95 sm:w-auto sm:px-10"
+                className={`inline-flex w-full justify-center sm:w-auto ${demoButtonClassName}`}
               >
                 Request Studio Demo
               </a>
