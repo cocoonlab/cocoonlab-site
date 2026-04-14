@@ -354,19 +354,19 @@ function WorkflowReportPreview() {
           </div>
 
           <div className="relative mt-4 grid gap-3">
-            <div className="grid grid-cols-[1.28fr_0.84fr] gap-3">
+            <div className="grid grid-cols-[1.44fr_0.68fr] gap-3">
               <section className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
                 <div className="flex items-center justify-between text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">
                   <span>Cover summary</span>
                   <span>Waterfront mixed-use</span>
                 </div>
 
-                <div className="mt-3 grid grid-cols-[1.05fr_0.85fr] gap-3">
+                <div className="mt-3 grid grid-cols-[minmax(0,1.6fr)_minmax(6.8rem,0.72fr)] gap-3">
                   <div>
                     <div className="font-body text-[1.02rem] font-semibold leading-[1.35] text-on-surface sm:text-[1.08rem]">
                       A stepped timber-hybrid scheme aligns frontage, daylight, and zoning while lowering carbon from the first iteration.
                     </div>
-                    <p className="mt-2 max-w-[13rem] text-[10.5px] leading-[1.55] text-on-surface-variant/78 sm:max-w-[14rem] sm:text-[11px]">
+                    <p className="mt-2 max-w-none text-[10.5px] leading-[1.55] text-on-surface-variant/78 sm:text-[11px]">
                       Generated from site inputs, zoning envelopes, and material scenarios so carbon, cost, code, and geometry stay reviewable in one
                       place.
                     </p>
@@ -624,10 +624,10 @@ function WorkflowReportPreview() {
         <motion.div
           animate={{ y: [0, -9, 0] }}
           transition={{ duration: 4.4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-3 top-3 max-w-[9.2rem] rounded-[0.7rem] bg-on-surface px-3 py-3 font-body text-[9px] text-surface shadow-xl sm:-right-12 sm:left-auto sm:top-10 sm:max-w-[138px] sm:px-3.5 sm:text-[10px]"
+          className="absolute right-3 top-3 max-w-[9.2rem] rounded-[0.7rem] bg-on-surface px-3 py-3 font-body text-[9px] text-surface shadow-xl sm:right-2 sm:left-auto sm:top-8 sm:max-w-[11.5rem] sm:px-4 sm:py-3.5 sm:text-[10px] lg:right-0 lg:max-w-[12rem]"
         >
           <Sparkles size={14} className="mb-1.5" />
-          <div className="leading-[1.45]">DESIGNED FOR LOWER CARBON IMPACT</div>
+          <div className="leading-[1.45] sm:text-[10.5px]">DESIGNED FOR LOWER CARBON IMPACT</div>
           <div className="mt-1.5 text-[8px] uppercase tracking-[0.16em] text-surface/60 sm:text-[8.5px]">31% lower embodied carbon</div>
         </motion.div>
       </div>
@@ -733,7 +733,7 @@ export default function App() {
 
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface/10 via-transparent to-surface/18" />
 
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-3.5 sm:p-6 md:p-12">
+              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-3 sm:p-6 md:p-12">
                 <div className="flex items-start justify-start sm:justify-between sm:gap-4">
                   <div className="pointer-events-auto">
                     <motion.span
@@ -741,7 +741,7 @@ export default function App() {
                       initial={{ opacity: 0, y: -8 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="blueprint-chip inline-flex max-w-[18rem] rounded-full border border-white/20 bg-surface-container-highest/72 px-3 py-1.5 text-[11px] leading-snug shadow-sm backdrop-blur-md sm:max-w-full sm:px-4 sm:py-1 sm:text-sm sm:leading-relaxed"
+                      className="blueprint-chip inline-flex max-w-[15.75rem] rounded-full border border-white/20 bg-surface-container-highest/72 px-3 py-1.5 text-[10px] leading-snug shadow-sm backdrop-blur-md sm:max-w-full sm:px-4 sm:py-1 sm:text-sm sm:leading-relaxed"
                     >
                       {activeLensContent.chip}
                     </motion.span>
@@ -767,33 +767,33 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="pointer-events-auto flex flex-col gap-3 sm:hidden">
+                <div className="pointer-events-auto flex flex-col gap-2.5 sm:hidden">
                   <motion.div
                     key={`${activeLens}-metric-mobile`}
                     initial={{ y: 12, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="flex w-full max-w-[15.5rem] items-start gap-3 self-start rounded-[1.15rem] border border-outline-variant/12 bg-surface/78 p-3 shadow-lg backdrop-blur-md"
+                    className="flex w-full max-w-[13.9rem] items-start gap-2.5 self-start rounded-[1.05rem] border border-outline-variant/12 bg-surface/74 p-2.5 shadow-lg backdrop-blur-lg"
                   >
-                    <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={20} />
+                    <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={18} />
                     <div className="min-w-0">
-                      <div className="text-[9px] uppercase tracking-[0.24em] text-outline">{activeLensContent.metricLabel}</div>
-                      <div className="font-headline text-[1.85rem] leading-none font-bold text-on-surface">{activeLensContent.metricValue}</div>
-                      <div className="mt-1 max-w-[12.5rem] text-[11px] leading-relaxed text-on-surface-variant">
+                      <div className="text-[8px] uppercase tracking-[0.22em] text-outline">{activeLensContent.metricLabel}</div>
+                      <div className="font-headline text-[1.55rem] leading-none font-bold text-on-surface">{activeLensContent.metricValue}</div>
+                      <div className="mt-1 max-w-[10.75rem] text-[10px] leading-[1.55] text-on-surface-variant">
                         {activeLensContent.metricNote}
                       </div>
                     </div>
                   </motion.div>
 
                   <div className="flex w-full justify-center">
-                    <div className="glass-panel grid w-full grid-cols-5 gap-1 rounded-[1.4rem] border border-white/20 p-1.5 shadow-xl">
+                    <div className="glass-panel grid w-full max-w-[17rem] grid-cols-5 gap-1 rounded-[1.25rem] border border-white/20 p-1.25 shadow-xl">
                       {lenses.map((lens) => (
                         <button
                           key={`${lens}-mobile`}
                           type="button"
                           onClick={() => setActiveLens(lens)}
                           aria-pressed={activeLens === lens}
-                          className={`min-w-0 rounded-[1rem] px-1.5 py-2.5 text-[10px] font-medium leading-none transition-all duration-300 ${
+                          className={`min-w-0 rounded-[0.9rem] px-1 py-2.25 text-[9px] font-medium leading-none transition-all duration-300 ${
                             activeLens === lens
                               ? "bg-primary text-on-primary shadow-lg"
                               : "text-on-surface-variant hover:bg-surface-variant/40"
