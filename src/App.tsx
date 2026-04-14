@@ -354,16 +354,16 @@ function WorkflowReportPreview() {
           </div>
 
           <div className="relative mt-4 grid gap-3">
-            <div className="grid grid-cols-[1.44fr_0.68fr] gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.44fr_0.68fr]">
               <section className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
                 <div className="flex items-center justify-between text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">
                   <span>Cover summary</span>
                   <span>Waterfront mixed-use</span>
                 </div>
 
-                <div className="mt-3 grid grid-cols-[minmax(0,1.6fr)_minmax(6.8rem,0.72fr)] gap-3">
+                <div className="mt-3 grid grid-cols-1 gap-2.5 sm:grid-cols-[minmax(0,1.6fr)_minmax(6.8rem,0.72fr)] sm:gap-3">
                   <div>
-                    <div className="font-body text-[1.02rem] font-semibold leading-[1.35] text-on-surface sm:text-[1.08rem]">
+                    <div className="font-body text-[0.94rem] font-semibold leading-[1.32] text-on-surface sm:text-[1.08rem]">
                       A stepped timber-hybrid scheme aligns frontage, daylight, and zoning while lowering carbon from the first iteration.
                     </div>
                     <p className="mt-2 max-w-none text-[10.5px] leading-[1.55] text-on-surface-variant/78 sm:text-[11px]">
@@ -456,7 +456,7 @@ function WorkflowReportPreview() {
               </aside>
             </div>
 
-            <div className="grid grid-cols-[1.26fr_0.84fr] gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.26fr_0.84fr]">
               <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
                 <div className="mb-2 flex items-center justify-between">
                   <div>
@@ -544,7 +544,7 @@ function WorkflowReportPreview() {
               </section>
             </div>
 
-            <div className="grid grid-cols-[1.02fr_0.98fr] gap-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.02fr_0.98fr]">
               <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
                 <div className="flex items-center justify-between">
                   <div>
@@ -767,19 +767,21 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="pointer-events-auto flex flex-col gap-2.5 sm:hidden">
+                <div className="pointer-events-auto mx-auto flex w-full max-w-[17.25rem] flex-col gap-2.5 sm:hidden">
                   <motion.div
                     key={`${activeLens}-metric-mobile`}
                     initial={{ y: 12, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="flex w-full max-w-[13.9rem] items-start gap-2.5 self-start rounded-[1.05rem] border border-outline-variant/12 bg-surface/74 p-2.5 shadow-lg backdrop-blur-lg"
+                    className="flex w-full max-w-[13.4rem] items-start gap-2 self-start rounded-[1rem] border border-outline-variant/12 bg-surface/74 px-2.5 py-2.25 shadow-lg backdrop-blur-lg"
                   >
-                    <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={18} />
+                    <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={17} />
                     <div className="min-w-0">
-                      <div className="text-[8px] uppercase tracking-[0.22em] text-outline">{activeLensContent.metricLabel}</div>
-                      <div className="font-headline text-[1.55rem] leading-none font-bold text-on-surface">{activeLensContent.metricValue}</div>
-                      <div className="mt-1 max-w-[10.75rem] text-[10px] leading-[1.55] text-on-surface-variant">
+                      <div className="text-[7px] uppercase tracking-[0.22em] text-outline">{activeLensContent.metricLabel}</div>
+                      <div className="font-headline text-balance text-[1.42rem] leading-[0.94] font-bold tracking-[-0.02em] text-on-surface">
+                        {activeLensContent.metricValue}
+                      </div>
+                      <div className="mt-1 max-w-[10.2rem] text-[9.5px] leading-[1.45] text-on-surface-variant">
                         {activeLensContent.metricNote}
                       </div>
                     </div>
