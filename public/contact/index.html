@@ -38,6 +38,7 @@
     />
     <meta name="twitter:image" content="https://cocoonlab.ai/og-cocoonlab.svg" />
     <meta name="twitter:image:alt" content="Contact Cocoon Lab about Cocoon" />
+    <script type="module" src="/contact.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -130,29 +131,38 @@
             </article>
           </div>
 
-          <form
-            class="contact-form"
-            action="mailto:rashid@cocoonlab.ai?subject=Contact%20Cocoon%20Lab%20about%20Cocoon"
-            method="post"
-            enctype="text/plain"
-          >
+          <form class="contact-form" data-contact-form novalidate>
             <label class="contact-field">
               <span>Name</span>
-              <input type="text" name="Name" placeholder="Your Name" autocomplete="name" />
+              <input type="text" name="name" placeholder="Your Name" autocomplete="name" maxlength="120" required />
             </label>
 
             <label class="contact-field">
               <span>Email</span>
-              <input type="email" name="Email" placeholder="you@company.com" autocomplete="email" />
+              <input type="email" name="email" placeholder="you@company.com" autocomplete="email" maxlength="160" required />
+            </label>
+
+            <label class="contact-field">
+              <span>Company</span>
+              <input type="text" name="company" placeholder="Your Company" autocomplete="organization" maxlength="160" />
             </label>
 
             <label class="contact-field contact-field-message">
               <span>Message</span>
-              <textarea name="Message" rows="5" placeholder="How can we help?"></textarea>
+              <textarea name="message" rows="5" placeholder="How can we help?" maxlength="4000" required></textarea>
             </label>
 
-            <button class="contact-submit" type="submit">Send Message</button>
-            <p class="contact-form-note">Send Message opens your default email client addressed to Rashid at Cocoon Lab.</p>
+            <div class="contact-honeypot" aria-hidden="true">
+              <label class="contact-field">
+                <span>Website</span>
+                <input type="text" name="website" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <button class="contact-submit" data-contact-submit type="submit">Send Message</button>
+            <p class="contact-form-note contact-form-status" data-contact-status aria-live="polite">
+              Messages are routed directly into Cocoon Lab&apos;s internal intake queue.
+            </p>
           </form>
         </div>
       </section>
