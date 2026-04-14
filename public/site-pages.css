@@ -527,6 +527,19 @@ strong {
   align-items: start;
 }
 
+.studio-feature > div:last-child {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.studio-feature h2 {
+  margin: 0;
+}
+
+.studio-feature p {
+  margin: 0;
+}
+
 .studio-feature-icon,
 .contact-detail-icon {
   display: inline-flex;

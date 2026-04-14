@@ -8,6 +8,11 @@ const MAX_MESSAGE_LENGTH = 4_000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const DEFAULT_GITHUB_API_URL = "https://api.github.com";
 
+function getRequestUrl(req) {
+  const host = String(req.headers.host || "cocoonlab.ai");
+  return new URL(req.url || "/", `https://${host}`);
+}
+
 function sendJson(res, status, payload, extraHeaders = {}) {
   Object.entries({
     "Content-Type": "application/json; charset=utf-8",
@@ -116,6 +121,31 @@ function getGitHubConfig() {
     owner: match[1],
     repo: match[2],
     token,
+  };
+}
+
+function getGitHubConfigStatus() {
+  const repo = normalizeText(process.env.CONTACT_GITHUB_REPO);
+  const token = normalizeText(process.env.CONTACT_GITHUB_TOKEN);
+  const missing = [];
+
+  if (!repo) {
+    missing.push("CONTACT_GITHUB_REPO");
+  }
+
+  if (!token) {
+    missing.push("CONTACT_GITHUB_TOKEN");
+  }
+
+  const repoFormatValid = !repo || /^([^/\s]+)\/([^/\s]+)$/.test(repo);
+
+  return {
+    configured: missing.length === 0 && repoFormatValid,
+    missing,
+    repoFormatValid,
+    repo,
+    labelsConfigured: getLabels().length > 0,
+    assigneesConfigured: getAssignees().length > 0,
   };
 }
 
@@ -228,11 +258,21 @@ async function createGitHubIssue(payload) {
   const { response, data } = await requestGitHubJson(issueUrl, token, baseIssuePayload);
 
   if (!response.ok) {
-    throw new Error(
+    const error = new Error(
       `GitHub issue creation failed: ${response.status} ${
         typeof data === "string" ? data : JSON.stringify(data)
       }`,
     );
+
+    if (response.status === 401 || response.status === 403) {
+      error.code = "CONTACT_INTAKE_GITHUB_AUTH";
+    } else if (response.status === 404) {
+      error.code = "CONTACT_INTAKE_GITHUB_NOT_FOUND";
+    } else {
+      error.code = "CONTACT_INTAKE_GITHUB_ERROR";
+    }
+
+    throw error;
   }
 
   const createdIssue = data;
@@ -265,13 +305,40 @@ async function createGitHubIssue(payload) {
 }
 
 export default async function handler(req, res) {
+  if (req.method === "GET") {
+    const requestUrl = getRequestUrl(req);
+
+    if (requestUrl.searchParams.get("health") !== "1") {
+      return sendJson(
+        res,
+        405,
+        { error: "Method not allowed." },
+        {
+          Allow: "POST, GET",
+        },
+      );
+    }
+
+    const status = getGitHubConfigStatus();
+
+    return sendJson(res, status.configured ? 200 : 503, {
+      ok: status.configured,
+      configured: status.configured,
+      repo: status.repo || null,
+      repoFormatValid: status.repoFormatValid,
+      missing: status.missing,
+      labelsConfigured: status.labelsConfigured,
+      assigneesConfigured: status.assigneesConfigured,
+    });
+  }
+
   if (req.method !== "POST") {
     return sendJson(
       res,
       405,
       { error: "Method not allowed." },
       {
-        Allow: "POST",
+        Allow: "POST, GET",
       },
     );
   }
@@ -320,11 +387,19 @@ export default async function handler(req, res) {
     const status =
       code === "CONTACT_INTAKE_NOT_CONFIGURED" || code === "CONTACT_INTAKE_INVALID_REPO" ? 503 : 502;
 
+    let message = "We could not send your message right now. Please try again shortly.";
+
+    if (status === 503) {
+      message = "The contact form is temporarily unavailable. Please email rashid@cocoonlab.ai directly while we restore it.";
+    } else if (code === "CONTACT_INTAKE_GITHUB_AUTH") {
+      message = "The contact form is connected, but GitHub rejected the request. Please check the token and repository permissions.";
+    } else if (code === "CONTACT_INTAKE_GITHUB_NOT_FOUND") {
+      message = "The contact form is connected, but the configured GitHub repository could not be found.";
+    }
+
     return sendJson(res, status, {
-      error:
-        status === 503
-          ? "The contact form is temporarily unavailable. Please email rashid@cocoonlab.ai directly while we restore it."
-          : "We could not send your message right now. Please try again shortly.",
+      error: message,
+      code: code || "CONTACT_INTAKE_UNKNOWN",
     });
   }
 }

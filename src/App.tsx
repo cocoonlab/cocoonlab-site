@@ -8,7 +8,7 @@ import {
   ArrowRight,
   Sparkles,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const contactEmail = "rashid@cocoonlab.ai";
 const demoRequestHref = "/contact/?intent=studio-demo#contact-form";
@@ -93,6 +93,12 @@ const lensContent = {
     icon: Sparkles,
   },
 } as const;
+
+type LensName = keyof typeof lensContent;
+
+const lensNames = Object.keys(lensContent) as LensName[];
+const lensAutoplayIntervalMs = 4200;
+const lensAutoplayResumeDelayMs = 10000;
 
 const lensFeatures = [
   {
@@ -645,12 +651,15 @@ const footerLinks = [
   { label: "Blog", href: "/blog/" },
 ] as const;
 
-type LensName = keyof typeof lensContent;
+function prefersReducedMotion() {
+  return typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
 
 export default function App() {
   const [activeLens, setActiveLens] = useState<LensName>("Site");
+  const [isLensAutoplayActive, setIsLensAutoplayActive] = useState(true);
+  const lensAutoplayResumeTimeoutRef = useRef<number | null>(null);
 
-  const lenses = Object.keys(lensContent) as LensName[];
   const activeLensContent = lensContent[activeLens];
   const ActiveLensIcon = activeLensContent.icon;
   const currentYear = new Date().getFullYear();
@@ -668,6 +677,61 @@ export default function App() {
       },
     },
   };
+
+  function clearLensAutoplayResumeTimeout() {
+    if (lensAutoplayResumeTimeoutRef.current !== null) {
+      window.clearTimeout(lensAutoplayResumeTimeoutRef.current);
+      lensAutoplayResumeTimeoutRef.current = null;
+    }
+  }
+
+  function pauseLensAutoplay() {
+    clearLensAutoplayResumeTimeout();
+    setIsLensAutoplayActive(false);
+  }
+
+  function resumeLensAutoplay(delay = lensAutoplayResumeDelayMs) {
+    clearLensAutoplayResumeTimeout();
+
+    if (prefersReducedMotion()) {
+      setIsLensAutoplayActive(false);
+      return;
+    }
+
+    lensAutoplayResumeTimeoutRef.current = window.setTimeout(() => {
+      setIsLensAutoplayActive(true);
+      lensAutoplayResumeTimeoutRef.current = null;
+    }, delay);
+  }
+
+  function handleLensSelect(lens: LensName) {
+    setActiveLens(lens);
+    pauseLensAutoplay();
+    resumeLensAutoplay();
+  }
+
+  useEffect(() => {
+    if (!isLensAutoplayActive || prefersReducedMotion()) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActiveLens((currentLens) => {
+        const currentIndex = lensNames.indexOf(currentLens);
+        return lensNames[(currentIndex + 1) % lensNames.length];
+      });
+    }, lensAutoplayIntervalMs);
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [isLensAutoplayActive]);
+
+  useEffect(() => {
+    return () => {
+      clearLensAutoplayResumeTimeout();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-surface selection:bg-primary/20">
@@ -716,6 +780,14 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
+              onMouseEnter={pauseLensAutoplay}
+              onMouseLeave={() => resumeLensAutoplay(1800)}
+              onFocusCapture={pauseLensAutoplay}
+              onBlurCapture={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  resumeLensAutoplay(2200);
+                }
+              }}
               className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container shadow-sm sm:aspect-[16/11] lg:aspect-[16/9]"
             >
               <motion.img
@@ -789,19 +861,39 @@ export default function App() {
 
                   <div className="flex w-full justify-center">
                     <div className="glass-panel grid w-full max-w-[17rem] grid-cols-5 gap-1 rounded-[1.25rem] border border-white/20 p-1.25 shadow-xl">
-                      {lenses.map((lens) => (
+                      {lensNames.map((lens) => (
                         <button
                           key={`${lens}-mobile`}
                           type="button"
-                          onClick={() => setActiveLens(lens)}
+                          onClick={() => handleLensSelect(lens)}
                           aria-pressed={activeLens === lens}
-                          className={`min-w-0 rounded-[0.9rem] px-1 py-2.25 text-[9px] font-medium leading-none transition-all duration-300 ${
+                          aria-label={`Show the ${lens} lens`}
+                          className={`relative min-w-0 overflow-hidden rounded-[0.9rem] px-1 py-2.25 text-[9px] font-medium leading-none transition-all duration-300 ${
                             activeLens === lens
                               ? "bg-primary text-on-primary shadow-lg"
                               : "text-on-surface-variant hover:bg-surface-variant/40"
                           }`}
                         >
-                          {lens}
+                          {activeLens === lens ? (
+                            <>
+                              <motion.span
+                                layoutId="lens-active-pill-mobile"
+                                transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.85 }}
+                                className="absolute inset-0 rounded-[0.9rem] bg-primary shadow-lg"
+                              />
+                              {isLensAutoplayActive ? (
+                                <motion.span
+                                  key={`${lens}-mobile-progress`}
+                                  initial={{ scaleX: 0, opacity: 0.4 }}
+                                  animate={{ scaleX: 1, opacity: 0.9 }}
+                                  transition={{ duration: lensAutoplayIntervalMs / 1000, ease: "linear" }}
+                                  style={{ transformOrigin: "left center" }}
+                                  className="absolute inset-x-2 bottom-1 h-px rounded-full bg-white/55"
+                                />
+                              ) : null}
+                            </>
+                          ) : null}
+                          <span className="relative z-10">{lens}</span>
                         </button>
                       ))}
                     </div>
@@ -810,19 +902,41 @@ export default function App() {
 
                 <div className="hidden w-full justify-center sm:flex">
                   <div className="glass-panel pointer-events-auto grid w-full max-w-[32rem] grid-cols-5 gap-1 rounded-[1.5rem] border border-white/20 p-1.5 shadow-xl sm:flex sm:w-auto sm:max-w-none sm:rounded-full">
-                    {lenses.map((lens) => (
+                    {lensNames.map((lens) => (
                       <button
                         key={lens}
                         type="button"
-                        onClick={() => setActiveLens(lens)}
+                        onClick={() => handleLensSelect(lens)}
                         aria-pressed={activeLens === lens}
-                        className={`min-w-0 rounded-full px-3 py-2.5 text-[11px] font-medium transition-all duration-300 sm:px-4 sm:py-2 sm:text-xs md:px-6 ${
-                          activeLens === lens
-                            ? "bg-primary text-on-primary shadow-lg"
-                            : "text-on-surface-variant hover:bg-surface-variant/40"
-                        }`}
+                        aria-label={`Show the ${lens} lens`}
+                        className="relative min-w-0 overflow-hidden rounded-full px-3 py-2.5 text-[11px] font-medium transition-all duration-300 sm:px-4 sm:py-2 sm:text-xs md:px-6"
                       >
-                        {lens}
+                        {activeLens === lens ? (
+                          <>
+                            <motion.span
+                              layoutId="lens-active-pill-desktop"
+                              transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.85 }}
+                              className="absolute inset-0 rounded-full bg-primary shadow-lg"
+                            />
+                            {isLensAutoplayActive ? (
+                              <motion.span
+                                key={`${lens}-desktop-progress`}
+                                initial={{ scaleX: 0, opacity: 0.4 }}
+                                animate={{ scaleX: 1, opacity: 0.9 }}
+                                transition={{ duration: lensAutoplayIntervalMs / 1000, ease: "linear" }}
+                                style={{ transformOrigin: "left center" }}
+                                className="absolute inset-x-3 bottom-1.5 h-[1.5px] rounded-full bg-white/55"
+                              />
+                            ) : null}
+                          </>
+                        ) : null}
+                        <span
+                          className={`relative z-10 ${
+                            activeLens === lens ? "text-on-primary" : "text-on-surface-variant"
+                          }`}
+                        >
+                          {lens}
+                        </span>
                       </button>
                     ))}
                   </div>

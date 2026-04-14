@@ -1,49 +1,96 @@
 # Cocoon Lab site
 
-Contact: rashid@cocoonlab.ai
+Marketing site for `cocoonlab.ai`.
 
-## Contact form issue intake
+Built with Vite, React, Tailwind CSS v4, and a small Vercel serverless endpoint for contact intake.
 
-The contact page submits to `/api/contact`, which creates a GitHub issue from each message.
+## What is in the repo
 
-### Required Vercel environment variables
+- React homepage in [`src/App.tsx`](./src/App.tsx)
+- Shared public page styling in [`public/site-pages.css`](./public/site-pages.css)
+- Static routes in `public/`:
+  - `/privacy/`
+  - `/terms/`
+  - `/studio/`
+  - `/contact/`
+  - `/partners/`
+  - `/team/`
+  - `/blog/`
+  - `/monograph/`
+- Contact intake endpoint in [`api/contact.js`](./api/contact.js)
+- Build-time prerender step in [`scripts/prerender.tsx`](./scripts/prerender.tsx)
+
+## Local development
+
+Requirements:
+
+- Node.js `20+`
+- npm
+
+Commands:
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run lint
+```
+
+## Deploy
+
+The project is configured for Vercel in [`vercel.json`](./vercel.json).
+
+- install: `npm install`
+- build: `npm run build`
+- output: `dist`
+
+`npm run build` runs the Vite production build and then prerenders the homepage HTML into `dist/index.html`.
+
+## Contact form
+
+The contact page submits to `/api/contact`. Each successful submission creates a GitHub issue.
+
+Required environment variables:
 
 - `CONTACT_GITHUB_REPO=owner/repo`
 - `CONTACT_GITHUB_TOKEN=github_token_with_issue_write_access`
 
-### Optional Vercel environment variables
+Optional:
 
 - `CONTACT_GITHUB_LABELS=contact,website`
 - `CONTACT_GITHUB_ASSIGNEES=username1,username2`
 - `CONTACT_GITHUB_API_URL=https://api.github.com`
 
-### Recommended GitHub token setup
+Use [`.env.example`](./.env.example) as the local reference.
 
-Use a fine-grained personal access token rather than a broad classic token.
+### Verify contact intake
 
-1. In GitHub, open `Settings` -> `Developer settings` -> `Personal access tokens` -> `Fine-grained tokens`.
-2. Click `Generate new token`.
-3. Choose the account or organization that owns the repository.
-4. Restrict the token to the single repository you want the contact form to write into.
-5. Set repository permissions:
-   - `Issues: Read and write`
-   - `Metadata: Read-only`
-6. Generate the token and copy it immediately. GitHub will only show it once.
-7. If the repository belongs to an organization, the token may need organization approval before it can access that repository.
+After setting the environment variables and redeploying, open:
 
-If you use `CONTACT_GITHUB_ASSIGNEES`, the token owner must also be allowed to assign issues in that repository. If assignee or label configuration is invalid, the API now still creates the issue and only skips the optional assignment step.
+- `https://cocoonlab.ai/api/contact?health=1`
 
-### Vercel setup
+Expected configured response:
 
-1. Open your project in Vercel.
-2. Go to `Settings` -> `Environment Variables`.
-3. Add `CONTACT_GITHUB_REPO`.
-4. Add `CONTACT_GITHUB_TOKEN`.
-5. Optionally add labels and assignees.
-6. Save the variables for `Production` and `Preview` if you want both environments to work.
-7. Redeploy the project after saving the variables.
+```json
+{
+  "ok": true,
+  "configured": true,
+  "repo": "owner/repo",
+  "repoFormatValid": true,
+  "missing": [],
+  "labelsConfigured": false,
+  "assigneesConfigured": false
+}
+```
 
-### Notes
+If `configured` is `false`, the `missing` field will tell you what still needs to be set.
 
-- If the environment variables are missing or invalid, the public form now shows a generic temporary-unavailable message instead of exposing internal configuration details.
-- The API creates the GitHub issue first, then applies labels and assignees as a best-effort step so optional metadata does not block intake.
+## GitHub token setup
+
+Use a fine-grained personal access token scoped to the single repo that should receive contact issues.
+
+Required repository permission:
+
+- `Issues: Read and write`
+
+If the repo belongs to an organization, the token may need org approval before it works.
