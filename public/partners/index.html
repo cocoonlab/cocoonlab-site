@@ -61,52 +61,84 @@
       }
     </script>
   </head>
-  <body>
+  <body class="partners-page">
     <main class="shell">
-      <header class="topbar">
+      <header class="topbar page-topbar">
         <a class="home-link" href="/">
           <span class="wordmark">COCOON</span>
           <span class="home-subtitle">by Cocoon Lab</span>
         </a>
-        <nav class="subnav" aria-label="Secondary">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
+        <nav class="page-main-nav" aria-label="Primary">
           <a href="/studio/">Studio</a>
           <a href="/contact/">Contact</a>
           <a href="/partners/" aria-current="page">Partners</a>
           <a href="/team/">Team</a>
           <a href="/blog/">Blog</a>
         </nav>
+        <a
+          class="page-topbar-cta"
+          href="mailto:rashid@cocoonlab.ai?subject=Cocoon%20studio%20demo&body=Hi%20Rashid%2C%0A%0AI%27d%20like%20to%20request%20a%20demo%20of%20Cocoon.%0A%0AName%3A%0ACompany%3A%0AProject%3A%0APreferred%20timing%3A%0A%0AThanks%2C"
+        >
+          Request Studio Demo
+        </a>
       </header>
 
-      <section class="panel">
-        <div class="hero">
+      <section class="page-stage" aria-labelledby="partners-title">
+        <div class="page-intro">
           <span class="eyebrow">Partners</span>
-          <h1>Partners around Cocoon Lab and Cocoon</h1>
-          <div class="meta">
+          <h1 id="partners-title">Research and design partners around Cocoon</h1>
+          <p>
+            Cocoon Lab builds Cocoon in dialogue with research institutions and design practices that keep the product grounded in architectural
+            judgment, responsible AI, and real project conditions.
+          </p>
+          <div class="page-meta">
             <span>Company: Cocoon Lab</span>
             <span>Product: Cocoon</span>
             <span>Research, design, and civic alignment</span>
           </div>
-          <p class="lede">
-            Cocoon Lab grows in dialogue with partners across research, design, and the built environment. These relationships help shape how Cocoon
-            develops and where it can be useful.
-          </p>
         </div>
 
-        <div class="card-grid">
-          <div class="card">
-            <h3>Why partners matter</h3>
-            <p>They sharpen the way Cocoon connects research depth, architectural practice, and real-world decision-making.</p>
+        <div class="page-grid">
+          <div class="page-stack">
+            <section class="page-card">
+              <span class="label">Why partnership matters</span>
+              <h2>Useful systems need research depth and practice feedback.</h2>
+              <p>
+                Cocoon is meant to support the earliest stages of architecture, where uncertainty is high and judgment matters most. That makes the
+                quality of our partnerships especially important.
+              </p>
+              <p>
+                The network around Cocoon Lab helps keep the product both rigorous and relevant: close to research, close to practice, and close to
+                the realities of planning, feasibility, and design authorship.
+              </p>
+            </section>
+
+            <section class="page-card">
+              <span class="label">Relationship model</span>
+              <h2>One core partner. Two design partners.</h2>
+              <ul class="page-card-list">
+                <li>Mila helps anchor research depth, technical rigor, and responsible AI thinking.</li>
+                <li>Civiliti brings civic and urban systems perspective to early-stage decision-making.</li>
+                <li>Sid Lee Architecture keeps Cocoon connected to design practice and architectural judgment.</li>
+              </ul>
+            </section>
           </div>
-          <div class="card">
-            <h3>What the network supports</h3>
-            <p>Responsible AI, design intelligence, and stronger alignment between research, practice, and the realities of early-stage work.</p>
-          </div>
-          <div class="card">
-            <h3>Where it leads</h3>
-            <p>Stronger foundations for Cocoon as a product built to support architects, developers, and multidisciplinary teams with clarity.</p>
-          </div>
+
+          <section class="page-card">
+            <span class="label">What this supports</span>
+            <h2>Clearer product direction for Cocoon.</h2>
+            <p>
+              These relationships strengthen how Cocoon handles site, cost, carbon, regulatory, and visual signals before design is fixed.
+            </p>
+            <p>
+              The goal is not automation for its own sake. It is a product that helps teams understand context, reveal constraints, and move toward
+              better decisions earlier.
+            </p>
+            <div class="actions">
+              <a class="button button-primary" href="/contact/">Contact Cocoon Lab</a>
+              <a class="button button-secondary" href="/blog/mila-partnership/">Read the Mila partnership note</a>
+            </div>
+          </section>
         </div>
 
         <div class="partner-grid">
@@ -153,28 +185,10 @@
           </article>
         </div>
 
-        <div class="content-grid">
-          <section class="section-card">
-            <h2>What these relationships support</h2>
-            <p>
-              Together, these partnerships help Cocoon Lab build a product that is technically informed, practice-aware, and grounded in better
-              architectural decision-making rather than automation for its own sake.
-            </p>
-          </section>
-
-          <section class="section-card">
-            <h2>How this connects to Cocoon</h2>
-            <p>
-              Cocoon is designed to make site, cost, carbon, code, and visual signals clearer before design is fixed. Partner insight helps keep that
-              work relevant, disciplined, and useful.
-            </p>
-          </section>
-        </div>
-
         <div class="section-divider">
           <div class="actions">
-            <a class="button button-primary" href="/contact/">Contact Cocoon Lab</a>
-            <a class="button button-secondary" href="/blog/">Read the blog</a>
+            <a class="button button-primary" href="/studio/">Request a demo of Cocoon</a>
+            <a class="button button-secondary" href="/team/">Meet the team</a>
           </div>
         </div>
       </section>

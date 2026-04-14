@@ -67,100 +67,82 @@
       }
     </script>
   </head>
-  <body>
+  <body class="blog-page">
     <main class="shell">
-      <header class="topbar">
+      <header class="topbar page-topbar">
         <a class="home-link" href="/">
           <span class="wordmark">COCOON</span>
           <span class="home-subtitle">by Cocoon Lab</span>
         </a>
-        <nav class="subnav" aria-label="Secondary">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
+        <nav class="page-main-nav" aria-label="Primary">
           <a href="/studio/">Studio</a>
           <a href="/contact/">Contact</a>
           <a href="/partners/">Partners</a>
           <a href="/team/">Team</a>
           <a href="/blog/" aria-current="page">Blog</a>
         </nav>
+        <a
+          class="page-topbar-cta"
+          href="mailto:rashid@cocoonlab.ai?subject=Cocoon%20studio%20demo&body=Hi%20Rashid%2C%0A%0AI%27d%20like%20to%20request%20a%20demo%20of%20Cocoon.%0A%0AName%3A%0ACompany%3A%0AProject%3A%0APreferred%20timing%3A%0A%0AThanks%2C"
+        >
+          Request Studio Demo
+        </a>
       </header>
 
-      <section class="panel">
-        <div class="hero">
+      <section class="page-stage" aria-labelledby="blog-title">
+        <div class="page-intro">
           <span class="eyebrow">Blog</span>
-          <h1>Notes and updates from Cocoon Lab</h1>
-          <div class="meta">
+          <h1 id="blog-title">Notes and updates from Cocoon Lab</h1>
+          <p>This is where Cocoon Lab writes about product direction, architectural feasibility, responsible AI, and the partnerships shaping Cocoon.</p>
+          <div class="page-meta">
             <span>Latest article</span>
             <span>Product: Cocoon</span>
             <span>Research and partnership</span>
           </div>
-          <p class="lede">
-            This space collects writing from Cocoon Lab about the ideas, partnerships, and product direction behind Cocoon.
-          </p>
         </div>
 
-        <div class="card-grid">
-          <div class="card">
-            <h3>Latest article</h3>
-            <p>Cocoon Lab in partnership with Mila.</p>
-          </div>
-          <div class="card">
-            <h3>Main themes</h3>
-            <p>Architectural feasibility, responsible AI, research alignment, and how Cocoon is being built.</p>
-          </div>
-          <div class="card">
-            <h3>Why it matters</h3>
-            <p>Each update has a clear destination for reading, sharing, and returning to it later.</p>
-          </div>
-        </div>
-
-        <div class="content-grid">
-          <article class="section-card section-wide">
-            <span class="label">Latest article</span>
-            <h2><a href="/blog/mila-partnership/">Cocoon Lab in partnership with Mila</a></h2>
-            <p><strong>Published:</strong> April 13, 2026</p>
-            <p>
-              At Cocoon Lab, we believe AI should strengthen architectural judgment, not replace it. That conviction is one reason our partnership
-              with Mila matters to us.
-            </p>
-            <p>
-              Mila brings research depth, rigor, and a serious culture of responsible AI. That context matters as Cocoon Lab builds Cocoon to help
-              teams understand site, cost, carbon, and regulatory signals earlier.
-            </p>
-            <p>
-              The full article explains why that partnership matters, what it supports, and how it shapes the product direction behind Cocoon.
-            </p>
-            <div class="actions">
-              <a class="button button-primary" href="/blog/mila-partnership/">Read article</a>
-              <a class="button button-secondary" href="/studio/">Request a demo of Cocoon</a>
+        <div class="page-grid">
+          <a class="article-card" href="/blog/mila-partnership/">
+            <span class="label">Featured article</span>
+            <h2>Cocoon Lab in partnership with Mila</h2>
+            <div class="article-meta">
+              <span>April 13, 2026</span>
+              <span>Partnerships</span>
+              <span>Responsible AI</span>
             </div>
-          </article>
-
-          <section class="section-card">
-            <h2>Topics we are writing about</h2>
-            <ul class="detail-list">
-              <li>Architectural feasibility and early-stage design intelligence.</li>
-              <li>Responsible AI and research-aware product development.</li>
-              <li>Partnerships, studio workflows, and how Cocoon evolves over time.</li>
-            </ul>
-          </section>
-
-          <section class="section-card">
-            <h2>How to follow updates</h2>
             <p>
-              You can read the latest article here, subscribe through the site feed, or reach out directly if you want to discuss Cocoon in the
-              context of your studio or project.
+              Why the Mila partnership matters to Cocoon Lab, and how it supports the kind of architectural feasibility product we want Cocoon to
+              be.
             </p>
-            <div class="actions">
-              <a class="button button-secondary" href="/feed.xml">Open RSS feed</a>
-            </div>
-          </section>
+            <p>
+              The article looks at research rigor, practical product building, and why useful AI in architecture needs to stay accountable to real
+              studio conditions.
+            </p>
+          </a>
+
+          <div class="page-stack">
+            <section class="page-card">
+              <span class="label">What we publish</span>
+              <h2>Focused writing, not noise.</h2>
+              <p>We use the blog to document product thinking, partnership context, and the principles shaping Cocoon as it evolves.</p>
+            </section>
+
+            <section class="page-card">
+              <span class="label">Stay close</span>
+              <h2>Read, subscribe, or reach out.</h2>
+              <p>If a post connects with your practice, follow the feed or contact Cocoon Lab directly to continue the conversation.</p>
+              <div class="actions">
+                <a class="button button-secondary" href="/feed.xml">Open RSS feed</a>
+                <a class="button button-secondary" href="/contact/">Contact Cocoon Lab</a>
+              </div>
+            </section>
+          </div>
         </div>
 
         <div class="section-divider">
           <div class="actions">
-            <a class="button button-primary" href="/studio/">Request a demo of Cocoon</a>
-            <a class="button button-secondary" href="/contact/">Contact Cocoon Lab</a>
+            <a class="button button-primary" href="/blog/mila-partnership/">Read the latest article</a>
+            <a class="button button-secondary" href="/studio/">Request a demo of Cocoon</a>
           </div>
         </div>
       </section>

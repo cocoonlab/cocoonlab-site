@@ -79,41 +79,42 @@
       }
     </script>
   </head>
-  <body>
+  <body class="blog-article-page">
     <main class="shell">
-      <header class="topbar">
+      <header class="topbar page-topbar">
         <a class="home-link" href="/">
           <span class="wordmark">COCOON</span>
           <span class="home-subtitle">by Cocoon Lab</span>
         </a>
-        <nav class="subnav" aria-label="Secondary">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
+        <nav class="page-main-nav" aria-label="Primary">
           <a href="/studio/">Studio</a>
           <a href="/contact/">Contact</a>
           <a href="/partners/">Partners</a>
           <a href="/team/">Team</a>
           <a href="/blog/" aria-current="page">Blog</a>
         </nav>
+        <a
+          class="page-topbar-cta"
+          href="mailto:rashid@cocoonlab.ai?subject=Cocoon%20studio%20demo&body=Hi%20Rashid%2C%0A%0AI%27d%20like%20to%20request%20a%20demo%20of%20Cocoon.%0A%0AName%3A%0ACompany%3A%0AProject%3A%0APreferred%20timing%3A%0A%0AThanks%2C"
+        >
+          Request Studio Demo
+        </a>
       </header>
 
-      <section class="panel">
-        <div class="hero">
+      <section class="page-stage" aria-labelledby="article-title">
+        <div class="page-intro">
           <span class="eyebrow">Blog</span>
-          <h1>Cocoon Lab in partnership with Mila</h1>
-          <div class="meta">
+          <h1 id="article-title">Cocoon Lab in partnership with Mila</h1>
+          <p>Why the Mila partnership matters to Cocoon Lab, and how it supports the kind of architectural feasibility product we want Cocoon to be.</p>
+          <div class="page-meta">
             <span>Published: April 13, 2026</span>
             <span>Category: Partnerships</span>
             <span>Product: Cocoon</span>
           </div>
-          <p class="lede">
-            Why the Mila partnership matters to Cocoon Lab, and how it supports the kind of architectural feasibility product we want Cocoon to be.
-          </p>
         </div>
 
-        <div class="content-grid">
-          <article class="section-card section-wide">
-            <span class="label">Article</span>
+        <div class="page-grid">
+          <article class="page-prose">
             <h2>Research depth in service of practice</h2>
             <p>
               At Cocoon Lab, we believe AI should strengthen architectural judgment, not replace it. That conviction is one reason our partnership
@@ -128,6 +129,8 @@
               decisions. The partnership with Mila supports that direction by keeping us close to advanced thinking in machine learning while staying
               disciplined about real-world application.
             </p>
+
+            <h2>What stays central</h2>
             <p>
               We are interested in AI that helps teams see more clearly: understand context, test constraints, and make better decisions before
               design is fixed. That means tools that are legible, grounded, and accountable to the realities of architecture and development
@@ -139,29 +142,27 @@
             </p>
           </article>
 
-          <section class="section-card">
-            <h2>What the partnership supports</h2>
-            <ul class="detail-list">
-              <li>Stronger thinking around responsible and useful AI.</li>
-              <li>Closer alignment between product development and research rigor.</li>
-              <li>Clearer foundations for how Cocoon evolves over time.</li>
-            </ul>
-          </section>
+          <aside class="page-stack">
+            <section class="page-card">
+              <span class="label">What the partnership supports</span>
+              <h2>Clearer foundations for Cocoon.</h2>
+              <ul class="page-card-list">
+                <li>Stronger thinking around responsible and useful AI.</li>
+                <li>Closer alignment between product development and research rigor.</li>
+                <li>Clearer foundations for how Cocoon evolves over time.</li>
+              </ul>
+            </section>
 
-          <section class="section-card">
-            <h2>What stays central</h2>
-            <p>
-              The role of Cocoon remains the same: support people who design by making early-stage signals clearer, more structured, and easier to act
-              on.
-            </p>
-          </section>
-        </div>
-
-        <div class="section-divider">
-          <div class="actions">
-            <a class="button button-primary" href="/studio/">Request a demo of Cocoon</a>
-            <a class="button button-secondary" href="/blog/">Back to blog</a>
-          </div>
+            <section class="page-card">
+              <span class="label">Keep reading</span>
+              <h2>Continue the conversation.</h2>
+              <p>The role of Cocoon remains the same: support the people who design by making early-stage signals clearer, more structured, and easier to act on.</p>
+              <div class="actions">
+                <a class="button button-primary" href="/studio/">Request a demo of Cocoon</a>
+                <a class="button button-secondary" href="/blog/">Back to blog</a>
+              </div>
+            </section>
+          </aside>
         </div>
       </section>
 

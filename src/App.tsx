@@ -128,19 +128,16 @@ const lensFeatures = [
 
 const outputCards = [
   {
-    assetType: "image",
     assetSrc: "/assets/outputs/bim-ready-geometry.png",
     title: "BIM Ready Geometry",
     desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
   },
   {
-    assetType: "html",
-    assetSrc: "/assets/outputs/technical-dossiers.html",
+    assetSrc: "/assets/outputs/technical-dossiers.png",
     title: "Technical Dossiers",
     desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
   },
   {
-    assetType: "image",
     assetSrc: "/assets/outputs/atmospheric-previews.png",
     title: "Atmospheric Previews",
     desc: "High-fidelity renders that capture the material intent of your design.",
@@ -366,24 +363,13 @@ export default function App() {
               {outputCards.map((card) => (
                 <motion.div key={card.title} whileHover={{ y: -8 }} className="group">
                   <div className="relative mb-6 aspect-square overflow-hidden rounded-xl bg-surface-container-low">
-                    {card.assetType === "html" ? (
-                      <iframe
-                        className="pointer-events-none h-full w-full border-0 bg-transparent transition-transform duration-700 group-hover:scale-[1.02]"
-                        src={card.assetSrc}
-                        title={`${card.title} preview`}
-                        loading="lazy"
-                        tabIndex={-1}
-                        sandbox="allow-same-origin"
-                      />
-                    ) : (
-                      <img
-                        className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
-                        src={card.assetSrc}
-                        alt={`${card.title} illustration`}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    )}
+                    <img
+                      className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                      src={card.assetSrc}
+                      alt={`${card.title} illustration`}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <h4 className="mb-2 font-body text-lg font-semibold">{card.title}</h4>
                   <p className="font-body text-sm text-on-surface-variant">{card.desc}</p>

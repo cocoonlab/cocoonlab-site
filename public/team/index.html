@@ -88,51 +88,40 @@
       }
     </script>
   </head>
-  <body>
+  <body class="team-page">
     <main class="shell">
-      <header class="topbar">
+      <header class="topbar page-topbar">
         <a class="home-link" href="/">
           <span class="wordmark">COCOON</span>
           <span class="home-subtitle">by Cocoon Lab</span>
         </a>
-        <nav class="subnav" aria-label="Secondary">
-          <a href="/privacy/">Privacy</a>
-          <a href="/terms/">Terms</a>
+        <nav class="page-main-nav" aria-label="Primary">
           <a href="/studio/">Studio</a>
           <a href="/contact/">Contact</a>
           <a href="/partners/">Partners</a>
           <a href="/team/" aria-current="page">Team</a>
           <a href="/blog/">Blog</a>
         </nav>
+        <a
+          class="page-topbar-cta"
+          href="mailto:rashid@cocoonlab.ai?subject=Cocoon%20studio%20demo&body=Hi%20Rashid%2C%0A%0AI%27d%20like%20to%20request%20a%20demo%20of%20Cocoon.%0A%0AName%3A%0ACompany%3A%0AProject%3A%0APreferred%20timing%3A%0A%0AThanks%2C"
+        >
+          Request Studio Demo
+        </a>
       </header>
 
-      <section class="panel">
-        <div class="hero">
+      <section class="page-stage" aria-labelledby="team-title">
+        <div class="page-intro">
           <span class="eyebrow">Team</span>
-          <h1>The founding team behind Cocoon</h1>
-          <div class="meta">
-            <span>Founded: 2025</span>
-            <span>Company: Cocoon Lab</span>
-            <span>Product: Cocoon</span>
-          </div>
-          <p class="lede">
+          <h1 id="team-title">The founding team behind Cocoon</h1>
+          <p>
             Cocoon Lab was founded by Rashid Mushkani, Hugo Berard, and Shin Koseki. Together they are building Cocoon to bring clearer design
             intelligence to the earliest stages of architecture.
           </p>
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <h3>Founding team</h3>
-            <p>Rashid Mushkani, Hugo Berard, and Shin Koseki founded Cocoon Lab in 2025.</p>
-          </div>
-          <div class="card">
-            <h3>What they are building</h3>
-            <p>Cocoon helps teams understand site, cost, carbon, code, and visuals before design is fixed.</p>
-          </div>
-          <div class="card">
-            <h3>Grounding</h3>
-            <p>The work emerged from years of engagement with architecture, creative practice, and community organizations in Montreal.</p>
+          <div class="page-meta">
+            <span>Founded: 2025</span>
+            <span>Company: Cocoon Lab</span>
+            <span>Product: Cocoon</span>
           </div>
         </div>
 
@@ -142,8 +131,8 @@
               <img class="portrait" src="/assets/team/rashid-mushkani.png" alt="Headshot of Rashid Mushkani" />
             </div>
             <div class="person-name">Rashid Mushkani</div>
-            <div class="person-role">Founding Team</div>
-            <p class="person-note">Part of the founding team behind Cocoon Lab and Cocoon.</p>
+            <div class="person-role">Co-founder</div>
+            <p class="person-note">Helping articulate the thesis behind Cocoon and its role in early-stage design work.</p>
           </article>
 
           <article class="person-card">
@@ -151,8 +140,8 @@
               <img class="portrait" src="/assets/team/hugo-berard.png" alt="Headshot of Hugo Berard" />
             </div>
             <div class="person-name">Hugo Berard</div>
-            <div class="person-role">Founding Team</div>
-            <p class="person-note">Part of the founding team behind Cocoon Lab and Cocoon.</p>
+            <div class="person-role">Co-founder</div>
+            <p class="person-note">Helping shape Cocoon into a usable studio system for early-stage decision-making.</p>
           </article>
 
           <article class="person-card">
@@ -160,25 +149,31 @@
               <img class="portrait" src="/assets/team/shin-koseki.png" alt="Headshot of Shin Koseki" />
             </div>
             <div class="person-name">Shin Koseki</div>
-            <div class="person-role">Founding Team</div>
-            <p class="person-note">Part of the founding team behind Cocoon Lab and Cocoon.</p>
+            <div class="person-role">Co-founder</div>
+            <p class="person-note">Helping ground Cocoon in architectural context, judgment, and design process.</p>
           </article>
         </div>
 
-        <div class="content-grid">
-          <section class="section-card">
-            <h2>What anchors the team</h2>
+        <div class="page-grid">
+          <section class="page-card">
+            <span class="label">Founding context</span>
+            <h2>Built from practice, not abstraction.</h2>
             <p>
-              The work at Cocoon Lab is rooted in the idea that architecture should remain authored by people. Cocoon exists to make early-stage
-              information clearer, more structured, and more usable.
+              The company emerged from years of work alongside creative professionals, architectural firms, and community organizations in Montreal.
+            </p>
+            <p>
+              That background keeps Cocoon focused on real decisions, real constraints, and real studio workflows instead of generic automation.
             </p>
           </section>
 
-          <section class="section-card">
-            <h2>What the team is focused on</h2>
+          <section class="page-card">
+            <span class="label">Shared position</span>
+            <h2>Architecture remains authored by people.</h2>
             <p>
-              Cocoon is being shaped around the earliest project decisions: site, cost, carbon, code, and visual understanding before a direction is
-              fixed.
+              Cocoon exists to support architects and development teams by making early-stage information clearer, more structured, and easier to use.
+            </p>
+            <p>
+              The goal is not generation for its own sake. It is stronger judgment, better collaboration, and better environments.
             </p>
           </section>
         </div>
@@ -186,7 +181,7 @@
         <div class="section-divider">
           <div class="actions">
             <a class="button button-primary" href="/studio/">Request a demo of Cocoon</a>
-            <a class="button button-secondary" href="/contact/">Contact Cocoon Lab</a>
+            <a class="button button-secondary" href="/partners/">See partner network</a>
           </div>
         </div>
       </section>
