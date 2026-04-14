@@ -7,8 +7,6 @@ import {
   Gavel,
   ArrowRight,
   Sparkles,
-  Menu,
-  X,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -41,7 +39,6 @@ const demoMailto = buildMailtoLink("Cocoon studio demo", demoMailBody);
 const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Email Rashid at Cocoon Lab to request a demo of Cocoon";
 const lensAssetVersion = "20260413-lenses-1";
-const navItems = ["Lenses", "Outputs", "Workflow"] as const;
 
 const lensContent = {
   Site: {
@@ -131,17 +128,20 @@ const lensFeatures = [
 
 const outputCards = [
   {
-    img: "/assets/outputs/bim-ready-geometry.png",
+    assetType: "image",
+    assetSrc: "/assets/outputs/bim-ready-geometry.png",
     title: "BIM Ready Geometry",
     desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
   },
   {
-    img: "/assets/outputs/technical-dossiers.png",
+    assetType: "html",
+    assetSrc: "/assets/outputs/technical-dossiers.html",
     title: "Technical Dossiers",
     desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
   },
   {
-    img: "/assets/outputs/atmospheric-previews.png",
+    assetType: "image",
+    assetSrc: "/assets/outputs/atmospheric-previews.png",
     title: "Atmospheric Previews",
     desc: "High-fidelity renders that capture the material intent of your design.",
   },
@@ -179,7 +179,6 @@ type LensName = keyof typeof lensContent;
 
 export default function App() {
   const [activeLens, setActiveLens] = useState<LensName>("Site");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const lenses = Object.keys(lensContent) as LensName[];
   const activeLensContent = lensContent[activeLens];
@@ -208,18 +207,6 @@ export default function App() {
             COCOON
           </a>
 
-          <div className="hidden items-center gap-10 md:flex">
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="font-headline text-lg italic text-on-surface-variant transition-colors duration-300 hover:text-on-surface"
-              >
-                {item}
-              </a>
-            ))}
-          </div>
-
           <div className="flex items-center gap-4">
             <a
               href={demoMailto}
@@ -228,44 +215,8 @@ export default function App() {
             >
               Request Studio Demo
             </a>
-            <button
-              type="button"
-              aria-expanded={isMenuOpen}
-              aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-              className="p-2 text-on-surface md:hidden"
-              onClick={() => setIsMenuOpen((open) => !open)}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
           </div>
         </div>
-
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            className="flex flex-col gap-6 border-b border-outline-variant/10 bg-surface px-6 py-8 md:hidden"
-          >
-            {navItems.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="font-headline text-2xl italic text-on-surface"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <a
-              href={demoMailto}
-              aria-label={demoAriaLabel}
-              className="w-full rounded-md bg-primary px-6 py-4 text-center font-label text-lg text-on-primary"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Request Studio Demo
-            </a>
-          </motion.div>
-        )}
       </nav>
 
       <main className="pt-28 sm:pt-32">
@@ -412,16 +363,27 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              {outputCards.map((card, index) => (
-                <motion.div key={index} whileHover={{ y: -8 }} className="group">
+              {outputCards.map((card) => (
+                <motion.div key={card.title} whileHover={{ y: -8 }} className="group">
                   <div className="relative mb-6 aspect-square overflow-hidden rounded-xl bg-surface-container-low">
-                    <img
-                      className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
-                      src={card.img}
-                      alt={`${card.title} illustration`}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    {card.assetType === "html" ? (
+                      <iframe
+                        className="pointer-events-none h-full w-full border-0 bg-transparent transition-transform duration-700 group-hover:scale-[1.02]"
+                        src={card.assetSrc}
+                        title={`${card.title} preview`}
+                        loading="lazy"
+                        tabIndex={-1}
+                        sandbox="allow-same-origin"
+                      />
+                    ) : (
+                      <img
+                        className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                        src={card.assetSrc}
+                        alt={`${card.title} illustration`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )}
                   </div>
                   <h4 className="mb-2 font-body text-lg font-semibold">{card.title}</h4>
                   <p className="font-body text-sm text-on-surface-variant">{card.desc}</p>
