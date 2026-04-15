@@ -13,7 +13,6 @@ Built with Vite, React, Tailwind CSS v4, and a small Vercel serverless endpoint 
   - `/terms/`
   - `/studio/`
   - `/contact/`
-  - `/partners/`
   - `/team/`
   - `/blog/`
   - `/monograph/`

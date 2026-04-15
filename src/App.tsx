@@ -40,8 +40,6 @@ const lensContent = {
     metricLabel: "Site",
     metricValue: "3,600 m²",
     metricNote: "Full block, streets all sides, near water.",
-    callout: "CONTEXT FIRST",
-    calloutNote: "Ground the scheme in the city around it.",
     icon: Map,
   },
   Cost: {
@@ -52,8 +50,6 @@ const lensContent = {
     metricLabel: "Cost",
     metricValue: "$3,250 / m²",
     metricNote: "Layered structure, envelope, systems.",
-    callout: "COST IN VIEW",
-    calloutNote: "Every design shift carries an immediate financial read.",
     icon: Banknote,
   },
   Carbon: {
@@ -64,8 +60,6 @@ const lensContent = {
     metricLabel: "Carbon",
     metricValue: "420 kgCO₂e / m²",
     metricNote: "Embodied impact across materials.",
-    callout: "CARBON EARLY",
-    calloutNote: "Bring LCA into concept work, not only late validation.",
     icon: Leaf,
   },
   Code: {
@@ -76,8 +70,6 @@ const lensContent = {
     metricLabel: "Code",
     metricValue: "FAR 4.2 | 28 m",
     metricNote: "Setbacks and height define form.",
-    callout: "RULES MADE CLEAR",
-    calloutNote: "Compliance stays legible while design remains open.",
     icon: Gavel,
   },
   Visuals: {
@@ -88,8 +80,6 @@ const lensContent = {
     metricLabel: "Visuals",
     metricValue: "6 levels | Mixed-use",
     metricNote: "From massing to inhabitation.",
-    callout: "INTENT, SEEN",
-    calloutNote: "Visuals stay anchored to what the project is becoming.",
     icon: Sparkles,
   },
 } as const;
@@ -646,7 +636,6 @@ const footerLinks = [
   { label: "Terms", href: "/terms/" },
   { label: "Studio", href: "/studio/" },
   { label: "Contact", href: "/contact/" },
-  { label: "Partners", href: "/partners/" },
   { label: "Team", href: "/team/" },
   { label: "Blog", href: "/blog/" },
 ] as const;
@@ -718,7 +707,8 @@ export default function App() {
     const intervalId = window.setInterval(() => {
       setActiveLens((currentLens) => {
         const currentIndex = lensNames.indexOf(currentLens);
-        return lensNames[(currentIndex + 1) % lensNames.length];
+        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % lensNames.length : 0;
+        return lensNames[nextIndex] ?? "Site";
       });
     }, lensAutoplayIntervalMs);
 

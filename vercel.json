@@ -3,6 +3,23 @@
   "installCommand": "npm install",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/partners",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/partners/",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/partners/index.html",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
