@@ -27,9 +27,9 @@ const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Open the Cocoon studio demo request form";
 const lensAssetVersion = "20260413-lenses-1";
 const demoButtonClassName =
-  "inline-flex min-h-9 items-center justify-center rounded-md bg-primary px-4 py-2 font-label text-[0.8125rem] leading-none text-on-primary transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:px-6 sm:text-sm";
+  "inline-flex min-h-9 items-center justify-center rounded-md bg-primary px-4 py-2 font-label text-[0.8125rem] font-semibold leading-none text-on-primary shadow-[0_10px_24px_rgba(58,96,110,0.18)] transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:px-6 sm:text-sm";
 const secondaryCtaClassName =
-  "rounded-md border border-outline-variant/25 bg-surface-container-low px-6 py-2 font-label text-sm text-on-surface shadow-sm transition-all duration-200 hover:border-outline-variant/40 hover:bg-surface-container active:scale-95";
+  "rounded-md border border-outline-variant/35 bg-surface-container-low px-6 py-2 font-label text-sm font-semibold text-on-surface shadow-sm transition-all duration-200 hover:border-primary/35 hover:bg-surface-container active:scale-95";
 
 const lensContent = {
   Site: {
@@ -154,19 +154,19 @@ const dossierKeyMetrics = [
     label: "Gross floor area",
     value: "14,280 m²",
     note: "6 levels / mixed-use",
-    tone: "from-[#90a688] to-[#bcc9b6]",
+    tone: "from-[#3A606E] to-[#A8B58A]",
   },
   {
     label: "CapEx range",
     value: "$46.4M",
     note: "structure, envelope, systems",
-    tone: "from-[#d8c3a5] to-[#eadcc8]",
+    tone: "from-[#EBC04D] to-[#F2D984]",
   },
   {
     label: "Embodied carbon",
     value: "420 kgCO₂e/m²",
     note: "-31% vs baseline",
-    tone: "from-[#aab2ad] to-[#cdd3cf]",
+    tone: "from-[#A8B58A] to-[#D2DABE]",
   },
 ] as const;
 
@@ -177,22 +177,22 @@ const dossierCoverStats = [
 ] as const;
 
 const dossierPackageMix = [
-  { label: "Structure", value: "34%", tone: "#90a688" },
-  { label: "Envelope", value: "28%", tone: "#d8c3a5" },
-  { label: "Interiors", value: "22%", tone: "#b8c0bb" },
-  { label: "Systems", value: "16%", tone: "#dfe5df" },
+  { label: "Structure", value: "34%", tone: "#3A606E" },
+  { label: "Envelope", value: "28%", tone: "#EBC04D" },
+  { label: "Interiors", value: "22%", tone: "#A8B58A" },
+  { label: "Systems", value: "16%", tone: "#B36A5E" },
 ] as const;
 
 const dossierMaterialDeltas = [
-  { label: "Timber-hybrid floors", value: "-31%", width: "78%", gradient: "linear-gradient(90deg,#90a688,#bcc9b6)" },
-  { label: "Low-carbon concrete core", value: "-18%", width: "61%", gradient: "linear-gradient(90deg,#d8c3a5,#eadcc8)" },
-  { label: "Facade shading depth", value: "+4.5%", width: "44%", gradient: "linear-gradient(90deg,#aab2ad,#cdd3cf)" },
+  { label: "Timber-hybrid floors", value: "-31%", width: "78%", gradient: "linear-gradient(90deg,#A8B58A,#D2DABE)" },
+  { label: "Low-carbon concrete core", value: "-18%", width: "61%", gradient: "linear-gradient(90deg,#3A606E,#7898A2)" },
+  { label: "Facade shading depth", value: "+4.5%", width: "44%", gradient: "linear-gradient(90deg,#B36A5E,#D59A91)" },
 ] as const;
 
 const dossierReadiness = [
-  { title: "Zoning envelope aligned", note: "Setbacks and frontage logic resolved.", tone: "bg-[#90a688]" },
-  { title: "Fire access validated", note: "Loading and service maneuvering remain clear.", tone: "bg-[#d8c3a5]" },
-  { title: "Daylight risk flagged", note: "Northwest corner needs terrace refinement.", tone: "bg-[#aab2ad]" },
+  { title: "Zoning envelope aligned", note: "Setbacks and frontage logic resolved.", tone: "bg-[#3A606E]" },
+  { title: "Fire access validated", note: "Loading and service maneuvering remain clear.", tone: "bg-[#EBC04D]" },
+  { title: "Daylight risk flagged", note: "Northwest corner needs terrace refinement.", tone: "bg-[#B36A5E]" },
 ] as const;
 
 const dossierPageTabs = ["01 Cover", "02 Carbon", "03 Cost + Code"] as const;
@@ -209,7 +209,7 @@ function WorkflowReportPreview() {
       <motion.div
         animate={{ y: [0, -8, 0], rotate: [-6, -4.6, -6] }}
         transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-x-7 bottom-3 top-5 overflow-hidden rounded-[1.15rem] border border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.74),rgba(249,249,247,0.62))] p-4 shadow-[0_26px_70px_rgba(45,52,50,0.08)] backdrop-blur-sm"
+        className="absolute inset-x-7 bottom-3 top-5 overflow-hidden rounded-[1.15rem] border border-white/45 bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(247,247,242,0.66))] p-4 shadow-[0_26px_70px_rgba(45,46,40,0.08)] backdrop-blur-sm"
       >
         <div className="space-y-3 opacity-70">
           <div className="flex items-start justify-between gap-3">
@@ -227,11 +227,11 @@ function WorkflowReportPreview() {
                 <span>Figure 06</span>
                 <span>kgCO₂e / m²</span>
               </div>
-              <div className="h-24 rounded-[0.8rem] border border-outline-variant/8 bg-[linear-gradient(to_top,rgba(90,96,92,0.04)_1px,transparent_1px),linear-gradient(to_right,rgba(90,96,92,0.04)_1px,transparent_1px)] bg-[size:100%_20px,32px_100%]" />
+              <div className="h-24 rounded-[0.8rem] border border-outline-variant/8 bg-[linear-gradient(to_top,rgba(58,96,110,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(58,96,110,0.05)_1px,transparent_1px)] bg-[size:100%_20px,32px_100%]" />
             </div>
             <div className="space-y-3">
               <div className="rounded-[0.9rem] border border-outline-variant/10 bg-surface/55 p-3">
-                <div className="h-2 w-20 rounded-full bg-[#adc0a4]/70" />
+                <div className="h-2 w-20 rounded-full bg-[#A8B58A]/75" />
                 <div className="mt-3 space-y-2">
                   <div className="h-2 rounded-full bg-surface-container" />
                   <div className="h-2 w-4/5 rounded-full bg-surface-container" />
@@ -239,13 +239,13 @@ function WorkflowReportPreview() {
                 </div>
               </div>
               <div className="rounded-[0.9rem] border border-outline-variant/10 bg-surface/55 p-3">
-                <div className="h-2 w-16 rounded-full bg-[#d8c3a5]/80" />
+                <div className="h-2 w-16 rounded-full bg-[#EBC04D]/80" />
                 <div className="mt-3 space-y-2">
                   <div className="h-2 rounded-full bg-surface-container">
-                    <div className="h-full w-[72%] rounded-full bg-[linear-gradient(90deg,#d8c3a5,#eadcc8)]" />
+                    <div className="h-full w-[72%] rounded-full bg-[linear-gradient(90deg,#EBC04D,#F2D984)]" />
                   </div>
                   <div className="h-2 rounded-full bg-surface-container">
-                    <div className="h-full w-[58%] rounded-full bg-[linear-gradient(90deg,#90a688,#bcc9b6)]" />
+                    <div className="h-full w-[58%] rounded-full bg-[linear-gradient(90deg,#3A606E,#A8B58A)]" />
                   </div>
                 </div>
               </div>
@@ -261,7 +261,7 @@ function WorkflowReportPreview() {
       <motion.div
         animate={{ y: [0, -10, 0], rotate: [4.2, 5.5, 4.2] }}
         transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-        className="absolute inset-x-4 bottom-2 top-3 overflow-hidden rounded-[1.2rem] border border-white/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(249,249,247,0.66))] p-4 shadow-[0_24px_62px_rgba(45,52,50,0.1)] backdrop-blur-sm"
+        className="absolute inset-x-4 bottom-2 top-3 overflow-hidden rounded-[1.2rem] border border-white/50 bg-[linear-gradient(180deg,rgba(255,255,255,0.8),rgba(247,247,242,0.68))] p-4 shadow-[0_24px_62px_rgba(45,46,40,0.1)] backdrop-blur-sm"
       >
         <div className="space-y-3 opacity-80">
           <div className="flex items-start justify-between gap-3">
@@ -288,7 +288,7 @@ function WorkflowReportPreview() {
                         className="h-full rounded-full"
                         style={{
                           width: ["86%", "100%", "74%", "68%"][index],
-                          background: ["#90a688", "#d8c3a5", "#b8c0bb", "#90a688"][index],
+                          background: ["#3A606E", "#EBC04D", "#A8B58A", "#B36A5E"][index],
                         }}
                       />
                     </div>
@@ -299,7 +299,7 @@ function WorkflowReportPreview() {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div className="rounded-[0.9rem] border border-outline-variant/10 bg-surface/58 p-3">
-                <div className="mb-3 h-2.5 w-20 rounded-full bg-[#d8c3a5]/85" />
+                <div className="mb-3 h-2.5 w-20 rounded-full bg-[#EBC04D]/85" />
                 <div className="space-y-2">
                   <div className="h-2 rounded-full bg-surface-container" />
                   <div className="h-2 w-4/5 rounded-full bg-surface-container" />
@@ -307,14 +307,14 @@ function WorkflowReportPreview() {
                 </div>
               </div>
               <div className="rounded-[0.9rem] border border-outline-variant/10 bg-surface/58 p-3">
-                <div className="mb-3 h-2.5 w-20 rounded-full bg-[#adc0a4]/85" />
+                <div className="mb-3 h-2.5 w-20 rounded-full bg-[#A8B58A]/85" />
                 <div className="space-y-2.5">
                   <div className="flex items-center gap-2">
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#90a688]" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-[#3A606E]" />
                     <div className="h-2 w-full rounded-full bg-surface-container" />
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="h-2.5 w-2.5 rounded-full bg-[#d8c3a5]" />
+                    <div className="h-2.5 w-2.5 rounded-full bg-[#EBC04D]" />
                     <div className="h-2 w-2/3 rounded-full bg-surface-container" />
                   </div>
                 </div>
@@ -328,9 +328,9 @@ function WorkflowReportPreview() {
         </div>
       </motion.div>
 
-      <div className="relative h-full overflow-hidden rounded-[1.3rem] border border-white/65 bg-surface p-1.5 shadow-[0_36px_90px_rgba(45,52,50,0.14)] sm:p-2">
-        <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[1.15rem] border border-outline-variant/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(249,249,247,0.94))] p-4 sm:p-5">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(253,231,211,0.22),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(214,231,217,0.18),transparent_24%)]" />
+      <div className="relative h-full overflow-hidden rounded-[1.3rem] border border-white/65 bg-surface p-1.5 shadow-[0_36px_90px_rgba(45,46,40,0.14)] sm:p-2">
+        <div className="relative flex h-full w-full flex-col overflow-hidden rounded-[1.15rem] border border-outline-variant/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(247,247,242,0.95))] p-4 sm:p-5">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(235,192,77,0.18),transparent_28%),radial-gradient(circle_at_bottom_right,rgba(58,96,110,0.14),transparent_24%)]" />
 
           <div className="relative flex items-start justify-between gap-3">
             <div className="space-y-2">
@@ -351,7 +351,7 @@ function WorkflowReportPreview() {
 
           <div className="relative mt-4 grid gap-3">
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.44fr_0.68fr]">
-              <section className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <section className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="flex items-center justify-between text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">
                   <span>Cover summary</span>
                   <span>Waterfront mixed-use</span>
@@ -377,7 +377,7 @@ function WorkflowReportPreview() {
                     </div>
                   </div>
 
-                  <div className="rounded-[0.95rem] border border-outline-variant/10 bg-[radial-gradient(circle_at_top_left,rgba(253,231,211,0.28),transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.72),rgba(242,244,242,0.7))] p-2.5">
+                  <div className="rounded-[0.95rem] border border-outline-variant/10 bg-[radial-gradient(circle_at_top_left,rgba(235,192,77,0.2),transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.76),rgba(241,242,235,0.72))] p-2.5">
                     <div className="text-[8px] uppercase tracking-[0.18em] text-on-surface-variant/58">Concept A</div>
                     <div className="relative mx-auto mt-3 h-24 w-24 sm:h-28 sm:w-28">
                       <motion.div
@@ -385,44 +385,44 @@ function WorkflowReportPreview() {
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="absolute bottom-0 left-1/2 h-8 w-24 -translate-x-1/2 rounded-sm bg-[linear-gradient(180deg,#efe7dc,#d8c3a5)] shadow-[0_10px_24px_rgba(45,52,50,0.08)]"
+                        className="absolute bottom-0 left-1/2 h-8 w-24 -translate-x-1/2 rounded-sm bg-[linear-gradient(180deg,#F2D984,#EBC04D)] shadow-[0_10px_24px_rgba(45,46,40,0.08)]"
                       />
                       <motion.div
                         initial={{ y: 12, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
-                        className="absolute bottom-5 left-4 h-8 w-16 rounded-[2px] bg-[linear-gradient(180deg,#f7f3ed,#e5d6c1)] shadow-[0_8px_20px_rgba(45,52,50,0.08)]"
+                        className="absolute bottom-5 left-4 h-8 w-16 rounded-[2px] bg-[linear-gradient(180deg,#F7F7F2,#DCE8EB)] shadow-[0_8px_20px_rgba(45,46,40,0.08)]"
                       />
                       <motion.div
                         initial={{ y: 14, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.55, delay: 0.16, ease: "easeOut" }}
-                        className="absolute bottom-5 right-5 h-10 w-10 rounded-[2px] bg-[linear-gradient(180deg,#faf7f2,#e9dcc9)] shadow-[0_8px_20px_rgba(45,52,50,0.08)]"
+                        className="absolute bottom-5 right-5 h-10 w-10 rounded-[2px] bg-[linear-gradient(180deg,#FFFFFF,#D2DABE)] shadow-[0_8px_20px_rgba(45,46,40,0.08)]"
                       />
                       <motion.div
                         initial={{ y: 16, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.55, delay: 0.24, ease: "easeOut" }}
-                        className="absolute bottom-11 left-9 h-10 w-12 rounded-[2px] bg-[linear-gradient(180deg,#fdfbf8,#efe5d8)] shadow-[0_8px_20px_rgba(45,52,50,0.08)]"
+                        className="absolute bottom-11 left-9 h-10 w-12 rounded-[2px] bg-[linear-gradient(180deg,#FFFFFF,#EAD0CA)] shadow-[0_8px_20px_rgba(45,46,40,0.08)]"
                       />
                       <motion.div
                         initial={{ y: 18, opacity: 0 }}
                         whileInView={{ y: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.55, delay: 0.32, ease: "easeOut" }}
-                        className="absolute bottom-[3.9rem] left-1/2 h-8 w-10 -translate-x-1/2 rounded-[2px] bg-[linear-gradient(180deg,#fffdfb,#f1e8dc)] shadow-[0_8px_20px_rgba(45,52,50,0.08)]"
+                        className="absolute bottom-[3.9rem] left-1/2 h-8 w-10 -translate-x-1/2 rounded-[2px] bg-[linear-gradient(180deg,#FFFFFF,#DCE8EB)] shadow-[0_8px_20px_rgba(45,46,40,0.08)]"
                       />
-                      <div className="absolute inset-x-3 bottom-2 h-px bg-[#d8c3a5]/70" />
+                      <div className="absolute inset-x-3 bottom-2 h-px bg-[#EBC04D]/70" />
                     </div>
                     <div className="mt-2 text-[8px] uppercase tracking-[0.18em] text-on-surface-variant/64">Stepped timber-hybrid scheme</div>
                   </div>
                 </div>
               </section>
 
-              <aside className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <aside className="rounded-[1.05rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">Key signals</div>
                 <div className="mt-3 space-y-3">
                   {dossierKeyMetrics.map((metric, index) => (
@@ -453,7 +453,7 @@ function WorkflowReportPreview() {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.26fr_0.84fr]">
-              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="mb-2 flex items-center justify-between">
                   <div>
                     <div className="text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">Figure 02</div>
@@ -462,7 +462,7 @@ function WorkflowReportPreview() {
                   <div className="text-[8px] uppercase tracking-[0.18em] text-on-surface-variant/56">kgCO₂e / m² GFA</div>
                 </div>
 
-                <div className="relative h-[8.3rem] rounded-[0.95rem] border border-outline-variant/10 bg-[linear-gradient(to_top,rgba(90,96,92,0.04)_1px,transparent_1px),linear-gradient(to_right,rgba(90,96,92,0.04)_1px,transparent_1px)] bg-[size:100%_22px,40px_100%] p-2.5">
+                <div className="relative h-[8.3rem] rounded-[0.95rem] border border-outline-variant/10 bg-[linear-gradient(to_top,rgba(58,96,110,0.05)_1px,transparent_1px),linear-gradient(to_right,rgba(58,96,110,0.05)_1px,transparent_1px)] bg-[size:100%_22px,40px_100%] p-2.5">
                   <div className="absolute left-2 top-2 text-[7px] uppercase tracking-[0.18em] text-on-surface-variant/44">A1-A3 + C3-C4</div>
                   <svg viewBox="0 0 240 120" className="h-full w-full" aria-hidden="true">
                     <motion.path
@@ -472,7 +472,7 @@ function WorkflowReportPreview() {
                       transition={{ duration: 1.25, ease: "easeOut" }}
                       d="M10 88 C30 84, 44 46, 72 54 S116 96, 146 72 S190 26, 214 34 S228 60, 232 24"
                       fill="none"
-                      stroke="#90a688"
+                      stroke="#3A606E"
                       strokeWidth="3"
                       strokeLinecap="round"
                     />
@@ -483,15 +483,15 @@ function WorkflowReportPreview() {
                       transition={{ duration: 1.1, delay: 0.15, ease: "easeOut" }}
                       d="M10 98 C34 92, 56 80, 84 84 S124 62, 154 68 S192 92, 232 60"
                       fill="none"
-                      stroke="#d8c3a5"
+                      stroke="#EBC04D"
                       strokeWidth="2.5"
                       strokeLinecap="round"
                     />
-                    <circle cx="72" cy="54" r="3.5" fill="#90a688" />
-                    <circle cx="146" cy="72" r="3.5" fill="#90a688" />
-                    <circle cx="214" cy="34" r="3.5" fill="#90a688" />
-                    <circle cx="84" cy="84" r="3" fill="#d8c3a5" />
-                    <circle cx="154" cy="68" r="3" fill="#d8c3a5" />
+                    <circle cx="72" cy="54" r="3.5" fill="#3A606E" />
+                    <circle cx="146" cy="72" r="3.5" fill="#3A606E" />
+                    <circle cx="214" cy="34" r="3.5" fill="#3A606E" />
+                    <circle cx="84" cy="84" r="3" fill="#EBC04D" />
+                    <circle cx="154" cy="68" r="3" fill="#EBC04D" />
                   </svg>
                   <div className="absolute inset-x-3 bottom-2 flex justify-between text-[7px] uppercase tracking-[0.16em] text-on-surface-variant/50">
                     <span>Baseline</span>
@@ -506,7 +506,7 @@ function WorkflowReportPreview() {
                 </div>
               </section>
 
-              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">Figure 03</div>
                 <div className="mt-1 text-[11px] font-semibold text-on-surface">Budget package mix</div>
 
@@ -519,7 +519,7 @@ function WorkflowReportPreview() {
                     className="relative h-24 w-24 rounded-full"
                     style={{
                       background:
-                        "conic-gradient(#90a688 0 34%, #d8c3a5 34% 62%, #b8c0bb 62% 84%, #dfe5df 84% 100%)",
+                        "conic-gradient(#3A606E 0 34%, #EBC04D 34% 62%, #A8B58A 62% 84%, #B36A5E 84% 100%)",
                     }}
                   >
                     <div className="absolute inset-[18px] rounded-full border border-outline-variant/10 bg-surface-container-lowest" />
@@ -541,7 +541,7 @@ function WorkflowReportPreview() {
             </div>
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-[1.02fr_0.98fr]">
-              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">Figure 04</div>
@@ -572,7 +572,7 @@ function WorkflowReportPreview() {
                 </div>
               </section>
 
-              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/72 p-3 shadow-[0_14px_30px_rgba(45,52,50,0.05)]">
+              <section className="rounded-[1rem] border border-outline-variant/10 bg-surface/74 p-3 shadow-[0_14px_30px_rgba(45,46,40,0.05)]">
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="text-[8px] uppercase tracking-[0.22em] text-on-surface-variant/62">Readiness</div>
@@ -727,7 +727,7 @@ export default function App() {
     <div className="min-h-screen bg-surface selection:bg-primary/20">
       <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/5 bg-surface/60 backdrop-blur-xl">
         <div className="mx-auto flex max-w-[1920px] items-center justify-between px-4 py-4 sm:px-6 sm:py-6 md:px-12">
-          <a href="#top" className="font-headline text-2xl font-bold tracking-tighter text-on-surface">
+          <a href="#top" className="font-headline text-2xl font-bold text-on-surface">
             COCOON
           </a>
 
@@ -754,10 +754,10 @@ export default function App() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="serif max-w-4xl text-5xl leading-tight tracking-tight text-on-surface sm:text-6xl md:text-9xl"
+                className="serif max-w-4xl text-5xl font-semibold leading-tight text-on-surface sm:text-6xl md:text-9xl"
               >
                 Clear design <br />
-                signals, <span className="italic">early.</span>
+                signals, <span className="text-primary">early.</span>
               </motion.h1>
               <motion.div variants={fadeInUp} className="max-w-sm text-on-surface-variant md:mt-0">
                 <p className="font-body leading-relaxed">
@@ -840,7 +840,7 @@ export default function App() {
                     <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={17} />
                     <div className="min-w-0">
                       <div className="text-[7px] uppercase tracking-[0.22em] text-outline">{activeLensContent.metricLabel}</div>
-                      <div className="font-headline text-balance text-[1.42rem] leading-[0.94] font-bold tracking-[-0.02em] text-on-surface">
+                      <div className="font-headline text-balance text-[1.42rem] leading-[0.94] font-bold text-on-surface">
                         {activeLensContent.metricValue}
                       </div>
                       <div className="mt-1 max-w-[10.2rem] text-[9.5px] leading-[1.45] text-on-surface-variant">
@@ -949,7 +949,7 @@ export default function App() {
                 design evolves.
               </p>
               <a href={exploreMailto} className="group flex items-center gap-4 text-primary">
-                <span className="serif border-b border-outline-variant/30 text-xl italic transition-all group-hover:border-primary">
+                <span className="font-headline border-b border-outline-variant/30 text-xl font-medium transition-all group-hover:border-primary">
                   Request to explore the engine
                 </span>
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -1022,7 +1022,7 @@ export default function App() {
                         index === 0 ? "border-primary" : "border-outline-variant/20 hover:border-primary"
                       }`}
                     >
-                      <span className="font-headline text-3xl italic text-outline-variant/40 sm:text-4xl">{step.id}</span>
+                      <span className="font-headline text-3xl font-semibold text-outline-variant/50 sm:text-4xl">{step.id}</span>
                       <div>
                         <h4 className="mb-2 font-body text-lg font-bold sm:text-xl">{step.title}</h4>
                         <p className="font-body text-sm text-on-surface-variant">{step.desc}</p>
@@ -1042,7 +1042,7 @@ export default function App() {
         <section className="px-4 py-32 text-center sm:px-6 sm:py-40 md:px-12">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="serif mb-8 text-5xl text-on-surface sm:text-6xl md:text-7xl">Design the next horizon.</h2>
-            <p className="serif mb-12 text-xl italic text-on-surface-variant">Join the studios defining the future of practice.</p>
+            <p className="mb-12 font-body text-xl text-on-surface-variant">Join the studios defining the future of practice.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href={demoRequestHref}

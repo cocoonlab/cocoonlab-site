@@ -6,8 +6,8 @@
   "scope": "/",
   "lang": "en-CA",
   "display": "standalone",
-  "background_color": "#f5f1e9",
-  "theme_color": "#11261d",
+  "background_color": "#F7F7F2",
+  "theme_color": "#3A606E",
   "categories": ["business", "productivity", "design"],
   "icons": [
     {
