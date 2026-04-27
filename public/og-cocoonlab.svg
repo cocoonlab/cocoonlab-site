@@ -56,34 +56,36 @@
   </g>
 
   <g filter="url(#panelShadow)">
-    <rect x="548" y="228" width="530" height="320" rx="30" fill="#3A606E" fill-opacity="0.5"/>
-    <rect x="548.75" y="228.75" width="528.5" height="318.5" rx="29.25" stroke="#A8B58A" stroke-opacity="0.36" stroke-width="1.5"/>
-    <rect x="548" y="228" width="530" height="320" rx="30" fill="url(#panelGlow)"/>
+    <rect x="548" y="208" width="530" height="370" rx="30" fill="#3A606E" fill-opacity="0.5"/>
+    <rect x="548.75" y="208.75" width="528.5" height="368.5" rx="29.25" stroke="#A8B58A" stroke-opacity="0.36" stroke-width="1.5"/>
+    <rect x="548" y="208" width="530" height="370" rx="30" fill="url(#panelGlow)"/>
 
-    <text x="602" y="304" fill="#F7F7F2" font-size="39" font-family="Outfit, 'Segoe UI', sans-serif" font-weight="700">
+    <text x="602" y="286" fill="#F7F7F2" font-size="39" font-family="Outfit, 'Segoe UI', sans-serif" font-weight="700">
       Early-stage feasibility
     </text>
 
-    <g font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="31" font-weight="650" fill="#F7F7F2">
+    <g font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="30" font-weight="650" fill="#F7F7F2">
       <g>
-        <rect x="602" y="346" width="420" height="76" rx="18" fill="#2D2E28" fill-opacity="0.22" stroke="#A8B58A" stroke-opacity="0.18"/>
-        <rect x="624" y="370" width="34" height="30" rx="5" stroke="#F7F7F2" stroke-width="3"/>
-        <path d="M632 380 H650 M632 390 H646" stroke="#EBC04D" stroke-width="3" stroke-linecap="round"/>
-        <text x="692" y="395">Brief</text>
+        <rect x="602" y="324" width="420" height="64" rx="17" fill="#2D2E28" fill-opacity="0.23" stroke="#A8B58A" stroke-opacity="0.18"/>
+        <rect x="624" y="342" width="34" height="28" rx="5" stroke="#F7F7F2" stroke-width="3"/>
+        <path d="M632 352 H650 M632 362 H646" stroke="#EBC04D" stroke-width="3" stroke-linecap="round"/>
+        <text x="692" y="366">Brief</text>
       </g>
 
       <g>
-        <rect x="602" y="442" width="420" height="76" rx="18" fill="#2D2E28" fill-opacity="0.22" stroke="#A8B58A" stroke-opacity="0.18"/>
-        <path d="M640 463 L647 477 L662 484 L647 491 L640 505 L633 491 L618 484 L633 477 Z" stroke="#F7F7F2" stroke-width="3" stroke-linejoin="round"/>
-        <path d="M620 466 L624 466 M622 464 L622 468 M664 462 L668 462 M666 460 L666 464" stroke="#EBC04D" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M618 502 L630 490" stroke="#F7F7F2" stroke-width="3" stroke-linecap="round"/>
-        <text x="692" y="491">Options</text>
+        <rect x="602" y="406" width="420" height="64" rx="17" fill="#2D2E28" fill-opacity="0.23" stroke="#A8B58A" stroke-opacity="0.18"/>
+        <path d="M640 424 L647 437 L662 444 L647 451 L640 464 L633 451 L618 444 L633 437 Z" stroke="#F7F7F2" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M620 427 L624 427 M622 425 L622 429 M664 423 L668 423 M666 421 L666 425" stroke="#EBC04D" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M618 462 L630 450" stroke="#F7F7F2" stroke-width="3" stroke-linecap="round"/>
+        <text x="692" y="448">Options</text>
       </g>
-    </g>
 
-    <g>
-      <rect x="724" y="536" width="298" height="10" rx="5" fill="#EBC04D"/>
-      <rect x="602" y="536" width="96" height="10" rx="5" fill="#A8B58A"/>
+      <g>
+        <rect x="602" y="488" width="420" height="64" rx="17" fill="#2D2E28" fill-opacity="0.23" stroke="#A8B58A" stroke-opacity="0.18"/>
+        <path d="M642 507 L662 515 V532 C662 544 652 553 642 557 C632 553 622 544 622 532 V515 Z" stroke="#F7F7F2" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M633 532 L639 538 L652 523" stroke="#EBC04D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="692" y="530">Compliance</text>
+      </g>
     </g>
   </g>
 

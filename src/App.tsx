@@ -10,20 +10,9 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const contactEmail = "rashid@cocoonlab.ai";
 const demoRequestHref = "/contact/?intent=studio-demo#contact-form";
+const engineExplorationHref = "/contact/#contact-form";
 
-function buildMailtoLink(subject: string, body?: string) {
-  const params = new URLSearchParams({ subject });
-
-  if (body) {
-    params.set("body", body);
-  }
-
-  return `mailto:${contactEmail}?${params.toString()}`;
-}
-
-const exploreMailto = buildMailtoLink("Cocoon product exploration");
 const demoAriaLabel = "Open the Cocoon studio demo request form";
 const lensAssetVersion = "20260413-lenses-1";
 const demoButtonClassName =
@@ -948,7 +937,7 @@ export default function App() {
                 Cocoon doesn&apos;t just generate; it validates. Each lens provides a specific architectural truth, synchronized in real-time as your
                 design evolves.
               </p>
-              <a href={exploreMailto} className="group flex items-center gap-4 text-primary">
+              <a href={engineExplorationHref} className="group flex items-center gap-4 text-primary">
                 <span className="font-headline border-b border-outline-variant/30 text-xl font-medium transition-all group-hover:border-primary">
                   Request to explore the engine
                 </span>
