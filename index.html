@@ -21,10 +21,14 @@
     <meta name="color-scheme" content="light" />
 
     <link rel="canonical" href="https://cocoonlab.ai/" />
-    <link rel="icon" href="/assets/logo/cocoon-logo.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/assets/logo/cocoon-logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="application/rss+xml" title="Cocoon Lab Blog" href="https://cocoonlab.ai/feed.xml" />
+    <link rel="me" href="https://ca.linkedin.com/company/cocoonlab-ai" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Cocoon Lab" />
@@ -35,9 +39,9 @@
       content="Evaluate site, cost, carbon, code, and planning signals earlier with Cocoon, the architectural feasibility product from Cocoon Lab."
     />
     <meta property="og:url" content="https://cocoonlab.ai/" />
-    <meta property="og:image" content="https://cocoonlab.ai/og-cocoonlab.svg" />
-    <meta property="og:image:secure_url" content="https://cocoonlab.ai/og-cocoonlab.svg" />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image" content="https://cocoonlab.ai/og-cocoonlab.png" />
+    <meta property="og:image:secure_url" content="https://cocoonlab.ai/og-cocoonlab.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Cocoon by Cocoon Lab architectural feasibility workspace preview" />
@@ -48,7 +52,7 @@
       name="twitter:description"
       content="Cocoon by Cocoon Lab is architectural feasibility software for site analysis, cost, carbon, regulatory review, and planning clarity."
     />
-    <meta name="twitter:image" content="https://cocoonlab.ai/og-cocoonlab.svg" />
+    <meta name="twitter:image" content="https://cocoonlab.ai/og-cocoonlab.png" />
     <meta name="twitter:image:alt" content="Cocoon by Cocoon Lab architectural feasibility workspace preview" />
 
     <script type="application/ld+json">
@@ -59,17 +63,37 @@
             "@type": "Organization",
             "@id": "https://cocoonlab.ai/#organization",
             "name": "Cocoon Lab",
+            "alternateName": ["Cocoon", "Cocoon Lab AI"],
             "url": "https://cocoonlab.ai/",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://cocoonlab.ai/assets/logo/cocoon-logo.png"
+              "url": "https://cocoonlab.ai/icon-512.png",
+              "width": 512,
+              "height": 512
             },
+            "image": "https://cocoonlab.ai/og-cocoonlab.png",
+            "description": "Cocoon Lab builds Cocoon, architectural feasibility software for early-stage site, cost, carbon, and code decisions.",
             "email": "rashid@cocoonlab.ai",
             "foundingDate": "2025",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Montreal",
+              "addressRegion": "QC",
+              "addressCountry": "CA"
+            },
             "founder": [
               { "@type": "Person", "name": "Rashid Mushkani" },
               { "@type": "Person", "name": "Hugo Berard" },
               { "@type": "Person", "name": "Shin Koseki" }
+            ],
+            "sameAs": ["https://ca.linkedin.com/company/cocoonlab-ai"],
+            "knowsAbout": [
+              "Architectural feasibility",
+              "Site analysis",
+              "Cost planning",
+              "Embodied carbon analysis",
+              "Regulatory review",
+              "Early-stage design intelligence"
             ],
             "brand": {
               "@type": "Brand",
@@ -89,10 +113,25 @@
             "@id": "https://cocoonlab.ai/#website",
             "url": "https://cocoonlab.ai/",
             "name": "Cocoon Lab",
+            "alternateName": "Cocoon",
             "description": "Cocoon Lab builds design intelligence for the earliest stages of architecture.",
             "publisher": {
               "@id": "https://cocoonlab.ai/#organization"
             },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://cocoonlab.ai/#webpage",
+            "url": "https://cocoonlab.ai/",
+            "name": "Cocoon | Architectural Feasibility Software by Cocoon Lab",
+            "isPartOf": {
+              "@id": "https://cocoonlab.ai/#website"
+            },
+            "about": {
+              "@id": "https://cocoonlab.ai/#cocoon"
+            },
+            "primaryImageOfPage": "https://cocoonlab.ai/og-cocoonlab.png",
             "inLanguage": "en-US"
           },
           {
@@ -121,7 +160,7 @@
               "Regulatory audit",
               "Presentation-ready outputs"
             ],
-            "screenshot": "https://cocoonlab.ai/og-cocoonlab.svg"
+            "screenshot": "https://cocoonlab.ai/og-cocoonlab.png"
           }
         ]
       }

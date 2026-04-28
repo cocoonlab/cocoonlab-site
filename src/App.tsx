@@ -1062,6 +1062,7 @@ const footerLinks = [
   { label: "Terms", href: "/terms/" },
   { label: "Studio", href: "/studio/" },
   { label: "Contact", href: "/contact/" },
+  { label: "Press Kit", href: "/press-kit/index.html" },
   { label: "Team", href: "/team/" },
   { label: "Blog", href: "/blog/" },
 ] as const;

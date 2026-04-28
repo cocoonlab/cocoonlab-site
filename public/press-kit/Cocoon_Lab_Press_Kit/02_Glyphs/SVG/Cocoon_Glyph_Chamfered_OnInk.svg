@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img">
+  <title>Cocoon Glyph Chamfered OnInk</title>
+  <rect width="100%" height="100%" fill="#1C201B"/>
+  <path d="M28 12H100L116 28V100L100 116H28L12 100V28Z" fill="none" stroke="#F8F4EC" stroke-width="8" stroke-linejoin="round"/>
+  <g transform="translate(25.309493 100.814044) scale(0.049414824 -0.049414824)"><path d="M776 -24C1101 -24 1353 177 1404 494H1179C1132 292 980 179 778 179C484 179 304 407 304 744C304 1083 484 1311 778 1311C981 1311 1134 1197 1178 994H1404C1352 1312 1101 1514 776 1514C364 1514 81 1203 81 744C81 288 365 -24 776 -24Z" fill="#F8F4EC"/></g>
+</svg>
