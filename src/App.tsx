@@ -138,6 +138,443 @@ const workflowSteps = [
   },
 ] as const;
 
+const dossierPages = [
+  {
+    id: "summary",
+    eyebrow: "01 / Feasibility",
+    tab: "Summary",
+    title: "Project Feasibility Snapshot",
+    accent: "#2D2E28",
+    metric: "87%",
+    metricLabel: "Scheme Confidence",
+    status: ["Site Strong", "Cost Optimized", "Carbon Improved", "Code Watch"],
+    copy: "A decision-grade view of site, cost, carbon, and code feasibility.",
+  },
+  {
+    id: "site",
+    eyebrow: "02 / Site",
+    tab: "Site",
+    title: "Site Logic and Parcel Fit",
+    accent: "#3A606E",
+    metric: "4.2",
+    metricLabel: "FAR",
+    status: ["Primary access", "Frontage strong", "Solar watch"],
+    copy: "Parcel geometry, movement, frontage, and exposure are translated into development logic.",
+  },
+  {
+    id: "cost",
+    eyebrow: "03 / Cost",
+    tab: "Cost",
+    title: "Cost Sensitivity and Quantity Logic",
+    accent: "#EBC04D",
+    metric: "-8.4%",
+    metricLabel: "Cost Delta",
+    status: ["Structure -6.2%", "Envelope +4.8%", "Core 11.7%"],
+    copy: "Early-stage massing choices are converted into quantity and cost-risk signals.",
+  },
+  {
+    id: "carbon",
+    eyebrow: "04 / Carbon",
+    tab: "Carbon",
+    title: "Embodied Carbon Comparison",
+    accent: "#A8B58A",
+    metric: "-31%",
+    metricLabel: "Carbon Delta",
+    status: ["Hybrid timber", "Baseline compared", "Podium transfer"],
+    copy: "Material and structural scenarios are evaluated before design lock-in.",
+  },
+  {
+    id: "code",
+    eyebrow: "05 / Code",
+    tab: "Code",
+    title: "Code Watchpoints",
+    accent: "#B36A5E",
+    metric: "6",
+    metricLabel: "Rules Checked",
+    status: ["Height clear", "Setback clear", "Fire access watch"],
+    copy: "Planning constraints and unresolved watchpoints are surfaced early.",
+  },
+  {
+    id: "export",
+    eyebrow: "06 / Handover",
+    tab: "Export",
+    title: "Ready for Handover",
+    accent: "#2D2E28",
+    metric: "4",
+    metricLabel: "Export Assets",
+    status: ["BIM Geometry", "Technical Dossier", "Carbon Scenario", "Code Watchlist"],
+    copy: "A structured feasibility package is prepared for review and handover.",
+  },
+] as const;
+
+type DossierPageId = (typeof dossierPages)[number]["id"];
+type DossierPageContent = (typeof dossierPages)[number];
+
+const exportPackageItems = ["BIM Geometry", "Technical Dossier", "Carbon Scenario", "Code Watchlist", "Decision Log", "Atmospheric Preview"] as const;
+
+function DossierDiagram({ page, isActive }: { page: DossierPageContent; isActive: boolean }) {
+  const lineTransition = { duration: 1.2, ease: "easeOut" as const };
+
+  if (page.id === "site") {
+    return (
+      <svg viewBox="0 0 260 156" className="h-full w-full" aria-hidden="true">
+        <motion.path
+          d="M24 110 L92 70 L178 94 L124 136 Z"
+          fill="none"
+          stroke={page.accent}
+          strokeWidth="2.4"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: isActive ? 1 : 0.72 }}
+          transition={lineTransition}
+        />
+        <path d="M34 126 C84 104 124 100 158 118 C184 132 204 124 236 106" fill="none" stroke={page.accent} strokeOpacity="0.38" strokeWidth="5" />
+        <path d="M42 62 L96 42 L192 58" fill="none" stroke={page.accent} strokeOpacity="0.48" strokeDasharray="6 7" />
+        <path d="M118 28 C158 34 190 48 220 76" fill="none" stroke="#EBC04D" strokeWidth="2.4" strokeLinecap="round" />
+        <circle cx="74" cy="88" r="4" fill="#EBC04D" />
+        <circle cx="194" cy="104" r="4" fill="#B36A5E" />
+      </svg>
+    );
+  }
+
+  if (page.id === "cost") {
+    return (
+      <div className="grid h-full grid-cols-[1fr_1.2fr] items-end gap-4">
+        <div className="space-y-2">
+          {[62, 48, 74, 54].map((height, index) => (
+            <div key={height} className="h-3 rounded-full bg-surface-container">
+              <motion.div
+                className="h-full rounded-full"
+                style={{ background: page.accent, width: `${height}%` }}
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: isActive ? 1 : 0.68 }}
+                transition={{ duration: 0.8, delay: index * 0.08, ease: "easeOut" }}
+              />
+            </div>
+          ))}
+        </div>
+        <div className="flex h-32 items-end gap-2 border-b border-outline-variant/20 px-2">
+          {[42, 78, 56, 92, 68, 84].map((height, index) => (
+            <motion.div
+              key={height}
+              className="w-full rounded-t-sm"
+              style={{ background: page.accent }}
+              initial={{ height: 0 }}
+              animate={{ height: isActive ? height : height * 0.45 }}
+              transition={{ duration: 0.8, delay: index * 0.05, ease: "easeOut" }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (page.id === "carbon") {
+    return (
+      <div className="grid h-full content-center gap-5">
+        <div>
+          <div className="mb-2 flex justify-between text-[0.62rem] uppercase tracking-[0.14em] text-on-surface-variant">
+            <span>Baseline</span>
+            <span>100%</span>
+          </div>
+          <div className="h-5 rounded-full bg-surface-container">
+            <motion.div
+              className="h-full rounded-full bg-on-surface/70"
+              initial={{ width: "0%" }}
+              animate={{ width: isActive ? "100%" : "70%" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+        <div>
+          <div className="mb-2 flex justify-between text-[0.62rem] uppercase tracking-[0.14em] text-on-surface-variant">
+            <span>Hybrid timber</span>
+            <span>69%</span>
+          </div>
+          <div className="h-5 rounded-full bg-surface-container">
+            <motion.div
+              className="h-full rounded-full"
+              style={{ background: page.accent }}
+              initial={{ width: "0%" }}
+              animate={{ width: isActive ? "69%" : "42%" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+            />
+          </div>
+        </div>
+        <svg viewBox="0 0 260 52" className="h-16 w-full" aria-hidden="true">
+          <path d="M22 26 H238" stroke={page.accent} strokeWidth="8" strokeLinecap="round" strokeOpacity="0.38" />
+          <path d="M42 14 H220" stroke={page.accent} strokeWidth="3" strokeLinecap="round" />
+          <path d="M62 38 H190" stroke={page.accent} strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      </div>
+    );
+  }
+
+  if (page.id === "code") {
+    const rows = ["Height", "Setback", "Fire access", "Daylight", "Frontage", "Parking"];
+
+    return (
+      <div className="grid h-full content-center gap-2">
+        {rows.map((row, index) => {
+          const state = ["Clear", "Clear", "Watch", "Watch", "Clear", "Pending"][index];
+          const tone = state === "Clear" ? "#3A606E" : state === "Watch" ? page.accent : "#EBC04D";
+
+          return (
+            <motion.div
+              key={row}
+              className="grid grid-cols-[1fr_auto] items-center gap-3 border-b border-outline-variant/12 py-1.5 text-xs"
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: isActive ? 1 : 0.58, x: 0 }}
+              transition={{ duration: 0.35, delay: index * 0.05 }}
+            >
+              <span className="font-semibold text-on-surface">{row}</span>
+              <span className="rounded-full px-2 py-1 font-semibold" style={{ background: `${tone}24`, color: tone }}>
+                {state}
+              </span>
+            </motion.div>
+          );
+        })}
+      </div>
+    );
+  }
+
+  if (page.id === "export") {
+    return (
+      <div className="grid h-full grid-cols-2 content-center gap-2">
+        {exportPackageItems.map((item, index) => (
+          <motion.div
+            key={item}
+            className="border border-outline-variant/16 bg-surface/62 px-3 py-3 text-[0.68rem] font-semibold text-on-surface"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: isActive ? 1 : 0.6, y: 0 }}
+            transition={{ duration: 0.35, delay: index * 0.04 }}
+          >
+            {item}
+          </motion.div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid h-full grid-cols-[0.8fr_1.2fr] items-center gap-4">
+      <div className="grid gap-2">
+        {["Site: Strong", "Cost: Optimized", "Carbon: Improved", "Code: Watch"].map((item, index) => (
+          <motion.div
+            key={item}
+            className="flex items-center gap-2 text-xs font-semibold text-on-surface-variant"
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: isActive ? 1 : 0.62, x: 0 }}
+            transition={{ duration: 0.35, delay: index * 0.05 }}
+          >
+            <span className="h-2 w-2 rounded-full" style={{ background: ["#3A606E", "#EBC04D", "#A8B58A", "#B36A5E"][index] }} />
+            {item}
+          </motion.div>
+        ))}
+      </div>
+      <svg viewBox="0 0 240 150" className="h-full w-full" aria-hidden="true">
+        <motion.path
+          d="M24 112 L88 76 L144 92 L216 52"
+          fill="none"
+          stroke={page.accent}
+          strokeWidth="2"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: isActive ? 1 : 0.7 }}
+          transition={lineTransition}
+        />
+        <path d="M48 72 L96 48 L158 64 L110 92 Z" fill="#DCE8EB" stroke={page.accent} strokeWidth="1.4" />
+        <path d="M48 72 L110 92 V124 L48 102 Z" fill="#E9EBDF" stroke={page.accent} strokeOpacity="0.38" />
+        <path d="M158 64 L110 92 V124 L158 96 Z" fill="#C7D9DE" stroke={page.accent} strokeOpacity="0.38" />
+        <circle cx="206" cy="54" r="5" fill="#EBC04D" />
+      </svg>
+    </div>
+  );
+}
+
+function DossierPageCard({
+  page,
+  isActive,
+  stackIndex = 0,
+  compact = false,
+}: {
+  page: DossierPageContent;
+  isActive: boolean;
+  stackIndex?: number;
+  compact?: boolean;
+}) {
+  const showContent = compact || isActive;
+
+  return (
+    <motion.article
+      className={`overflow-hidden border border-outline-variant/20 bg-surface shadow-[0_24px_60px_rgba(45,46,40,0.08)] ${
+        compact ? "relative min-h-[30rem] p-5" : "absolute inset-0 p-6 sm:p-7"
+      }`}
+      style={{
+        borderTopColor: page.accent,
+        borderTopWidth: "4px",
+        zIndex: compact ? 1 : isActive ? 40 : 10 - stackIndex,
+      }}
+      animate={
+        compact
+          ? { opacity: 1, y: 0, scale: 1 }
+          : {
+              opacity: 1,
+              x: isActive ? 0 : 16 + stackIndex * 10,
+              y: isActive ? -10 : 18 + stackIndex * 10,
+              rotate: isActive ? 0 : [-1.1, 0.7, -0.5, 1, -0.7, 0.4][stackIndex] ?? 0,
+              scale: isActive ? 1 : 0.965 - stackIndex * 0.01,
+            }
+      }
+      transition={{ duration: 0.42, ease: "easeOut" }}
+    >
+      {showContent ? (
+        <>
+          <header className="border-b border-outline-variant/16 pb-4">
+            <div className="text-[0.66rem] font-bold uppercase tracking-[0.18em]" style={{ color: page.accent }}>
+              {page.eyebrow}
+            </div>
+            <h3 className="mt-2 max-w-[22rem] font-headline text-2xl font-bold leading-tight text-on-surface sm:text-3xl">{page.title}</h3>
+            <p className="mt-2 max-w-[26rem] text-xs leading-relaxed text-on-surface-variant sm:text-sm">{page.copy}</p>
+          </header>
+
+          <div className="grid min-h-[16rem] grid-cols-1 gap-5 py-5 sm:grid-cols-[0.66fr_1fr] sm:items-center">
+            <div className="rounded-md border border-outline-variant/14 bg-surface-container-low/70 p-4">
+              <motion.div
+                className="font-headline text-5xl font-bold leading-none sm:text-6xl"
+                style={{ color: page.accent }}
+                animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 5 }}
+                transition={{ duration: 0.35 }}
+              >
+                {page.metric}
+              </motion.div>
+              <div className="mt-2 text-xs font-semibold uppercase tracking-[0.16em] text-on-surface-variant">{page.metricLabel}</div>
+            </div>
+
+            <div className="min-h-[11rem]">
+              <DossierDiagram page={page} isActive={isActive} />
+            </div>
+          </div>
+
+          <footer className="flex flex-wrap gap-2 border-t border-outline-variant/14 pt-4">
+            {page.status.map((status, index) => (
+              <motion.span
+                key={status}
+                className="border border-outline-variant/16 bg-surface-container-low/60 px-2.5 py-1.5 text-[0.68rem] font-semibold text-on-surface-variant"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: isActive ? 1 : 0.55, y: 0 }}
+                transition={{ duration: 0.28, delay: index * 0.04 }}
+              >
+                {status}
+              </motion.span>
+            ))}
+          </footer>
+        </>
+      ) : (
+        <div aria-hidden="true" className="grid h-full content-between opacity-35">
+          <div className="space-y-3">
+            <div className="h-1 w-full" style={{ background: page.accent }} />
+            <div className="h-2 w-36 bg-on-surface/20" />
+            <div className="h-8 w-64 bg-on-surface/10" />
+          </div>
+          <div className="grid grid-cols-[0.8fr_1fr] gap-5">
+            <div className="h-28 border border-outline-variant/20 bg-surface-container-low/60" />
+            <div className="h-28 border border-outline-variant/20 bg-surface-container-low/45" />
+          </div>
+          <div className="flex gap-2">
+            <span className="h-7 w-20 border border-outline-variant/16 bg-surface-container-low/60" />
+            <span className="h-7 w-24 border border-outline-variant/16 bg-surface-container-low/60" />
+            <span className="h-7 w-16 border border-outline-variant/16 bg-surface-container-low/60" />
+          </div>
+        </div>
+      )}
+    </motion.article>
+  );
+}
+
+function DossierAssemblyPreview() {
+  const [activePageId, setActivePageId] = useState<DossierPageId>("summary");
+  const [isDossierAutoplayPaused, setIsDossierAutoplayPaused] = useState(false);
+  const activeIndex = Math.max(
+    0,
+    dossierPages.findIndex((page) => page.id === activePageId),
+  );
+  const activePage = dossierPages[activeIndex] ?? dossierPages[0];
+
+  useEffect(() => {
+    if (isDossierAutoplayPaused || prefersReducedMotion()) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setActivePageId((currentPageId) => {
+        const currentIndex = dossierPages.findIndex((page) => page.id === currentPageId);
+        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % dossierPages.length : 0;
+        return dossierPages[nextIndex]?.id ?? "summary";
+      });
+    }, 3200);
+
+    return () => window.clearInterval(intervalId);
+  }, [isDossierAutoplayPaused]);
+
+  const selectDossierPage = (pageId: DossierPageId) => {
+    setActivePageId(pageId);
+    setIsDossierAutoplayPaused(true);
+  };
+
+  return (
+    <div className="relative min-h-0 w-full max-w-[56rem] overflow-hidden border border-outline-variant/18 bg-surface-container-low/35 p-4 shadow-[0_24px_80px_rgba(45,46,40,0.06)] sm:p-6 lg:min-h-[40rem]">
+      <div className="hidden lg:block">
+        <div className="pointer-events-none absolute left-8 right-8 top-14 z-10 grid gap-7 opacity-35">
+          {["#3A606E", "#B36A5E", "#A8B58A", "#EBC04D"].map((tone, index) => (
+            <motion.span
+              key={tone}
+              className="h-px w-full origin-left"
+              style={{ background: tone }}
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: [0, 1, 0.72] }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.1, delay: index * 0.08, ease: "easeOut" }}
+            />
+          ))}
+        </div>
+
+        <div className="absolute left-8 right-8 top-7 h-[31rem] xl:left-10 xl:right-10 xl:h-[32rem]">
+          {dossierPages.map((page, index) => (
+            <DossierPageCard key={page.id} page={page} isActive={activePageId === page.id} stackIndex={index} />
+          ))}
+        </div>
+      </div>
+
+      <div className="lg:hidden">
+        <DossierPageCard page={activePage} isActive compact />
+      </div>
+
+      <div className="relative z-50 mt-4 grid grid-cols-3 gap-1 rounded-lg border border-outline-variant/18 bg-surface/86 p-1 shadow-sm backdrop-blur-xl sm:grid-cols-6 lg:absolute lg:bottom-4 lg:left-4 lg:right-4 lg:mt-0">
+        {dossierPages.map((page) => {
+          const isActive = activePageId === page.id;
+
+          return (
+            <button
+              key={page.id}
+              type="button"
+              aria-pressed={isActive}
+              onClick={() => selectDossierPage(page.id)}
+              onMouseEnter={() => selectDossierPage(page.id)}
+              onFocus={() => selectDossierPage(page.id)}
+              className="rounded-md px-2.5 py-2 text-[0.68rem] font-semibold transition-all duration-200"
+              style={{
+                background: isActive ? page.accent : "transparent",
+                color: isActive ? (page.id === "cost" || page.id === "carbon" ? "#2D2E28" : "#F7F7F2") : "#596057",
+              }}
+            >
+              {page.tab}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 const dossierKeyMetrics = [
   {
     label: "Gross floor area",
@@ -993,8 +1430,8 @@ export default function App() {
           <div className="workflow-grid pointer-events-none absolute inset-0 opacity-[0.03]" />
 
           <div className="relative z-10 mx-auto max-w-[1400px]">
-            <div className="flex flex-col gap-20 md:flex-row">
-              <div className="md:w-1/2">
+            <div className="grid grid-cols-1 items-center gap-16 xl:grid-cols-[minmax(22rem,0.74fr)_minmax(0,1.26fr)] xl:gap-20">
+              <div>
                 <h2 className="serif mb-12 text-5xl text-on-surface sm:text-6xl">
                   Studio workflow,
                   <br />
@@ -1021,8 +1458,8 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-center md:w-1/2">
-                <WorkflowReportPreview />
+              <div className="flex min-w-0 items-center justify-center lg:justify-end">
+                <DossierAssemblyPreview />
               </div>
             </div>
           </div>
