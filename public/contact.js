@@ -75,7 +75,7 @@ function applyIntentMode({
   }
 
   if (submitButton instanceof HTMLButtonElement) {
-    submitButton.textContent = isStudioDemo ? "Request Studio Demo" : "Send Message";
+    submitButton.textContent = isStudioDemo ? "Book a Studio Demo" : "Send Message";
   }
 
   setStatus(

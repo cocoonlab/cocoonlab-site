@@ -82,22 +82,22 @@ const lensAutoplayResumeDelayMs = 10000;
 const lensFeatures = [
   {
     icon: Map,
-    title: "Site Intelligence",
+    title: "Does it fit the parcel?",
     desc: "Parcel geometry, adjacencies, solar access, and movement patterns clarified before design locks in.",
   },
   {
     icon: Banknote,
-    title: "Cost Intelligence",
+    title: "What drives the budget?",
     desc: "Early quantity logic and budget sensitivity remain attached to every massing iteration.",
   },
   {
     icon: Sprout,
-    title: "Carbon Analysis",
+    title: "Which option has lower impact?",
     desc: "Embodied impact is surfaced early enough to compare structural and material decisions meaningfully.",
   },
   {
     icon: Gavel,
-    title: "Regulatory Audit",
+    title: "What needs attention?",
     desc: "Setbacks, frontage, access, height, and zoning logic are organized into one readable compliance layer.",
   },
 ] as const;
@@ -1164,7 +1164,7 @@ export default function App() {
               aria-label={demoAriaLabel}
               className={demoButtonClassName}
             >
-              Request Studio Demo
+              Book a Studio Demo
             </a>
           </div>
         </div>
@@ -1183,12 +1183,12 @@ export default function App() {
                 variants={fadeInUp}
                 className="serif max-w-4xl text-5xl font-semibold leading-tight text-on-surface sm:text-6xl md:text-9xl"
               >
-                Clear design <br />
-                signals, <span className="text-primary">early.</span>
+                Know what a site <br />
+                can <span className="text-primary">become.</span>
               </motion.h1>
               <motion.div variants={fadeInUp} className="max-w-sm text-on-surface-variant md:mt-0">
-                <p className="font-body leading-relaxed">
-                  Cocoon is the AI collaborator for early-stage feasibility. Moving from intuition to architectural proof in seconds.
+                <p className="font-body text-[1.05rem] leading-relaxed sm:text-[1.1rem]">
+                  Test massing, cost, carbon, and code early to turn ideas into feasible schemes.
                 </p>
               </motion.div>
             </motion.div>
@@ -1360,6 +1360,30 @@ export default function App() {
                 </div>
               </div>
             </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
+              className="mt-4 flex flex-col gap-2 rounded-lg border border-outline-variant/18 bg-surface-container-low/70 px-4 py-3 font-body text-sm text-on-surface-variant shadow-sm sm:flex-row sm:items-center sm:justify-center sm:gap-4"
+              aria-label="Cocoon workflow"
+            >
+              <span>
+                <strong className="font-semibold text-on-surface">1.</strong> Upload site
+              </span>
+              <span className="hidden text-outline sm:inline" aria-hidden="true">
+                →
+              </span>
+              <span>
+                <strong className="font-semibold text-on-surface">2.</strong> Generate options
+              </span>
+              <span className="hidden text-outline sm:inline" aria-hidden="true">
+                →
+              </span>
+              <span>
+                <strong className="font-semibold text-on-surface">3.</strong> Compare feasibility
+              </span>
+            </motion.div>
           </div>
         </section>
 
@@ -1367,10 +1391,15 @@ export default function App() {
           <div className="mx-auto grid max-w-[1400px] grid-cols-1 items-start gap-16 md:grid-cols-12">
             <div className="md:col-span-4">
               <h2 className="serif mb-8 text-4xl text-on-surface sm:text-5xl">
-                One workspace.
-                <br />
-                Four lenses.
+                Every scheme checked across four essentials.
               </h2>
+              <div className="mb-8 flex flex-wrap gap-2 font-body text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                {["Site", "Cost", "Carbon", "Code"].map((item) => (
+                  <span key={item} className="rounded-full border border-primary/18 bg-primary/8 px-3 py-1.5">
+                    {item}
+                  </span>
+                ))}
+              </div>
               <p className="mb-12 font-body leading-relaxed text-on-surface-variant">
                 Cocoon doesn&apos;t just generate; it validates. Each lens provides a specific architectural truth, synchronized in real-time as your
                 design evolves.
@@ -1468,7 +1497,7 @@ export default function App() {
 
         <section className="px-4 py-32 text-center sm:px-6 sm:py-40 md:px-12">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="serif mb-8 text-5xl text-on-surface sm:text-6xl md:text-7xl">Design the next horizon.</h2>
+            <h2 className="serif mb-8 text-5xl text-on-surface sm:text-6xl md:text-7xl">Bring one site. We&apos;ll show feasibility live.</h2>
             <p className="mb-12 font-body text-xl text-on-surface-variant">Join the studios defining the future of practice.</p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
@@ -1476,7 +1505,7 @@ export default function App() {
                 aria-label={demoAriaLabel}
                 className={`inline-flex w-full justify-center sm:w-auto ${demoButtonClassName}`}
               >
-                Request Studio Demo
+                Book a Studio Demo
               </a>
               <a
                 href="/monograph/"
@@ -1485,6 +1514,9 @@ export default function App() {
                 Read the Monograph
               </a>
             </div>
+            <p className="mt-4 font-body text-sm leading-relaxed text-on-surface-variant">
+              Upload a site. Get feasible options, metrics, and export-ready outputs.
+            </p>
           </motion.div>
         </section>
       </main>
