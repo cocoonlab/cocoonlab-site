@@ -785,15 +785,6 @@ strong {
   object-fit: cover;
 }
 
-.press-kit-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  width: min(100%, var(--page-width));
-  margin: clamp(3rem, 6vw, 4.5rem) auto 0;
-}
-
-.press-kit-grid .page-card,
 .press-kit-notes {
   background: rgba(254, 252, 248, 0.78);
 }
@@ -880,8 +871,7 @@ strong {
     grid-template-columns: 1fr;
   }
 
-  .press-kit-hero,
-  .press-kit-grid {
+  .press-kit-hero {
     grid-template-columns: 1fr;
   }
 
@@ -940,7 +930,6 @@ strong {
   .page-grid,
   .contact-layout,
   .press-kit-hero,
-  .press-kit-grid,
   .card-grid,
   .partner-grid,
   .people-grid,
