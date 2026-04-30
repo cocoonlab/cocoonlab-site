@@ -1181,10 +1181,12 @@ export default function App() {
             >
               <motion.h1
                 variants={fadeInUp}
-                className="serif max-w-4xl text-5xl font-semibold leading-tight text-on-surface sm:text-6xl md:text-9xl"
+                className="serif max-w-5xl text-[2.55rem] font-semibold leading-tight text-on-surface sm:text-6xl md:text-8xl"
               >
-                Know what a site <br />
-                can <span className="text-primary">become.</span>
+                <span className="block">Know what a site</span>
+                <span className="block">
+                  can <span className="text-primary">become.</span>
+                </span>
               </motion.h1>
               <motion.div variants={fadeInUp} className="max-w-sm text-on-surface-variant md:mt-0">
                 <p className="font-body text-[1.05rem] leading-relaxed sm:text-[1.1rem]">
@@ -1401,12 +1403,11 @@ export default function App() {
                 ))}
               </div>
               <p className="mb-12 font-body leading-relaxed text-on-surface-variant">
-                Cocoon doesn&apos;t just generate; it validates. Each lens provides a specific architectural truth, synchronized in real-time as your
-                design evolves.
+                Cocoon checks every option against the practical signals that determine whether a scheme can move forward.
               </p>
               <a href={engineExplorationHref} className="group flex items-center gap-4 text-primary">
                 <span className="font-headline border-b border-outline-variant/30 text-xl font-medium transition-all group-hover:border-primary">
-                  Request to explore the engine
+                  See feasibility in action
                 </span>
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
@@ -1471,7 +1472,6 @@ export default function App() {
                   {workflowSteps.map((step, index) => (
                     <motion.div
                       key={index}
-                      initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       className={`flex gap-4 border-l-2 py-2 pl-5 transition-colors duration-500 sm:gap-8 sm:pl-8 ${
@@ -1496,9 +1496,11 @@ export default function App() {
         </section>
 
         <section className="px-4 py-32 text-center sm:px-6 sm:py-40 md:px-12">
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+          <motion.div whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <h2 className="serif mb-8 text-5xl text-on-surface sm:text-6xl md:text-7xl">Bring one site. We&apos;ll show feasibility live.</h2>
-            <p className="mb-12 font-body text-xl text-on-surface-variant">Join the studios defining the future of practice.</p>
+            <p className="mx-auto mb-10 max-w-2xl font-body text-lg leading-relaxed text-on-surface-variant sm:text-xl">
+              Get feasible options, metrics, and export-ready outputs in one working session.
+            </p>
             <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <a
                 href={demoRequestHref}
@@ -1514,9 +1516,6 @@ export default function App() {
                 Read the Monograph
               </a>
             </div>
-            <p className="mt-4 font-body text-sm leading-relaxed text-on-surface-variant">
-              Upload a site. Get feasible options, metrics, and export-ready outputs.
-            </p>
           </motion.div>
         </section>
       </main>
