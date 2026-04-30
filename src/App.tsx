@@ -1,14 +1,16 @@
 import { motion } from "motion/react";
 import {
-  Leaf,
   Map,
   Banknote,
   Sprout,
   Gavel,
   ArrowRight,
   Sparkles,
+  Zap,
+  Crosshair,
+  UsersRound,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const demoRequestHref = "/contact/?intent=studio-demo#contact-form";
 const engineExplorationHref = "/contact/#contact-form";
@@ -20,64 +22,27 @@ const demoButtonClassName =
 const secondaryCtaClassName =
   "rounded-md border border-outline-variant/35 bg-surface-container-low px-6 py-2 font-label text-sm font-semibold text-on-surface shadow-sm transition-all duration-200 hover:border-primary/35 hover:bg-surface-container active:scale-95";
 
-const lensContent = {
-  Site: {
-    chip: "Site lens: parcel fit, adjacencies, movement, and buildable envelope",
-    imageSrc: `/assets/lenses/site-cocoon.png?v=${lensAssetVersion}`,
-    imageAlt: "Architectural site massing study with a highlighted parcel and surrounding urban context",
-    imageFilter: "none",
-    metricLabel: "Site",
-    metricValue: "3,600 m²",
-    metricNote: "Full block, streets all sides, near water.",
-    icon: Map,
-  },
-  Cost: {
-    chip: "Cost lens: early quantity logic and budget sensitivity tied to each massing move",
-    imageSrc: `/assets/lenses/cost-cocoon.png?v=${lensAssetVersion}`,
-    imageAlt: "Architectural feasibility study with cost overlays, quantity bars, and a massing model",
-    imageFilter: "none",
-    metricLabel: "Cost",
-    metricValue: "$3,250 / m²",
-    metricNote: "Layered structure, envelope, systems.",
-    icon: Banknote,
-  },
-  Carbon: {
-    chip: "Carbon lens: embodied impact surfaced before details become expensive to change",
-    imageSrc: `/assets/lenses/carbon-cocoon.png?v=${lensAssetVersion}`,
-    imageAlt: "Architectural massing study with embodied carbon analysis and material comparison overlays",
-    imageFilter: "none",
-    metricLabel: "Carbon",
-    metricValue: "420 kgCO₂e / m²",
-    metricNote: "Embodied impact across materials.",
-    icon: Leaf,
-  },
-  Code: {
-    chip: "Code lens: zoning logic, setbacks, and compliance flags organized in one readable layer",
-    imageSrc: `/assets/lenses/code-cocoon.png?v=${lensAssetVersion}`,
-    imageAlt: "Architectural zoning and code study with parcel lines, setback envelopes, and compliance annotations",
-    imageFilter: "none",
-    metricLabel: "Code",
-    metricValue: "FAR 4.2 | 28 m",
-    metricNote: "Setbacks and height define form.",
-    icon: Gavel,
-  },
-  Visuals: {
-    chip: "Visuals lens: atmosphere, massing, and material intent aligned to the design signal",
-    imageSrc: `/assets/lenses/visual-cocoon.png?v=${lensAssetVersion}`,
-    imageAlt: "Atmospheric architectural rendering with stacked green volumes, glass, and warm light",
-    imageFilter: "none",
-    metricLabel: "Visuals",
-    metricValue: "6 levels | Mixed-use",
-    metricNote: "From massing to inhabitation.",
-    icon: Sparkles,
-  },
-} as const;
+const heroSignals = [
+  { icon: Zap, title: "Seconds,", note: "not days" },
+  { icon: Crosshair, title: "Evidence for", note: "early decisions" },
+  { icon: UsersRound, title: "Built for", note: "architects" },
+] as const;
 
-type LensName = keyof typeof lensContent;
+const heroWorkflowSteps = [
+  { id: "1", title: "Upload site", note: "PDF, CAD, or image" },
+  { id: "2", title: "Generate options", note: "AI explores in seconds" },
+  { id: "3", title: "Compare & decide", note: "Choose with confidence" },
+] as const;
 
-const lensNames = Object.keys(lensContent) as LensName[];
-const lensAutoplayIntervalMs = 4200;
-const lensAutoplayResumeDelayMs = 10000;
+const heroBackgroundSlides = [
+  { src: "/assets/lenses/visual-cocoon.png", position: "center center" },
+  { src: "/assets/lenses/site-cocoon.png", position: "center center" },
+  { src: "/assets/lenses/cost-cocoon.png", position: "center center" },
+  { src: "/assets/lenses/carbon-cocoon.png", position: "center center" },
+  { src: "/assets/lenses/code-cocoon.png", position: "center center" },
+] as const;
+
+const heroBackgroundIntervalMs = 4200;
 
 const lensFeatures = [
   {
@@ -1072,12 +1037,7 @@ function prefersReducedMotion() {
 }
 
 export default function App() {
-  const [activeLens, setActiveLens] = useState<LensName>("Site");
-  const [isLensAutoplayActive, setIsLensAutoplayActive] = useState(true);
-  const lensAutoplayResumeTimeoutRef = useRef<number | null>(null);
-
-  const activeLensContent = lensContent[activeLens];
-  const ActiveLensIcon = activeLensContent.icon;
+  const [activeHeroBackgroundIndex, setActiveHeroBackgroundIndex] = useState(0);
   const currentYear = new Date().getFullYear();
 
   const fadeInUp = {
@@ -1094,66 +1054,22 @@ export default function App() {
     },
   };
 
-  function clearLensAutoplayResumeTimeout() {
-    if (lensAutoplayResumeTimeoutRef.current !== null) {
-      window.clearTimeout(lensAutoplayResumeTimeoutRef.current);
-      lensAutoplayResumeTimeoutRef.current = null;
-    }
-  }
-
-  function pauseLensAutoplay() {
-    clearLensAutoplayResumeTimeout();
-    setIsLensAutoplayActive(false);
-  }
-
-  function resumeLensAutoplay(delay = lensAutoplayResumeDelayMs) {
-    clearLensAutoplayResumeTimeout();
-
-    if (prefersReducedMotion()) {
-      setIsLensAutoplayActive(false);
-      return;
-    }
-
-    lensAutoplayResumeTimeoutRef.current = window.setTimeout(() => {
-      setIsLensAutoplayActive(true);
-      lensAutoplayResumeTimeoutRef.current = null;
-    }, delay);
-  }
-
-  function handleLensSelect(lens: LensName) {
-    setActiveLens(lens);
-    pauseLensAutoplay();
-    resumeLensAutoplay();
-  }
-
   useEffect(() => {
-    if (!isLensAutoplayActive || prefersReducedMotion()) {
+    if (prefersReducedMotion()) {
       return;
     }
 
     const intervalId = window.setInterval(() => {
-      setActiveLens((currentLens) => {
-        const currentIndex = lensNames.indexOf(currentLens);
-        const nextIndex = currentIndex >= 0 ? (currentIndex + 1) % lensNames.length : 0;
-        return lensNames[nextIndex] ?? "Site";
-      });
-    }, lensAutoplayIntervalMs);
+      setActiveHeroBackgroundIndex((currentIndex) => (currentIndex + 1) % heroBackgroundSlides.length);
+    }, heroBackgroundIntervalMs);
 
-    return () => {
-      window.clearInterval(intervalId);
-    };
-  }, [isLensAutoplayActive]);
-
-  useEffect(() => {
-    return () => {
-      clearLensAutoplayResumeTimeout();
-    };
+    return () => window.clearInterval(intervalId);
   }, []);
 
   return (
     <div className="min-h-screen bg-surface selection:bg-primary/20">
-      <nav className="fixed top-0 z-50 w-full border-b border-outline-variant/5 bg-surface/60 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1920px] items-center justify-between px-4 py-4 sm:px-6 sm:py-6 md:px-12">
+      <nav className="fixed top-0 z-50 w-full bg-surface/72 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-[1920px] items-center justify-between px-4 py-4 sm:px-6 sm:py-6 md:px-16">
           <a href="#top" className="font-headline text-2xl font-bold text-on-surface">
             COCOON
           </a>
@@ -1162,229 +1078,119 @@ export default function App() {
             <a
               href={demoRequestHref}
               aria-label={demoAriaLabel}
-              className={demoButtonClassName}
+              className={`${demoButtonClassName} gap-2`}
             >
               Book a Studio Demo
+              <ArrowRight size={15} strokeWidth={2.2} />
             </a>
           </div>
         </div>
       </nav>
 
-      <main className="pt-28 sm:pt-32">
-        <section id="top" className="mb-24 scroll-mt-28 px-4 sm:mb-32 sm:scroll-mt-32 sm:px-6 md:px-12">
-          <div className="mx-auto max-w-[1400px]">
+      <main className="pt-0">
+        <section id="top" className="relative min-h-[100svh] scroll-mt-0 overflow-hidden border-b border-outline-variant/12 bg-surface">
+          <div aria-hidden="true" className="absolute inset-0 z-0 overflow-hidden">
+            {heroBackgroundSlides.map((slide, index) => (
+              <motion.img
+                key={slide.src}
+                className="absolute bottom-16 right-0 h-[56%] w-full object-cover opacity-70 sm:bottom-14 sm:h-[64%] md:h-[70%] lg:bottom-0 lg:h-[82%] lg:w-[80%] lg:opacity-95"
+                src={`${slide.src}?v=${lensAssetVersion}`}
+                alt=""
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding="async"
+                style={{ objectPosition: slide.position }}
+                initial={false}
+                animate={{
+                  opacity: index === activeHeroBackgroundIndex ? 1 : 0,
+                  scale: index === activeHeroBackgroundIndex ? 1 : 1.015,
+                }}
+                transition={{ duration: 0.9, ease: "easeInOut" }}
+              />
+            ))}
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,#F7F7F2_0%,rgba(247,247,242,0.98)_22%,rgba(247,247,242,0.84)_42%,rgba(247,247,242,0.22)_67%,rgba(247,247,242,0)_100%)]" />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,#F7F7F2_0%,rgba(247,247,242,0.72)_16%,rgba(247,247,242,0)_44%,rgba(247,247,242,0.04)_100%)]" />
+            <div className="absolute inset-x-0 bottom-0 h-56 bg-[linear-gradient(0deg,#F7F7F2_0%,rgba(247,247,242,0.78)_45%,rgba(247,247,242,0)_100%)] lg:h-40" />
+          </div>
+
+          <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[1920px] flex-col px-4 pt-28 sm:px-6 sm:pt-32 md:px-16 lg:pt-36">
             <motion.div
               initial="initial"
               animate="animate"
               variants={staggerContainer}
-              className="mb-14 flex flex-col justify-between gap-8 sm:mb-20 md:flex-row md:items-baseline"
+              className="grid flex-1 grid-cols-1 items-start gap-8 pb-8 lg:grid-cols-[minmax(32rem,0.9fr)_minmax(24rem,1.1fr)] lg:pb-8 xl:grid-cols-[minmax(40rem,0.95fr)_minmax(24rem,1.05fr)]"
             >
-              <motion.h1
-                variants={fadeInUp}
-                className="serif max-w-5xl text-[2.55rem] font-semibold leading-tight text-on-surface sm:text-6xl md:text-8xl"
-              >
-                <span className="block">Know what a site</span>
-                <span className="block">
-                  can <span className="text-primary">become.</span>
-                </span>
-              </motion.h1>
-              <motion.div variants={fadeInUp} className="max-w-sm text-on-surface-variant md:mt-0">
-                <p className="font-body text-[1.05rem] leading-relaxed sm:text-[1.1rem]">
+              <motion.div variants={fadeInUp} className="max-w-[52rem] lg:pt-20">
+                <h1 className="serif max-w-[52rem] text-[clamp(3.1rem,8vw,5.65rem)] font-semibold leading-[1.12] text-on-surface lg:text-[clamp(4.35rem,4.9vw,5.35rem)]">
+                  Know what
+                  <br />
+                  <span className="xl:whitespace-nowrap">
+                    a site can <span className="text-primary">become.</span>
+                  </span>
+                </h1>
+                <p className="mt-9 max-w-[31rem] font-body text-lg leading-[1.72] text-on-surface-variant sm:text-xl md:text-[1.32rem]">
                   Test massing, cost, carbon, and code early to turn ideas into feasible schemes.
                 </p>
+
+                <a
+                  href={demoRequestHref}
+                  aria-label={demoAriaLabel}
+                  className="mt-10 inline-flex min-h-14 items-center justify-center gap-3 rounded-md bg-primary px-7 py-3 font-label text-base font-semibold leading-none text-on-primary shadow-[0_18px_38px_rgba(34,63,73,0.22)] transition-all duration-200 hover:bg-primary-dim active:scale-95 sm:px-9"
+                >
+                  Book a Studio Demo
+                  <ArrowRight size={18} strokeWidth={2.2} />
+                </a>
+
+                <div className="mt-12 grid max-w-[39rem] grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:mt-16">
+                  {heroSignals.map((signal) => {
+                    const SignalIcon = signal.icon;
+
+                    return (
+                      <div key={signal.title} className="flex items-center gap-3">
+                        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-secondary-container text-on-surface shadow-sm">
+                          <SignalIcon size={23} strokeWidth={1.7} />
+                        </span>
+                        <span className="font-body text-sm leading-snug text-on-surface-variant">
+                          <strong className="block font-semibold text-on-surface">{signal.title}</strong>
+                          {signal.note}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="relative min-h-[25rem] sm:min-h-[31rem] lg:min-h-[32rem]">
+                <img
+                  className="relative z-20 ml-auto w-[min(88vw,23rem)] rounded-[1.35rem] shadow-[0_28px_80px_rgba(45,46,40,0.16)] ring-1 ring-on-surface/8 sm:w-[min(68vw,25rem)] lg:absolute lg:right-[4vw] lg:top-0 lg:w-[min(24vw,23.75rem)]"
+                  src="/assets/lenses/card-cocoon.png"
+                  alt="Cocoon feasibility snapshot with site fit, massing, carbon, and code metrics"
+                  fetchPriority="high"
+                  decoding="async"
+                />
               </motion.div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              onMouseEnter={pauseLensAutoplay}
-              onMouseLeave={() => resumeLensAutoplay(1800)}
-              onFocusCapture={pauseLensAutoplay}
-              onBlurCapture={(event) => {
-                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                  resumeLensAutoplay(2200);
-                }
-              }}
-              className="group relative aspect-[4/5] overflow-hidden rounded-xl bg-surface-container shadow-sm sm:aspect-[16/11] lg:aspect-[16/9]"
-            >
-              <motion.img
-                key={activeLens}
-                initial={{ opacity: 0, scale: 1.02 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.55, ease: "easeOut" }}
-                className="h-full w-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
-                src={activeLensContent.imageSrc}
-                alt={activeLensContent.imageAlt}
-                fetchPriority="high"
-                decoding="async"
-                style={{ filter: activeLensContent.imageFilter }}
-              />
-
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-surface/10 via-transparent to-surface/18" />
-
-              <div className="pointer-events-none absolute inset-0 flex flex-col justify-between p-3 sm:p-6 md:p-12">
-                <div className="flex items-start justify-start sm:justify-between sm:gap-4">
-                  <div className="pointer-events-auto">
-                    <motion.span
-                      key={`${activeLens}-chip`}
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="blueprint-chip inline-flex max-w-[15.75rem] rounded-full border border-white/20 bg-surface-container-highest/72 px-3 py-1.5 text-[10px] leading-snug shadow-sm backdrop-blur-md sm:max-w-full sm:px-4 sm:py-1 sm:text-sm sm:leading-relaxed"
-                    >
-                      {activeLensContent.chip}
-                    </motion.span>
-                  </div>
-
-                  <div className="pointer-events-auto hidden sm:block sm:w-auto">
-                    <motion.div
-                      key={`${activeLens}-metric`}
-                      initial={{ x: 20, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                      className="flex w-full max-w-[18rem] items-start gap-4 rounded-xl border border-outline-variant/15 bg-surface/80 p-4 backdrop-blur-md sm:w-auto"
-                    >
-                      <ActiveLensIcon className="text-primary" size={24} />
-                      <div>
-                        <div className="text-[10px] uppercase tracking-widest text-outline">{activeLensContent.metricLabel}</div>
-                        <div className="font-headline text-lg font-bold text-on-surface">{activeLensContent.metricValue}</div>
-                        <div className="mt-1 max-w-[15rem] text-xs leading-relaxed text-on-surface-variant">
-                          {activeLensContent.metricNote}
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                </div>
-
-                <div className="pointer-events-auto mx-auto flex w-full max-w-[17.25rem] flex-col gap-2.5 sm:hidden">
-                  <motion.div
-                    key={`${activeLens}-metric-mobile`}
-                    initial={{ y: 12, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                    className="flex w-full max-w-[13.4rem] items-start gap-2 self-start rounded-[1rem] border border-outline-variant/12 bg-surface/74 px-2.5 py-2.25 shadow-lg backdrop-blur-lg"
-                  >
-                    <ActiveLensIcon className="mt-0.5 shrink-0 text-primary" size={17} />
-                    <div className="min-w-0">
-                      <div className="text-[7px] uppercase tracking-[0.22em] text-outline">{activeLensContent.metricLabel}</div>
-                      <div className="font-headline text-balance text-[1.42rem] leading-[0.94] font-bold text-on-surface">
-                        {activeLensContent.metricValue}
-                      </div>
-                      <div className="mt-1 max-w-[10.2rem] text-[9.5px] leading-[1.45] text-on-surface-variant">
-                        {activeLensContent.metricNote}
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <div className="flex w-full justify-center">
-                    <div className="glass-panel grid w-full max-w-[17rem] grid-cols-5 gap-1 rounded-[1.25rem] border border-white/20 p-1.25 shadow-xl">
-                      {lensNames.map((lens) => (
-                        <button
-                          key={`${lens}-mobile`}
-                          type="button"
-                          onClick={() => handleLensSelect(lens)}
-                          aria-pressed={activeLens === lens}
-                          aria-label={`Show the ${lens} lens`}
-                          className={`relative min-w-0 overflow-hidden rounded-[0.9rem] px-1 py-2.25 text-[9px] font-medium leading-none transition-all duration-300 ${
-                            activeLens === lens
-                              ? "bg-primary text-on-primary shadow-lg"
-                              : "text-on-surface-variant hover:bg-surface-variant/40"
-                          }`}
-                        >
-                          {activeLens === lens ? (
-                            <>
-                              <motion.span
-                                layoutId="lens-active-pill-mobile"
-                                transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.85 }}
-                                className="absolute inset-0 rounded-[0.9rem] bg-primary shadow-lg"
-                              />
-                              {isLensAutoplayActive ? (
-                                <motion.span
-                                  key={`${lens}-mobile-progress`}
-                                  initial={{ scaleX: 0, opacity: 0.4 }}
-                                  animate={{ scaleX: 1, opacity: 0.9 }}
-                                  transition={{ duration: lensAutoplayIntervalMs / 1000, ease: "linear" }}
-                                  style={{ transformOrigin: "left center" }}
-                                  className="absolute inset-x-2 bottom-1 h-px rounded-full bg-white/55"
-                                />
-                              ) : null}
-                            </>
-                          ) : null}
-                          <span className="relative z-10">{lens}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="hidden w-full justify-center sm:flex">
-                  <div className="glass-panel pointer-events-auto grid w-full max-w-[32rem] grid-cols-5 gap-1 rounded-[1.5rem] border border-white/20 p-1.5 shadow-xl sm:flex sm:w-auto sm:max-w-none sm:rounded-full">
-                    {lensNames.map((lens) => (
-                      <button
-                        key={lens}
-                        type="button"
-                        onClick={() => handleLensSelect(lens)}
-                        aria-pressed={activeLens === lens}
-                        aria-label={`Show the ${lens} lens`}
-                        className="relative min-w-0 overflow-hidden rounded-full px-3 py-2.5 text-[11px] font-medium transition-all duration-300 sm:px-4 sm:py-2 sm:text-xs md:px-6"
-                      >
-                        {activeLens === lens ? (
-                          <>
-                            <motion.span
-                              layoutId="lens-active-pill-desktop"
-                              transition={{ type: "spring", stiffness: 360, damping: 30, mass: 0.85 }}
-                              className="absolute inset-0 rounded-full bg-primary shadow-lg"
-                            />
-                            {isLensAutoplayActive ? (
-                              <motion.span
-                                key={`${lens}-desktop-progress`}
-                                initial={{ scaleX: 0, opacity: 0.4 }}
-                                animate={{ scaleX: 1, opacity: 0.9 }}
-                                transition={{ duration: lensAutoplayIntervalMs / 1000, ease: "linear" }}
-                                style={{ transformOrigin: "left center" }}
-                                className="absolute inset-x-3 bottom-1.5 h-[1.5px] rounded-full bg-white/55"
-                              />
-                            ) : null}
-                          </>
-                        ) : null}
-                        <span
-                          className={`relative z-10 ${
-                            activeLens === lens ? "text-on-primary" : "text-on-surface-variant"
-                          }`}
-                        >
-                          {lens}
-                        </span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35, ease: "easeOut" }}
-              className="mt-4 flex flex-col gap-2 rounded-lg border border-outline-variant/18 bg-surface-container-low/70 px-4 py-3 font-body text-sm text-on-surface-variant shadow-sm sm:flex-row sm:items-center sm:justify-center sm:gap-4"
+              className="relative z-20 mt-auto border border-outline-variant/16 bg-surface/94 px-5 py-6 shadow-[0_-18px_46px_rgba(45,46,40,0.06)] backdrop-blur-xl sm:px-8 lg:ml-auto lg:w-[40rem] lg:-mr-16 lg:rounded-tl-[2rem] lg:border-b-0 lg:border-r-0 lg:px-10"
               aria-label="Cocoon workflow"
             >
-              <span>
-                <strong className="font-semibold text-on-surface">1.</strong> Upload site
-              </span>
-              <span className="hidden text-outline sm:inline" aria-hidden="true">
-                →
-              </span>
-              <span>
-                <strong className="font-semibold text-on-surface">2.</strong> Generate options
-              </span>
-              <span className="hidden text-outline sm:inline" aria-hidden="true">
-                →
-              </span>
-              <span>
-                <strong className="font-semibold text-on-surface">3.</strong> Compare feasibility
-              </span>
+              <div className="relative grid gap-5 sm:grid-cols-3">
+                <div className="absolute left-[16%] right-[16%] top-5 hidden border-t border-dashed border-outline-variant/35 sm:block" />
+                {heroWorkflowSteps.map((step) => (
+                  <div key={step.id} className="relative z-10 flex items-center gap-3 sm:block sm:text-center">
+                    <span className="mx-0 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-secondary-container font-headline text-sm font-bold text-on-secondary-container shadow-sm sm:mx-auto">
+                      {step.id}
+                    </span>
+                    <span className="block sm:mt-4">
+                      <strong className="block font-body text-sm font-semibold text-on-surface">{step.title}</strong>
+                      <span className="mt-1 block font-body text-xs leading-relaxed text-on-surface-variant">{step.note}</span>
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </div>
         </section>
