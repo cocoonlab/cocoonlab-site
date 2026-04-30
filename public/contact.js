@@ -1,6 +1,50 @@
 const form = document.querySelector("[data-contact-form]");
 const urlParams = new URLSearchParams(window.location.search);
 const intentMode = urlParams.get("intent") === "studio-demo" ? "studio-demo" : "contact";
+const contactLocale = window.localStorage.getItem("cocoon_language") === "fr" ? "fr" : "en";
+
+const contactText = {
+  en: {
+    nameRequired: "Please provide your name.",
+    emailInvalid: "Please provide a valid email address.",
+    messageTooShort: "Please include a message with a bit more detail.",
+    demoNote: "You’re requesting a Cocoon studio demo. Share a bit about the project, the team, and your timing.",
+    intakeNote: "Messages are routed directly into Cocoon Lab’s internal intake queue.",
+    demoPlaceholder: "Tell us about your team, project, and what you’d like to see in the demo.",
+    contactPlaceholder: "How can we help?",
+    demoSubmit: "Book a Studio Demo",
+    contactSubmit: "Send Message",
+    demoStatus: "Studio demo requests are routed directly into Cocoon Lab’s internal intake queue.",
+    sendingDemo: "Routing your demo request to Cocoon Lab...",
+    sendingContact: "Sending your message to Cocoon Lab...",
+    sendFallback: "We could not send your message right now.",
+    sentDemo: "Thanks. Your studio demo request has been routed to Cocoon Lab.",
+    sentContact: "Thanks. Your message has been routed to Cocoon Lab.",
+    timeout: "The request took too long. Please try again.",
+    sending: "Sending...",
+  },
+  fr: {
+    nameRequired: "Veuillez indiquer votre nom.",
+    emailInvalid: "Veuillez fournir une adresse courriel valide.",
+    messageTooShort: "Ajoutez un message avec un peu plus de contexte.",
+    demoNote: "Vous demandez une démo Studio de Cocoon. Partagez quelques détails sur le projet, l’équipe et votre calendrier.",
+    intakeNote: "Les messages sont transmis directement à la file d’entrée interne de Cocoon Lab.",
+    demoPlaceholder: "Parlez-nous de votre équipe, de votre projet et de ce que vous souhaitez voir dans la démo.",
+    contactPlaceholder: "Comment pouvons-nous aider ?",
+    demoSubmit: "Réserver une démo Studio",
+    contactSubmit: "Envoyer le message",
+    demoStatus: "Les demandes de démo Studio sont transmises directement à la file d’entrée interne de Cocoon Lab.",
+    sendingDemo: "Transmission de votre demande de démo à Cocoon Lab...",
+    sendingContact: "Envoi de votre message à Cocoon Lab...",
+    sendFallback: "Nous n’avons pas pu envoyer votre message pour le moment.",
+    sentDemo: "Merci. Votre demande de démo Studio a été transmise à Cocoon Lab.",
+    sentContact: "Merci. Votre message a été transmis à Cocoon Lab.",
+    timeout: "La demande a pris trop de temps. Veuillez réessayer.",
+    sending: "Envoi...",
+  },
+};
+
+const text = contactText[contactLocale];
 
 function setStatus(element, state, message) {
   if (!element) {
@@ -21,15 +65,15 @@ async function readJson(response) {
 
 function validateForm(payload) {
   if (!payload.name) {
-    return "Please provide your name.";
+    return text.nameRequired;
   }
 
   if (!payload.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
-    return "Please provide a valid email address.";
+    return text.emailInvalid;
   }
 
   if (!payload.message || payload.message.length < 10) {
-    return "Please include a message with a bit more detail.";
+    return text.messageTooShort;
   }
 
   return "";
@@ -57,9 +101,7 @@ function applyIntentMode({
 
   if (intentNote instanceof HTMLElement) {
     intentNote.hidden = !isStudioDemo;
-    intentNote.textContent = isStudioDemo
-      ? "You’re requesting a Cocoon studio demo. Share a bit about the project, the team, and your timing."
-      : "Messages are routed directly into Cocoon Lab’s internal intake queue.";
+    intentNote.textContent = isStudioDemo ? text.demoNote : text.intakeNote;
   }
 
   demoFields.forEach((field) => {
@@ -69,21 +111,17 @@ function applyIntentMode({
   });
 
   if (messageField instanceof HTMLTextAreaElement) {
-    messageField.placeholder = isStudioDemo
-      ? "Tell us about your team, project, and what you’d like to see in the demo."
-      : "How can we help?";
+    messageField.placeholder = isStudioDemo ? text.demoPlaceholder : text.contactPlaceholder;
   }
 
   if (submitButton instanceof HTMLButtonElement) {
-    submitButton.textContent = isStudioDemo ? "Book a Studio Demo" : "Send Message";
+    submitButton.textContent = isStudioDemo ? text.demoSubmit : text.contactSubmit;
   }
 
   setStatus(
     status,
     "",
-    isStudioDemo
-      ? "Studio demo requests are routed directly into Cocoon Lab’s internal intake queue."
-      : "Messages are routed directly into Cocoon Lab’s internal intake queue.",
+    isStudioDemo ? text.demoStatus : text.intakeNote,
   );
 }
 
@@ -135,14 +173,14 @@ if (form instanceof HTMLFormElement) {
 
     if (submitButton instanceof HTMLButtonElement) {
       submitButton.disabled = true;
-      submitButton.textContent = "Sending...";
+      submitButton.textContent = text.sending;
     }
 
     form.setAttribute("aria-busy", "true");
     setStatus(
       status,
       "loading",
-      intentMode === "studio-demo" ? "Routing your demo request to Cocoon Lab..." : "Sending your message to Cocoon Lab...",
+      intentMode === "studio-demo" ? text.sendingDemo : text.sendingContact,
     );
 
     try {
@@ -159,7 +197,7 @@ if (form instanceof HTMLFormElement) {
       const data = await readJson(response);
 
       if (!response.ok) {
-        throw new Error(data?.error || "We could not send your message right now.");
+        throw new Error(data?.error || text.sendFallback);
       }
 
       form.reset();
@@ -175,17 +213,15 @@ if (form instanceof HTMLFormElement) {
       setStatus(
         status,
         "success",
-        intentMode === "studio-demo"
-          ? "Thanks. Your studio demo request has been routed to Cocoon Lab."
-          : "Thanks. Your message has been routed to Cocoon Lab.",
+        intentMode === "studio-demo" ? text.sentDemo : text.sentContact,
       );
     } catch (error) {
       const message =
         error instanceof Error && error.name === "AbortError"
-          ? "The request took too long. Please try again."
+          ? text.timeout
           : error instanceof Error
             ? error.message
-            : "We could not send your message right now.";
+            : text.sendFallback;
 
       setStatus(status, "error", message);
     } finally {
