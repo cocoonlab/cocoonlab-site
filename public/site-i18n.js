@@ -131,6 +131,7 @@
     "Studio": "Studio",
     "Contact": "Contact",
     "Press Kit": "Kit média",
+    "Partners": "Partenaires",
     "Team": "Équipe",
     "Blog": "Blogue",
     "© 2026 Cocoon Lab. Cocoon is built for the architect.": "© 2026 Cocoon Lab. Cocoon est conçu pour l’architecte.",
@@ -142,15 +143,23 @@
     "The Studio": "Le Studio",
     "Where architectural intuition meets digital precision. Cocoon is the digital extension of the design studio, built to clarify early decisions without replacing the people who make them.":
       "Là où l’intuition architecturale rencontre la précision numérique. Cocoon prolonge le studio de conception pour clarifier les décisions en amont sans remplacer celles et ceux qui les prennent.",
+    "Where architectural intuition meets digital precision. Cocoon is the digital extension of the design studio, built to clarify early signals before design is fixed.":
+      "Là où l’intuition architecturale rencontre la précision numérique. Cocoon prolonge le studio de conception pour clarifier les signaux en amont avant que le design ne se fige.",
     "Layered Intelligence": "Intelligence en couches",
     "Cocoon reads site, cost, carbon, and code together so teams can see relationships instead of isolated constraints.":
       "Cocoon lit ensemble le site, le coût, le carbone et le code afin que les équipes voient les relations plutôt que des contraintes isolées.",
+    "Site, cost, carbon, regulatory, and visual signals remain in conversation with one another so teams can compare directions with clarity while the project is still open.":
+      "Les signaux de site, de coût, de carbone, de réglementation et d’intention visuelle restent liés afin que les équipes comparent les directions avec clarté tant que le projet demeure ouvert.",
     "Rapid Synthesis": "Synthèse rapide",
     "Generate, compare, and refine early options in the time normally spent assembling fragmented information.":
       "Générez, comparez et affinez les premières options dans le temps habituellement consacré à rassembler des informations dispersées.",
+    "Feasibility studies that once took weeks can be structured in seconds, giving studios more room to test alternatives without losing technical discipline.":
+      "Des études de faisabilité qui prenaient autrefois des semaines peuvent être structurées en secondes, donnant aux studios plus d’espace pour tester des variantes sans perdre la rigueur technique.",
     "Decision Support": "Aide à la décision",
     "Cocoon is not there to author architecture. It supports the people who do by making early-stage constraints, tradeoffs, and evidence easier to understand.":
       "Cocoon n’est pas là pour signer l’architecture. Il soutient celles et ceux qui la conçoivent en rendant contraintes, compromis et preuves plus lisibles.",
+    "Cocoon is not there to author architecture. It supports the people who do by making early-stage constraints, tradeoffs, and opportunities easier to see and act on.":
+      "Cocoon n’est pas là pour signer l’architecture. Il soutient celles et ceux qui la conçoivent en rendant les contraintes, compromis et occasions en amont plus faciles à voir et à activer.",
     "What enters the studio": "Ce qui entre dans le studio",
     "Site surveys, planning documents, sketches, massing studies, and team knowledge that usually lives across too many tools.":
       "Relevés de site, documents d’urbanisme, croquis, études de volumétrie et connaissances d’équipe souvent dispersés dans trop d’outils.",
@@ -177,7 +186,9 @@
     "Name": "Nom",
     "Email address": "Adresse courriel",
     "Company": "Organisation",
+    "Project": "Projet",
     "Project / site context": "Contexte du projet ou du site",
+    "Preferred Timing": "Moment souhaité",
     "Preferred timing": "Moment souhaité",
     "Message": "Message",
     "Website": "Site web",
@@ -366,6 +377,11 @@
     "Headshot of Rashid Mushkani": "Portrait de Rashid Mushkani",
     "Headshot of Hugo Berard": "Portrait de Hugo Berard",
     "Headshot of Shin Koseki": "Portrait de Shin Koseki",
+    "Your Name": "Votre nom",
+    "you@company.com": "vous@organisation.com",
+    "Your Company": "Votre organisation",
+    "Project or site context": "Contexte du projet ou du site",
+    "When would you like the demo?": "Quel moment vous conviendrait pour la démo ?",
     "How can we help?": "Comment pouvons-nous aider ?",
     "Tell us about your team, project, and what you’d like to see in the demo.":
       "Parlez-nous de votre équipe, de votre projet et de ce que vous souhaitez voir dans la démo.",

@@ -205,6 +205,7 @@ const homeCopy = {
       { label: "Studio", href: "/studio/" },
       { label: "Contact", href: "/contact/" },
       { label: "Press Kit", href: "/press-kit/index.html" },
+      { label: "Partners", href: "/partners/" },
       { label: "Team", href: "/team/" },
       { label: "Blog", href: "/blog/" },
     ],
@@ -455,6 +456,7 @@ const homeCopy = {
       { label: "Studio", href: "/studio/" },
       { label: "Contact", href: "/contact/" },
       { label: "Kit média", href: "/press-kit/index.html" },
+      { label: "Partenaires", href: "/partners/" },
       { label: "Équipe", href: "/team/" },
       { label: "Blogue", href: "/blog/" },
     ],
@@ -1555,7 +1557,7 @@ export default function App() {
               className="inline-flex min-h-9 items-center justify-center rounded-md bg-primary px-2.5 py-2 font-label text-[0.68rem] font-semibold leading-none text-on-primary shadow-[0_10px_24px_rgba(58,96,110,0.18)] transition-all duration-200 hover:bg-primary-dim active:scale-95 min-[430px]:px-3.5 min-[430px]:text-[0.8125rem] sm:px-6 sm:text-sm"
             >
               <span className="hidden min-[430px]:inline">{copy.demoCta}</span>
-              <span className="min-[430px]:hidden">{locale === "fr" ? "Démo" : copy.demoCta}</span>
+              <span className="min-[430px]:hidden">{locale === "fr" ? "Démo" : "Demo"}</span>
             </a>
           </div>
         </div>
@@ -1634,7 +1636,7 @@ export default function App() {
 
               <motion.div variants={fadeInUp} className="relative min-h-[25rem] sm:min-h-[31rem] lg:min-h-[32rem]">
                 <img
-                  className="relative z-20 ml-auto w-[min(88vw,23rem)] rounded-[1.35rem] shadow-[0_28px_80px_rgba(45,46,40,0.16)] ring-1 ring-on-surface/8 sm:w-[min(68vw,25rem)] lg:absolute lg:right-[4vw] lg:top-0 lg:w-[min(24vw,23.75rem)]"
+                  className="relative z-20 ml-auto w-[min(88vw,23rem)] rounded-xl shadow-[0_28px_80px_rgba(45,46,40,0.16)] ring-1 ring-on-surface/8 sm:w-[min(68vw,25rem)] lg:absolute lg:right-[4vw] lg:top-0 lg:w-[min(24vw,23.75rem)]"
                   src="/assets/lenses/card-cocoon.png"
                   alt={copy.heroSnapshotAlt}
                   fetchPriority="high"
@@ -1718,9 +1720,9 @@ export default function App() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               {copy.outputCards.map((card) => (
                 <motion.div key={card.title} whileHover={{ y: -8 }} className="group">
-                  <div className="relative mb-6 aspect-square overflow-hidden rounded-xl bg-surface-container-low">
+                  <div className="relative mb-6 aspect-square overflow-hidden rounded-xl border border-outline-variant/16 bg-surface-container-high p-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] sm:p-4">
                     <img
-                      className="h-full w-full object-cover opacity-80 mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                      className="h-full w-full object-contain contrast-[1.14] saturate-[1.04] drop-shadow-[0_16px_22px_rgba(45,46,40,0.14)] transition-transform duration-700 group-hover:scale-105"
                       src={card.assetSrc}
                       alt={`${card.title} illustration`}
                       loading="eager"
