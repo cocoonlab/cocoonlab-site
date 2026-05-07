@@ -79,7 +79,7 @@ strong {
 }
 
 .shell {
-  width: min(100% - 2rem, 88rem);
+  width: min(calc(100% - 2rem), 88rem);
   margin: 0 auto;
 }
 
@@ -312,12 +312,15 @@ strong {
 .contact-intro h1,
 .document-hero h1,
 .terms-hero h1 {
+  min-width: 0;
+  width: 100%;
   max-width: none;
   font-family: "Outfit", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   font-weight: 600;
   line-height: 0.96;
   letter-spacing: 0;
   color: var(--ink);
+  overflow-wrap: break-word;
   text-wrap: balance;
 }
 
@@ -335,6 +338,8 @@ strong {
 .contact-intro p,
 .document-hero p,
 .terms-hero p {
+  min-width: 0;
+  width: 100%;
   max-width: 43rem;
   color: rgba(89, 96, 87, 0.92);
   font-family: "Plus Jakarta Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -948,7 +953,7 @@ strong {
 
 @media (max-width: 720px) {
   .shell {
-    width: min(100% - 1.25rem, 88rem);
+    width: min(calc(100% - 2rem), 88rem);
   }
 
   .topbar {
@@ -1073,6 +1078,12 @@ strong {
   .topbar {
     gap: 0.35rem;
     padding-inline: max(0.5rem, calc((100vw - 88rem) / 2 + 0.5rem));
+  }
+
+  .page-intro h1,
+  .contact-intro h1 {
+    font-size: 2.9rem;
+    line-height: 1.02;
   }
 
   .wordmark {

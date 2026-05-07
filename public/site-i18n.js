@@ -42,11 +42,11 @@
     "/contact/": {
       en: {
         title: "Contact | Cocoon Lab",
-        description: "Contact Cocoon Lab about Cocoon for general inquiries, studio demos, and partnership conversations.",
+        description: "Book a demo, ask a question, or bring a real site for Cocoon to test.",
       },
       fr: {
         title: "Contact | Cocoon Lab",
-        description: "Contactez Cocoon Lab au sujet de Cocoon, des démonstrations Studio, des partenariats et des questions générales.",
+        description: "Réservez une démo, posez une question ou apportez un vrai site à tester avec Cocoon.",
       },
     },
     "/monograph/": {
@@ -94,11 +94,11 @@
     "/studio/": {
       en: {
         title: "Studio | Cocoon Lab",
-        description: "Explore the Cocoon studio: layered intelligence, rapid synthesis, and a clearer early-stage design workflow by Cocoon Lab.",
+        description: "Upload a site, compare early options, and see fit, cost, carbon, and planning risks before design is fixed.",
       },
       fr: {
         title: "Studio | Cocoon Lab",
-        description: "Explorez le Studio Cocoon : intelligence en couches, synthèse rapide et flux de conception plus clair en amont.",
+        description: "Importez un site, comparez des options et voyez la forme, le coût, le carbone et les risques avant de fixer le design.",
       },
     },
     "/team/": {
@@ -124,7 +124,7 @@
   };
 
   const textFr = {
-    "Book a Studio Demo": "Réserver une démo Studio",
+    "Book a demo": "Réserver une démo",
     "Cookie Preferences": "Préférences de témoins",
     "Privacy": "Confidentialité",
     "Terms": "Conditions",
@@ -140,49 +140,39 @@
       "Le lien est peut-être périmé ou la page a été déplacée. Vous pouvez revenir à l’accueil pour continuer à explorer Cocoon.",
     "Go back to cocoonlab.ai": "Retourner à cocoonlab.ai",
     "Contact Cocoon Lab": "Contacter Cocoon Lab",
-    "The Studio": "Le Studio",
-    "Where architectural intuition meets digital precision. Cocoon is the digital extension of the design studio, built to clarify early decisions without replacing the people who make them.":
-      "Là où l’intuition architecturale rencontre la précision numérique. Cocoon prolonge le studio de conception pour clarifier les décisions en amont sans remplacer celles et ceux qui les prennent.",
-    "Where architectural intuition meets digital precision. Cocoon is the digital extension of the design studio, built to clarify early signals before design is fixed.":
-      "Là où l’intuition architecturale rencontre la précision numérique. Cocoon prolonge le studio de conception pour clarifier les signaux en amont avant que le design ne se fige.",
-    "Layered Intelligence": "Intelligence en couches",
-    "Cocoon reads site, cost, carbon, and code together so teams can see relationships instead of isolated constraints.":
-      "Cocoon lit ensemble le site, le coût, le carbone et le code afin que les équipes voient les relations plutôt que des contraintes isolées.",
-    "Site, cost, carbon, regulatory, and visual signals remain in conversation with one another so teams can compare directions with clarity while the project is still open.":
-      "Les signaux de site, de coût, de carbone, de réglementation et d’intention visuelle restent liés afin que les équipes comparent les directions avec clarté tant que le projet demeure ouvert.",
-    "Rapid Synthesis": "Synthèse rapide",
-    "Generate, compare, and refine early options in the time normally spent assembling fragmented information.":
-      "Générez, comparez et affinez les premières options dans le temps habituellement consacré à rassembler des informations dispersées.",
-    "Feasibility studies that once took weeks can be structured in seconds, giving studios more room to test alternatives without losing technical discipline.":
-      "Des études de faisabilité qui prenaient autrefois des semaines peuvent être structurées en secondes, donnant aux studios plus d’espace pour tester des variantes sans perdre la rigueur technique.",
-    "Decision Support": "Aide à la décision",
-    "Cocoon is not there to author architecture. It supports the people who do by making early-stage constraints, tradeoffs, and evidence easier to understand.":
-      "Cocoon n’est pas là pour signer l’architecture. Il soutient celles et ceux qui la conçoivent en rendant contraintes, compromis et preuves plus lisibles.",
-    "Cocoon is not there to author architecture. It supports the people who do by making early-stage constraints, tradeoffs, and opportunities easier to see and act on.":
-      "Cocoon n’est pas là pour signer l’architecture. Il soutient celles et ceux qui la conçoivent en rendant les contraintes, compromis et occasions en amont plus faciles à voir et à activer.",
-    "What enters the studio": "Ce qui entre dans le studio",
-    "Site surveys, planning documents, sketches, massing studies, and team knowledge that usually lives across too many tools.":
-      "Relevés de site, documents d’urbanisme, croquis, études de volumétrie et connaissances d’équipe souvent dispersés dans trop d’outils.",
-    "What the system clarifies": "Ce que le système clarifie",
-    "Context, budget pressure, embodied impact, regulatory conditions, and visual intent before teams commit to a fixed direction.":
-      "Contexte, pression budgétaire, impact incorporé, conditions réglementaires et intention visuelle avant qu’une direction ne se fige.",
-    "What leaves the studio": "Ce qui sort du studio",
-    "Clear outputs such as technical dossiers, BIM-ready geometry, and grounded previews that move a project into its next conversation.":
-      "Des livrables clairs comme des dossiers techniques, une géométrie prête pour le BIM et des aperçus ancrés pour faire avancer la discussion.",
+    "Cocoon Studio": "Studio Cocoon",
+    "Upload a site, compare early options, and see fit, cost, carbon, and planning risks before design is fixed.":
+      "Importez un site, comparez des options en amont et voyez la forme, le coût, le carbone et les risques avant de fixer le design.",
+    "See the whole picture": "Voir l’ensemble",
+    "Cocoon reads site, cost, carbon, rules, and visuals together so teams can see tradeoffs in one place.":
+      "Cocoon lit ensemble le site, le coût, le carbone, les règles et les visuels afin que l’équipe voie les compromis au même endroit.",
+    "Compare options quickly": "Comparer vite les options",
+    "Test different site ideas early, while changes are still easy.":
+      "Testez tôt différentes idées de site, quand les changements sont encore simples.",
+    "Decide with evidence": "Décider avec des preuves",
+    "Cocoon keeps constraints, tradeoffs, and opportunities clear so architects can choose the next step.":
+      "Cocoon garde les contraintes, compromis et occasions clairs afin que les architectes choisissent la prochaine étape.",
+    "What you bring": "Ce que vous apportez",
+    "Surveys, planning documents, sketches, massing studies, and team knowledge.":
+      "Relevés, documents d’urbanisme, croquis, études de volumétrie et connaissances d’équipe.",
+    "What Cocoon checks": "Ce que Cocoon vérifie",
+    "Site context, budget, carbon, rules, access, and visual fit.":
+      "Contexte du site, budget, carbone, règles, accès et forme visuelle.",
+    "What you get": "Ce que vous obtenez",
+    "Clean 3D models, simple reports, and realistic previews for the next conversation.":
+      "Des modèles 3D propres, des rapports simples et des aperçus réalistes pour la prochaine discussion.",
     "Contact": "Contact",
-    "Let&apos;s discuss the future of your practice. Reach out for a studio demo, product conversation, or technical inquiry.":
-      "Discutons de l’avenir de votre pratique. Écrivez-nous pour une démo Studio, une conversation produit ou une question technique.",
-    "Let's discuss the future of your practice. Reach out for a studio demo, product conversation, or technical inquiry.":
-      "Discutons de l’avenir de votre pratique. Écrivez-nous pour une démo Studio, une conversation produit ou une question technique.",
+    "Book a demo, ask a question, or bring a real site for Cocoon to test.":
+      "Réservez une démo, posez une question ou apportez un vrai site à tester avec Cocoon.",
     "Contact details": "Coordonnées",
     "Email": "Courriel",
     "Location": "Localisation",
     "Montreal, QC Canada": "Montréal, QC Canada",
     "Focus": "Priorités",
-    "Studio demos, partnerships, and early-stage product conversations around Cocoon.":
-      "Démonstrations Studio, partenariats et conversations produit en amont autour de Cocoon.",
-    "Tell us a bit about your team, project, and timeline so we can route the right Cocoon studio demo.":
-      "Parlez-nous brièvement de votre équipe, de votre projet et de votre calendrier pour orienter la bonne démo Cocoon.",
+    "Demos, partnerships, and product questions about Cocoon.":
+      "Démos, partenariats et questions produit sur Cocoon.",
+    "Tell us about your team, project, and timeline so we can prepare the right demo.":
+      "Parlez-nous de votre équipe, de votre projet et du calendrier afin de préparer la bonne démo.",
     "Name": "Nom",
     "Email address": "Adresse courriel",
     "Company": "Organisation",
@@ -192,9 +182,8 @@
     "Preferred timing": "Moment souhaité",
     "Message": "Message",
     "Website": "Site web",
-    "Send Message": "Envoyer le message",
-    "Messages are routed directly into Cocoon Lab's internal intake queue.": "Les messages sont transmis directement à la file d’entrée interne de Cocoon Lab.",
-    "Messages are routed directly into Cocoon Lab’s internal intake queue.": "Les messages sont transmis directement à la file d’entrée interne de Cocoon Lab.",
+    "Send message": "Envoyer le message",
+    "Messages go straight to Cocoon Lab.": "Les messages vont directement à Cocoon Lab.",
     "Privacy Policy": "Politique de confidentialité",
     "How Cocoon Lab handles information shared through cocoonlab.ai when you contact us, request a demo of Cocoon, or begin a conversation.":
       "Comment Cocoon Lab traite les informations partagées sur cocoonlab.ai lorsque vous nous contactez, demandez une démo de Cocoon ou entamez une conversation.",
@@ -280,8 +269,8 @@
     "The future of architecture will not be defined by automation alone, but by how well we equip those who design. Cocoon Lab is built to support that future.":
       "L’avenir de l’architecture ne sera pas défini par l’automatisation seule, mais par la qualité des outils que nous donnons à celles et ceux qui conçoivent. Cocoon Lab est construit pour soutenir cet avenir.",
     "The Team": "L’équipe",
-    "Cocoon Lab is a collaborative studio founded by designers and computer scientists, bringing together diverse perspectives through a shared approach to architecture.":
-      "Cocoon Lab est un studio collaboratif fondé par des designers et des informaticiens, réunissant des perspectives diverses autour d’une approche partagée de l’architecture.",
+    "Cocoon Lab is a small team of designers, planners, and AI researchers building tools for early architecture decisions.":
+      "Cocoon Lab est une petite équipe de designers, planificateurs et chercheurs en IA qui construit des outils pour les premières décisions architecturales.",
     "Co-founder": "Cofondateur",
     "Built from practice.": "Issu de la pratique.",
     "Cocoon Lab emerged from work alongside creative professionals, architectural firms, and community organizations in Montreal. That background keeps Cocoon focused on real decisions, real constraints, and real studio workflows.":
@@ -307,8 +296,8 @@
     "Use the assets as provided. Do not redraw, stretch, recolor outside the approved palette, or place marks on low-contrast backgrounds. For unusual uses, contact Cocoon Lab before publishing.":
       "Utilisez les actifs tels que fournis. Ne les redessinez pas, ne les étirez pas, ne les recolorez pas hors de la palette approuvée et ne les placez pas sur des fonds à faible contraste. Pour tout usage particulier, contactez Cocoon Lab avant publication.",
     "Updates": "Nouvelles",
-    "This is where Cocoon Lab writes about Cocoon, architectural feasibility, the events we join, and the partnerships shaping the product.":
-      "C’est ici que Cocoon Lab écrit sur Cocoon, la faisabilité architecturale, les événements auxquels nous participons et les partenariats qui façonnent le produit.",
+    "News and notes from Cocoon Lab about Cocoon, events, partners, and early design decisions.":
+      "Nouvelles et notes de Cocoon Lab sur Cocoon, les événements, les partenaires et les décisions de design en amont.",
     "Cocoon at InDesCanada": "Cocoon à InDesCanada",
     "Cocoon Lab in partnership with Mila": "Cocoon Lab en partenariat avec Mila",
     "Rashid Mushkani will present Cocoon at InDesCanada in Ottawa, a student-led industrial design conference, competition, and networking event.":
@@ -317,9 +306,9 @@
       "L’article explique pourquoi Cocoon a sa place dans cette conversation et ce que nous souhaitons apporter à l’intelligence de conception en amont.",
     "Why the Mila partnership matters to Cocoon Lab, and how it supports responsible AI product building around Cocoon.":
       "Pourquoi le partenariat avec Mila compte pour Cocoon Lab et comment il soutient une construction produit responsable autour de Cocoon.",
-    "Follow the work.": "Suivre le travail.",
-    "If a post connects with your practice, follow the feed or contact Cocoon Lab directly to continue the conversation.":
-      "Si un article rejoint votre pratique, suivez le fil ou contactez directement Cocoon Lab pour poursuivre la conversation.",
+    "Stay updated.": "Rester à jour.",
+    "Follow the feed or contact Cocoon Lab to keep the conversation going.":
+      "Suivez le fil ou contactez Cocoon Lab pour poursuivre la conversation.",
     "Back to blog": "Retour au blogue",
     "Why we’re showing up": "Pourquoi nous y participons",
     "What Rashid will present": "Ce que Rashid présentera",

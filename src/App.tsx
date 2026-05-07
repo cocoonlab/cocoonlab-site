@@ -108,94 +108,94 @@ const homeCopy = {
   en: {
     localeName: "English",
     otherLocaleName: "Français",
-    metaTitle: "Cocoon | Architectural Feasibility Software by Cocoon Lab",
+    metaTitle: "Cocoon | Know what can be built before you design",
     metaDescription:
-      "Cocoon is architectural feasibility software by Cocoon Lab for site analysis, cost planning, carbon analysis, regulatory audit, and clearer early-stage design decisions.",
-    demoAriaLabel: "Open the Cocoon studio demo request form",
-    heroTitleLine1: "Know what",
-    heroTitleLine2Start: "a site can",
-    heroTitleLine2Accent: "become.",
-    heroSubtitle: "Test massing, cost, carbon, and code early to turn ideas into feasible schemes.",
-    demoCta: "Book a Studio Demo",
+      "Cocoon helps architects test site options early, with clear checks for fit, cost, carbon, and planning rules.",
+    demoAriaLabel: "Open the Cocoon demo request form",
+    heroTitleLine1: "Know what can be",
+    heroTitleLine2Start: "built before you",
+    heroTitleLine2Accent: "design.",
+    heroSubtitle: "Cocoon helps architects test site options early, with clear checks for fit, cost, carbon, and planning rules.",
+    demoCta: "Book a demo",
     heroSnapshotAlt: "Cocoon feasibility snapshot with site fit, massing, carbon, and code metrics",
     heroWorkflowLabel: "Cocoon workflow",
     heroSignals: [
-      { icon: Zap, title: "Seconds,", note: "not days" },
-      { icon: Crosshair, title: "Evidence for", note: "early decisions" },
-      { icon: UsersRound, title: "Built for", note: "architects" },
+      { icon: Zap, title: "Options,", note: "checked early" },
+      { icon: Crosshair, title: "Fit, cost,", note: "carbon, rules" },
+      { icon: UsersRound, title: "Choices,", note: "made clearly" },
     ],
     heroWorkflowSteps: [
-      { id: "1", title: "Upload site", note: "PDF, CAD, or image" },
-      { id: "2", title: "Generate options", note: "AI explores in seconds" },
-      { id: "3", title: "Compare & decide", note: "Choose with confidence" },
+      { id: "1", title: "Upload the site.", note: "" },
+      { id: "2", title: "See options.", note: "" },
+      { id: "3", title: "Choose with confidence.", note: "" },
     ],
-    lensTitle: "Every scheme checked across four essentials.",
+    lensTitle: "Cocoon checks every option across four key questions:",
     lensChips: ["Site", "Cost", "Carbon", "Code"],
-    lensBody: "Cocoon checks every option against the practical signals that determine whether a scheme can move forward.",
-    lensCta: "See feasibility in action",
+    lensBody: "Simple checks help the team see what is possible before the design goes too far.",
+    lensCta: "Test a real project",
     lensFeatures: [
       {
         icon: Map,
-        title: "Does it fit the parcel?",
-        desc: "Parcel geometry, adjacencies, solar access, and movement patterns clarified before design locks in.",
+        title: "Does it fit?",
+        desc: "Understand the site, access, sun, and surroundings.",
       },
       {
         icon: Banknote,
-        title: "What drives the budget?",
-        desc: "Early quantity logic and budget sensitivity remain attached to every massing iteration.",
+        title: "What could it cost?",
+        desc: "See early budget signals before the design goes too far.",
       },
       {
         icon: Sprout,
-        title: "Which option has lower impact?",
-        desc: "Embodied impact is surfaced early enough to compare structural and material decisions meaningfully.",
+        title: "What is the carbon impact?",
+        desc: "Compare lower-impact choices while changes are still easy.",
       },
       {
         icon: Gavel,
-        title: "What needs attention?",
-        desc: "Setbacks, frontage, access, height, and zoning logic are organized into one readable compliance layer.",
+        title: "What rules matter?",
+        desc: "See setbacks, height limits, access issues, and planning risks clearly.",
       },
     ],
-    outputsEyebrow: "The Handover",
-    outputsTitle: "Clear outputs.",
-    outputsBody: "Export BIM-ready geometry, technical dossiers, and atmospheric previews from the same feasibility record.",
+    outputsEyebrow: "The next step",
+    outputsTitle: "Clear outputs, ready for the next step.",
+    outputsBody: "Export clean 3D models, simple reports, and realistic previews your team can use.",
     outputCards: [
       {
         assetSrc: "/assets/outputs/bim-ready-geometry.png",
-        title: "BIM-Ready Geometry",
-        desc: "Export clean Revit or Rhino files with correctly classified IFC data.",
+        title: "Clean 3D models",
+        desc: "Export geometry your team can keep using.",
       },
       {
         assetSrc: "/assets/outputs/technical-dossiers.png",
-        title: "Technical Dossiers",
-        desc: "Automated reports summarizing feasibility, cost, and sustainability metrics.",
+        title: "Simple reports",
+        desc: "Share clear notes on fit, cost, carbon, and rules.",
       },
       {
         assetSrc: "/assets/outputs/atmospheric-previews.png",
-        title: "Atmospheric Previews",
-        desc: "High-fidelity renders that capture the material intent of your design.",
+        title: "Realistic previews",
+        desc: "Show what the option could feel like.",
       },
     ],
-    workflowTitleLine1: "Studio workflow,",
-    workflowTitleLine2: "digital speed.",
+    workflowTitleLine1: "Upload the site.",
+    workflowTitleLine2: "See options.",
     workflowSteps: [
       {
         id: "01",
-        title: "Ingestion",
-        desc: "Upload surveys, zoning documents, or quick sketches to seed the feasibility model.",
+        title: "Upload the site",
+        desc: "Start with a survey, plan, sketch, or zoning file.",
       },
       {
         id: "02",
-        title: "Synthesize",
-        desc: "Compare validated scheme options against site, cost, carbon, and code constraints.",
+        title: "See options",
+        desc: "Cocoon checks early ideas for fit, cost, carbon, and planning rules.",
       },
       {
         id: "03",
-        title: "Refine",
-        desc: "Tune the chosen direction with interactive sliders and manual geometry overrides.",
+        title: "Choose with confidence",
+        desc: "Compare what works and move forward with a clear next step.",
       },
     ],
-    finalTitle: "Bring one site. We'll show feasibility live.",
-    finalBody: "Get feasible options, metrics, and export-ready outputs in one working session.",
+    finalTitle: "Bring one site. See what is possible.",
+    finalBody: "Book a demo and test Cocoon on a real project.",
     monographCta: "Read the Monograph",
     footerBuilt: "Cocoon is built for the architect.",
     cookiePreferences: "Cookie Preferences",
@@ -359,94 +359,94 @@ const homeCopy = {
   fr: {
     localeName: "Français",
     otherLocaleName: "English",
-    metaTitle: "Cocoon | Logiciel de faisabilité architecturale par Cocoon Lab",
+    metaTitle: "Cocoon | Sachez ce qui peut être bâti avant de concevoir",
     metaDescription:
-      "Cocoon est le logiciel de faisabilité architecturale de Cocoon Lab pour l’analyse de site, les coûts, le carbone, le code et des décisions plus claires en amont.",
-    demoAriaLabel: "Ouvrir le formulaire de demande de démonstration Cocoon",
-    heroTitleLine1: "Sachez ce qu’un",
-    heroTitleLine2Start: "site peut",
-    heroTitleLine2Accent: "devenir.",
-    heroSubtitle: "Testez la volumétrie, les coûts, le carbone et le code dès le départ pour transformer les idées en scénarios faisables.",
-    demoCta: "Réserver une démo Studio",
+      "Cocoon aide les architectes à tester des options de site tôt, avec des vérifications claires pour la forme, le coût, le carbone et les règles.",
+    demoAriaLabel: "Ouvrir le formulaire de demande de démo Cocoon",
+    heroTitleLine1: "Sachez ce qui peut être",
+    heroTitleLine2Start: "bâti avant de",
+    heroTitleLine2Accent: "concevoir.",
+    heroSubtitle: "Cocoon aide les architectes à tester des options de site tôt, avec des vérifications claires pour la forme, le coût, le carbone et les règles.",
+    demoCta: "Réserver une démo",
     heroSnapshotAlt: "Aperçu de faisabilité Cocoon avec indicateurs de site, volumétrie, carbone et code",
     heroWorkflowLabel: "Flux de travail Cocoon",
     heroSignals: [
-      { icon: Zap, title: "Secondes,", note: "pas des jours" },
-      { icon: Crosshair, title: "Preuves pour", note: "décider tôt" },
-      { icon: UsersRound, title: "Pensé pour", note: "les architectes" },
+      { icon: Zap, title: "Options,", note: "vérifiées tôt" },
+      { icon: Crosshair, title: "Forme, coût,", note: "carbone, règles" },
+      { icon: UsersRound, title: "Choix,", note: "plus clairs" },
     ],
     heroWorkflowSteps: [
-      { id: "1", title: "Importer le site", note: "PDF, CAD ou image" },
-      { id: "2", title: "Générer des options", note: "L’IA explore en secondes" },
-      { id: "3", title: "Comparer et décider", note: "Choisir avec confiance" },
+      { id: "1", title: "Importez le site.", note: "" },
+      { id: "2", title: "Voyez les options.", note: "" },
+      { id: "3", title: "Choisissez avec confiance.", note: "" },
     ],
-    lensTitle: "Chaque scénario vérifié sur quatre essentiels.",
+    lensTitle: "Cocoon vérifie chaque option avec quatre questions clés :",
     lensChips: ["Site", "Coût", "Carbone", "Code"],
-    lensBody: "Cocoon vérifie chaque option contre les signaux pratiques qui déterminent si un scénario peut avancer.",
-    lensCta: "Voir la faisabilité en action",
+    lensBody: "Des vérifications simples aident l’équipe à voir ce qui est possible avant d’aller trop loin dans le design.",
+    lensCta: "Tester un vrai projet",
     lensFeatures: [
       {
         icon: Map,
-        title: "Est-ce que ça tient sur la parcelle ?",
-        desc: "Géométrie de parcelle, voisinage, accès solaire et flux clarifiés avant de verrouiller la conception.",
+        title: "Est-ce que ça tient ?",
+        desc: "Comprenez le site, les accès, le soleil et les environs.",
       },
       {
         icon: Banknote,
-        title: "Qu’est-ce qui pèse sur le budget ?",
-        desc: "La logique quantitative et la sensibilité budgétaire restent attachées à chaque itération de volumétrie.",
+        title: "Combien cela pourrait coûter ?",
+        desc: "Voyez les premiers signaux de budget avant d’aller trop loin.",
       },
       {
         icon: Sprout,
-        title: "Quelle option réduit l’impact ?",
-        desc: "L’impact carbone est rendu visible assez tôt pour comparer les choix structurels et matériels.",
+        title: "Quel est l’impact carbone ?",
+        desc: "Comparez les choix à plus faible impact pendant que les changements restent faciles.",
       },
       {
         icon: Gavel,
-        title: "Qu’est-ce qui demande attention ?",
-        desc: "Reculs, façade active, accès, hauteur et zonage sont organisés dans une couche de conformité lisible.",
+        title: "Quelles règles comptent ?",
+        desc: "Voyez clairement les reculs, limites de hauteur, accès et risques de planification.",
       },
     ],
-    outputsEyebrow: "Le livrable",
-    outputsTitle: "Des sorties claires.",
-    outputsBody: "Exportez la géométrie prête pour le BIM, les dossiers techniques et les aperçus atmosphériques depuis le même dossier de faisabilité.",
+    outputsEyebrow: "La prochaine étape",
+    outputsTitle: "Des sorties claires, prêtes pour la suite.",
+    outputsBody: "Exportez des modèles 3D propres, des rapports simples et des aperçus réalistes que votre équipe peut utiliser.",
     outputCards: [
       {
         assetSrc: "/assets/outputs/bim-ready-geometry.png",
-        title: "Géométrie prête pour le BIM",
-        desc: "Exportez des fichiers Revit ou Rhino propres avec des données IFC correctement classées.",
+        title: "Modèles 3D propres",
+        desc: "Exportez une géométrie que l’équipe peut continuer à utiliser.",
       },
       {
         assetSrc: "/assets/outputs/technical-dossiers.png",
-        title: "Dossiers techniques",
-        desc: "Rapports automatisés qui résument la faisabilité, les coûts et les indicateurs de durabilité.",
+        title: "Rapports simples",
+        desc: "Partagez des notes claires sur la forme, le coût, le carbone et les règles.",
       },
       {
         assetSrc: "/assets/outputs/atmospheric-previews.png",
-        title: "Aperçus atmosphériques",
-        desc: "Rendus haute fidélité qui capturent l’intention matérielle de votre projet.",
+        title: "Aperçus réalistes",
+        desc: "Montrez ce que l’option pourrait donner.",
       },
     ],
-    workflowTitleLine1: "Flux de studio,",
-    workflowTitleLine2: "vitesse numérique.",
+    workflowTitleLine1: "Importez le site.",
+    workflowTitleLine2: "Voyez les options.",
     workflowSteps: [
       {
         id: "01",
-        title: "Ingestion",
-        desc: "Importez relevés, documents de zonage ou croquis rapides pour amorcer le modèle de faisabilité.",
+        title: "Importez le site",
+        desc: "Commencez avec un relevé, un plan, un croquis ou un fichier de zonage.",
       },
       {
         id: "02",
-        title: "Synthèse",
-        desc: "Comparez des options validées selon les contraintes de site, coût, carbone et code.",
+        title: "Voyez les options",
+        desc: "Cocoon vérifie les premières idées selon la forme, le coût, le carbone et les règles.",
       },
       {
         id: "03",
-        title: "Affinage",
-        desc: "Ajustez la direction choisie avec des curseurs interactifs et des modifications manuelles de géométrie.",
+        title: "Choisissez avec confiance",
+        desc: "Comparez ce qui fonctionne et avancez avec une prochaine étape claire.",
       },
     ],
-    finalTitle: "Apportez un site. Nous montrerons la faisabilité en direct.",
-    finalBody: "Obtenez des options faisables, des métriques et des livrables prêts à exporter en une session de travail.",
+    finalTitle: "Apportez un site. Voyez ce qui est possible.",
+    finalBody: "Réservez une démo et testez Cocoon sur un vrai projet.",
     monographCta: "Lire le manifeste",
     footerBuilt: "Cocoon est conçu pour l’architecte.",
     cookiePreferences: "Préférences de témoins",
@@ -1596,8 +1596,8 @@ export default function App() {
               className="grid flex-1 grid-cols-1 items-start gap-8 pb-8 lg:grid-cols-[minmax(32rem,0.9fr)_minmax(24rem,1.1fr)] lg:pb-8 xl:grid-cols-[minmax(40rem,0.95fr)_minmax(24rem,1.05fr)]"
             >
               <motion.div variants={fadeInUp} className="max-w-[52rem] lg:pt-20">
-                <h1 className="serif max-w-[52rem] text-[clamp(3.1rem,8vw,5.65rem)] font-semibold leading-[1.12] text-on-surface lg:text-[clamp(4.35rem,4.9vw,5.35rem)]">
-                  {copy.heroTitleLine1}
+                <h1 className="serif max-w-[52rem] text-[clamp(3.1rem,8vw,5.65rem)] font-semibold leading-[1.12] text-on-surface max-[420px]:text-[2.7rem] lg:text-[clamp(4.35rem,4.9vw,5.35rem)]">
+                  {copy.heroTitleLine1}{" "}
                   <br />
                   <span className="xl:whitespace-nowrap">
                     {copy.heroTitleLine2Start} <span className="text-primary">{copy.heroTitleLine2Accent}</span>
@@ -1661,7 +1661,9 @@ export default function App() {
                     </span>
                     <span className="block sm:mt-4">
                       <strong className="block font-body text-sm font-semibold text-on-surface">{step.title}</strong>
-                      <span className="mt-1 block font-body text-xs leading-relaxed text-on-surface-variant">{step.note}</span>
+                      {step.note ? (
+                        <span className="mt-1 block font-body text-xs leading-relaxed text-on-surface-variant">{step.note}</span>
+                      ) : null}
                     </span>
                   </div>
                 ))}
@@ -1744,7 +1746,7 @@ export default function App() {
             <div className="grid grid-cols-1 items-center gap-16 xl:grid-cols-[minmax(22rem,0.74fr)_minmax(0,1.26fr)] xl:gap-20">
               <div>
                 <h2 className="serif mb-12 text-5xl text-on-surface sm:text-6xl">
-                  {copy.workflowTitleLine1}
+                  {copy.workflowTitleLine1}{" "}
                   <br />
                   {copy.workflowTitleLine2}
                 </h2>
