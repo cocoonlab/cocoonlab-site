@@ -62,11 +62,11 @@
     "/partners/": {
       en: {
         title: "Partners | Cocoon Lab",
-        description: "Meet the partners connected to Cocoon Lab and Cocoon, including Mila, Civiliti, and Sid Lee Architecture.",
+        description: "Meet the partners connected to Cocoon Lab and Cocoon.",
       },
       fr: {
         title: "Partenaires | Cocoon Lab",
-        description: "Découvrez les partenaires liés à Cocoon Lab et Cocoon, dont Mila, Civiliti et Sid Lee Architecture.",
+        description: "Découvrez les partenaires liés à Cocoon Lab et Cocoon.",
       },
     },
     "/press-kit/": {
@@ -276,10 +276,16 @@
     "Cocoon Lab emerged from work alongside creative professionals, architectural firms, and community organizations in Montreal. That background keeps Cocoon focused on real decisions, real constraints, and real studio workflows.":
       "Cocoon Lab est né d’un travail aux côtés de professionnels créatifs, de firmes d’architecture et d’organisations communautaires à Montréal. Cet ancrage garde Cocoon centré sur de vraies décisions, de vraies contraintes et de vrais flux de studio.",
     "Partners": "Partenaires",
+    "Partner": "Partenaire",
     "Cocoon Lab builds Cocoon with partners who keep the product close to research rigor, design practice, and real project conditions.":
       "Cocoon Lab construit Cocoon avec des partenaires qui gardent le produit proche de la rigueur de recherche, de la pratique du design et des conditions réelles de projet.",
     "Mila brings research rigor, responsible AI thinking, and a strong technical foundation to the broader context in which Cocoon is being built.":
       "Mila apporte une rigueur de recherche, une réflexion sur l’IA responsable et une base technique solide au contexte dans lequel Cocoon est construit.",
+    "Core Partner": "Partenaire principal",
+    "Partner announcement pending": "Annonce de partenaire à venir",
+    "Coming Soon": "Bientôt",
+    "A future partner profile will appear here once it is ready to be public.":
+      "Un futur profil partenaire apparaîtra ici lorsqu’il sera prêt à être public.",
     "Civiliti contributes a civic and urban systems perspective that aligns with clearer planning, feasibility, and public-facing decision-making at the earliest project stages.":
       "Civiliti apporte une perspective civique et urbaine qui s’aligne avec une planification, une faisabilité et des décisions publiques plus claires dès les premières étapes du projet.",
     "Sid Lee Architecture brings practice-based design insight that keeps Cocoon connected to authorship, architectural judgment, and the real needs of early-stage workflow.":
@@ -374,6 +380,7 @@
     "How can we help?": "Comment pouvons-nous aider ?",
     "Tell us about your team, project, and what you’d like to see in the demo.":
       "Parlez-nous de votre équipe, de votre projet et de ce que vous souhaitez voir dans la démo.",
+    "Partner announcement pending": "Annonce de partenaire à venir",
   };
 
   function normalizePath(pathname) {

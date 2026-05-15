@@ -556,6 +556,31 @@ strong {
   opacity: 0.95;
 }
 
+.partner-card-placeholder {
+  color: rgba(45, 46, 40, 0.74);
+}
+
+.partner-logo-placeholder {
+  border-style: dashed;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(233, 235, 223, 0.48));
+}
+
+.partner-logo-placeholder span {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(45, 46, 40, 0.14);
+  border-radius: 999px;
+  padding: 0 1.25rem;
+  color: rgba(45, 46, 40, 0.54);
+  font-family: var(--font-label);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
 .portrait-frame {
   aspect-ratio: 4 / 5;
 }
