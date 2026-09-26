@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { resolveInitialLocale } from "./locale.ts";
 
 const rootElement = document.getElementById("root");
 
@@ -15,18 +16,7 @@ const app = (
   </StrictMode>
 );
 
-const searchLocale = new URLSearchParams(window.location.search).get("lang");
-const storedLocale = window.localStorage.getItem("cocoon_language");
-const initialLocale =
-  searchLocale === "fr" || searchLocale === "en"
-    ? searchLocale
-    : storedLocale === "fr" || storedLocale === "en"
-      ? storedLocale
-      : window.navigator.language.toLowerCase().startsWith("fr")
-        ? "fr"
-        : "en";
-
-if (rootElement.hasChildNodes() && initialLocale === "en") {
+if (rootElement.hasChildNodes() && resolveInitialLocale() === "en") {
   hydrateRoot(rootElement, app);
 } else {
   rootElement.textContent = "";

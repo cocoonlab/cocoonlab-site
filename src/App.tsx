@@ -1,14 +1,13 @@
 import { Fragment, useEffect, useState } from "react";
 import { Glyph } from "./Glyph.tsx";
 import { Logotype } from "./Logotype.tsx";
+import { type Locale, resolveInitialLocale, saveLocale } from "./locale.ts";
 import { PixelScene } from "./PixelScene.tsx";
 import { codeScene } from "./pixel/code.ts";
 import { glyphs } from "./pixel/glyphs.ts";
 import { heroScene } from "./pixel/hero.ts";
 import { riverScene } from "./pixel/river.ts";
 import { triageScene } from "./pixel/triage.ts";
-
-type Locale = "en" | "fr";
 
 const productScenes = {
   triage: triageScene,
@@ -149,25 +148,6 @@ const localeNames = {
   fr: "Français",
 } as const;
 
-function resolveInitialLocale(): Locale {
-  if (typeof window === "undefined") {
-    return "en";
-  }
-
-  const searchLocale = new URLSearchParams(window.location.search).get("lang");
-  if (searchLocale === "fr" || searchLocale === "en") {
-    window.localStorage.setItem("cocoon_language", searchLocale);
-    return searchLocale;
-  }
-
-  const storedLocale = window.localStorage.getItem("cocoon_language");
-  if (storedLocale === "fr" || storedLocale === "en") {
-    return storedLocale;
-  }
-
-  return window.navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
-}
-
 const wrap = "mx-auto w-full max-w-[110rem] px-5 sm:px-8 lg:px-12 2xl:px-16";
 const label = "font-body text-[0.6875rem] font-semibold uppercase leading-none tracking-[0.18em] text-muted";
 const textLink =
@@ -196,14 +176,18 @@ export default function App() {
     document
       .querySelector('meta[name="twitter:description"]')
       ?.setAttribute("content", copy.metaDescription);
-    window.localStorage.setItem("cocoon_language", locale);
+    saveLocale(locale);
     window.dispatchEvent(new CustomEvent("cocoon:language-change", { detail: { locale } }));
   }, [copy.metaDescription, copy.metaTitle, locale]);
 
   const switchLocale = (nextLocale: Locale) => {
-    const nextUrl = new URL(window.location.href);
-    nextUrl.searchParams.set("lang", nextLocale);
-    window.history.replaceState(null, "", nextUrl);
+    try {
+      const nextUrl = new URL(window.location.href);
+      nextUrl.searchParams.set("lang", nextLocale);
+      window.history.replaceState(null, "", nextUrl);
+    } catch {
+      /* Embedded frames can refuse URL changes; the switch still applies. */
+    }
     setLocale(nextLocale);
   };
 
