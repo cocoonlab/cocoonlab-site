@@ -10,7 +10,7 @@ import { posts } from "../src/pages/posts.ts";
 const SITE = "https://cocoonlab.ai";
 const IMAGE = `${SITE}/og-cocoonlab-home.png`;
 const IMAGE_ALT =
-  "AI for streets and buildings: Cocoon Lab, over a pixel view of Montréal from the Old Port with the Jacques-Cartier Bridge, the Biosphère, Habitat 67 and downtown under Mount Royal";
+  "We make it faster and safer to build better places for people: Cocoon Lab, over a pixel view of Montréal from the Old Port with the Jacques-Cartier Bridge, the Biosphère, Habitat 67 and downtown under Mount Royal";
 
 const organization = { "@type": "Organization", "@id": `${SITE}/#organization`, name: "Cocoon Lab", url: `${SITE}/` };
 
@@ -77,7 +77,10 @@ const extras: Record<Exclude<PageId, "home">, Extra> = {
       about: organization,
       mainEntity: {
         "@type": "ItemList",
-        itemListElement: [{ "@type": "ListItem", position: 1, item: { "@type": "Organization", name: "Mila" } }],
+        itemListElement: [
+          { "@type": "ListItem", position: 1, item: { "@type": "Organization", name: "Mila" } },
+          { "@type": "ListItem", position: 2, item: { "@type": "GovernmentOrganization", name: "Ville de Montréal", url: "https://montreal.ca/" } },
+        ],
       },
     },
   },

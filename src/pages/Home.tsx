@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { Glyph } from "../Glyph.tsx";
 import { PixelScene } from "../PixelScene.tsx";
 import { codeScene } from "../pixel/code.ts";
@@ -15,8 +14,8 @@ const productScenes = {
 
 const copy = {
   en: {
-    heroTitle: ["AI for streets", "and buildings."],
-    heroLead: "Cocoon Lab builds tools for safer streets and better buildings.",
+    heroTitle: "We make it faster and safer to build better places for people.",
+    heroLead: "Cocoon Lab helps teams test, check, and improve plans early, before work begins.",
     heroCta: "Explore products",
     heroScene:
       "Montréal in pixels, from the Old Port: the Jacques-Cartier Bridge over the St. Lawrence, the Biosphère, the Olympic Stadium, Habitat 67, and downtown under Mount Royal.",
@@ -48,8 +47,8 @@ const copy = {
     ],
   },
   fr: {
-    heroTitle: ["L’IA pour les rues", "et les bâtiments."],
-    heroLead: "Cocoon Lab conçoit des outils pour des rues plus sûres et de meilleurs bâtiments.",
+    heroTitle: "Nous rendons plus rapide et plus sûre la construction de meilleurs milieux de vie.",
+    heroLead: "Cocoon Lab aide les équipes à tester, vérifier et améliorer leurs plans en amont, avant le début des travaux.",
     heroCta: "Découvrir les produits",
     heroScene:
       "Montréal en pixels, depuis le Vieux-Port : le pont Jacques-Cartier sur le Saint-Laurent, la Biosphère, le Stade olympique, Habitat 67 et le centre-ville sous le mont Royal.",
@@ -92,16 +91,11 @@ export function Home() {
         <div className={`${wrap} hero-copy`}>
           <h1
             id="hero-title"
-            className="enter font-display text-[clamp(2.875rem,7.4vw,7.5rem)] font-medium leading-[0.95] tracking-[-0.038em] text-ink"
+            className="enter max-w-[13.5em] text-balance font-display text-[clamp(2.5rem,5.6vw,6rem)] font-medium leading-[0.98] tracking-[-0.036em] text-ink"
           >
-            {text.heroTitle.map((line, index) => (
-              <Fragment key={line}>
-                {index > 0 ? " " : null}
-                <span className="block">{line}</span>
-              </Fragment>
-            ))}
+            {text.heroTitle}
           </h1>
-          <p className="enter enter-late mt-7 max-w-[27rem] text-pretty font-body text-[1.125rem] leading-[1.5] text-muted sm:text-[1.25rem]">
+          <p className="enter enter-late mt-7 max-w-[30rem] text-pretty font-body text-[1.125rem] leading-[1.5] text-muted sm:text-[1.25rem]">
             {text.heroLead}
           </p>
           <a

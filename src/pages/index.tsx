@@ -29,14 +29,14 @@ export const pages = {
     file: "index.html",
     meta: {
       en: {
-        title: "Cocoon Lab | AI for streets and buildings",
+        title: "Cocoon Lab | Build better places, faster and safer",
         description:
-          "Cocoon Lab builds tools for safer streets and better buildings: Cocoon Triage for temporary street plans and Cocoon Code for building-code checks.",
+          "Cocoon Lab helps teams test, check, and improve plans early, before work begins: Cocoon Triage for temporary street plans and Cocoon Code for building-code checks.",
       },
       fr: {
-        title: "Cocoon Lab | L’IA pour les rues et les bâtiments",
+        title: "Cocoon Lab | De meilleurs milieux de vie, plus vite et plus sûrement",
         description:
-          "Cocoon Lab conçoit des outils pour des rues plus sûres et de meilleurs bâtiments : Cocoon Triage pour les plans de signalisation temporaire et Cocoon Code pour les vérifications du code du bâtiment.",
+          "Cocoon Lab aide les équipes à tester, vérifier et améliorer leurs plans en amont, avant le début des travaux : Cocoon Triage pour les plans de signalisation temporaire et Cocoon Code pour les vérifications du code du bâtiment.",
       },
     },
     render: () => <Home />,
@@ -54,8 +54,8 @@ export const pages = {
     path: "/partners/",
     file: "partners/index.html",
     meta: {
-      en: { title: "Partners | Cocoon Lab", description: "Meet the partners who work with Cocoon Lab, including Mila." },
-      fr: { title: "Partenaires | Cocoon Lab", description: "Découvrez les partenaires de Cocoon Lab, dont Mila." },
+      en: { title: "Partners | Cocoon Lab", description: "Meet the partners who work with Cocoon Lab: Mila and the City of Montréal." },
+      fr: { title: "Partenaires | Cocoon Lab", description: "Découvrez les partenaires de Cocoon Lab : Mila et la Ville de Montréal." },
     },
     render: () => <Partners />,
   },

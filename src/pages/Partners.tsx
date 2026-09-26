@@ -13,11 +13,11 @@ const copy = {
       logo: "Mila logo",
       text: "Mila brings research rigor, responsible AI thinking, and a strong technical foundation to the broader context in which our tools are built.",
     },
-    pending: {
-      mark: "Partner",
-      name: "Partner announcement pending",
-      role: "Coming soon",
-      text: "A future partner profile will appear here once it is ready to be public.",
+    montreal: {
+      name: "City of Montréal",
+      role: "Municipal partner",
+      logo: "City of Montréal logo",
+      text: "Working with the City of Montréal keeps our tools close to the people who plan, review, and permit the city’s streets and buildings.",
     },
     whyTitle: "Why these relationships matter",
     why: "Together, these partners help our work stay research-aware, practice-led, and grounded in real decisions rather than generic automation.",
@@ -31,29 +31,25 @@ const copy = {
       logo: "Logo de Mila",
       text: "Mila apporte une rigueur de recherche, une réflexion sur l’IA responsable et une base technique solide au contexte dans lequel nos outils sont construits.",
     },
-    pending: {
-      mark: "Partenaire",
-      name: "Annonce de partenaire à venir",
-      role: "Bientôt",
-      text: "Un futur profil partenaire apparaîtra ici lorsqu’il sera prêt à être public.",
+    montreal: {
+      name: "Ville de Montréal",
+      role: "Partenaire municipal",
+      logo: "Logo de la Ville de Montréal",
+      text: "Travailler avec la Ville de Montréal garde nos outils proches de celles et ceux qui planifient, examinent et autorisent les rues et les bâtiments de la ville.",
     },
     whyTitle: "Pourquoi ces relations comptent",
     why: "Ensemble, ces partenaires aident notre travail à rester informé par la recherche, guidé par la pratique et ancré dans de vraies décisions plutôt que dans une automatisation générique.",
   },
 } as const;
 
-function Partner({ mark, name, role, text, pending }: { mark: ReactNode; name: string; role: string; text: string; pending?: boolean }) {
+function Partner({ mark, name, role, text }: { mark: ReactNode; name: string; role: string; text: string }) {
   return (
     <li className="grid grid-cols-12 gap-x-6 gap-y-6 border-t border-line pt-8 md:pt-10">
-      <div
-        className={`col-span-12 flex aspect-[16/9] items-center justify-center md:col-span-6 lg:col-span-5 ${
-          pending ? "border border-dashed border-ink/20" : "bg-white/70"
-        }`}
-      >
+      <div className="col-span-12 flex aspect-[16/9] items-center justify-center bg-white/70 md:col-span-6 lg:col-span-5">
         {mark}
       </div>
       <div className="col-span-12 md:col-span-6 lg:col-span-6 lg:col-start-7">
-        <h2 className={`font-display text-[clamp(1.75rem,2.6vw,2.375rem)] font-medium leading-[1.05] tracking-[-0.025em] ${pending ? "text-muted" : ""}`}>
+        <h2 className="font-display text-[clamp(1.75rem,2.6vw,2.375rem)] font-medium leading-[1.05] tracking-[-0.025em]">
           {name}
         </h2>
         <p className="mt-2 font-body text-[0.9375rem] text-muted">{role}</p>
@@ -89,11 +85,20 @@ export function Partners() {
           text={text.mila.text}
         />
         <Partner
-          pending
-          mark={<span className="font-body text-[0.8125rem] font-medium tracking-[0.06em] text-muted">{text.pending.mark}</span>}
-          name={text.pending.name}
-          role={text.pending.role}
-          text={text.pending.text}
+          mark={
+            <img
+              src={href("/assets/partners/ville-de-montreal-logo.svg")}
+              alt={text.montreal.logo}
+              width={185}
+              height={39}
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-[52%]"
+            />
+          }
+          name={text.montreal.name}
+          role={text.montreal.role}
+          text={text.montreal.text}
         />
       </ul>
 

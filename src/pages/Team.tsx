@@ -15,7 +15,7 @@ const copy = {
     role: "Co-founder",
     portrait: (name: string) => `Headshot of ${name}`,
     notes: {
-      "rashid-mushkani": "PhD candidate in AI and planning. Built WeDesign+.",
+      "rashid-mushkani": "PhD in AI and planning. Built WeDesign+.",
       "hugo-berard": "PhD in AI. Built Praxagora; ex-Facebook AI.",
       "shin-koseki": "PhD in design. Founded Chôros.",
     },
@@ -29,7 +29,7 @@ const copy = {
     role: "Cofondateur",
     portrait: (name: string) => `Portrait de ${name}`,
     notes: {
-      "rashid-mushkani": "Doctorant en IA et en urbanisme. A créé WeDesign+.",
+      "rashid-mushkani": "Doctorat en IA et en urbanisme. A créé WeDesign+.",
       "hugo-berard": "Doctorat en IA. A créé Praxagora; ancien de Facebook AI.",
       "shin-koseki": "Doctorat en design. Fondateur de Chôros.",
     },

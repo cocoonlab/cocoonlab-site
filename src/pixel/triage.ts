@@ -9,6 +9,8 @@ import type { Painter, Scene } from "./scene.ts";
  * plan is traced around it in gold.
  */
 
+// Every ink is a Cocoon brand colour (Ink, Ivory, Warm White, Stone, Mist
+// Blue, Sage, Sand, Graphite) or an even mix of two; gold is kept for the plan.
 const P = {
   roof: 1,
   roof2: 2,
@@ -25,43 +27,43 @@ const P = {
   leaf2: 13,
   ink: 14,
   gold: 15,
-  brick: 16,
-  blue: 17,
+  sand: 16,
+  mist: 17,
   paper: 18,
   trench: 19,
-  steel: 20,
+  graphite: 20,
   glass: 21,
   tar: 22,
   deck: 23,
-  hair: 24,
+  window: 24,
 } as const;
 
 const palette = [
   "",
-  "#e2dccf", // roof (stone)
-  "#d3c9b6", // roof2 (warm)
-  "#c6b8a2", // roof3
-  "#b9ad99", // wall (party walls)
-  "#9f9585", // hatch
-  "#e9e5da", // walk
-  "#dcd6c9", // walk2
-  "#aab3b1", // road
-  "#9ea7a5", // road2
-  "#f7f7f2", // line
-  "#aebb8f", // bike (REV green)
-  "#aebb8f", // leaf
-  "#859a77", // leaf2
+  "#f8f4ec", // roof: ivory
+  "#fefcf8", // roof2: warm white
+  "#e8e2d8", // roof3: stone and ivory
+  "#d7d0c4", // wall: stone
+  "#b2b2aa", // hatch: stone and graphite
+  "#d7d0c4", // walk: stone
+  "#e8e2d8", // walk2: stone and ivory
+  "#abaca5", // road: graphite and stone
+  "#a0a39d", // road2: graphite, deeper
+  "#fefcf8", // line: warm white
+  "#a9b39f", // bike: sage and ivory
+  "#b4bcaa", // leaf: sage, lit
+  "#87977e", // leaf2: sage
   "#1c201b", // ink
   "#e8a900", // gold
-  "#b36a5e", // brick
-  "#3a606e", // blue
-  "#f7f7f2", // paper
-  "#6f6a5f", // trench
-  "#1f4d58", // steel
-  "#cfdcdc", // glass
-  "#b3aa9b", // tar
-  "#c9a57e", // deck
-  "#3d352d", // hair
+  "#d8be8f", // sand
+  "#c9d9da", // mist blue
+  "#fefcf8", // paper: warm white
+  "#545a56", // trench: ink and graphite
+  "#8d9490", // graphite
+  "#c9d9da", // glass: mist blue
+  "#e8e2d8", // tar: stone and ivory
+  "#e8d9be", // deck: sand and ivory
+  "#8d9490", // window: graphite
 ] as const;
 
 const W = 240;
@@ -87,7 +89,7 @@ function roofs(r: Raster, y0: number, y1: number, block: "north" | "south", seed
   const tones = [P.roof, P.roof2, P.tar, P.roof, P.roof3, P.roof2];
   // The ruelle runs behind the block, away from the street.
   const lane = block === "north" ? y0 : y1 - 3;
-  r.rect(0, lane, W, 3, P.leaf);
+  r.rect(0, lane, W, 3, P.roof3);
   const top = block === "north" ? y0 + 3 : y0;
   const bottom = block === "north" ? y1 : y1 - 3;
   const front = block === "north" ? bottom - 1 : top;
@@ -130,7 +132,7 @@ function still(): Raster {
   }
   // Roadway, lane lines, the REV bike lane and its separator.
   r.rect(0, WEST_LANE, W, BIKE - WEST_LANE, P.road);
-  r.rect(0, CENTER, W, 1, P.gold);
+  r.rect(0, CENTER, W, 1, P.sand);
   r.rect(0, CENTER + 1, W, 1, P.road2);
   for (let x = 0; x < W; x += 10) r.rect(x, CURB_LANE, 5, 1, P.line);
   r.rect(0, BIKE - 1, W, 1, P.line);
@@ -156,23 +158,23 @@ function still(): Raster {
   r.rect(ZONE_X + 8, CURB_LANE + 3, 30, 4, P.trench);
   r.rect(ZONE_X + 40, CURB_LANE + 3, 10, 4, P.roof3);
   for (let x = ZONE_X; x < ZONE_X + ZONE_W; x += 2) {
-    r.set(x, CURB_LANE, x % 4 === 0 ? P.brick : P.paper);
-    r.set(x, BIKE - 2, x % 4 === 0 ? P.brick : P.paper);
+    r.set(x, CURB_LANE, x % 4 === 0 ? P.sand : P.paper);
+    r.set(x, BIKE - 2, x % 4 === 0 ? P.sand : P.paper);
   }
   for (let y = CURB_LANE; y < BIKE - 1; y += 2) {
-    r.set(ZONE_X, y, y % 4 === 0 ? P.brick : P.paper);
-    r.set(ZONE_X + ZONE_W - 1, y, y % 4 === 0 ? P.brick : P.paper);
+    r.set(ZONE_X, y, y % 4 === 0 ? P.sand : P.paper);
+    r.set(ZONE_X + ZONE_W - 1, y, y % 4 === 0 ? P.sand : P.paper);
   }
   // Excavator, seen from above.
-  r.rect(ZONE_X + 38, CURB_LANE + 2, 9, 6, P.gold);
+  r.rect(ZONE_X + 38, CURB_LANE + 2, 9, 6, P.sand);
   r.rect(ZONE_X + 40, CURB_LANE + 3, 4, 3, P.ink);
-  r.rect(ZONE_X + 30, CURB_LANE + 4, 8, 2, P.gold);
-  r.rect(ZONE_X + 27, CURB_LANE + 3, 3, 4, P.steel);
+  r.rect(ZONE_X + 30, CURB_LANE + 4, 8, 2, P.sand);
+  r.rect(ZONE_X + 27, CURB_LANE + 3, 3, 4, P.graphite);
   // Cone taper, west of the zone.
   for (let i = 0; i < 6; i++) {
     const x = ZONE_X - 30 + i * 5;
     const y = BIKE - 3 - Math.round(i * 1.4);
-    r.rect(x, y, 2, 2, P.gold);
+    r.rect(x, y, 2, 2, P.sand);
     r.set(x, y, P.paper);
   }
   // Arrow board frame.
@@ -183,18 +185,18 @@ function still(): Raster {
 /** A car from above: windscreen forward, rear window aft. */
 function car(body: number, east: boolean) {
   const rows = [" bbbbbbbb ", "bbrbbbwwbb", "bbrbbbwwbb", " bbbbbbbb "];
-  return sprite(east ? rows : rows.map((row) => [...row].reverse().join("")), { b: body, w: P.glass, r: P.glass });
+  return sprite(east ? rows : rows.map((row) => [...row].reverse().join("")), { b: body, w: P.window, r: P.window });
 }
-const parked = [P.roof3, P.blue, P.paper, P.brick];
-const eastCars = [P.blue, P.paper, P.brick].map((body) => car(body, true));
-const westCars = [P.gold, P.steel, P.paper, P.brick].map((body) => car(body, false));
+const parked = [P.hatch, P.mist, P.paper, P.sand];
+const eastCars = [P.mist, P.paper, P.sand].map((body) => car(body, true));
+const westCars = [P.ink, P.graphite, P.paper, P.sand].map((body) => car(body, false));
 const bus = sprite(
   ["bbbbbbbbbbbbbbbbbbbb", "bwbllbbllbbllbbllbbb", "bwbllbbllbbllbbllbbb", "bbbbbbbbbbbbbbbbbbbb"],
-  { b: P.blue, w: P.glass, l: P.steel },
+  { b: P.mist, w: P.paper, l: P.trench },
 );
-const cyclistEast = sprite(["  s    ", "iishhii", "  s    "], { i: P.ink, s: P.brick, h: P.hair });
-const cyclistWest = sprite(["    s  ", "iihhsii", "    s  "], { i: P.ink, s: P.blue, h: P.hair });
-const walker = (shirt: number) => sprite([" h ", "shs", " s "], { h: P.hair, s: shirt });
+const cyclistEast = sprite(["  s    ", "iishhii", "  s    "], { i: P.ink, s: P.sand, h: P.ink });
+const cyclistWest = sprite(["    s  ", "iihhsii", "    s  "], { i: P.ink, s: P.paper, h: P.ink });
+const walker = (shirt: number) => sprite([" h ", "shs", " s "], { h: P.ink, s: shirt });
 
 const loop = (v: number, span: number) => ((v % span) + span) % span;
 
@@ -217,7 +219,7 @@ function animate(paint: Painter, t: number) {
     paint.stamp(east ? cyclistEast : cyclistWest, Math.round(x), BIKE + (east ? 4 : 1));
   });
   // People on the sidewalks.
-  [P.brick, P.blue, P.gold, P.steel].forEach((shirt, i) => {
+  [P.sand, P.graphite, P.ink, P.mist].forEach((shirt, i) => {
     const north = i % 2 === 0;
     const speed = 3 + i * 0.6;
     const x = north ? loop(t * speed + i * 40, W + 10) - 5 : W + 5 - loop(t * speed + i * 57, W + 10);

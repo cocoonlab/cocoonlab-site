@@ -8,59 +8,58 @@ import type { Painter, Scene } from "./scene.ts";
  * level and leaves a check beside each level it clears, the evidence.
  */
 
+// Every ink is a Cocoon brand colour (Ink, Warm White, Stone, Mist Blue,
+// Sage, Sand, Graphite) or an even mix of two; gold is kept for the check.
+// The ground itself is left open, so the site sits on the page.
 const P = {
-  lawn: 1,
-  lawn2: 2,
-  path: 3,
-  road: 4,
-  line: 5,
-  water: 6,
-  water2: 7,
-  top: 8,
-  face: 9,
-  shade: 10,
-  joint: 11,
-  window: 12,
-  windowShade: 13,
-  glass: 14,
-  leaf: 15,
-  leaf2: 16,
-  trunk: 17,
-  ink: 18,
-  gold: 19,
-  paper: 20,
-  blue: 21,
-  brick: 22,
-  curb: 23,
-  jointShade: 24,
+  path: 1,
+  road: 2,
+  line: 3,
+  water: 4,
+  water2: 5,
+  top: 6,
+  face: 7,
+  shade: 8,
+  joint: 9,
+  window: 10,
+  windowShade: 11,
+  glass: 12,
+  leaf: 13,
+  leaf2: 14,
+  trunk: 15,
+  ink: 16,
+  gold: 17,
+  paper: 18,
+  mist: 19,
+  sand: 20,
+  curb: 21,
+  jointShade: 22,
 } as const;
 
 const palette = [
   "",
-  "#c4cda9", // lawn
-  "#bcc69f", // lawn2
-  "#e7e2d6", // path
-  "#aab3b1", // road
-  "#f7f7f2", // line
-  "#d3e0df", // water
-  "#bccfd0", // water2
-  "#ece8de", // top (concrete roof)
-  "#d9d2c4", // face (concrete in sun)
-  "#aba393", // shade (concrete in shade)
-  "#b9b1a1", // joint
-  "#2f4f5a", // window
-  "#223b43", // windowShade
-  "#cfdcdc", // glass
-  "#aebb8f", // leaf
-  "#859a77", // leaf2
-  "#5d4b3d", // trunk
+  "#d7d0c4", // path: stone
+  "#abaca5", // road: graphite and stone
+  "#fefcf8", // line: warm white
+  "#c9d9da", // water: mist blue
+  "#dee5e2", // water2: mist blue and ivory
+  "#fefcf8", // top: warm white
+  "#e8e2d8", // face: stone and ivory, in sun
+  "#b2b2aa", // shade: stone and graphite
+  "#d7d0c4", // joint: stone
+  "#545a56", // window: ink and graphite
+  "#1c201b", // windowShade: ink
+  "#c9d9da", // glass: mist blue
+  "#b4bcaa", // leaf: sage, lit
+  "#87977e", // leaf2: sage
+  "#545a56", // trunk: ink and graphite
   "#1c201b", // ink
   "#e8a900", // gold
-  "#f7f7f2", // paper
-  "#3a606e", // blue
-  "#b36a5e", // brick
-  "#c8bfad", // curb
-  "#958d7d", // jointShade
+  "#fefcf8", // paper: warm white
+  "#c9d9da", // mist blue
+  "#d8be8f", // sand
+  "#d7d0c4", // curb: stone
+  "#8d9490", // jointShade: graphite
 ] as const;
 
 const W = 240;
@@ -242,7 +241,6 @@ const ROAD_W = 7;
 
 function ground(r: Raster) {
   const far = 140;
-  plane(r, -far, -far, far, far, 0, P.lawn);
   // The river behind, with a promenade along its edge.
   plane(r, -far, -far, far, SHORE, 0, P.water);
   plane(r, -far, SHORE, far, SHORE + 2, 0, P.path);
@@ -288,10 +286,10 @@ const hidden = new Set<number>([
   P.trunk,
 ]);
 
-const carEast = sprite([" bbbbbb ", "bbggbbgb", "bbbbbbbb", " i    i "], { b: P.blue, g: P.glass, i: P.ink });
-const carWest = sprite([" bbbbbb ", "bgbbggbb", "bbbbbbbb", " i    i "], { b: P.brick, g: P.glass, i: P.ink });
+const carEast = sprite([" bbbbbb ", "bbggbbgb", "bbbbbbbb", " i    i "], { b: P.mist, g: P.window, i: P.ink });
+const carWest = sprite([" bbbbbb ", "bgbbggbb", "bbbbbbbb", " i    i "], { b: P.sand, g: P.window, i: P.ink });
 const boat = sprite(["  pp  ", "pppppp", " pppp "], { p: P.paper });
-const person = sprite([" h ", "sss", " s ", "i i"], { h: P.trunk, s: P.brick, i: P.ink });
+const person = sprite([" h ", "sss", " s ", "i i"], { h: P.ink, s: P.sand, i: P.ink });
 
 /** Seconds per inspection: rise through the levels, hold, then start over. */
 const CYCLE = 11;

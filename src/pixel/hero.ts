@@ -11,38 +11,36 @@ import type { Painter, Scene } from "./scene.ts";
 
 const P = {
   cloud: 1,
-  sun: 2,
-  mount: 3,
-  far: 4,
-  far2: 5,
-  mid: 6,
-  mid2: 7,
-  blue: 8,
-  steel: 9,
-  ink: 10,
-  stone: 11,
-  stone2: 12,
-  copper: 13,
-  copper2: 14,
-  brick: 15,
-  sage: 16,
-  sage2: 17,
-  water: 18,
-  water2: 19,
-  water3: 20,
-  paper: 21,
-  pave: 22,
-  pave2: 23,
-  gold: 24,
-  glass: 25,
-  trunk: 26,
-  wood: 27,
+  mount: 2,
+  far: 3,
+  far2: 4,
+  mid: 5,
+  mid2: 6,
+  blue: 7,
+  steel: 8,
+  ink: 9,
+  stone: 10,
+  stone2: 11,
+  copper: 12,
+  copper2: 13,
+  brick: 14,
+  sage: 15,
+  sage2: 16,
+  water: 17,
+  water2: 18,
+  water3: 19,
+  paper: 20,
+  pave: 21,
+  pave2: 22,
+  gold: 23,
+  glass: 24,
+  trunk: 25,
+  wood: 26,
 } as const;
 
 const palette = [
   "",
   "#ecebe2", // cloud
-  "#efce6e", // sun
   "#d9e0d5", // mount
   "#cdd8d6", // far
   "#b6c6c7", // far2
@@ -292,13 +290,12 @@ function river(r: Raster) {
       r.rect(x, y, 3 + Math.floor(rand() * 7), 1, P.water2);
     }
   }
-  // Reflections: piers, Habitat 67, the Biosphère, and the sun.
+  // Reflections: piers, Habitat 67 and the Biosphère.
   for (let y = WATER; y < CURB - 1; y += 2) {
     const depth = y - WATER;
     for (const px of [252, 368]) r.rect(px - 3, y, 8 - Math.min(4, depth >> 2), 1, P.water3);
     if (depth < 12) r.rect(356, y, 60 - depth * 4, 1, P.stone2);
     if (depth < 10) r.rect(160, y, 24 - depth * 2, 1, P.water3);
-    if (depth > 2 && depth % 4 === 0) r.rect(376 - (depth % 8), y, 6, 1, P.glass);
   }
 }
 
@@ -404,7 +401,6 @@ function planter(r: Raster, x: number) {
 
 function back(): Raster {
   const r = new Raster(W, H);
-  r.disc(380, 30, 9, P.sun);
   mountRoyal(r);
   farBank(r);
   olympicStadium(r);
@@ -486,10 +482,10 @@ function animate(paint: Painter, t: number) {
     const dx = Math.round(Math.sin(t * 1.6 + y * 0.9));
     if (dx !== 0) paint.shiftRow(y, dx, 0, QUAY);
   }
-  // Sparkles under the sun.
+  // Light catching the water.
   for (let i = 0; i < 6; i++) {
     const phase = Math.floor(t * 3 + i * 1.7) % 5;
-    if (phase < 2) paint.rect(372 + ((i * 7) % 18), WATER + 4 + i * 3, 2, 1, P.paper);
+    if (phase < 2) paint.rect(300 + ((i * 29) % 110), WATER + 4 + i * 3, 2, 1, P.paper);
   }
 
   // Traffic on the bridge deck, both ways.
