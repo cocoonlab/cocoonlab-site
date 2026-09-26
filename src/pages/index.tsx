@@ -9,7 +9,7 @@ import { NotFound } from "./NotFound.tsx";
 import { Partners } from "./Partners.tsx";
 import { Post } from "./Post.tsx";
 import { PressKit } from "./PressKit.tsx";
-import { Studio } from "./Studio.tsx";
+import { Product } from "./Product.tsx";
 import { Team } from "./Team.tsx";
 
 type Meta = { title: string; description: string };
@@ -20,6 +20,8 @@ export type Page = {
   /** Where the prerendered page is written, relative to dist/. */
   file: string;
   meta: Record<Locale, Meta>;
+  /** `screen` pages fill one screen on their own, without the site's header and footer. */
+  layout?: "screen";
   render: () => ReactNode;
 };
 
@@ -40,6 +42,40 @@ export const pages = {
       },
     },
     render: () => <Home />,
+  },
+  triage: {
+    path: "/triage/",
+    file: "triage/index.html",
+    layout: "screen",
+    meta: {
+      en: {
+        title: "Cocoon Triage | Cocoon Lab",
+        description: "Temporary street plans, reviewed faster. Review work-zone signage, lane closures, and detours before a street is closed.",
+      },
+      fr: {
+        title: "Cocoon Triage | Cocoon Lab",
+        description:
+          "Plans de signalisation temporaire, examinés plus vite. Examinez la signalisation de chantier, les fermetures de voies et les détours avant qu’une rue soit fermée.",
+      },
+    },
+    render: () => <Product product="triage" />,
+  },
+  code: {
+    path: "/code/",
+    file: "code/index.html",
+    layout: "screen",
+    meta: {
+      en: {
+        title: "Cocoon Code | Cocoon Lab",
+        description: "Building-code checks, with evidence. Run building-code rules on drawings and review verdicts you can verify.",
+      },
+      fr: {
+        title: "Cocoon Code | Cocoon Lab",
+        description:
+          "Vérifications du code du bâtiment, preuves à l’appui. Appliquez les règles du code du bâtiment aux plans et examinez des verdicts vérifiables.",
+      },
+    },
+    render: () => <Product product="code" />,
   },
   team: {
     path: "/team/",
@@ -99,25 +135,10 @@ export const pages = {
     path: "/monograph/",
     file: "monograph/index.html",
     meta: {
-      en: { title: "Monograph | Cocoon Lab", description: "The thesis, ideals, and founding position behind Cocoon Lab." },
-      fr: { title: "Manifeste | Cocoon Lab", description: "La thèse, les principes et la position fondatrice de Cocoon Lab." },
+      en: { title: "Monograph | Cocoon Lab", description: "Every place starts as a plan. The thesis, ideals, and founding position behind Cocoon Lab." },
+      fr: { title: "Manifeste | Cocoon Lab", description: "Tout lieu commence par un plan. La thèse, les principes et la position fondatrice de Cocoon Lab." },
     },
     render: () => <Monograph />,
-  },
-  studio: {
-    path: "/studio/",
-    file: "studio/index.html",
-    meta: {
-      en: {
-        title: "Studio | Cocoon Lab",
-        description: "Upload a site, compare early options, and see fit, cost, carbon, and planning risks before design is fixed.",
-      },
-      fr: {
-        title: "Studio | Cocoon Lab",
-        description: "Importez un site, comparez des options et voyez la forme, le coût, le carbone et les risques avant de fixer le design.",
-      },
-    },
-    render: () => <Studio />,
   },
   "press-kit": {
     path: "/press-kit/",

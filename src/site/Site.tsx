@@ -23,8 +23,40 @@ export function useSite() {
   return site;
 }
 
+/** EN / FR, on the page's paper (`light`) or on an ink panel (`dark`). */
+export function LanguageToggle({ tone = "light", className = "" }: { tone?: "light" | "dark"; className?: string }) {
+  const { locale, setLocale } = useSite();
+  const copy = chrome[locale];
+  const idle = tone === "dark" ? "text-ivory/55 hover:text-ivory" : "text-muted hover:text-ink";
+  const active = tone === "dark" ? "text-ivory" : "text-ink";
+
+  return (
+    <div role="group" aria-label={copy.languageLabel} className={`flex items-center gap-1 font-body text-[0.8125rem] font-medium ${className}`}>
+      {(["en", "fr"] as const).map((language, index) => (
+        <span key={language} className="flex items-center gap-1">
+          {index > 0 ? (
+            <span aria-hidden="true" className={tone === "dark" ? "text-ivory/35" : "text-muted/60"}>
+              /
+            </span>
+          ) : null}
+          <button
+            type="button"
+            lang={language}
+            aria-label={localeNames[language]}
+            aria-pressed={locale === language}
+            onClick={() => setLocale(language)}
+            className={`min-h-10 min-w-8 px-1 tracking-[0.06em] transition-colors ${locale === language ? active : idle}`}
+          >
+            {language.toUpperCase()}
+          </button>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function Header() {
-  const { locale, setLocale, isHome, href } = useSite();
+  const { locale, isHome, href } = useSite();
   const copy = chrome[locale];
 
   return (
@@ -47,29 +79,7 @@ function Header() {
             </ul>
           </nav>
           <span aria-hidden="true" className="hidden h-4 w-px bg-line sm:block" />
-          <div role="group" aria-label={copy.languageLabel} className="flex items-center gap-1 font-body text-[0.8125rem] font-medium">
-            {(["en", "fr"] as const).map((language, index) => (
-              <span key={language} className="flex items-center gap-1">
-                {index > 0 ? (
-                  <span aria-hidden="true" className="text-muted/60">
-                    /
-                  </span>
-                ) : null}
-                <button
-                  type="button"
-                  lang={language}
-                  aria-label={localeNames[language]}
-                  aria-pressed={locale === language}
-                  onClick={() => setLocale(language)}
-                  className={`min-h-10 min-w-8 px-1 tracking-[0.06em] transition-colors ${
-                    locale === language ? "text-ink" : "text-muted hover:text-ink"
-                  }`}
-                >
-                  {language.toUpperCase()}
-                </button>
-              </span>
-            ))}
-          </div>
+          <LanguageToggle />
         </div>
       </div>
     </header>

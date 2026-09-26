@@ -20,8 +20,7 @@ const P = {
   paper: 9,
   gold: 10,
   blue: 11,
-  sun: 12,
-  copper: 13,
+  copper: 12,
 } as const;
 
 const palette = [
@@ -37,7 +36,6 @@ const palette = [
   "#f7f7f2", // paper
   "#e8a900", // gold
   "#3a606e", // blue
-  "#efce6e", // sun
   "#86ab9c", // copper
 ] as const;
 
@@ -47,7 +45,6 @@ const SHORE = 50; // where the city meets the water
 
 function still(): Raster {
   const r = new Raster(W, H);
-  r.disc(512, 14, 6, P.sun);
 
   // Mount Royal, with downtown kept below its summit.
   const peak = 352;
@@ -118,7 +115,6 @@ function still(): Raster {
     const depth = y - SHORE;
     for (const [x, w, , ink] of towers) if (depth < 14) r.rect(x + 1, y, w - 2, 1, ink === P.mid ? P.water3 : P.water2);
     for (const px of [130, 190]) if (depth < 10) r.rect(px - 1, y, 3, 1, P.water3);
-    if (depth > 1 && depth < 16 && depth % 4 === 2) r.rect(508 - (depth % 8), y, 6, 1, P.paper);
   }
   // Ripples thin out toward the bottom edge, where the footer carries the
   // river on as a flat plane of the same water.

@@ -136,15 +136,30 @@ const extras: Record<Exclude<PageId, "home">, Extra> = {
       about: organization,
     },
   },
-  studio: {
+  triage: {
     jsonLd: {
       "@context": "https://schema.org",
-      "@type": "WebPage",
-      name: "Cocoon Studio",
-      url: `${SITE}/studio/`,
-      description: pages.studio.meta.en.description,
-      about: { "@type": "SoftwareApplication", name: "Cocoon" },
-      publisher: organization,
+      "@type": "SoftwareApplication",
+      "@id": `${SITE}/#cocoon-triage`,
+      name: "Cocoon Triage",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: `${SITE}/triage/`,
+      description: pages.triage.meta.en.description,
+      creator: organization,
+    },
+  },
+  code: {
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": `${SITE}/#cocoon-code`,
+      name: "Cocoon Code",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: `${SITE}/code/`,
+      description: pages.code.meta.en.description,
+      creator: organization,
     },
   },
   "press-kit": {

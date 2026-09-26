@@ -39,8 +39,8 @@ export const chrome: Record<
       {
         title: "Products",
         links: [
-          { label: "Cocoon Triage", href: "https://triage.cocoonlab.ai" },
-          { label: "Cocoon Code", href: "https://code.cocoonlab.ai" },
+          { label: "Cocoon Triage", href: "/triage/" },
+          { label: "Cocoon Code", href: "/code/" },
         ],
       },
       {
@@ -48,7 +48,6 @@ export const chrome: Record<
         links: [
           { label: "Team", href: "/team/" },
           { label: "Partners", href: "/partners/" },
-          { label: "Studio", href: "/studio/" },
           { label: "Contact", href: "/contact/" },
         ],
       },
@@ -86,8 +85,8 @@ export const chrome: Record<
       {
         title: "Produits",
         links: [
-          { label: "Cocoon Triage", href: "https://triage.cocoonlab.ai" },
-          { label: "Cocoon Code", href: "https://code.cocoonlab.ai" },
+          { label: "Cocoon Triage", href: "/triage/" },
+          { label: "Cocoon Code", href: "/code/" },
         ],
       },
       {
@@ -95,7 +94,6 @@ export const chrome: Record<
         links: [
           { label: "Équipe", href: "/team/" },
           { label: "Partenaires", href: "/partners/" },
-          { label: "Studio", href: "/studio/" },
           { label: "Contact", href: "/contact/" },
         ],
       },

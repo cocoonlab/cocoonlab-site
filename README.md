@@ -7,7 +7,7 @@ Built with Vite, React, Tailwind CSS v4, and a small Vercel serverless endpoint 
 ## What is in the repo
 
 - Every page is React: [`src/pages/`](./src/pages/) holds one component per route, registered with its path, output file and EN/FR title in [`src/pages/index.tsx`](./src/pages/index.tsx). The shared header, river and footer live in [`src/site/`](./src/site/), and [`src/App.tsx`](./src/App.tsx) wraps a page in them and keeps the language (`?lang`, then the stored choice, then the browser) in sync.
-- Routes: `/`, `/team/`, `/partners/`, `/contact/`, `/blog/`, `/blog/indescanada/`, `/blog/mila-partnership/`, `/monograph/`, `/studio/`, `/press-kit/`, `/privacy/`, `/terms/`, and `/404.html`
+- Routes: `/`, `/triage/`, `/code/`, `/team/`, `/partners/`, `/contact/`, `/blog/`, `/blog/indescanada/`, `/blog/mila-partnership/`, `/monograph/`, `/press-kit/`, `/privacy/`, `/terms/`, and `/404.html`. The product pages (`/triage/`, `/code/`) are one-screen front doors: the product on the left over its pixel scene, sign-in on the right. `/studio/` redirects to the products (see [`vercel.json`](./vercel.json)).
 - Animated pixel scenes of Montréal in [`src/pixel/`](./src/pixel/): each scene is drawn once into an indexed raster (`raster.ts`), and [`src/PixelScene.tsx`](./src/PixelScene.tsx) paints it to a canvas at a whole-number pixel scale (set by the `--u` custom property), animates it at 12 fps while it is on screen, and holds a still frame when reduced motion is requested
 - Static files in `public/`: images, the press kit, cookie consent, feed and sitemap
 - Contact intake endpoint in [`api/contact.js`](./api/contact.js)

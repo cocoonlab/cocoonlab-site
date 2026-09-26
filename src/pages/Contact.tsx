@@ -31,7 +31,8 @@ const copy = {
     required: "required",
     contactPlaceholder: "How can we help?",
     demoPlaceholder: "Tell us about your team, project, and what you’d like to see in the demo.",
-    demoNote: "You’re booking a demo. Share the project, team, and timing.",
+    demoNote: (product: string) =>
+      product ? `You’re booking a demo of ${product}. Share the project, team, and timing.` : "You’re booking a demo. Share the project, team, and timing.",
     contactSubmit: "Send message",
     demoSubmit: "Book a demo",
     sending: "Sending…",
@@ -70,7 +71,8 @@ const copy = {
     required: "obligatoire",
     contactPlaceholder: "Comment pouvons-nous aider ?",
     demoPlaceholder: "Parlez-nous de votre équipe, de votre projet et de ce que vous souhaitez voir dans la démo.",
-    demoNote: "Vous réservez une démo. Partagez le projet, l’équipe et le calendrier.",
+    demoNote: (product: string) =>
+      product ? `Vous réservez une démo de ${product}. Partagez le projet, l’équipe et le calendrier.` : "Vous réservez une démo. Partagez le projet, l’équipe et le calendrier.",
     contactSubmit: "Envoyer le message",
     demoSubmit: "Réserver une démo",
     sending: "Envoi…",
@@ -89,6 +91,8 @@ const copy = {
 } as const;
 
 type Intent = "contact" | "studio-demo";
+
+const productNames: Record<string, string> = { triage: "Cocoon Triage", code: "Cocoon Code" };
 type Status = { state: "" | "loading" | "success" | "error"; message: string };
 
 const fieldClass =
@@ -111,6 +115,7 @@ function Field({
   placeholder?: string;
   autoComplete?: string;
   maxLength?: number;
+  defaultValue?: string;
 }) {
   const id = `contact-${name}`;
   return (
@@ -131,14 +136,17 @@ function Field({
 function ContactForm() {
   const { locale } = useSite();
   const text = copy[locale];
-  // The intent comes from the URL, so it is read after hydration to keep the markup identical.
+  // The intent and product come from the URL, so they are read after hydration to keep the markup identical.
   const [intent, setIntent] = useState<Intent>("contact");
+  const [product, setProduct] = useState("");
   const [status, setStatus] = useState<Status>({ state: "", message: "" });
   const [sending, setSending] = useState(false);
   const demo = intent === "studio-demo";
 
   useEffect(() => {
-    if (new URLSearchParams(window.location.search).get("intent") === "studio-demo") setIntent("studio-demo");
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("intent") === "studio-demo") setIntent("studio-demo");
+    setProduct(productNames[params.get("product") ?? ""] ?? "");
   }, []);
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
@@ -200,7 +208,7 @@ function ContactForm() {
   return (
     <form id="contact-form" noValidate aria-label={text.formLabel} aria-busy={sending || undefined} onSubmit={submit} className="grid gap-8">
       <input type="hidden" name="intent" value={intent} />
-      {demo ? <p className="font-body text-[1.0625rem] leading-[1.55] text-ink">{text.demoNote}</p> : null}
+      {demo ? <p className="font-body text-[1.0625rem] leading-[1.55] text-ink">{text.demoNote(product)}</p> : null}
       <Field name="name" label={text.name} placeholder={text.namePlaceholder} autoComplete="name" maxLength={120} required requiredLabel={text.required} />
       <Field
         name="email"
@@ -222,7 +230,15 @@ function ContactForm() {
       />
       {demo ? (
         <>
-          <Field name="project" label={text.project} placeholder={text.projectPlaceholder} maxLength={200} requiredLabel={text.required} />
+          <Field
+            key={product}
+            name="project"
+            label={text.project}
+            placeholder={text.projectPlaceholder}
+            defaultValue={product}
+            maxLength={200}
+            requiredLabel={text.required}
+          />
           <Field name="preferredTiming" label={text.timing} placeholder={text.timingPlaceholder} maxLength={160} requiredLabel={text.required} />
         </>
       ) : null}

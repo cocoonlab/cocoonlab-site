@@ -50,7 +50,7 @@ export default function App({ page, linkBase }: { page: PageId; linkBase?: strin
 
   return (
     <SiteProvider value={{ locale, setLocale: switchLocale, isHome, href: (to) => resolveHref(to, isHome, linkBase) }}>
-      <Layout>{pages[page].render()}</Layout>
+      {"layout" in pages[page] ? pages[page].render() : <Layout>{pages[page].render()}</Layout>}
     </SiteProvider>
   );
 }

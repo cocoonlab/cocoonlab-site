@@ -15,11 +15,11 @@ const mail = (
 const privacy: Record<Locale, Document> = {
   en: {
     title: "Privacy Policy",
-    lead: "How Cocoon Lab handles information shared through cocoonlab.ai when you contact us, request a demo of Cocoon, or begin a conversation.",
+    lead: "How Cocoon Lab handles information shared through cocoonlab.ai when you contact us, request a demo, or begin a conversation.",
     sections: [
       [
         "1. Data Collection",
-        "Cocoon Lab may receive information you choose to share through cocoonlab.ai, including your name, email address, company, role, project details, and any other context provided when you contact us or request a demo of Cocoon.",
+        "Cocoon Lab may receive information you choose to share through cocoonlab.ai, including your name, email address, company, role, project details, and any other context provided when you contact us or request a demo.",
       ],
       [
         "2. Essential Cookies",
@@ -27,7 +27,7 @@ const privacy: Record<Locale, Document> = {
       ],
       [
         "3. How Information Is Used",
-        "We use submitted information to respond to your inquiry, continue a conversation you initiated, evaluate whether Cocoon is relevant to your team or project, and maintain the security and reliability of this website and related communications.",
+        "We use submitted information to respond to your inquiry, continue a conversation you initiated, evaluate whether our products are relevant to your team or project, and maintain the security and reliability of this website and related communications.",
       ],
       [
         "4. Sharing and Retention",
@@ -45,11 +45,11 @@ const privacy: Record<Locale, Document> = {
         </>,
       ],
     ],
-    note: "Last updated: April 30, 2026. For privacy questions, please contact Cocoon Lab directly.",
+    note: "Last updated: September 26, 2026. For privacy questions, please contact Cocoon Lab directly.",
   },
   fr: {
     title: "Politique de confidentialité",
-    lead: "Comment Cocoon Lab traite les informations partagées sur cocoonlab.ai lorsque vous nous contactez, demandez une démo de Cocoon ou entamez une conversation.",
+    lead: "Comment Cocoon Lab traite les informations partagées sur cocoonlab.ai lorsque vous nous contactez, demandez une démo ou entamez une conversation.",
     sections: [
       [
         "1. Collecte des données",
@@ -61,7 +61,7 @@ const privacy: Record<Locale, Document> = {
       ],
       [
         "3. Utilisation des informations",
-        "Nous utilisons les informations soumises pour répondre à votre demande, poursuivre une conversation initiée par vous, évaluer la pertinence de Cocoon pour votre équipe ou projet et maintenir la sécurité et la fiabilité du site et des communications.",
+        "Nous utilisons les informations soumises pour répondre à votre demande, poursuivre une conversation initiée par vous, évaluer la pertinence de nos produits pour votre équipe ou votre projet et maintenir la sécurité et la fiabilité du site et des communications.",
       ],
       [
         "4. Partage et conservation",
@@ -79,18 +79,18 @@ const privacy: Record<Locale, Document> = {
         </>,
       ],
     ],
-    note: "Dernière mise à jour : 30 avril 2026. Pour toute question de confidentialité, contactez directement Cocoon Lab.",
+    note: "Dernière mise à jour : 26 septembre 2026. Pour toute question de confidentialité, contactez directement Cocoon Lab.",
   },
 };
 
 const terms: Record<Locale, Document> = {
   en: {
     title: "Terms of Service",
-    lead: "Terms for using cocoonlab.ai and engaging with materials, communications, and demo requests related to Cocoon and Cocoon Lab.",
+    lead: "Terms for using cocoonlab.ai and engaging with materials, communications, and demo requests related to Cocoon Lab and its products.",
     sections: [
       [
         "1. Acceptance of Terms",
-        "By accessing cocoonlab.ai, you agree to be bound by these terms. This website exists to explain Cocoon, the product built by Cocoon Lab, and to support lawful business, informational, and professional use.",
+        "By accessing cocoonlab.ai, you agree to be bound by these terms. This website exists to present Cocoon Lab and its products, and to support lawful business, informational, and professional use.",
       ],
       [
         "2. Use of the Site",
@@ -98,7 +98,7 @@ const terms: Record<Locale, Document> = {
       ],
       [
         "3. Content and License",
-        "The text, brand elements, layouts, and materials on this site belong to Cocoon Lab unless stated otherwise. They are provided to help explain Cocoon and may not be reused in a way that implies ownership, endorsement, or affiliation without permission.",
+        "The text, brand elements, layouts, and materials on this site belong to Cocoon Lab unless stated otherwise. They are provided to present Cocoon Lab and its products and may not be reused in a way that implies ownership, endorsement, or affiliation without permission.",
       ],
       [
         "4. Disclaimer",
@@ -109,14 +109,15 @@ const terms: Record<Locale, Document> = {
         "To the fullest extent permitted by law, Cocoon Lab is not liable for indirect, incidental, special, or consequential damages arising from your use of this website or reliance on its content. These terms may be revised from time to time, and the current version will remain available on this page.",
       ],
     ],
+    note: "Last updated: September 26, 2026.",
   },
   fr: {
     title: "Conditions d’utilisation",
-    lead: "Conditions d’utilisation de cocoonlab.ai et des contenus, communications et demandes de démo liés à Cocoon et Cocoon Lab.",
+    lead: "Conditions d’utilisation de cocoonlab.ai et des contenus, communications et demandes de démo liés à Cocoon Lab et à ses produits.",
     sections: [
       [
         "1. Acceptation des conditions",
-        "En accédant à cocoonlab.ai, vous acceptez d’être lié par ces conditions. Ce site présente Cocoon, le produit construit par Cocoon Lab, et sert à un usage commercial, informatif et professionnel légitime.",
+        "En accédant à cocoonlab.ai, vous acceptez d’être lié par ces conditions. Ce site présente Cocoon Lab et ses produits, et sert à un usage commercial, informatif et professionnel légitime.",
       ],
       [
         "2. Utilisation du site",
@@ -124,7 +125,7 @@ const terms: Record<Locale, Document> = {
       ],
       [
         "3. Contenu et licence",
-        "Les textes, éléments de marque, mises en page et contenus de ce site appartiennent à Cocoon Lab sauf indication contraire. Ils servent à expliquer Cocoon et ne peuvent être réutilisés d’une façon qui suggère propriété, approbation ou affiliation sans autorisation.",
+        "Les textes, éléments de marque, mises en page et contenus de ce site appartiennent à Cocoon Lab sauf indication contraire. Ils servent à présenter Cocoon Lab et ses produits et ne peuvent être réutilisés d’une façon qui suggère propriété, approbation ou affiliation sans autorisation.",
       ],
       [
         "4. Avis de non-responsabilité",
@@ -135,6 +136,7 @@ const terms: Record<Locale, Document> = {
         "Dans toute la mesure permise par la loi, Cocoon Lab n’est pas responsable des dommages indirects, accessoires, spéciaux ou consécutifs découlant de votre utilisation de ce site ou de la confiance accordée à son contenu. Ces conditions peuvent être révisées de temps à autre, et la version en vigueur restera disponible sur cette page.",
       ],
     ],
+    note: "Dernière mise à jour : 26 septembre 2026.",
   },
 };
 

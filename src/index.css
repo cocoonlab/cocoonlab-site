@@ -12,6 +12,7 @@
   --color-line: rgb(28 32 27 / 0.14);
   --color-civic: #064552;
   --color-mist: #c9d9da;
+  --color-ivory: #f8f4ec;
   /* The river scene's water; the footer continues it. */
   --color-river: #dfe8e7;
 }
@@ -167,6 +168,45 @@
 /* Past 640 cells × 3px the water would stop short of the footer's edges. */
 @media (min-width: 1921px) {
   .river-scene {
+    --u: 4px;
+  }
+}
+
+/* Product pages: the scene fills the left of the screen, drawn from the
+   bottom, behind the product's name. */
+.landing-scene {
+  --u: 2px;
+  --visible-rows: var(--rows);
+  margin-top: 2.5rem;
+}
+
+.landing-code {
+  --visible-rows: 130;
+  --focus: 0.7;
+  --align: 1;
+}
+
+.landing-triage {
+  --focus: 0.62;
+}
+
+@media (min-width: 1024px) {
+  .landing-scene {
+    position: absolute;
+    inset: 0;
+    height: auto;
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) and (min-height: 700px) {
+  .landing-scene {
+    --u: 3px;
+  }
+}
+
+@media (min-width: 1600px) and (min-height: 960px) {
+  .landing-scene {
     --u: 4px;
   }
 }

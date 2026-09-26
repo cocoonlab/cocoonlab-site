@@ -58,7 +58,7 @@ export function Team() {
                 height={1000}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover grayscale-[0.35]"
+                className="h-full w-full object-cover grayscale"
               />
             </div>
             <h2 className="mt-5 font-display text-[1.5rem] font-medium leading-[1.1] tracking-[-0.02em]">{person.name}</h2>

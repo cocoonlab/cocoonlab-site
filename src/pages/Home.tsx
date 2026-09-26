@@ -20,21 +20,20 @@ const copy = {
     heroScene:
       "Montréal in pixels, from the Old Port: the Jacques-Cartier Bridge over the St. Lawrence, the Biosphère, the Olympic Stadium, Habitat 67, and downtown under Mount Royal.",
     productsTitle: "Products",
+    more: "Learn more",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
         description: "Temporary street plans, reviewed faster.",
-        href: "https://triage.cocoonlab.ai",
-        domain: "triage.cocoonlab.ai",
+        href: "/triage/",
         scene: "A Montréal street from above: a work zone closes the curb lane, traffic shifts around it, and the temporary plan is outlined in gold.",
       },
       {
         id: "code",
         name: "Cocoon Code",
         description: "Building-code checks, with evidence.",
-        href: "https://code.cocoonlab.ai",
-        domain: "code.cocoonlab.ai",
+        href: "/code/",
         scene: "Habitat 67 in axonometric: a gold plane rises through the stacked homes and leaves a check beside each level it clears.",
       },
     ],
@@ -53,21 +52,20 @@ const copy = {
     heroScene:
       "Montréal en pixels, depuis le Vieux-Port : le pont Jacques-Cartier sur le Saint-Laurent, la Biosphère, le Stade olympique, Habitat 67 et le centre-ville sous le mont Royal.",
     productsTitle: "Produits",
+    more: "En savoir plus",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
         description: "Plans de signalisation temporaire, examinés plus vite.",
-        href: "https://triage.cocoonlab.ai",
-        domain: "triage.cocoonlab.ai",
+        href: "/triage/",
         scene: "Une rue de Montréal vue du ciel : un chantier ferme la voie de droite, la circulation le contourne et le plan temporaire est tracé en or.",
       },
       {
         id: "code",
         name: "Cocoon Code",
         description: "Vérifications du code du bâtiment, preuves à l’appui.",
-        href: "https://code.cocoonlab.ai",
-        domain: "code.cocoonlab.ai",
+        href: "/code/",
         scene: "Habitat 67 en axonométrie : un plan doré traverse les maisons empilées et laisse une coche à chaque niveau vérifié.",
       },
     ],
@@ -120,7 +118,7 @@ export function Home() {
               className="product group relative flex flex-col border-line pt-10 max-md:[&+&]:border-t md:pt-12 md:[&+&]:border-l md:[&+&]:pl-10 md:[&:has(+li)]:pr-10 xl:[&+&]:pl-16 xl:[&:has(+li)]:pr-16"
             >
               <h3 className="font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.03em]">
-                <a href={product.href} className="product-link">
+                <a href={href(product.href)} className="product-link">
                   {product.name}
                 </a>
               </h3>
@@ -131,11 +129,8 @@ export function Home() {
                 aria-hidden="true"
                 className="mt-5 inline-flex items-center gap-2.5 self-start font-body text-[0.9375rem] font-medium text-ink underline decoration-transparent decoration-1 underline-offset-[0.35em] transition-colors duration-200 group-hover:decoration-current"
               >
-                {product.domain}
-                <Glyph
-                  glyph={glyphs.arrowUpRight}
-                  className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                />
+                {text.more}
+                <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
               </p>
               <PixelScene scene={productScenes[product.id]} className="product-scene" label={product.scene} />
             </li>

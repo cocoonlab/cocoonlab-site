@@ -66,34 +66,33 @@ const palette = [
   "#8d9490", // window: graphite
 ] as const;
 
-const W = 240;
-const H = 140;
-
-// Street cross-section, north to south.
-const NORTH_WALK = 40;
-const WEST_LANE = 48; // westbound traffic
-const CENTER = 60;
-const EAST_LANE = 62; // eastbound traffic
-const CURB_LANE = 74; // eastbound curb lane (parking, closed by the work)
-const BIKE = 84;
-const SOUTH_WALK = 92;
-const SOUTH_ROOFS = 100;
-
-const ZONE_X = 112;
-const ZONE_W = 60;
+type StreetOptions = {
+  width: number;
+  height: number;
+  /** Row of the north sidewalk; the rest of the cross-section follows from it. */
+  top: number;
+  /** Plex roofs on both sides, or the street alone on the page. */
+  roofs: boolean;
+  /** Left edge of the work zone. */
+  zoneX: number;
+  /** Parked cars along the curb lane, by x. */
+  parked: number[];
+  /** Street trees on the north sidewalk, by x; the south row is offset. */
+  trees: number[];
+};
 
 /** A row of plex roofs from above: parapet on the street side, hatches,
  * skylights, the odd rooftop terrace, and the ruelle behind. */
-function roofs(r: Raster, y0: number, y1: number, block: "north" | "south", seed: number) {
+function roofs(r: Raster, width: number, y0: number, y1: number, block: "north" | "south", seed: number) {
   const rand = seeded(seed);
   const tones = [P.roof, P.roof2, P.tar, P.roof, P.roof3, P.roof2];
   // The ruelle runs behind the block, away from the street.
   const lane = block === "north" ? y0 : y1 - 3;
-  r.rect(0, lane, W, 3, P.roof3);
+  r.rect(0, lane, width, 3, P.roof3);
   const top = block === "north" ? y0 + 3 : y0;
   const bottom = block === "north" ? y1 : y1 - 3;
   const front = block === "north" ? bottom - 1 : top;
-  for (let x = 0; x < W; ) {
+  for (let x = 0; x < width; ) {
     const w = 10 + Math.floor(rand() * 7);
     const tone = tones[Math.floor(rand() * tones.length)]!;
     r.rect(x, top, w, bottom - top, tone);
@@ -117,15 +116,54 @@ function tree(r: Raster, x: number, y: number, s: number) {
   r.disc(x - s * 0.3, y - s * 0.3, s * 0.62, P.leaf);
 }
 
-function still(): Raster {
-  const r = new Raster(W, H);
-  roofs(r, 0, NORTH_WALK - 6, "north", 21);
-  roofs(r, SOUTH_ROOFS + 6, H, "south", 34);
-  // Front yards and sidewalks.
-  r.rect(0, NORTH_WALK - 6, W, 6, P.walk2);
+/** A car from above: windscreen forward, rear window aft. */
+function car(body: number, east: boolean) {
+  const rows = [" bbbbbbbb ", "bbrbbbwwbb", "bbrbbbwwbb", " bbbbbbbb "];
+  return sprite(east ? rows : rows.map((row) => [...row].reverse().join("")), { b: body, w: P.window, r: P.window });
+}
+const parkedCars = [P.hatch, P.mist, P.paper, P.sand];
+const eastCars = [P.mist, P.paper, P.sand].map((body) => car(body, true));
+const westCars = [P.ink, P.graphite, P.paper, P.sand].map((body) => car(body, false));
+const bus = sprite(
+  ["bbbbbbbbbbbbbbbbbbbb", "bwbllbbllbbllbbllbbb", "bwbllbbllbbllbbllbbb", "bbbbbbbbbbbbbbbbbbbb"],
+  { b: P.mist, w: P.paper, l: P.trench },
+);
+const cyclistEast = sprite(["  s    ", "iishhii", "  s    "], { i: P.ink, s: P.sand, h: P.ink });
+const cyclistWest = sprite(["    s  ", "iihhsii", "    s  "], { i: P.ink, s: P.paper, h: P.ink });
+const walker = (shirt: number) => sprite([" h ", "shs", " s "], { h: P.ink, s: shirt });
+
+const loop = (v: number, span: number) => ((v % span) + span) % span;
+
+/**
+ * A Montréal street from above, west to east across the frame: sidewalks and
+ * trees, two traffic lanes around a centre line, the eastbound curb lane
+ * closed by the work zone, and the REV bike lane along the south curb.
+ */
+function street(o: StreetOptions): Scene {
+  const W = o.width;
+  // Street cross-section, north to south.
+  const NORTH_WALK = o.top;
+  const WEST_LANE = NORTH_WALK + 8; // westbound traffic
+  const CENTER = NORTH_WALK + 20;
+  const EAST_LANE = NORTH_WALK + 22; // eastbound traffic
+  const CURB_LANE = NORTH_WALK + 34; // eastbound curb lane (parking, closed by the work)
+  const BIKE = NORTH_WALK + 44;
+  const SOUTH_WALK = NORTH_WALK + 52;
+  const SOUTH_ROOFS = NORTH_WALK + 60;
+  const ZONE_X = o.zoneX;
+  const ZONE_W = 60;
+
+  const r = new Raster(W, o.height);
+  if (o.roofs) {
+    roofs(r, W, 0, NORTH_WALK - 6, "north", 21);
+    roofs(r, W, SOUTH_ROOFS + 6, o.height, "south", 34);
+    // Front yards.
+    r.rect(0, NORTH_WALK - 6, W, 6, P.walk2);
+    r.rect(0, SOUTH_ROOFS, W, 6, P.walk2);
+  }
+  // Sidewalks with their joints.
   r.rect(0, NORTH_WALK, W, WEST_LANE - NORTH_WALK, P.walk);
   r.rect(0, SOUTH_WALK, W, SOUTH_ROOFS - SOUTH_WALK, P.walk);
-  r.rect(0, SOUTH_ROOFS, W, 6, P.walk2);
   for (let x = 6; x < W; x += 12) {
     r.rect(x, NORTH_WALK, 1, WEST_LANE - NORTH_WALK, P.walk2);
     r.rect(x, SOUTH_WALK, 1, SOUTH_ROOFS - SOUTH_WALK, P.walk2);
@@ -144,11 +182,9 @@ function still(): Raster {
     r.rect(x + 2, BIKE + 2, 2, 1, P.line);
   }
   // Parked cars along the curb lane, clear of the work zone.
-  [6, 20, 34, 48, 62, 180, 194, 208, 222].forEach((x, i) =>
-    r.stamp(car(parked[i % parked.length]!, i % 2 === 0), x, CURB_LANE + 3),
-  );
+  o.parked.forEach((x, i) => r.stamp(car(parkedCars[i % parkedCars.length]!, i % 2 === 0), x, CURB_LANE + 3));
   // Street trees on both sidewalks.
-  for (let x = 14; x < W; x += 34) {
+  for (const x of o.trees) {
     tree(r, x, NORTH_WALK - 1, 6);
     tree(r, x + 17, SOUTH_WALK + 7, 6);
   }
@@ -179,86 +215,82 @@ function still(): Raster {
   }
   // Arrow board frame.
   r.rect(ZONE_X - 5, CURB_LANE + 2, 5, 6, P.ink);
-  return r;
-}
 
-/** A car from above: windscreen forward, rear window aft. */
-function car(body: number, east: boolean) {
-  const rows = [" bbbbbbbb ", "bbrbbbwwbb", "bbrbbbwwbb", " bbbbbbbb "];
-  return sprite(east ? rows : rows.map((row) => [...row].reverse().join("")), { b: body, w: P.window, r: P.window });
-}
-const parked = [P.hatch, P.mist, P.paper, P.sand];
-const eastCars = [P.mist, P.paper, P.sand].map((body) => car(body, true));
-const westCars = [P.ink, P.graphite, P.paper, P.sand].map((body) => car(body, false));
-const bus = sprite(
-  ["bbbbbbbbbbbbbbbbbbbb", "bwbllbbllbbllbbllbbb", "bwbllbbllbbllbbllbbb", "bbbbbbbbbbbbbbbbbbbb"],
-  { b: P.mist, w: P.paper, l: P.trench },
-);
-const cyclistEast = sprite(["  s    ", "iishhii", "  s    "], { i: P.ink, s: P.sand, h: P.ink });
-const cyclistWest = sprite(["    s  ", "iihhsii", "    s  "], { i: P.ink, s: P.paper, h: P.ink });
-const walker = (shirt: number) => sprite([" h ", "shs", " s "], { h: P.ink, s: shirt });
+  function animate(paint: Painter, t: number) {
+    // Westbound traffic, with a bus.
+    [0, 1, 2, 3].forEach((i) => {
+      const x = W + 20 - loop(t * 16 + i * 52, W + 60);
+      if (i === 2) paint.stamp(bus, Math.round(x), WEST_LANE + 4);
+      else paint.stamp(westCars[i % westCars.length]!, Math.round(x), WEST_LANE + 4);
+    });
+    // Eastbound traffic keeps to the open lane past the work zone.
+    [0, 1, 2].forEach((i) => {
+      const x = loop(t * 14 + i * 66, W + 60) - 30;
+      paint.stamp(eastCars[i % eastCars.length]!, Math.round(x), EAST_LANE + 4);
+    });
+    // Cyclists on the REV.
+    [0, 1].forEach((i) => {
+      const east = i === 0;
+      const x = east ? loop(t * 9 + 40, W + 20) - 10 : W + 10 - loop(t * 8, W + 20);
+      paint.stamp(east ? cyclistEast : cyclistWest, Math.round(x), BIKE + (east ? 4 : 1));
+    });
+    // People on the sidewalks.
+    [P.sand, P.graphite, P.ink, P.mist].forEach((shirt, i) => {
+      const north = i % 2 === 0;
+      const speed = 3 + i * 0.6;
+      const x = north ? loop(t * speed + i * 40, W + 10) - 5 : W + 5 - loop(t * speed + i * 57, W + 10);
+      paint.stamp(walker(shirt), Math.round(x), north ? NORTH_WALK + 1 + i * 2 : SOUTH_WALK + i);
+    });
 
-const loop = (v: number, span: number) => ((v % span) + span) % span;
+    // The arrow board flashes, pointing traffic out of the closed lane.
+    if (Math.floor(t * 2) % 2 === 0) {
+      const x = ZONE_X - 4;
+      const y = CURB_LANE + 3;
+      paint.rect(x + 1, y, 1, 4, P.gold);
+      paint.px(x, y + 1, P.gold);
+      paint.px(x + 2, y + 1, P.gold);
+      paint.px(x + 1, y - 0, P.gold);
+    }
 
-function animate(paint: Painter, t: number) {
-  // Westbound traffic, with a bus.
-  [0, 1, 2, 3].forEach((i) => {
-    const x = W + 20 - loop(t * 16 + i * 52, W + 60);
-    if (i === 2) paint.stamp(bus, Math.round(x), WEST_LANE + 4);
-    else paint.stamp(westCars[i % westCars.length]!, Math.round(x), WEST_LANE + 4);
-  });
-  // Eastbound traffic keeps to the open lane past the work zone.
-  [0, 1, 2].forEach((i) => {
-    const x = loop(t * 14 + i * 66, W + 60) - 30;
-    paint.stamp(eastCars[i % eastCars.length]!, Math.round(x), EAST_LANE + 4);
-  });
-  // Cyclists on the REV.
-  [0, 1].forEach((i) => {
-    const east = i === 0;
-    const x = east ? loop(t * 9 + 40, W + 20) - 10 : W + 10 - loop(t * 8, W + 20);
-    paint.stamp(east ? cyclistEast : cyclistWest, Math.round(x), BIKE + (east ? 4 : 1));
-  });
-  // People on the sidewalks.
-  [P.sand, P.graphite, P.ink, P.mist].forEach((shirt, i) => {
-    const north = i % 2 === 0;
-    const speed = 3 + i * 0.6;
-    const x = north ? loop(t * speed + i * 40, W + 10) - 5 : W + 5 - loop(t * speed + i * 57, W + 10);
-    paint.stamp(walker(shirt), Math.round(x), north ? NORTH_WALK + 1 + i * 2 : SOUTH_WALK + i);
-  });
-
-  // The arrow board flashes, pointing traffic out of the closed lane.
-  if (Math.floor(t * 2) % 2 === 0) {
-    const x = ZONE_X - 4;
-    const y = CURB_LANE + 3;
-    paint.rect(x + 1, y, 1, 4, P.gold);
-    paint.px(x, y + 1, P.gold);
-    paint.px(x + 2, y + 1, P.gold);
-    paint.px(x + 1, y - 0, P.gold);
+    // The temporary plan, traced in marching gold dashes around the work.
+    const x0 = ZONE_X - 34;
+    const x1 = ZONE_X + ZONE_W + 2;
+    const y0 = CURB_LANE - 3;
+    const y1 = BIKE;
+    const march = Math.floor(t * 8);
+    const dash = (i: number) => (i + march) % 6 < 3;
+    let i = 0;
+    for (let x = x0; x <= x1; x++, i++) {
+      if (dash(i)) paint.px(x, y0, P.gold);
+      if (dash(i + 3)) paint.px(x, y1, P.gold);
+    }
+    for (let y = y0; y <= y1; y++, i++) {
+      if (dash(i)) paint.px(x0, y, P.gold);
+      if (dash(i + 3)) paint.px(x1, y, P.gold);
+    }
   }
 
-  // The temporary plan, traced in marching gold dashes around the work.
-  const x0 = ZONE_X - 34;
-  const x1 = ZONE_X + ZONE_W + 2;
-  const y0 = CURB_LANE - 3;
-  const y1 = BIKE;
-  const march = Math.floor(t * 8);
-  const dash = (i: number) => (i + march) % 6 < 3;
-  let i = 0;
-  for (let x = x0; x <= x1; x++, i++) {
-    if (dash(i)) paint.px(x, y0, P.gold);
-    if (dash(i + 3)) paint.px(x, y1, P.gold);
-  }
-  for (let y = y0; y <= y1; y++, i++) {
-    if (dash(i)) paint.px(x0, y, P.gold);
-    if (dash(i + 3)) paint.px(x1, y, P.gold);
-  }
+  return { width: W, height: o.height, palette, still: r, focus: 0.5, animate };
 }
 
-export const triageScene: Scene = {
-  width: W,
-  height: H,
-  palette,
-  still: still(),
-  focus: 0.5,
-  animate,
-};
+/** The homepage panel: the street between two rows of plex roofs. */
+export const triageScene = street({
+  width: 240,
+  height: 140,
+  top: 40,
+  roofs: true,
+  zoneX: 112,
+  parked: [6, 20, 34, 48, 62, 180, 194, 208, 222],
+  trees: [14, 48, 82, 116, 150, 184, 218],
+});
+
+/** The product page: the street alone, running the width of the frame. */
+export const triageLandingScene = street({
+  width: 360,
+  height: 92,
+  top: 14,
+  roofs: false,
+  zoneX: 214,
+  parked: [8, 22, 36, 50, 64, 78, 92, 290, 304, 318, 332, 346],
+  trees: [16, 50, 84, 118, 152, 186, 220, 254, 288, 322],
+});

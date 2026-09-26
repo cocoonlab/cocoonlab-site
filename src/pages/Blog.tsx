@@ -7,7 +7,7 @@ import { formatDate, posts } from "./posts.ts";
 
 const copy = {
   en: {
-    title: "Updates",
+    title: "Blog",
     lead: "News and notes from Cocoon Lab: our products, events, and partners.",
     read: "Read article",
     stayTitle: "Stay updated.",
@@ -16,7 +16,7 @@ const copy = {
     contact: "Contact Cocoon Lab",
   },
   fr: {
-    title: "Nouvelles",
+    title: "Blogue",
     lead: "Nouvelles et notes de Cocoon Lab : nos produits, nos événements et nos partenaires.",
     read: "Lire l’article",
     stayTitle: "Rester à jour.",
