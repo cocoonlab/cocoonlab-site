@@ -1,0 +1,185 @@
+import type { CSSProperties } from "react";
+import { useEffect, useRef } from "react";
+import { hexToRgb, type Raster } from "./pixel/raster.ts";
+import type { Painter, Scene } from "./pixel/scene.ts";
+
+const FPS = 12;
+/** A settled moment to hold on when motion is reduced. */
+const STILL_TIME = 7.5;
+
+function toCanvas(raster: Raster, palette: readonly string[]) {
+  const canvas = document.createElement("canvas");
+  canvas.width = raster.width;
+  canvas.height = raster.height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return canvas;
+  const image = ctx.createImageData(raster.width, raster.height);
+  const rgb = palette.map((hex) => (hex ? hexToRgb(hex) : null));
+  raster.data.forEach((ink, i) => {
+    const c = ink ? rgb[ink] : null;
+    if (!c) return;
+    image.data[i * 4] = c[0];
+    image.data[i * 4 + 1] = c[1];
+    image.data[i * 4 + 2] = c[2];
+    image.data[i * 4 + 3] = 255;
+  });
+  ctx.putImageData(image, 0, 0);
+  return canvas;
+}
+
+type PixelSceneProps = {
+  scene: Scene;
+  className?: string;
+  /** Accessible description; without one the scene is decorative. */
+  label?: string;
+};
+
+/**
+ * Paints a pixel scene on a canvas at one canvas pixel per cell. CSS picks the
+ * whole-number unit (`--u`) and how many rows show (`--rows`); the canvas is
+ * scaled with `image-rendering: pixelated`, cropped around the scene's focus,
+ * animated at 12 fps while on screen, and held still when motion is reduced.
+ */
+export function PixelScene({ scene, className, label }: PixelSceneProps) {
+  const frameRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const frame = frameRef.current;
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!frame || !canvas || !ctx) return;
+
+    const back = toCanvas(scene.still, scene.palette);
+    const front = scene.front ? toCanvas(scene.front, scene.palette) : null;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let cols = scene.width;
+    let offset = 0;
+    let time = reduced.matches ? STILL_TIME : 0;
+
+    const put = (x: number, y: number, w: number, h: number, ink: number) => {
+      const color = scene.palette[ink];
+      if (!color) return;
+      ctx.fillStyle = color;
+      ctx.fillRect(Math.round(x) - offset, Math.round(y), w, h);
+    };
+    const painter: Painter = {
+      px: (x, y, ink) => put(x, y, 1, 1, ink),
+      rect: (x, y, w, h, ink) => put(x, y, Math.round(w), Math.round(h), ink),
+      stamp: (sprite, x, y) => {
+        for (let sy = 0; sy < sprite.height; sy++) {
+          for (let sx = 0; sx < sprite.width; sx++) {
+            const ink = sprite.data[sy * sprite.width + sx]!;
+            if (ink) put(Math.round(x) + sx, Math.round(y) + sy, 1, 1, ink);
+          }
+        }
+      },
+      shiftRow: (y, dx, x0, x1) => {
+        const from = Math.max(0, x0 - dx);
+        const to = Math.min(scene.width, x1 - dx);
+        if (to > from) ctx.drawImage(back, from, y, to - from, 1, from + dx - offset, y, to - from, 1);
+      },
+      front: () => {
+        if (front) ctx.drawImage(front, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
+      },
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, cols, scene.height);
+      ctx.drawImage(back, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
+      if (scene.animate) scene.animate(painter, time);
+      else painter.front();
+    };
+
+    const layout = () => {
+      const styles = getComputedStyle(frame);
+      const unit = Math.max(1, Math.round(parseFloat(styles.getPropertyValue("--u")) || 2));
+      const focus = parseFloat(styles.getPropertyValue("--focus"));
+      const align = parseFloat(styles.getPropertyValue("--align"));
+      const width = frame.clientWidth;
+      cols = Math.min(scene.width, Math.ceil(width / unit));
+      offset = Math.round((scene.width - cols) * (Number.isFinite(focus) ? focus : scene.focus));
+      canvas.width = cols;
+      canvas.height = scene.height;
+      canvas.style.width = `${cols * unit}px`;
+      canvas.style.height = `${scene.height * unit}px`;
+      canvas.style.left = `${Math.floor((width - cols * unit) * (Number.isFinite(align) ? align : 0.5))}px`;
+      ctx.imageSmoothingEnabled = false;
+      draw();
+    };
+
+    let raf = 0;
+    let last = 0;
+    let visible = false;
+    const tick = (now: number) => {
+      raf = requestAnimationFrame(tick);
+      if (!last) last = now;
+      const next = time + Math.min(0.25, (now - last) / 1000);
+      last = now;
+      if (Math.floor(next * FPS) !== Math.floor(time * FPS)) {
+        time = next;
+        draw();
+      } else {
+        time = next;
+      }
+    };
+    const start = () => {
+      if (raf || reduced.matches || !visible || document.hidden) return;
+      last = 0;
+      raf = requestAnimationFrame(tick);
+    };
+    const stop = () => {
+      cancelAnimationFrame(raf);
+      raf = 0;
+    };
+    const sync = () => {
+      if (reduced.matches) {
+        stop();
+        time = STILL_TIME;
+        draw();
+      } else if (visible && !document.hidden) {
+        start();
+      } else {
+        stop();
+      }
+    };
+
+    layout();
+    frame.dataset.ready = "true";
+
+    const resize = new ResizeObserver(layout);
+    resize.observe(frame);
+    const onScreen = new IntersectionObserver(
+      (entries) => {
+        visible = entries.some((entry) => entry.isIntersecting);
+        sync();
+      },
+      { rootMargin: "120px" },
+    );
+    onScreen.observe(frame);
+    document.addEventListener("visibilitychange", sync);
+    reduced.addEventListener("change", sync);
+
+    return () => {
+      stop();
+      resize.disconnect();
+      onScreen.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+      reduced.removeEventListener("change", sync);
+    };
+  }, [scene]);
+
+  return (
+    <div
+      ref={frameRef}
+      className={`pixel-scene${className ? ` ${className}` : ""}`}
+      style={{ "--rows": scene.height } as CSSProperties}
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : true}
+    >
+      <canvas ref={canvasRef} className="pixel-canvas" />
+    </div>
+  );
+}

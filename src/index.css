@@ -2,125 +2,183 @@
 @import "tailwindcss";
 
 @theme {
-  --font-headline: "Outfit", sans-serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
-  --font-label: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
-  --color-brand-paper: #f7f7f2;
-  --color-brand-ink: #2d2e28;
-  --color-brand-blue: #3a606e;
-  --color-brand-sun: #ebc04d;
-  --color-brand-sage: #a8b58a;
-  --color-brand-clay: #b36a5e;
-
-  --color-tertiary-fixed: #f6dda1;
-  --color-primary-container: #dce8eb;
-  --color-primary-fixed-dim: #c7d9de;
-  --color-primary-dim: #2f4f5a;
-  --color-secondary-fixed: #e0e7cf;
-  --color-on-primary: #f7f7f2;
-  --color-tertiary-container: #f4d88b;
-  --color-outline-variant: #a8b58a;
-  --color-primary: #3a606e;
-  --color-surface: #f7f7f2;
-  --color-primary-fixed: #dce8eb;
-  --color-secondary-fixed-dim: #d2dabe;
-  --color-on-primary-container: #223f49;
-  --color-surface-variant: #e6e8de;
-  --color-on-error-container: #5f2f2a;
-  --color-surface-tint: #3a606e;
-  --color-background: #f7f7f2;
-  --color-on-error: #fff8f6;
-  --color-on-tertiary-fixed-variant: #5d4610;
-  --color-inverse-on-surface: #f7f7f2;
-  --color-secondary: #a8b58a;
-  --color-tertiary-dim: #c99c24;
-  --color-on-background: #2d2e28;
-  --color-on-secondary: #22261a;
-  --color-surface-container: #e9ebdf;
-  --color-on-tertiary: #2d2e28;
-  --color-error-dim: #8e4d43;
-  --color-on-tertiary-container: #4c390f;
-  --color-surface-container-high: #dde4d0;
-  --color-on-primary-fixed-variant: #2f4f5a;
-  --color-surface-container-lowest: #ffffff;
-  --color-on-tertiary-fixed: #3b2d0c;
-  --color-tertiary: #ebc04d;
-  --color-on-secondary-fixed-variant: #586341;
-  --color-surface-container-highest: #d2dbc2;
-  --color-inverse-surface: #2d2e28;
-  --color-surface-container-low: #f1f2eb;
-  --color-secondary-container: #e0e7cf;
-  --color-error: #b36a5e;
-  --color-on-surface-variant: #596057;
-  --color-tertiary-fixed-dim: #efd071;
-  --color-secondary-dim: #8d9a70;
-  --color-inverse-primary: #dce8eb;
-  --color-outline: #7b8667;
-  --color-on-secondary-container: #3f482d;
-  --color-on-secondary-fixed: #2f3820;
-  --color-surface-dim: #d9ddcf;
-  --color-surface-bright: #f7f7f2;
-  --color-on-surface: #2d2e28;
-  --color-error-container: #ead0ca;
-  --color-on-primary-fixed: #1f3740;
-
-  --radius-DEFAULT: 0.125rem;
-  --radius-lg: 0.25rem;
-  --radius-xl: 0.5rem;
-  --radius-full: 0.75rem;
+  /* Cocoon brand anchors (shared with cocoon-triage's --ct-brand-* tokens). */
+  --color-paper: #f7f7f2;
+  --color-ink: #1c201b;
+  --color-muted: #5c635d;
+  --color-line: rgb(28 32 27 / 0.14);
+  --color-civic: #064552;
+  --color-mist: #c9d9da;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    @apply bg-surface font-body text-on-surface antialiased;
+    @apply bg-paper font-body text-ink antialiased;
     overflow-x: hidden;
-  }
-
-  img {
-    @apply block max-w-full;
+    text-rendering: optimizeLegibility;
   }
 
   section[id] {
-    scroll-margin-top: 6.5rem;
-  }
-
-  .serif {
-    @apply font-headline;
-  }
-
-  .glass-panel {
-    @apply bg-surface/72 backdrop-blur-3xl;
-  }
-
-  .blueprint-chip {
-    @apply font-label font-semibold;
-  }
-
-  .workflow-grid {
-    background-image: radial-gradient(#3a606e 1px, transparent 1px);
-    background-size: 40px 40px;
+    scroll-margin-top: 1.5rem;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 3px;
+    outline: 2px solid var(--color-civic);
+    outline-offset: 4px;
   }
 }
 
-@media (min-width: 768px) {
-  section[id] {
-    scroll-margin-top: 8rem;
+/* ------------------------------------------------------------------ */
+/* Pixel glyphs                                                        */
+/* ------------------------------------------------------------------ */
+
+.glyph {
+  display: block;
+  flex: none;
+  width: calc(var(--gw) * 2px);
+  height: calc(var(--gh) * 2px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Pixel scenes                                                        */
+/* `--u` is the whole-number size of one cell in CSS pixels; `--rows`  */
+/* comes from the scene and `--visible-rows` can crop the sky.         */
+/* ------------------------------------------------------------------ */
+
+.pixel-scene {
+  --u: 2px;
+  position: relative;
+  overflow: hidden;
+  height: calc(var(--u) * var(--visible-rows, var(--rows)));
+}
+
+.pixel-canvas {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  image-rendering: pixelated;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.pixel-scene[data-ready] .pixel-canvas {
+  opacity: 1;
+}
+
+/* Hero: the headline sits in the scene's open sky on wide screens. */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(2.5rem, 7vh, 5.5rem);
+}
+
+.hero-scene {
+  --focus: 0.74;
+  --visible-rows: 176;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 700px) {
+  .hero-scene {
+    --focus: 0.58;
   }
 }
 
-::-webkit-scrollbar {
-  width: 0;
-  background: transparent;
+@media (min-width: 1100px) {
+  .hero-scene {
+    --u: 3px;
+    --focus: 0.5;
+    --visible-rows: var(--rows);
+    margin-top: calc(var(--u) * -78);
+  }
+}
+
+@media (min-width: 1700px) {
+  .hero-scene {
+    --u: 4px;
+  }
+}
+
+/* Products: each scene sits under its name, flush with the text. */
+.product-scene {
+  --align: 0;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 1280px) {
+  .product-scene {
+    --u: 3px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .product-scene {
+    --u: 4px;
+  }
+}
+
+.product-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+@supports selector(:has(*)) {
+  .product-link:focus-visible {
+    outline: none;
+  }
+
+  .product:has(.product-link:focus-visible) {
+    outline: 2px solid var(--color-civic);
+    outline-offset: -2px;
+  }
+}
+
+/* Company: the river runs edge to edge beneath the statement. */
+.river-scene {
+  --focus: 0.6;
+  margin-top: clamp(3.5rem, 7vw, 6rem);
+}
+
+@media (min-width: 1280px) {
+  .river-scene {
+    --u: 3px;
+    --focus: 0.5;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Motion                                                              */
+/* ------------------------------------------------------------------ */
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+.enter {
+  animation: enter 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.enter-late {
+  animation-delay: 0.12s;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -128,12 +186,17 @@
     scroll-behavior: auto;
   }
 
+  .enter {
+    animation: none;
+  }
+
+  .pixel-canvas {
+    transition: none;
+  }
+
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }

@@ -7,6 +7,7 @@ Built with Vite, React, Tailwind CSS v4, and a small Vercel serverless endpoint 
 ## What is in the repo
 
 - React homepage in [`src/App.tsx`](./src/App.tsx)
+- Animated pixel scenes of Montréal in [`src/pixel/`](./src/pixel/): each scene is drawn once into an indexed raster (`raster.ts`), and [`src/PixelScene.tsx`](./src/PixelScene.tsx) paints it to a canvas at a whole-number pixel scale (set by the `--u` custom property), animates it at 12 fps while it is on screen, and holds a still frame when reduced motion is requested
 - Shared public page styling in [`public/site-pages.css`](./public/site-pages.css)
 - Static routes in `public/`:
   - `/privacy/`
