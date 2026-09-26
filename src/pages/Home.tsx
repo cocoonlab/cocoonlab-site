@@ -27,7 +27,7 @@ const copy = {
         name: "Cocoon Triage",
         description: "Temporary street plans, reviewed faster.",
         href: "/triage/",
-        scene: "A Montréal street from above: a work zone closes the curb lane, traffic shifts around it, and the temporary plan is outlined in gold.",
+        scene: "Rue Saint-Paul in Old Montréal, in axonometric: roadwork closes one lane beside Marché Bonsecours, a calèche and traffic pass, and the temporary plan is traced in gold.",
       },
       {
         id: "code",
@@ -59,7 +59,7 @@ const copy = {
         name: "Cocoon Triage",
         description: "Plans de signalisation temporaire, examinés plus vite.",
         href: "/triage/",
-        scene: "Une rue de Montréal vue du ciel : un chantier ferme la voie de droite, la circulation le contourne et le plan temporaire est tracé en or.",
+        scene: "La rue Saint-Paul, dans le Vieux-Montréal, en axonométrie : un chantier ferme une voie près du marché Bonsecours, une calèche et la circulation passent, et le plan temporaire est tracé en or.",
       },
       {
         id: "code",

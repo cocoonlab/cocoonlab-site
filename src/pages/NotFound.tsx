@@ -1,5 +1,5 @@
 import { PixelScene } from "../PixelScene.tsx";
-import { triageScene } from "../pixel/triage.ts";
+import { triageLandingScene } from "../pixel/triage.ts";
 import { useSite } from "../site/Site.tsx";
 import { Actions, ArrowLink, ButtonLink, PageIntro } from "../site/ui.tsx";
 import { wrap } from "../site/styles.ts";
@@ -33,7 +33,7 @@ export function NotFound() {
         </Actions>
       </PageIntro>
       <div className={wrap}>
-        <PixelScene scene={triageScene} className="detour-scene" />
+        <PixelScene scene={triageLandingScene} className="detour-scene" />
       </div>
     </>
   );

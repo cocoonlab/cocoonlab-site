@@ -3,28 +3,11 @@ import { ArrowLink, ButtonLink, PageIntro } from "../site/ui.tsx";
 import { wrap } from "../site/styles.ts";
 import { formatDate, posts, type Post as PostData } from "./posts.ts";
 
-// Both posts predate Cocoon Triage and Cocoon Code; each says so up front.
-const archive = {
-  en: {
-    label: "From the archive.",
-    text: "This post describes Cocoon, our earlier work on architectural feasibility. Cocoon Lab now builds",
-    and: "and",
-  },
-  fr: {
-    label: "Archive.",
-    text: "Cet article présente Cocoon, nos travaux antérieurs sur la faisabilité architecturale. Cocoon Lab conçoit aujourd’hui",
-    and: "et",
-  },
-} as const;
-
-const inline = "text-ink underline decoration-ink/30 decoration-1 underline-offset-[0.2em] transition-colors hover:decoration-ink";
-
 /** A blog article: title and dek, the essay on the left, the facts and next steps on the right. */
 export function Post({ id }: { id: PostData["id"] }) {
-  const { locale, href } = useSite();
+  const { locale } = useSite();
   const post = posts.find((entry) => entry.id === id)!;
   const content = post.content[locale];
-  const note = archive[locale];
 
   return (
     <article>
@@ -35,17 +18,6 @@ export function Post({ id }: { id: PostData["id"] }) {
             ·
           </span>
           {post.section[locale]}
-        </p>
-        <p className="enter enter-late mt-6 max-w-[36rem] border-t border-line pt-5 font-body text-[0.9375rem] leading-[1.6] text-muted">
-          <span className="font-medium text-ink">{note.label}</span> {note.text}{" "}
-          <a href={href("/triage/")} className={inline}>
-            Cocoon Triage
-          </a>{" "}
-          {note.and}{" "}
-          <a href={href("/code/")} className={inline}>
-            Cocoon Code
-          </a>
-          .
         </p>
       </PageIntro>
 

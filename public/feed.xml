@@ -3,16 +3,16 @@
   <channel>
     <title>Cocoon Lab Blog</title>
     <link>https://cocoonlab.ai/blog/</link>
-    <description>Articles and updates from Cocoon Lab about Cocoon, architectural feasibility, and responsible AI.</description>
+    <description>Articles and updates from Cocoon Lab about its products, partnerships, and responsible AI.</description>
     <language>en-ca</language>
     <lastBuildDate>Mon, 13 Apr 2026 00:00:00 GMT</lastBuildDate>
     <item>
-      <title>Cocoon at InDesCanada</title>
+      <title>Cocoon Lab at InDesCanada</title>
       <link>https://cocoonlab.ai/blog/indescanada/</link>
       <guid>https://cocoonlab.ai/blog/indescanada/</guid>
       <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
       <description>
-        Rashid Mushkani will present Cocoon at InDesCanada in Ottawa, a student-led industrial design conference, competition, and networking event.
+        Rashid Mushkani will present Cocoon Lab at InDesCanada in Ottawa, a student-led industrial design conference, competition, and networking event.
       </description>
     </item>
     <item>
@@ -21,7 +21,7 @@
       <guid>https://cocoonlab.ai/blog/mila-partnership/</guid>
       <pubDate>Mon, 13 Apr 2026 00:00:00 GMT</pubDate>
       <description>
-        Why the Mila partnership matters to Cocoon Lab and how it supports Cocoon, architectural feasibility, and responsible AI product building.
+        Why the Mila partnership matters to Cocoon Lab, and how it supports responsible AI product building.
       </description>
     </item>
   </channel>

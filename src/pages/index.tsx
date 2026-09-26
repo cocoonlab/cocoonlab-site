@@ -117,8 +117,8 @@ export const pages = {
     path: "/blog/indescanada/",
     file: "blog/indescanada/index.html",
     meta: {
-      en: { title: "Cocoon at InDesCanada | Cocoon Lab", description: "Rashid Mushkani will present Cocoon at InDesCanada in Ottawa." },
-      fr: { title: "Cocoon à InDesCanada | Cocoon Lab", description: "Rashid Mushkani présentera Cocoon à InDesCanada, à Ottawa." },
+      en: { title: "Cocoon Lab at InDesCanada | Cocoon Lab", description: "Rashid Mushkani will present Cocoon Lab at InDesCanada in Ottawa." },
+      fr: { title: "Cocoon Lab à InDesCanada | Cocoon Lab", description: "Rashid Mushkani présentera Cocoon Lab à InDesCanada, à Ottawa." },
     },
     render: () => <Post id="indescanada" />,
   },

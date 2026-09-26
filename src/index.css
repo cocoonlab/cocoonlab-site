@@ -187,7 +187,7 @@
 }
 
 .landing-triage {
-  --focus: 0.62;
+  --focus: 0.3;
 }
 
 @media (min-width: 1024px) {
@@ -200,7 +200,15 @@
 }
 
 @media (min-width: 1024px) and (min-height: 700px) {
-  .landing-scene {
+  .landing-code {
+    --u: 3px;
+  }
+}
+
+/* The street stands taller than the island, so it takes the larger unit
+   only where it clears the text above it. */
+@media (min-width: 1024px) and (min-height: 880px) {
+  .landing-triage {
     --u: 3px;
   }
 }

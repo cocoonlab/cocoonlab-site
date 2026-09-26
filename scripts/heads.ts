@@ -117,14 +117,14 @@ const extras: Record<Exclude<PageId, "home">, Extra> = {
   "post-indescanada": {
     type: "article",
     feed: true,
-    article: { published: "2026-04-13", section: "Events", tags: ["InDesCanada", "Cocoon", "Rashid Mushkani", "Ottawa"] },
-    jsonLd: postLd("indescanada", ["InDesCanada", "Cocoon", "Rashid Mushkani", "Industrial design"]),
+    article: { published: "2026-04-13", section: "Events", tags: ["InDesCanada", "Cocoon Lab", "Rashid Mushkani", "Ottawa"] },
+    jsonLd: postLd("indescanada", ["InDesCanada", "Cocoon Lab", "Rashid Mushkani", "Industrial design"]),
   },
   "post-mila": {
     type: "article",
     feed: true,
-    article: { published: "2026-04-13", section: "Partnerships", tags: ["Mila", "Cocoon", "Responsible AI"] },
-    jsonLd: postLd("mila-partnership", ["Mila", "Cocoon", "Responsible AI"]),
+    article: { published: "2026-04-13", section: "Partnerships", tags: ["Mila", "Cocoon Lab", "Responsible AI"] },
+    jsonLd: postLd("mila-partnership", ["Mila", "Cocoon Lab", "Responsible AI"]),
   },
   monograph: {
     jsonLd: {
