@@ -49,15 +49,13 @@ function still(): Raster {
   const r = new Raster(W, H);
   r.disc(512, 14, 6, P.sun);
 
-  // Mount Royal, its cross, and downtown kept below its summit.
+  // Mount Royal, with downtown kept below its summit.
   const peak = 352;
   for (let x = 190; x < 520; x++) {
     const d = (x - peak) / (x < peak ? 70 : 96);
     const top = Math.round(SHORE - 40 * Math.exp(-(Math.abs(d) ** 2.4)));
     r.rect(x, top, 1, SHORE - top, P.mount);
   }
-  r.rect(peak, 2, 1, 8, P.mid);
-  r.rect(peak - 2, 4, 5, 1, P.mid);
   const towers: [number, number, number, number][] = [
     [282, 7, 30, P.far2],
     [291, 9, 22, P.mid],
@@ -120,11 +118,15 @@ function still(): Raster {
     const depth = y - SHORE;
     for (const [x, w, , ink] of towers) if (depth < 14) r.rect(x + 1, y, w - 2, 1, ink === P.mid ? P.water3 : P.water2);
     for (const px of [130, 190]) if (depth < 10) r.rect(px - 1, y, 3, 1, P.water3);
-    if (depth > 1 && depth % 4 === 2) r.rect(508 - (depth % 8), y, 6, 1, P.paper);
+    if (depth > 1 && depth < 16 && depth % 4 === 2) r.rect(508 - (depth % 8), y, 6, 1, P.paper);
   }
+  // Ripples thin out toward the bottom edge, where the footer carries the
+  // river on as a flat plane of the same water.
   for (let y = SHORE + 3; y < H; y++) {
+    const calm = Math.max(0, (y - (H - 9)) / 9);
     for (let x = Math.floor(rand() * 16); x < W; x += 14 + Math.floor(rand() * 30)) {
-      r.rect(x, y, 3 + Math.floor(rand() * 6), 1, P.water2);
+      const w = 3 + Math.floor(rand() * 6);
+      if (rand() >= calm) r.rect(x, y, w, 1, P.water2);
     }
   }
   return r;

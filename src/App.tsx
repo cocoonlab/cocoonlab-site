@@ -37,7 +37,6 @@ const homeCopy = {
     products: [
       {
         id: "triage",
-        field: "Streets",
         name: "Cocoon Triage",
         description: "Temporary street plans, reviewed faster.",
         href: "https://triage.cocoonlab.ai",
@@ -46,33 +45,51 @@ const homeCopy = {
       },
       {
         id: "code",
-        field: "Buildings",
         name: "Cocoon Code",
         description: "Building-code checks, with evidence.",
         href: "https://code.cocoonlab.ai",
         domain: "code.cocoonlab.ai",
-        scene: "A corner building in axonometric: a gold plane rises floor by floor and leaves a check beside each floor it clears.",
+        scene: "Habitat 67 in axonometric: a gold plane rises through the stacked homes and leaves a check beside each level it clears.",
       },
     ],
     companyTitle: "Company",
-    companyStatement: "Cocoon Lab is a small Montréal team of designers, planners, and AI researchers.",
+    companyStatement: "Cocoon Lab makes tools for the people who plan, review, and build our cities.",
     companyLinks: [
       { label: "Team", href: "/team/" },
       { label: "Partners", href: "/partners/" },
       { label: "Contact", href: "/contact/" },
     ],
     riverScene: "The St. Lawrence and the Montréal skyline at a distance, with a ferry crossing.",
-    location: "Montréal, Québec",
     signature: "Made in Montréal",
     footerLabel: "Site",
-    footerLinks: [
-      { label: "Team", href: "/team/" },
-      { label: "Partners", href: "/partners/" },
-      { label: "Blog", href: "/blog/" },
-      { label: "Monograph", href: "/monograph/" },
-      { label: "Studio", href: "/studio/" },
-      { label: "Press kit", href: "/press-kit/index.html" },
-      { label: "Contact", href: "/contact/" },
+    footerGroups: [
+      {
+        title: "Products",
+        links: [
+          { label: "Cocoon Triage", href: "https://triage.cocoonlab.ai" },
+          { label: "Cocoon Code", href: "https://code.cocoonlab.ai" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { label: "Team", href: "/team/" },
+          { label: "Partners", href: "/partners/" },
+          { label: "Studio", href: "/studio/" },
+          { label: "Contact", href: "/contact/" },
+        ],
+      },
+      {
+        title: "Resources",
+        links: [
+          { label: "Blog", href: "/blog/" },
+          { label: "Monograph", href: "/monograph/" },
+          { label: "Press kit", href: "/press-kit/index.html" },
+        ],
+      },
+    ],
+    legalLabel: "Legal",
+    legalLinks: [
       { label: "Privacy", href: "/privacy/" },
       { label: "Terms", href: "/terms/" },
     ],
@@ -100,7 +117,6 @@ const homeCopy = {
     products: [
       {
         id: "triage",
-        field: "Rues",
         name: "Cocoon Triage",
         description: "Plans de signalisation temporaire, examinés plus vite.",
         href: "https://triage.cocoonlab.ai",
@@ -109,33 +125,51 @@ const homeCopy = {
       },
       {
         id: "code",
-        field: "Bâtiments",
         name: "Cocoon Code",
         description: "Vérifications du code du bâtiment, preuves à l’appui.",
         href: "https://code.cocoonlab.ai",
         domain: "code.cocoonlab.ai",
-        scene: "Un bâtiment d’angle en axonométrie : un plan doré monte étage par étage et laisse une coche à chaque étage vérifié.",
+        scene: "Habitat 67 en axonométrie : un plan doré traverse les maisons empilées et laisse une coche à chaque niveau vérifié.",
       },
     ],
     companyTitle: "Entreprise",
-    companyStatement: "Cocoon Lab est une petite équipe montréalaise de designers, d’urbanistes et de chercheurs en IA.",
+    companyStatement: "Cocoon Lab crée des outils pour celles et ceux qui planifient, examinent et construisent nos villes.",
     companyLinks: [
       { label: "Équipe", href: "/team/" },
       { label: "Partenaires", href: "/partners/" },
       { label: "Contact", href: "/contact/" },
     ],
     riverScene: "Le Saint-Laurent et le panorama de Montréal au loin, avec un traversier.",
-    location: "Montréal, Québec",
     signature: "Fait à Montréal",
     footerLabel: "Site",
-    footerLinks: [
-      { label: "Équipe", href: "/team/" },
-      { label: "Partenaires", href: "/partners/" },
-      { label: "Blogue", href: "/blog/" },
-      { label: "Manifeste", href: "/monograph/" },
-      { label: "Studio", href: "/studio/" },
-      { label: "Kit média", href: "/press-kit/index.html" },
-      { label: "Contact", href: "/contact/" },
+    footerGroups: [
+      {
+        title: "Produits",
+        links: [
+          { label: "Cocoon Triage", href: "https://triage.cocoonlab.ai" },
+          { label: "Cocoon Code", href: "https://code.cocoonlab.ai" },
+        ],
+      },
+      {
+        title: "Entreprise",
+        links: [
+          { label: "Équipe", href: "/team/" },
+          { label: "Partenaires", href: "/partners/" },
+          { label: "Studio", href: "/studio/" },
+          { label: "Contact", href: "/contact/" },
+        ],
+      },
+      {
+        title: "Ressources",
+        links: [
+          { label: "Blogue", href: "/blog/" },
+          { label: "Manifeste", href: "/monograph/" },
+          { label: "Kit média", href: "/press-kit/index.html" },
+        ],
+      },
+    ],
+    legalLabel: "Mentions légales",
+    legalLinks: [
       { label: "Confidentialité", href: "/privacy/" },
       { label: "Conditions", href: "/terms/" },
     ],
@@ -283,19 +317,12 @@ export default function App() {
             {copy.productsTitle}
           </h2>
           <ul className="grid border-t border-line md:grid-cols-2">
-            {copy.products.map((product, index) => (
+            {copy.products.map((product) => (
               <li
                 key={product.id}
                 className="product group relative flex flex-col border-line pt-10 max-md:[&+&]:border-t md:pt-12 md:[&+&]:border-l md:[&+&]:pl-10 md:[&:has(+li)]:pr-10 xl:[&+&]:pl-16 xl:[&:has(+li)]:pr-16"
               >
-                <p className={label}>
-                  <span className="tabular-nums">{String(index + 1).padStart(2, "0")}</span>
-                  <span aria-hidden="true" className="mx-2 text-muted/50">
-                    —
-                  </span>
-                  {product.field}
-                </p>
-                <h3 className="mt-5 font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.03em]">
+                <h3 className="font-display text-[clamp(2.25rem,3.6vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.03em]">
                   <a href={product.href} className="product-link">
                     {product.name}
                   </a>
@@ -320,61 +347,77 @@ export default function App() {
         </section>
 
         <section id="company" aria-labelledby="company-title" className="pt-[clamp(6rem,11vw,10rem)]">
-          <div className={`${wrap} grid grid-cols-12 gap-x-6`}>
-            <h2 id="company-title" className={`${label} col-span-12 lg:col-span-3 lg:pt-3`}>
+          <div className={wrap}>
+            <h2 id="company-title" className="sr-only">
               {copy.companyTitle}
             </h2>
-            <div className="col-span-12 mt-8 lg:col-span-9 lg:mt-0">
-              <p className="max-w-[46rem] text-balance font-display text-[clamp(1.75rem,3.1vw,2.75rem)] font-normal leading-[1.14] tracking-[-0.02em] text-ink">
-                {copy.companyStatement}
-              </p>
-              <ul className="mt-9 flex flex-wrap gap-x-8 gap-y-3 font-body text-[0.9375rem] font-medium">
-                {copy.companyLinks.map((link) => (
-                  <li key={link.href}>
-                    <a href={link.href} className={`group inline-flex items-center gap-2.5 ${textLink}`}>
-                      {link.label}
-                      <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p className="max-w-[19em] text-balance font-display text-[clamp(2.125rem,4.4vw,4rem)] font-normal leading-[1.04] tracking-[-0.032em] text-ink">
+              {copy.companyStatement}
+            </p>
+            <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-3 font-body text-[0.9375rem] font-medium">
+              {copy.companyLinks.map((link) => (
+                <li key={link.href}>
+                  <a href={link.href} className={`group inline-flex items-center gap-2.5 ${textLink}`}>
+                    {link.label}
+                    <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
           <PixelScene scene={riverScene} className="river-scene" label={copy.riverScene} />
         </section>
       </main>
 
-      <footer className={wrap}>
-        <div className="grid grid-cols-12 gap-x-6 gap-y-8 pb-12 pt-10 font-body text-[0.8125rem] leading-[1.7] text-muted">
-          <div className="col-span-12 flex flex-col gap-4 sm:col-span-6 lg:col-span-3">
-            <Logotype className="block h-4 w-auto text-ink" />
-            <p className={label}>{copy.signature}</p>
+      <footer className="bg-river">
+        <div className={`${wrap} pb-10 pt-14 md:pt-16`}>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+            <div className="col-span-12 lg:col-span-5">
+              <a href="#top" aria-label={copy.homeLabel} className="-m-2 inline-block p-2 text-ink">
+                <Logotype className="block h-[1.375rem] w-auto" />
+              </a>
+              <p className="mt-3 font-body text-[0.9375rem] text-muted">{copy.signature}</p>
+            </div>
+            <nav aria-label={copy.footerLabel} className="col-span-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-7">
+              {copy.footerGroups.map((group) => (
+                <div key={group.title}>
+                  <p className={label}>{group.title}</p>
+                  <ul className="mt-4 grid gap-1 font-body text-[0.9375rem] text-ink">
+                    {group.links.map((link) => (
+                      <li key={link.href}>
+                        <a href={link.href} className={`inline-block py-1 ${textLink}`}>
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
           </div>
-          <p className="col-span-12 sm:col-span-6 lg:col-span-3">
-            © {currentYear} Cocoon Lab
-            <br />
-            {copy.location}
-          </p>
-          <nav aria-label={copy.footerLabel} className="col-span-12 lg:col-span-6">
-            <ul className="grid grid-flow-col grid-cols-2 grid-rows-5 gap-x-6 gap-y-1">
-              {copy.footerLinks.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className={`inline-block py-0.5 ${textLink} hover:text-ink`}>
-                    {link.label}
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-x-8 gap-y-2 border-t border-line pt-5 font-body text-[0.8125rem] text-muted">
+            <p className="py-1">© {currentYear} Cocoon Lab</p>
+            <nav aria-label={copy.legalLabel}>
+              <ul className="flex flex-wrap gap-x-6">
+                {copy.legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} className={`inline-block py-1 ${textLink} hover:text-ink`}>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li>
+                  <a
+                    href="#cookie-preferences"
+                    data-cookie-preferences-link
+                    className={`inline-block py-1 ${textLink} hover:text-ink`}
+                  >
+                    {copy.cookiePreferences}
                   </a>
                 </li>
-              ))}
-              <li>
-                <a
-                  href="#cookie-preferences"
-                  data-cookie-preferences-link
-                  className={`inline-block py-0.5 ${textLink} hover:text-ink`}
-                >
-                  {copy.cookiePreferences}
-                </a>
-              </li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+          </div>
         </div>
       </footer>
     </div>

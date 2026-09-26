@@ -12,6 +12,8 @@
   --color-line: rgb(28 32 27 / 0.14);
   --color-civic: #064552;
   --color-mist: #c9d9da;
+  /* The river scene's water; the footer continues it. */
+  --color-river: #dfe8e7;
 }
 
 @layer base {
@@ -159,6 +161,13 @@
   .river-scene {
     --u: 3px;
     --focus: 0.5;
+  }
+}
+
+/* Past 640 cells × 3px the water would stop short of the footer's edges. */
+@media (min-width: 1921px) {
+  .river-scene {
+    --u: 4px;
   }
 }
 

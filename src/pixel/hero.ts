@@ -86,9 +86,6 @@ function mountRoyal(r: Raster) {
     const top = Math.round(HORIZON + 2 - 94 * Math.exp(-(Math.abs(d) ** 2.4)));
     r.rect(x, top, 1, HORIZON + 3 - top, P.mount);
   }
-  // The cross on the summit.
-  r.rect(peak, 20, 1, 15, P.mid2);
-  r.rect(peak - 3, 24, 7, 1, P.mid2);
 }
 
 function farBank(r: Raster) {
@@ -317,7 +314,7 @@ function oldMontreal(r: Raster) {
   };
   building(468, 24, 126, P.stone, P.copper2);
   building(492, 16, 120, P.stone2, P.mid2);
-  // The copper dome, drum, lantern and gold cross.
+  // The copper dome, drum and lantern.
   r.rect(508, 118, 30, base - 118, P.stone);
   for (let wy = 124; wy < base - 3; wy += 6) for (let wx = 510; wx < 536; wx += 5) r.rect(wx, wy, 2, 3, P.mid2);
   r.rect(514, 108, 18, 10, P.stone2);
@@ -325,8 +322,7 @@ function oldMontreal(r: Raster) {
   r.fill(512, 92, 22, 17, P.copper, (x, y) => Math.hypot((x - 522.5) / 9, (y - 108) / 12) <= 1);
   r.fill(512, 92, 22, 17, P.copper2, (x, y) => Math.hypot((x - 522.5) / 9, (y - 108) / 12) <= 1 && x > 525);
   r.rect(521, 91, 3, 5, P.stone2);
-  r.rect(522, 86, 1, 5, P.gold);
-  r.rect(521, 88, 3, 1, P.gold);
+  r.rect(522, 89, 1, 2, P.copper2);
   building(540, 22, 124, P.stone2, P.copper2);
   building(562, 20, 118, P.stone, P.mid2);
   building(582, 26, 128, P.stone2, P.copper2);
