@@ -6,16 +6,10 @@ Built with Vite, React, Tailwind CSS v4, and a small Vercel serverless endpoint 
 
 ## What is in the repo
 
-- React homepage in [`src/App.tsx`](./src/App.tsx)
-- Shared public page styling in [`public/site-pages.css`](./public/site-pages.css)
-- Static routes in `public/`:
-  - `/privacy/`
-  - `/terms/`
-  - `/studio/`
-  - `/contact/`
-  - `/team/`
-  - `/blog/`
-  - `/monograph/`
+- Every page is React: [`src/pages/`](./src/pages/) holds one component per route, registered with its path, output file and EN/FR title in [`src/pages/index.tsx`](./src/pages/index.tsx). The shared header, river and footer live in [`src/site/`](./src/site/), and [`src/App.tsx`](./src/App.tsx) wraps a page in them and keeps the language (`?lang`, then the stored choice, then the browser) in sync.
+- Routes: `/`, `/triage/`, `/code/`, `/team/`, `/partners/`, `/contact/`, `/blog/`, `/blog/indescanada/`, `/blog/mila-partnership/`, `/monograph/`, `/press-kit/`, `/privacy/`, `/terms/`, and `/404.html`. The product pages (`/triage/`, `/code/`) are one-screen front doors: the product on the left over its pixel scene, sign-in on the right. `/studio/` redirects to the products (see [`vercel.json`](./vercel.json)).
+- Animated pixel scenes of Montréal in [`src/pixel/`](./src/pixel/): each scene is drawn once into an indexed raster (`raster.ts`), and [`src/PixelScene.tsx`](./src/PixelScene.tsx) paints it to a canvas at a whole-number pixel scale (set by the `--u` custom property), animates it at 12 fps while it is on screen, and holds a still frame when reduced motion is requested
+- Static files in `public/`: images, the press kit, cookie consent, feed and sitemap
 - Contact intake endpoint in [`api/contact.js`](./api/contact.js)
 - Build-time prerender step in [`scripts/prerender.tsx`](./scripts/prerender.tsx)
 
@@ -43,7 +37,7 @@ The project is configured for Vercel in [`vercel.json`](./vercel.json).
 - build: `npm run build`
 - output: `dist`
 
-`npm run build` runs the Vite production build and then prerenders the homepage HTML into `dist/index.html`.
+`npm run build` runs the Vite production build and then prerenders every page: the homepage into `dist/index.html`, and each inner page into its own `dist/<route>/index.html` with the head from [`scripts/heads.ts`](./scripts/heads.ts). In development, `npm run dev` serves any route from `index.html` and picks the page from the URL.
 
 ## Contact form
 
