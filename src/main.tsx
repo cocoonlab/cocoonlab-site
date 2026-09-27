@@ -3,7 +3,7 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import "./site/theme.css";
-import { resolveInitialLocale } from "./locale.ts";
+import { isLocale, localeForPath } from "./locale.ts";
 import { isPageId, pageForPath } from "./pages/index.tsx";
 
 const rootElement = document.getElementById("root");
@@ -15,13 +15,18 @@ if (!rootElement) {
 // Prerendered pages name themselves; the dev server serves every route from index.html.
 const page = isPageId(rootElement.dataset.page) ? rootElement.dataset.page : pageForPath(window.location.pathname);
 
+// Each prerendered page names its language too. The one 404 page answers for
+// both languages, so it and the dev server read the language from the path.
+const rendered = rootElement.dataset.locale;
+const locale = page !== "not-found" && isLocale(rendered) ? rendered : localeForPath(window.location.pathname);
+
 const app = (
   <StrictMode>
-    <App page={page} linkBase={rootElement.dataset.linkBase} />
+    <App page={page} locale={locale} linkBase={rootElement.dataset.linkBase} />
   </StrictMode>
 );
 
-if (rootElement.hasChildNodes() && resolveInitialLocale() === "en") {
+if (rootElement.hasChildNodes() && rendered === locale) {
   hydrateRoot(rootElement, app);
 } else {
   rootElement.textContent = "";

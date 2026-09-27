@@ -5,7 +5,7 @@ import { codeLandingScene } from "../pixel/code.ts";
 import { glyphs } from "../pixel/glyphs.ts";
 import { triageLandingScene } from "../pixel/triage.ts";
 import { chrome } from "../site/chrome.ts";
-import { LanguageToggle, useSite } from "../site/Site.tsx";
+import { HeaderLinks, useSite } from "../site/Site.tsx";
 
 const products = {
   triage: {
@@ -17,13 +17,13 @@ const products = {
         name: "Cocoon Triage",
         promise: "Prepare temporary signage plans.",
         line: "Prepare work-zone signage, lane closures, and detours before work begins.",
-        scene: "A signage plan on Rue Saint-Paul, with Bonsecours Market and the chapel. A RUE BARRÉE sign and barrier close the left end for construction. The adjacent DÉTOUR sign directs approaching cars into the side street before the barrier. Living pixel colonies emerge, gather, and dissolve along the scene’s edges.",
+        scene: "Pixel view of Rue Saint-Paul, closed for work with RUE BARRÉE and DÉTOUR signs.",
       },
       fr: {
         name: "Cocoon Triage",
         promise: "Préparez vos plans de signalisation temporaire.",
         line: "Préparez la signalisation de chantier, les fermetures de voies et les détours avant le début des travaux.",
-        scene: "Plan de signalisation sur la rue Saint-Paul : le marché Bonsecours et la chapelle. Un panneau RUE BARRÉE et une barrière ferment le bout gauche de la rue pour travaux. Le panneau DÉTOUR adjacent dirige les véhicules vers la rue transversale avant la barrière. Des colonies de pixels naissent, se rassemblent et se dissolvent aux bords de la scène.",
+        scene: "Vue en pixels de la rue Saint-Paul, fermée pour travaux avec des panneaux RUE BARRÉE et DÉTOUR.",
       },
     },
   },
@@ -36,13 +36,13 @@ const products = {
         name: "Cocoon Code",
         promise: "Building-code checks, with evidence.",
         line: "Run building-code rules on drawings and review verdicts you can verify.",
-        scene: "Habitat 67 in pixels: a luminous scan travels through the building, illuminating each reviewed level.",
+        scene: "Habitat 67 in pixels, scanned level by level.",
       },
       fr: {
         name: "Cocoon Code",
         promise: "Vérifications du code du bâtiment, preuves à l’appui.",
         line: "Appliquez les règles du code du bâtiment aux plans et examinez des verdicts vérifiables.",
-        scene: "Habitat 67 en pixels : un plan lumineux traverse les bâtiments et illumine chaque niveau vérifié.",
+        scene: "Habitat 67 en pixels, balayé niveau par niveau.",
       },
     },
   },
@@ -93,7 +93,7 @@ export function Product({ product }: { product: ProductId }) {
             <a href={href("/")} aria-label={site.homeLabel} className="-m-2 p-2 text-ink">
               <Logotype className="block h-[1.125rem] w-auto sm:h-[1.3125rem]" />
             </a>
-            <LanguageToggle className="lg:hidden" />
+            <HeaderLinks className="lg:hidden" />
           </div>
           <div className="relative z-10 px-5 pt-[clamp(2.5rem,9vh,6rem)] sm:px-8 lg:px-12 lg:pt-[clamp(4rem,14vh,9rem)]">
             <h1
@@ -123,7 +123,7 @@ export function Product({ product }: { product: ProductId }) {
           aria-labelledby="sign-in-title"
           className="flex flex-col bg-[#151c18] px-5 pb-8 pt-12 text-ivory sm:px-8 lg:col-span-5 lg:min-h-[100svh] lg:px-12 lg:pb-10 lg:pt-10"
         >
-          <LanguageToggle tone="dark" className="hidden justify-end lg:flex" />
+          <HeaderLinks tone="dark" className="justify-end max-lg:hidden" />
           <div className="py-10 lg:my-auto lg:py-0">
             <h2 id="sign-in-title" className="font-display text-[clamp(2.25rem,3.3vw,3.5rem)] font-medium leading-none tracking-[-0.032em]">
               {ui.signIn}

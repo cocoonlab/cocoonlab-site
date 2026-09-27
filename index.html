@@ -3,7 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cocoon Lab | Build better places, faster and safer</title>
+    <script id="language">
+      // Before anything paints, open the page in the visitor's language:
+      // ?lang first, then the /fr/ path, then the choice made with the
+      // toggle, then, on arrival from outside the site, the browser's language.
+      (function () {
+        var l = window.location;
+        if (!/^https?:$/.test(l.protocol)) return;
+        var query = new URLSearchParams(l.search);
+        var asked = query.get("lang");
+        var stored = null;
+        try {
+          stored = window.localStorage.getItem("cocoon_language");
+        } catch (e) {}
+        var arriving = document.referrer.indexOf(l.origin + "/") !== 0;
+        var want =
+          asked === "en" || asked === "fr" ? asked
+          : /^\/fr(\/|$)/.test(l.pathname) ? "fr"
+          : stored === "en" || stored === "fr" ? stored
+          : arriving && /^fr/i.test(navigator.language || "") ? "fr"
+          : "en";
+        if (asked !== null) {
+          query.delete("lang");
+          try {
+            if (want === asked) window.localStorage.setItem("cocoon_language", asked);
+          } catch (e) {}
+        }
+        var bare = l.pathname.replace(/^\/fr(?=\/|$)/, "") || "/";
+        var path = want === "fr" ? "/fr" + bare : bare;
+        var rest = (query.toString() ? "?" + query : "") + l.hash;
+        if (path !== l.pathname) l.replace(path + rest);
+        else if (asked !== null) window.history.replaceState(null, "", path + rest);
+      })();
+    </script>
+    <title>Cocoon Lab | Temporary signage plans &amp; building-code checks</title>
     <meta
       name="description"
       content="Software to prepare temporary signage plans and check building drawings before work begins."
@@ -21,13 +54,17 @@
     <meta name="color-scheme" content="dark" />
 
     <link rel="canonical" href="https://cocoonlab.ai/" />
+    <link rel="alternate" hreflang="en" href="https://cocoonlab.ai/" />
+    <link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/" />
+    <link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="stylesheet" href="/cookie-consent.css" />
+    <link rel="preload" href="/fonts/outfit-v15-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/plus-jakarta-sans-v12-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="alternate" type="application/rss+xml" title="Cocoon Lab Blog" href="https://cocoonlab.ai/feed.xml" />
     <link rel="me" href="https://ca.linkedin.com/company/cocoonlab-ai" />
 
@@ -35,7 +72,7 @@
     <meta property="og:site_name" content="Cocoon Lab" />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:locale:alternate" content="fr_CA" />
-    <meta property="og:title" content="Cocoon Lab | Build better places, faster and safer" />
+    <meta property="og:title" content="Cocoon Lab | Temporary signage plans &amp; building-code checks" />
     <meta
       property="og:description"
       content="Software to prepare temporary signage plans and check building drawings before work begins."
@@ -52,7 +89,7 @@
     />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Cocoon Lab | Build better places, faster and safer" />
+    <meta name="twitter:title" content="Cocoon Lab | Temporary signage plans &amp; building-code checks" />
     <meta
       name="twitter:description"
       content="Software to prepare temporary signage plans and check building drawings before work begins."
@@ -128,7 +165,7 @@
             "@type": "WebPage",
             "@id": "https://cocoonlab.ai/#webpage",
             "url": "https://cocoonlab.ai/",
-            "name": "Cocoon Lab | Build better places, faster and safer",
+            "name": "Cocoon Lab | Temporary signage plans & building-code checks",
             "isPartOf": {
               "@id": "https://cocoonlab.ai/#website"
             },
@@ -173,6 +210,5 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script src="/cookie-consent.js" defer></script>
   </body>
 </html>
