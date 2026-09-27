@@ -1,55 +1,185 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://cocoonlab.ai/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/privacy/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/privacy/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/privacy/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/privacy/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/privacy/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/privacy/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/terms/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/terms/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/terms/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/terms/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/terms/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/terms/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/monograph/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/monograph/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/monograph/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/monograph/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/monograph/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/monograph/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/monograph/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/monograph/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/triage/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/triage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/triage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/triage/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/triage/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/triage/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/triage/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/triage/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/code/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/code/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/code/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/code/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/code/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/code/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/code/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/code/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/contact/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/contact/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/contact/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/contact/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/contact/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/contact/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/press-kit/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/press-kit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/press-kit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/press-kit/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/press-kit/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/press-kit/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/press-kit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/press-kit/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/partners/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/partners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/partners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/partners/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/partners/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/partners/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/partners/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/partners/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/team/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/team/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/team/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/team/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/team/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/team/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/blog/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/blog/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/blog/indescanada/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/indescanada/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/indescanada/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/indescanada/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/blog/indescanada/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/indescanada/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/indescanada/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/indescanada/" />
   </url>
   <url>
     <loc>https://cocoonlab.ai/blog/mila-partnership/</loc>
-    <lastmod>2026-09-26</lastmod>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/mila-partnership/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/mila-partnership/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/mila-partnership/" />
+  </url>
+  <url>
+    <loc>https://cocoonlab.ai/fr/blog/mila-partnership/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cocoonlab.ai/blog/mila-partnership/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cocoonlab.ai/fr/blog/mila-partnership/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cocoonlab.ai/blog/mila-partnership/" />
   </url>
 </urlset>

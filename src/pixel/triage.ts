@@ -1,5 +1,5 @@
 import { type Pt, type View, view } from "./iso.ts";
-import { Raster, seeded, sprite } from "./raster.ts";
+import { lighten, Raster, seeded, sprite } from "./raster.ts";
 import type { Painter, Scene } from "./scene.ts";
 import { scanLine } from "./scan.ts";
 import { pixelAssembly } from "./cellular.ts";
@@ -431,7 +431,29 @@ type StreetOptions = {
    * (the product page); without it the street runs off every edge.
    */
   ends?: readonly [number, number];
+  /** Start whole rather than gathering from scattered pieces. */
+  whole?: boolean;
+  /** How far (0–1) the buildings move toward Warm White, to stand off the page. */
+  lift?: number;
 };
+
+/** The inks of the facades, roofs and the market's dome. */
+const buildings = new Set<number>([
+  P.stone,
+  P.stoneShade,
+  P.pale,
+  P.sand,
+  P.sandShade,
+  P.roof,
+  P.window,
+  P.windowShade,
+  P.copper,
+  P.copperShade,
+  P.copperTop,
+  P.dome,
+  P.domeLight,
+  P.domeShade,
+]);
 
 const loop = (value: number, span: number) => ((value % span) + span) % span;
 /** Steps along j run down-left, so each two-cell dash sits left of its point. */
@@ -755,12 +777,13 @@ function saintPaul(o: StreetOptions): Scene {
     walkers(paint, t, true);
   }
 
-  const cells = pixelAssembly(r, new Set([P.walk, P.joint, P.curb, P.setts, P.settsDark, P.settsLight, P.cut, P.water, P.water2, P.soil]), 7);
-  return { width: o.width, height: o.height, palette, still: r, front, ...cells, focus: 0.5, animate, overlay: signs };
+  const cells = pixelAssembly(r, new Set([P.walk, P.joint, P.curb, P.setts, P.settsDark, P.settsLight, P.cut, P.water, P.water2, P.soil]), 7, !o.whole);
+  const inks = o.lift ? palette.map((ink, i) => (buildings.has(i) ? lighten(ink, o.lift!) : ink)) : palette;
+  return { width: o.width, height: o.height, palette: inks, still: r, front, ...cells, focus: 0.5, animate, overlay: signs };
 }
 
-/** The homepage panel: the street, the block, and the market's dome. */
-export const triageScene = saintPaul({ width: 272, height: 184, ox: -4, oy: 34, zone: 58, river: true, ends: [14, 120] });
+/** The homepage panel: the street, the block, and the market's dome, whole as it scrolls into view. */
+export const triageScene = saintPaul({ width: 272, height: 184, ox: -4, oy: 34, zone: 58, river: true, ends: [14, 120], whole: true, lift: 0.15 });
 
 /** The product page: the market's stretch of the street, cut clean, the river behind. */
 export const triageLandingScene = saintPaul({ width: 272, height: 148, ox: -48, oy: 4, zone: 77, river: true, ends: [44, 120] });

@@ -1,4 +1,4 @@
-import { Raster, seeded, sprite } from "./raster.ts";
+import { lighten, Raster, seeded, sprite } from "./raster.ts";
 import { type View, view } from "./iso.ts";
 import type { Painter, Scene } from "./scene.ts";
 import { scanLine, scanPalette } from "./scan.ts";
@@ -265,7 +265,14 @@ type SiteOptions = {
    * ending in clean edges, with no road (the product page).
    */
   ground: "avenue" | "island";
+  /** Start whole rather than gathering from scattered pieces. */
+  whole?: boolean;
+  /** How far (0–1) the homes move toward Warm White, to stand off the page. */
+  lift?: number;
 };
+
+/** The inks of the homes themselves. */
+const homeInks = new Set<number>([P.top, P.face, P.shade, P.joint, P.jointShade, P.window, P.windowShade, P.glass]);
 
 function habitat(o: SiteOptions): Scene {
   const v = view(o.ox, o.oy);
@@ -300,7 +307,7 @@ function habitat(o: SiteOptions): Scene {
   tree(r, v, 6, J1 + 5, 0.9);
   tree(r, v, 34, J1 + 5);
 
-  const scan = scanPalette(palette);
+  const scan = scanPalette(o.lift ? palette.map((ink, i) => (homeInks.has(i) ? lighten(ink, o.lift!) : ink)) : palette);
   // Record the height of each visible building pixel in painter's order.
   // The travelling light follows the real faces instead of washing over the image.
   const elevations = new Float32Array(o.width * o.height).fill(-1);
@@ -324,10 +331,9 @@ function habitat(o: SiteOptions): Scene {
       }
     }
   }
-  const facade = new Set<number>([P.top, P.face, P.shade, P.joint, P.jointShade, P.window, P.windowShade, P.glass]);
   const surfaces = Array.from(elevations, (z, k) => ({
     x: k % o.width, y: Math.floor(k / o.width), z, ink: r.data[k]!,
-  })).filter((cell) => cell.z >= 0 && facade.has(cell.ink));
+  })).filter((cell) => cell.z >= 0 && homeInks.has(cell.ink));
 
   // A pale stippled plane reads as transparent while preserving square pixels.
   const sheets = Array.from({ length: Math.ceil(TOP) + 1 }, (_, z) => {
@@ -404,12 +410,12 @@ function habitat(o: SiteOptions): Scene {
     }
   }
 
-  const cells = pixelAssembly(r, new Set([P.path, P.road, P.line, P.water, P.water2, P.curb]), 19);
+  const cells = pixelAssembly(r, new Set([P.path, P.road, P.line, P.water, P.water2, P.curb]), 19, !o.whole);
   return { width: o.width, height: o.height, palette: scan.palette, still: r, ...cells, focus: 0.5, animate };
 }
 
-/** The homepage panel: the whole site between the river and the avenue. */
-export const codeScene = habitat({ width: 272, height: 184, ox: 110, oy: 74, ground: "avenue" });
+/** The homepage panel: the whole site between the river and the avenue, whole as it scrolls into view. */
+export const codeScene = habitat({ width: 272, height: 184, ox: 110, oy: 74, ground: "avenue", whole: true, lift: 0.15 });
 
 /** The product page: the homes on a cut of the Cité du Havre, river behind. */
 export const codeLandingScene = habitat({ width: 230, height: 150, ox: 116, oy: 76, ground: "island" });

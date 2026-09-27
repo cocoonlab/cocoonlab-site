@@ -2,41 +2,34 @@ export type Locale = "en" | "fr";
 
 const STORAGE_KEY = "cocoon_language";
 
-const isLocale = (value: string | null): value is Locale => value === "en" || value === "fr";
+export const isLocale = (value: unknown): value is Locale => value === "en" || value === "fr";
 
-// Storage throws when site data is blocked or the page runs in a sandboxed
-// frame; the language then simply isn't remembered.
-function readStoredLocale() {
-  try {
-    return window.localStorage.getItem(STORAGE_KEY);
-  } catch {
-    return null;
-  }
+/** French pages live under `/fr/`; every other path is English. */
+export function localeForPath(pathname: string): Locale {
+  return /^\/fr(\/|$)/.test(pathname) ? "fr" : "en";
 }
 
+/**
+ * A site path in `locale`: `/team/` becomes `/fr/team/` and back, keeping any
+ * query and hash. Files such as `/feed.xml` are shared by both languages.
+ */
+export function localizePath(to: string, locale: Locale) {
+  const [, path = "", rest = ""] = /^([^?#]*)(.*)$/.exec(to) ?? [];
+  if (!path.startsWith("/") || path.startsWith("//") || /\.[a-z0-9]+$/i.test(path)) return to;
+  const bare = path.replace(/^\/fr(?=\/|$)/, "") || "/";
+  return `${locale === "fr" ? `/fr${bare}` : bare}${rest}`;
+}
+
+/**
+ * Remembers an explicit choice from the language toggle. The head script in
+ * index.html reads it on the next visit to an English page.
+ */
 export function saveLocale(locale: Locale) {
+  // Storage throws when site data is blocked or the page runs in a sandboxed
+  // frame; the language then simply isn't remembered.
   try {
     window.localStorage.setItem(STORAGE_KEY, locale);
   } catch {
     /* Ignore storage failures. */
   }
-}
-
-/** `?lang` first, then the remembered choice, then the browser's language. */
-export function resolveInitialLocale(): Locale {
-  if (typeof window === "undefined") {
-    return "en";
-  }
-
-  const searchLocale = new URLSearchParams(window.location.search).get("lang");
-  if (isLocale(searchLocale)) {
-    return searchLocale;
-  }
-
-  const storedLocale = readStoredLocale();
-  if (isLocale(storedLocale)) {
-    return storedLocale;
-  }
-
-  return window.navigator.language.toLowerCase().startsWith("fr") ? "fr" : "en";
 }

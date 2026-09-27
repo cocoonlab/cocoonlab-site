@@ -18,7 +18,6 @@ export const chrome: Record<
     footerGroups: { title: string; links: Link[] }[];
     legalLabel: string;
     legalLinks: Link[];
-    cookiePreferences: string;
   }
 > = {
   en: {
@@ -55,7 +54,7 @@ export const chrome: Record<
         title: "Resources",
         links: [
           { label: "Blog", href: "/blog/" },
-          { label: "Monograph", href: "/monograph/" },
+          { label: "Manifesto", href: "/monograph/" },
           { label: "Press kit", href: "/press-kit/" },
         ],
       },
@@ -65,7 +64,6 @@ export const chrome: Record<
       { label: "Privacy", href: "/privacy/" },
       { label: "Terms", href: "/terms/" },
     ],
-    cookiePreferences: "Cookie preferences",
   },
   fr: {
     skipToContent: "Aller au contenu",
@@ -111,7 +109,6 @@ export const chrome: Record<
       { label: "Confidentialité", href: "/privacy/" },
       { label: "Conditions", href: "/terms/" },
     ],
-    cookiePreferences: "Préférences de témoins",
   },
 };
 

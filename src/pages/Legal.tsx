@@ -22,8 +22,8 @@ const privacy: Record<Locale, Document> = {
         "Cocoon Lab may receive information you choose to share through cocoonlab.ai, including your name, email address, company, role, project details, and any other context provided when you contact us or request a demo.",
       ],
       [
-        "2. Essential Cookies",
-        "Cocoon Lab currently uses only essential first-party cookies required to operate this website and remember your cookie preference. We do not set advertising, retargeting, or analytics cookies. The cookie preference record is stored for 180 days, then the site asks again. If you choose French or English, that language preference may be stored locally in your browser to keep the site readable on later visits.",
+        "2. Cookies",
+        "Cocoon Lab does not set advertising, retargeting, or analytics cookies on cocoonlab.ai. If you choose French or English, that language preference may be stored locally in your browser to keep the site readable on later visits.",
       ],
       [
         "3. How Information Is Used",
@@ -45,7 +45,7 @@ const privacy: Record<Locale, Document> = {
         </>,
       ],
     ],
-    note: "Last updated: September 26, 2026. For privacy questions, please contact Cocoon Lab directly.",
+    note: "Last updated: September 27, 2026. For privacy questions, please contact Cocoon Lab directly.",
   },
   fr: {
     title: "Politique de confidentialité",
@@ -56,8 +56,8 @@ const privacy: Record<Locale, Document> = {
         "Cocoon Lab peut recevoir les informations que vous choisissez de partager sur cocoonlab.ai, notamment votre nom, adresse courriel, organisation, rôle, détails de projet et tout autre contexte fourni lors d’un contact ou d’une demande de démo.",
       ],
       [
-        "2. Témoins essentiels",
-        "Cocoon Lab utilise actuellement uniquement des témoins essentiels de première partie nécessaires au fonctionnement du site et à la mémorisation de votre préférence. Nous n’utilisons pas de témoins publicitaires, de reciblage ou d’analytique. La préférence est conservée 180 jours, puis le site redemande votre choix. Si vous choisissez le français ou l’anglais, cette préférence de langue peut être stockée localement dans votre navigateur afin de garder le site lisible lors de visites ultérieures.",
+        "2. Témoins",
+        "Cocoon Lab n’utilise aucun témoin publicitaire, de reciblage ou d’analytique sur cocoonlab.ai. Si vous choisissez le français ou l’anglais, cette préférence de langue peut être stockée localement dans votre navigateur afin de garder le site lisible lors de visites ultérieures.",
       ],
       [
         "3. Utilisation des informations",
@@ -79,7 +79,7 @@ const privacy: Record<Locale, Document> = {
         </>,
       ],
     ],
-    note: "Dernière mise à jour : 26 septembre 2026. Pour toute question de confidentialité, contactez directement Cocoon Lab.",
+    note: "Dernière mise à jour : 27 septembre 2026. Pour toute question de confidentialité, contactez directement Cocoon Lab.",
   },
 };
 

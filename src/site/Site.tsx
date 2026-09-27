@@ -61,28 +61,38 @@ function Header() {
 
   return (
     <header className={wrap}>
-      <div className="flex h-20 items-center justify-between gap-6 md:h-24">
+      <div className="flex h-20 items-center justify-between gap-3 min-[360px]:gap-6 md:h-24">
         <a href={isHome ? "#top" : href("/")} aria-label={isHome ? copy.topLabel : copy.homeLabel} className="-m-2 p-2 text-ink">
-          <Logotype className="block h-[1.125rem] w-auto sm:h-[1.3125rem]" />
+          <Logotype className="block h-4 w-auto min-[360px]:h-[1.125rem] sm:h-[1.3125rem]" />
         </a>
 
-        <div className="flex items-center gap-5 sm:gap-8">
-          <nav aria-label={copy.navLabel} className="hidden sm:block">
-            <ul className="flex items-center gap-7 font-body text-[0.875rem] font-medium">
-              {copy.nav.filter((item) => item.href === "/contact/").map((item) => (
-                <li key={item.href}>
-                  <a href={href(item.href)} className={textLink}>
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <span aria-hidden="true" className="hidden h-4 w-px bg-line sm:block" />
-          <LanguageToggle />
-        </div>
+        <HeaderLinks />
       </div>
     </header>
+  );
+}
+
+/** The same on every page and screen: Contact, then EN / FR. */
+export function HeaderLinks({ tone = "light", className = "" }: { tone?: "light" | "dark"; className?: string }) {
+  const { locale, href } = useSite();
+  const copy = chrome[locale];
+
+  return (
+    <div className={`flex items-center gap-3 min-[400px]:gap-5 sm:gap-8 ${className}`}>
+      <nav aria-label={copy.navLabel}>
+        <ul className="flex items-center gap-7 font-body text-[0.875rem] font-medium">
+          {copy.nav.filter((item) => item.href === "/contact/").map((item) => (
+            <li key={item.href}>
+              <a href={href(item.href)} className={textLink}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <span aria-hidden="true" className={`hidden h-4 w-px min-[400px]:block ${tone === "dark" ? "bg-ivory/20" : "bg-line"}`} />
+      <LanguageToggle tone={tone} />
+    </div>
   );
 }
 
@@ -134,11 +144,6 @@ function Footer() {
                     </a>
                   </li>
                 ))}
-                <li>
-                  <a href="#cookie-preferences" data-cookie-preferences-link className={`inline-block py-1 ${textLink} hover:text-ink`}>
-                    {copy.cookiePreferences}
-                  </a>
-                </li>
               </ul>
             </nav>
           </div>
