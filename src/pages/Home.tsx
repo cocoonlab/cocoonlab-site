@@ -15,26 +15,26 @@ const productScenes = {
 const copy = {
   en: {
     heroTitle: "We make it faster and safer to build better places for people.",
-    heroLead: "Cocoon Lab helps teams test, check, and improve plans early, before work begins.",
+    heroLead: "Software to prepare temporary signage plans and check building drawings before work begins.",
     heroCta: "Explore products",
     heroScene:
       "Montréal in pixels, from the Old Port: the Jacques-Cartier Bridge over the St. Lawrence, the Biosphère, the Olympic Stadium, Habitat 67, and downtown under Mount Royal.",
     productsTitle: "Products",
-    more: "Learn more",
+    more: "Explore",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
-        description: "Temporary street plans, reviewed faster.",
+        description: "Prepare temporary signage plans.",
         href: "/triage/",
-        scene: "Rue Saint-Paul in Old Montréal, in axonometric: roadwork closes one lane beside Marché Bonsecours, a calèche and traffic pass, and the temporary plan is traced in gold.",
+        scene: "A signage plan on Rue Saint-Paul, with Bonsecours Market and the chapel. A RUE BARRÉE sign and barrier close the left end for construction. The adjacent DÉTOUR sign directs approaching cars into the side street before the barrier. Living pixel colonies emerge, gather, and dissolve along the scene’s edges.",
       },
       {
         id: "code",
         name: "Cocoon Code",
         description: "Building-code checks, with evidence.",
         href: "/code/",
-        scene: "Habitat 67 in axonometric: a gold plane rises through the stacked homes and leaves a check beside each level it clears.",
+        scene: "Habitat 67 in pixels: a luminous scan travels through the building, illuminating each reviewed level.",
       },
     ],
     companyTitle: "Company",
@@ -47,26 +47,26 @@ const copy = {
   },
   fr: {
     heroTitle: "Nous rendons plus rapide et plus sûre la construction de meilleurs milieux de vie.",
-    heroLead: "Cocoon Lab aide les équipes à tester, vérifier et améliorer leurs plans en amont, avant le début des travaux.",
+    heroLead: "Des logiciels pour préparer les plans de signalisation temporaire et vérifier les plans de bâtiments avant le début des travaux.",
     heroCta: "Découvrir les produits",
     heroScene:
       "Montréal en pixels, depuis le Vieux-Port : le pont Jacques-Cartier sur le Saint-Laurent, la Biosphère, le Stade olympique, Habitat 67 et le centre-ville sous le mont Royal.",
     productsTitle: "Produits",
-    more: "En savoir plus",
+    more: "Découvrir",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
-        description: "Plans de signalisation temporaire, examinés plus vite.",
+        description: "Préparez vos plans de signalisation temporaire.",
         href: "/triage/",
-        scene: "La rue Saint-Paul, dans le Vieux-Montréal, en axonométrie : un chantier ferme une voie près du marché Bonsecours, une calèche et la circulation passent, et le plan temporaire est tracé en or.",
+        scene: "Plan de signalisation sur la rue Saint-Paul : le marché Bonsecours et la chapelle. Un panneau RUE BARRÉE et une barrière ferment le bout gauche de la rue pour travaux. Le panneau DÉTOUR adjacent dirige les véhicules vers la rue transversale avant la barrière. Des colonies de pixels naissent, se rassemblent et se dissolvent aux bords de la scène.",
       },
       {
         id: "code",
         name: "Cocoon Code",
         description: "Vérifications du code du bâtiment, preuves à l’appui.",
         href: "/code/",
-        scene: "Habitat 67 en axonométrie : un plan doré traverse les maisons empilées et laisse une coche à chaque niveau vérifié.",
+        scene: "Habitat 67 en pixels : un plan lumineux traverse les bâtiments et illumine chaque niveau vérifié.",
       },
     ],
     companyTitle: "Entreprise",
@@ -129,7 +129,7 @@ export function Home() {
                 aria-hidden="true"
                 className="mt-5 inline-flex items-center gap-2.5 self-start font-body text-[0.9375rem] font-medium text-ink underline decoration-transparent decoration-1 underline-offset-[0.35em] transition-colors duration-200 group-hover:decoration-current"
               >
-                {text.more}
+                {text.more} {product.id === "triage" ? "Triage" : "Code"}
                 <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
               </p>
               <PixelScene scene={productScenes[product.id]} className="product-scene" label={product.scene} />

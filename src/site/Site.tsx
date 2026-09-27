@@ -69,7 +69,7 @@ function Header() {
         <div className="flex items-center gap-5 sm:gap-8">
           <nav aria-label={copy.navLabel} className="hidden sm:block">
             <ul className="flex items-center gap-7 font-body text-[0.875rem] font-medium">
-              {copy.nav.map((item) => (
+              {copy.nav.filter((item) => item.href === "/contact/").map((item) => (
                 <li key={item.href}>
                   <a href={href(item.href)} className={textLink}>
                     {item.label}
@@ -105,7 +105,6 @@ function Footer() {
               >
                 <Logotype className="block h-[1.375rem] w-auto" />
               </a>
-              <p className="mt-3 font-body text-[0.9375rem] text-muted">{copy.signature}</p>
             </div>
             <nav aria-label={copy.footerLabel} className="col-span-12 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:col-span-7">
               {copy.footerGroups.map((group) => (

@@ -27,6 +27,22 @@ function toCanvas(raster: Raster, palette: readonly string[]) {
   return canvas;
 }
 
+function toMaskCanvas(raster: Raster) {
+  const canvas = document.createElement("canvas");
+  canvas.width = raster.width;
+  canvas.height = raster.height;
+  const ctx = canvas.getContext("2d");
+  if (ctx) {
+    const image = ctx.createImageData(raster.width, raster.height);
+    raster.data.forEach((alpha, i) => {
+      image.data[i * 4] = image.data[i * 4 + 1] = image.data[i * 4 + 2] = 255;
+      image.data[i * 4 + 3] = alpha;
+    });
+    ctx.putImageData(image, 0, 0);
+  }
+  return canvas;
+}
+
 type PixelSceneProps = {
   scene: Scene;
   className?: string;
@@ -38,7 +54,8 @@ type PixelSceneProps = {
  * Paints a pixel scene on a canvas at one canvas pixel per cell. CSS picks the
  * whole-number unit (`--u`) and how many rows show (`--rows`); the canvas is
  * scaled with `image-rendering: pixelated`, cropped around the scene's focus,
- * animated at 12 fps while on screen, and held still when motion is reduced.
+ * animated at 12 fps (24 for cellular assembly) while on screen, and held
+ * still when motion is reduced.
  */
 export function PixelScene({ scene, className, label }: PixelSceneProps) {
   const frameRef = useRef<HTMLDivElement>(null);
@@ -52,7 +69,20 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
 
     const back = toCanvas(scene.still, scene.palette);
     const front = scene.front ? toCanvas(scene.front, scene.palette) : null;
+    const mask = scene.mask ? toMaskCanvas(scene.mask) : null;
+    // Reuse buffers; no GPU readback or per-frame canvas allocation.
+    const assemblyMask = scene.assembly ? document.createElement("canvas") : null;
+    const assemblySource = scene.assembly ? document.createElement("canvas") : null;
+    if (assemblyMask && assemblySource) {
+      assemblyMask.width = assemblySource.width = scene.width;
+      assemblyMask.height = assemblySource.height = scene.height;
+    }
+    const assemblyContext = assemblyMask?.getContext("2d");
+    const sourceContext = assemblySource?.getContext("2d");
+    const assemblyImage = assemblyContext?.createImageData(scene.width, scene.height);
+    if (assemblyImage) assemblyImage.data.fill(255);
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const fps = scene.assembly ? 24 : FPS;
 
     let cols = scene.width;
     let offset = 0;
@@ -90,14 +120,47 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
       ctx.drawImage(back, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
       if (scene.animate) scene.animate(painter, time);
       else painter.front();
+      if (mask) {
+        ctx.globalCompositeOperation = "destination-in";
+        ctx.drawImage(mask, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
+        ctx.globalCompositeOperation = "source-over";
+      }
+      if (scene.assembly && assemblyMask && assemblySource && assemblyContext && sourceContext && assemblyImage) {
+        const next = scene.assembly(time);
+        sourceContext.clearRect(0,0,scene.width,scene.height);
+        sourceContext.drawImage(canvas,offset,0);
+        for (let i = 0; i < next.mask.data.length; i++) {
+          assemblyImage.data[i * 4 + 3] = next.mask.data[i]!;
+        }
+        assemblyContext.putImageData(assemblyImage, 0, 0);
+        ctx.globalCompositeOperation = "destination-in";
+        ctx.drawImage(assemblyMask, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
+        ctx.globalCompositeOperation = "source-over";
+        for(const piece of next.pieces) {
+          if(!piece.alpha || piece.x+piece.size<offset || piece.x>offset+cols) continue;
+          ctx.globalAlpha=piece.alpha;
+          ctx.drawImage(assemblySource,piece.sx,piece.sy,piece.size,piece.size,
+            piece.x-offset,piece.y,piece.size,piece.size);
+        }
+        ctx.globalAlpha=1;
+      }
+      scene.overlay?.(painter, time);
     };
 
     const layout = () => {
       const styles = getComputedStyle(frame);
-      const unit = Math.max(1, Math.round(parseFloat(styles.getPropertyValue("--u")) || 2));
+      const requestedUnit = Math.max(1, Math.round(parseFloat(styles.getPropertyValue("--u")) || 2));
       const focus = parseFloat(styles.getPropertyValue("--focus"));
       const align = parseFloat(styles.getPropertyValue("--align"));
       const width = frame.clientWidth;
+      const fit = styles.getPropertyValue("--fit-whole").trim() === "1";
+      // Fit product models in whole physical pixels. On a Retina display a
+      // 1.5 CSS-pixel cell is three crisp screen pixels, avoiding the abrupt
+      // half-size drop between desktop and tablet columns.
+      const pixelRatio = Math.max(1, window.devicePixelRatio || 1);
+      const fittedUnit = Math.floor(width / scene.width * pixelRatio) / pixelRatio;
+      const unit = fit ? Math.max(1, Math.min(requestedUnit, fittedUnit)) : requestedUnit;
+      if (fit) frame.style.height = `${scene.height * unit}px`;
       cols = Math.min(scene.width, Math.ceil(width / unit));
       offset = Math.round((scene.width - cols) * (Number.isFinite(focus) ? focus : scene.focus));
       canvas.width = cols;
@@ -117,7 +180,7 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
       if (!last) last = now;
       const next = time + Math.min(0.25, (now - last) / 1000);
       last = now;
-      if (Math.floor(next * FPS) !== Math.floor(time * FPS)) {
+      if (Math.floor(next * fps) !== Math.floor(time * fps)) {
         time = next;
         draw();
       } else {

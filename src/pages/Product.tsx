@@ -15,15 +15,15 @@ const products = {
     copy: {
       en: {
         name: "Cocoon Triage",
-        promise: "Temporary street plans, reviewed faster.",
-        line: "Review work-zone signage, lane closures, and detours before a street is closed.",
-        scene: "Rue Saint-Paul in Old Montréal, in axonometric: roadwork closes one lane beside Marché Bonsecours, a calèche and traffic pass, and the temporary plan is traced in gold.",
+        promise: "Prepare temporary signage plans.",
+        line: "Prepare work-zone signage, lane closures, and detours before work begins.",
+        scene: "A signage plan on Rue Saint-Paul, with Bonsecours Market and the chapel. A RUE BARRÉE sign and barrier close the left end for construction. The adjacent DÉTOUR sign directs approaching cars into the side street before the barrier. Living pixel colonies emerge, gather, and dissolve along the scene’s edges.",
       },
       fr: {
         name: "Cocoon Triage",
-        promise: "Plans de signalisation temporaire, examinés plus vite.",
-        line: "Examinez la signalisation de chantier, les fermetures de voies et les détours avant qu’une rue soit fermée.",
-        scene: "La rue Saint-Paul, dans le Vieux-Montréal, en axonométrie : un chantier ferme une voie près du marché Bonsecours, une calèche et la circulation passent, et le plan temporaire est tracé en or.",
+        promise: "Préparez vos plans de signalisation temporaire.",
+        line: "Préparez la signalisation de chantier, les fermetures de voies et les détours avant le début des travaux.",
+        scene: "Plan de signalisation sur la rue Saint-Paul : le marché Bonsecours et la chapelle. Un panneau RUE BARRÉE et une barrière ferment le bout gauche de la rue pour travaux. Le panneau DÉTOUR adjacent dirige les véhicules vers la rue transversale avant la barrière. Des colonies de pixels naissent, se rassemblent et se dissolvent aux bords de la scène.",
       },
     },
   },
@@ -36,13 +36,13 @@ const products = {
         name: "Cocoon Code",
         promise: "Building-code checks, with evidence.",
         line: "Run building-code rules on drawings and review verdicts you can verify.",
-        scene: "Habitat 67 in axonometric: a gold plane rises through the stacked homes and leaves a check beside each level it clears.",
+        scene: "Habitat 67 in pixels: a luminous scan travels through the building, illuminating each reviewed level.",
       },
       fr: {
         name: "Cocoon Code",
         promise: "Vérifications du code du bâtiment, preuves à l’appui.",
         line: "Appliquez les règles du code du bâtiment aux plans et examinez des verdicts vérifiables.",
-        scene: "Habitat 67 en axonométrie : un plan doré traverse les maisons empilées et laisse une coche à chaque niveau vérifié.",
+        scene: "Habitat 67 en pixels : un plan lumineux traverse les bâtiments et illumine chaque niveau vérifié.",
       },
     },
   },
@@ -51,14 +51,14 @@ const products = {
 const copy = {
   en: {
     signIn: "Sign in",
-    welcome: "Pick up your review where you left it.",
+    welcome: "Pick up where you left off.",
     cta: (name: string) => `Sign in to ${name}`,
     newTo: (name: string) => `New to ${name}?`,
     demo: "Request a demo",
   },
   fr: {
     signIn: "Connexion",
-    welcome: "Reprenez votre examen là où vous l’aviez laissé.",
+    welcome: "Reprenez là où vous en étiez.",
     cta: (name: string) => `Se connecter à ${name}`,
     newTo: (name: string) => `Nouveau sur ${name} ?`,
     demo: "Demander une démo",
@@ -121,7 +121,7 @@ export function Product({ product }: { product: ProductId }) {
         <section
           id="sign-in"
           aria-labelledby="sign-in-title"
-          className="flex flex-col bg-ink px-5 pb-8 pt-12 text-ivory sm:px-8 lg:col-span-5 lg:min-h-[100svh] lg:px-12 lg:pb-10 lg:pt-10"
+          className="flex flex-col bg-[#151c18] px-5 pb-8 pt-12 text-ivory sm:px-8 lg:col-span-5 lg:min-h-[100svh] lg:px-12 lg:pb-10 lg:pt-10"
         >
           <LanguageToggle tone="dark" className="hidden justify-end lg:flex" />
           <div className="py-10 lg:my-auto lg:py-0">
@@ -131,7 +131,7 @@ export function Product({ product }: { product: ProductId }) {
             <p className="mt-4 max-w-[22rem] font-body text-[1.0625rem] leading-[1.55] text-ivory/70">{ui.welcome}</p>
             <a
               href={item.signIn}
-              className="group mt-10 flex h-14 w-full max-w-[26rem] items-center justify-between gap-4 bg-ivory px-5 font-body text-[0.9375rem] font-medium text-ink transition-colors duration-200 hover:bg-white"
+              className="group mt-10 flex h-14 w-full max-w-[26rem] items-center justify-between gap-4 bg-ivory px-5 font-body text-[0.9375rem] font-medium text-[#1c201b] transition-colors duration-200 hover:bg-white"
             >
               {ui.cta(text.name)}
               <Glyph

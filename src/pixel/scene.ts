@@ -11,6 +11,13 @@ export type Painter = {
   front(): void;
 };
 
+/** A two-pixel sample of the live drawing, gathering into its resting cell. */
+export type PixelPiece = {
+  sx: number; sy: number; x: number; y: number; size: number; alpha: number;
+};
+
+export type AssemblyFrame = { mask: Raster; pieces: readonly PixelPiece[] };
+
 export type Scene = {
   width: number;
   height: number;
@@ -20,9 +27,15 @@ export type Scene = {
   still: Raster;
   /** Still foreground (railings, lamps) that moving parts pass behind. */
   front?: Raster;
+  /** Optional per-cell alpha, applied after moving parts so edges stay seamless. */
+  mask?: Raster;
+  /** Cellular edge motion, sampled from the fully painted scene. */
+  assembly?: (t: number) => AssemblyFrame;
   /** Where to crop when the view is narrower than the scene: 0 = left, 1 = right. */
   focus: number;
   /** Draws what moves at `t` seconds, calling `paint.front()` where the
-   * foreground belongs. Scenes animate on a 12 fps step. */
+   * foreground belongs. Assembly scenes use 24 fps; others use 12. */
   animate?: (paint: Painter, t: number) => void;
+  /** Crisp editorial objects drawn above the composition's optional edge mask. */
+  overlay?: (paint: Painter, t: number) => void;
 };
