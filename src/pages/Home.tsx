@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Glyph } from "../Glyph.tsx";
 import { PixelScene } from "../PixelScene.tsx";
 import { codeScene } from "../pixel/code.ts";
@@ -85,11 +86,12 @@ const copy = {
 export function Home() {
   const { locale, href } = useSite();
   const text = copy[locale];
+  const heroCopy = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <section id="top" aria-labelledby="hero-title" className="hero">
-        <div className={`${wrap} hero-copy`}>
+        <div ref={heroCopy} className={`${wrap} hero-copy`}>
           <h1
             id="hero-title"
             className="enter max-w-[13.5em] text-balance font-display text-[clamp(2.5rem,5.6vw,6rem)] font-medium leading-[0.98] tracking-[-0.036em] text-ink"
@@ -107,7 +109,7 @@ export function Home() {
             <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
         </div>
-        <PixelScene scene={heroScene} className="hero-scene" label={text.heroScene} />
+        <PixelScene scene={heroScene} className="hero-scene" label={text.heroScene} clearOf={heroCopy} />
       </section>
 
       <section id="products" aria-labelledby="products-title" className={`${wrap} pt-[clamp(5rem,10vw,9rem)]`}>

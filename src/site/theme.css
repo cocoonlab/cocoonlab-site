@@ -60,6 +60,13 @@
 .cocoon-dark .enter { animation-duration: .65s; }
 @media(min-width:1600px) { .cocoon-dark .product-scene { --u: 2px; } }
 @media(max-width:1099px) { .cocoon-dark .hero-scene { margin-top: 16px; --visible-rows: 195; } }
+/* From tablets up the hero is the first screen under the header: the city
+   stands on its bottom edge, at the largest pixel size that keeps it clear
+   of the headline (PixelScene's `clearOf`). */
+@media(min-width:768px) {
+  .cocoon-dark .hero { min-height: calc(100vh - 96px); min-height: calc(100svh - 96px); }
+  .cocoon-dark .hero-scene { --fit-screen: 1; }
+}
 @media(max-width:767px) {
   .cocoon-dark .hero-copy { padding-top:28px; }
   .cocoon-dark #hero-title { font-size: clamp(2.125rem,1.7rem + 1.9vw,2.6rem); }
