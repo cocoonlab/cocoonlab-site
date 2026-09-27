@@ -48,7 +48,7 @@ const copy = {
     ],
   },
   fr: {
-    heroTitle: "Nous rendons plus rapide et plus sûre la construction de meilleurs milieux de vie.",
+    heroTitle: "Rendre plus rapide et plus sûre la création de meilleurs milieux de vie.",
     heroLead:
       "Cocoon Triage prépare les plans de signalisation temporaire. Cocoon Code vérifie les plans de bâtiment selon le code, preuves à l’appui.",
     heroCta: "Demander une démo",
