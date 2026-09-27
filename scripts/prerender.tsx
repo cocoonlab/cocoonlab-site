@@ -31,13 +31,13 @@ if (!assets.includes("<script")) {
 }
 
 const document = (page: Exclude<PageId, "home">) => `<!doctype html>
-<html lang="en-CA">
+<html lang="en-CA" class="cocoon-dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     ${headFor(page)}
-    <meta name="theme-color" content="#F7F7F2" />
-    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#1c201b" />
+    <meta name="color-scheme" content="dark" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any" />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/png" href="/favicon-48x48.png" sizes="48x48" />

@@ -22,7 +22,7 @@
       back: "Back",
       privacy: "Privacy Policy",
       bannerEyebrow: "Essential cookies",
-      bannerTitle: "Your consent, clearly handled.",
+      bannerTitle: "Just the essentials.",
       bannerCopy:
         "Cocoon Lab uses only essential cookies to run the site, protect basic functionality, and remember this choice. No advertising or analytics cookies are set.",
       accept: "Accept essential only",
@@ -46,7 +46,7 @@
       back: "Retour",
       privacy: "Politique de confidentialité",
       bannerEyebrow: "Témoins essentiels",
-      bannerTitle: "Votre consentement, traité clairement.",
+      bannerTitle: "Juste l’essentiel.",
       bannerCopy:
         "Cocoon Lab utilise seulement des témoins essentiels pour faire fonctionner le site, protéger les fonctions de base et mémoriser ce choix. Aucun témoin publicitaire ou analytique n’est défini.",
       accept: "Accepter les essentiels",

@@ -1,5 +1,6 @@
 import { Raster, seeded, sprite } from "./raster.ts";
 import type { Painter, Scene } from "./scene.ts";
+import { bottomAssembly } from "./cellular.ts";
 
 /**
  * Montréal from the Old Port, drawn flat: the St. Lawrence and the
@@ -36,45 +37,83 @@ const P = {
   glass: 24,
   trunk: 25,
   wood: 26,
+  lampHalo: 27,
+  lampLight: 28,
+  lampCore: 29,
+  bridge: 30,
+  bridgeShade: 31,
+  window: 32,
+  windowLight: 33,
+  lanternLight: 41,
+  lanternHalo: 49,
 } as const;
 
 const palette = [
   "",
-  "#ecebe2", // cloud
-  "#d9e0d5", // mount
-  "#cdd8d6", // far
-  "#b6c6c7", // far2
-  "#9cb1b5", // mid
-  "#7b979e", // mid2
-  "#3a606e", // blue
-  "#1f4d58", // steel
-  "#1c201b", // ink
-  "#e2dccf", // stone
-  "#c8bfad", // stone2
-  "#86ab9c", // copper
-  "#5f8a7c", // copper2
-  "#b36a5e", // brick
-  "#b0bd90", // sage
-  "#869a78", // sage2
-  "#dfe8e7", // water
-  "#cbdada", // water2
-  "#b3c7c9", // water3
-  "#f7f7f2", // paper
-  "#e7e2d6", // pave
-  "#d6d0c2", // pave2
-  "#e8a900", // gold
-  "#f1ecd8", // glass
-  "#5d4b3d", // trunk
-  "#a37b58", // wood
+  "#252c24", // cloud
+  "#252f26", // mount
+  "#303d33", // far
+  "#415148", // far2
+  "#62786d", // mid
+  "#7f9485", // mid2
+  "#8aa5a2", // blue
+  "#98b3a7", // steel
+  "#0e0f0d", // ink
+  "#879185", // stone
+  "#5d6a5a", // stone2
+  "#87977e", // copper
+  "#65765b", // copper2
+  "#827663", // brick
+  "#68795c", // sage
+  "#46573e", // sage2
+  "#151c18", // water
+  "#25372e", // water2
+  "#3d5547", // water3
+  "#d7d0c4", // paper
+  "#343b2f", // pave
+  "#41483a", // pave2
+  "#d8be8f", // gold
+  "#c9d9da", // glass
+  "#363d2f", // trunk
+  "#87856a", // wood
+  "#5c5735", // warm pixel halo
+  "#dfc477", // yellow lantern light
+  "#fff0b0", // warm core
+  "#526b5e", // bridge recedes into the night skyline
+  "#3e5146", // shaded deck and piers
+  "#29392f", // unlit window; also identifies visible window cells
+  // Eight flat inks make a slow light passage across the pixel architecture.
+  "#29392f", "#39483a", "#4c5842", "#63694c",
+  "#7e7e59", "#98946a", "#b1aa7c", "#cabf91",
+  // Lantern panes follow the same rhythm, always retaining a warm glow.
+  "#8b7950", "#9e8a58", "#b09b62", "#c2ac6d",
+  "#d3bc7b", "#e2cc8c", "#eddb9f", "#f7e9b2",
+  "#34372a", "#393b2c", "#40402e", "#47452f",
+  "#4d4931", "#544e33", "#5a5235", "#605637",
 ] as const;
 
 const W = 640;
-const H = 192;
+const H = 212;
 const HORIZON = 126; // top of the far bank
 const WATER = 132; // first row of the river
 const QUAY = 470; // where the river meets the Old Port on the right
 const CURB = 170; // front edge of the promenade
 const DECK = 104; // bridge roadway
+
+type Window = { x: number; y: number; w: number; h: number; phase: number };
+const windows: Window[] = [];
+
+function window(r: Raster, x: number, y: number, w: number, h: number, phase: number) {
+  r.rect(x, y, w, h, P.window);
+  windows.push({ x, y, w, h, phase });
+}
+
+/** A slow diagonal weave, shared by the windows and promenade lanterns. */
+function lightLevel(t: number, phase: number) {
+  const wave = 0.5 + 0.36 * Math.sin(t * Math.PI / 10 + phase)
+    + 0.14 * Math.sin(t * Math.PI / 17 - phase * 0.7);
+  return Math.max(0, Math.min(7, Math.round(wave * 7)));
+}
 
 /** Mount Royal crests above every tower, as the city's height bylaw requires. */
 function mountRoyal(r: Raster) {
@@ -133,6 +172,13 @@ function tower(
 ) {
   r.rect(x, top, w, base - top, body);
   for (let c = x + 2; c < x + w - 1; c += 3) r.rect(c, top + 3, 1, base - top - 3, line);
+  // Offset groups form an architectural weave, with quiet unlit bays between.
+  for (let row = 0, y = top + 5; y < base - 3; y += 7, row++) {
+    for (let col = 0, c = x + 2; c < x + w - 2; c += 3, col++) {
+      if ((row + col * 2 + x) % 5 === 0) continue;
+      window(r, c, y, 1, 3, x * 0.075 + Math.floor(row / 2) * 0.8 + Math.floor(col / 2) * 0.55);
+    }
+  }
 }
 
 function downtown(r: Raster) {
@@ -183,10 +229,10 @@ function habitat67(r: Raster) {
     const y = ground - 1 - (level + 1) * 5 + 1;
     if (face === "long") {
       r.rect(x, y, 10, 4, P.stone);
-      r.rect(x + 2, y + 1, 5, 1, P.mid2);
+      window(r, x + 2, y + 1, 5, 1, x * 0.075 + level * 0.8);
     } else {
       r.rect(x, y, 5, 4, P.stone2);
-      r.rect(x + 1, y + 1, 3, 2, P.mid2);
+      window(r, x + 1, y + 1, 3, 2, x * 0.075 + level * 0.8);
     }
   }
 }
@@ -240,44 +286,44 @@ function bridge(r: Raster) {
         [px + 5, WATER],
         [px - 4, WATER],
       ],
-      P.stone2,
+      P.bridgeShade,
     );
   }
   // Approach trestles, kept clear of the stadium and the Biosphère.
   for (const x of [26, 58, a - 8]) {
-    r.rect(x, deck + 2, 1, HORIZON - deck - 2, P.steel);
-    r.rect(x + 5, deck + 2, 1, HORIZON - deck - 2, P.steel);
-    r.rect(x, deck + 12, 6, 1, P.steel);
+    r.rect(x, deck + 2, 1, HORIZON - deck - 2, P.bridge);
+    r.rect(x + 5, deck + 2, 1, HORIZON - deck - 2, P.bridge);
+    r.rect(x, deck + 12, 6, 1, P.bridge);
   }
 
   // Truss: top chord, verticals, and alternating diagonals.
   let prev = Math.round(chord(a));
   for (let x = a; x <= b; x++) {
     const y = Math.round(chord(x));
-    r.line(x - 1, prev, x, y, P.steel);
+    r.line(x - 1, prev, x, y, P.bridge);
     prev = y;
   }
-  for (let x = a; x <= b; x += 6) {
+  for (let x = a; x <= b; x += 10) {
     const y = Math.round(chord(x));
-    r.rect(x, y, 1, deck - y, P.steel);
-    const nx = Math.min(b, x + 6);
+    r.rect(x, y, 1, deck - y, P.bridge);
+    const nx = Math.min(b, x + 10);
     const ny = Math.round(chord(nx));
-    if ((x - a) % 12 === 0) r.line(x, deck - 1, nx, ny, P.steel);
-    else r.line(x, y, nx, deck - 1, P.steel);
+    if ((x - a) % 20 === 0) r.line(x, deck - 1, nx, ny, P.bridge);
+    else r.line(x, y, nx, deck - 1, P.bridge);
   }
   // Crowned pinnacles over the piers.
   for (const px of peaks) {
     const y = Math.round(chord(px));
-    r.rect(px - 1, y - 7, 3, 7, P.steel);
-    r.set(px, y - 8, P.steel);
+    r.rect(px - 1, y - 7, 3, 7, P.bridge);
+    r.set(px, y - 8, P.bridge);
   }
 
   // Deck and roadway, then the ramp into the city.
-  r.rect(0, deck, b, 2, P.steel);
-  r.rect(0, deck + 2, b, 1, P.blue);
+  r.rect(0, deck, b, 1, P.bridge);
+  r.rect(0, deck + 1, b, 1, P.bridgeShade);
   for (let x = b; x < QUAY + 4; x++) {
     const y = Math.round(deck + ((x - b) / (QUAY + 4 - b)) * 22);
-    r.rect(x, y, 1, 3, P.steel);
+    r.rect(x, y, 1, 2, P.bridge);
   }
 }
 
@@ -285,8 +331,8 @@ function river(r: Raster) {
   r.rect(0, WATER, QUAY, CURB - WATER, P.water);
   r.rect(0, WATER, QUAY, 2, P.water2);
   const rand = seeded(11);
-  for (let y = WATER + 3; y < CURB - 1; y++) {
-    for (let x = Math.floor(rand() * 12); x < QUAY; x += 10 + Math.floor(rand() * 26)) {
+  for (let y = WATER + 3; y < CURB - 1; y += 3) {
+    for (let x = Math.floor(rand() * 12); x < QUAY; x += 25 + Math.floor(rand() * 40)) {
       r.rect(x, y, 3 + Math.floor(rand() * 7), 1, P.water2);
     }
   }
@@ -306,16 +352,20 @@ function oldMontreal(r: Raster) {
     r.rect(x - 1, top - 3, w + 2, 3, roof);
     r.rect(x, top - 4, w, 1, roof);
     for (let wy = top + 3; wy < base - 3; wy += 6) {
-      for (let wx = x + 2; wx < x + w - 2; wx += 5) r.rect(wx, wy, 2, 3, P.mid2);
+      for (let wx = x + 2; wx < x + w - 2; wx += 5) {
+        window(r, wx, wy, 2, 3, x * 0.075 + (wy - top) * 0.12 + Math.floor((wx - x) / 10) * 0.55);
+      }
     }
   };
   building(468, 24, 126, P.stone, P.copper2);
   building(492, 16, 120, P.stone2, P.mid2);
   // The copper dome, drum and lantern.
   r.rect(508, 118, 30, base - 118, P.stone);
-  for (let wy = 124; wy < base - 3; wy += 6) for (let wx = 510; wx < 536; wx += 5) r.rect(wx, wy, 2, 3, P.mid2);
+  for (let wy = 124; wy < base - 3; wy += 6) for (let wx = 510; wx < 536; wx += 5) {
+    window(r, wx, wy, 2, 3, 508 * 0.075 + (wy - 118) * 0.12 + Math.floor((wx - 508) / 10) * 0.55);
+  }
   r.rect(514, 108, 18, 10, P.stone2);
-  for (let wx = 516; wx < 530; wx += 4) r.rect(wx, 110, 2, 5, P.mid2);
+  for (let wx = 516; wx < 530; wx += 4) window(r, wx, 110, 2, 5, wx * 0.075);
   r.fill(512, 92, 22, 17, P.copper, (x, y) => Math.hypot((x - 522.5) / 9, (y - 108) / 12) <= 1);
   r.fill(512, 92, 22, 17, P.copper2, (x, y) => Math.hypot((x - 522.5) / 9, (y - 108) / 12) <= 1 && x > 525);
   r.rect(521, 91, 3, 5, P.stone2);
@@ -359,9 +409,9 @@ function promenade(r: Raster) {
 function railing(r: Raster) {
   const end = QUAY;
   const top = CURB - 14;
-  r.rect(0, top, end, 2, P.ink);
+  r.rect(0, top, end, 1, P.ink);
   r.rect(0, CURB - 4, end, 1, P.ink);
-  for (let x = 2; x < end; x += 4) r.rect(x, top + 2, 1, 10, P.ink);
+  for (let x = 2; x < end; x += 7) r.rect(x, top + 1, 1, 11, P.ink);
   for (let x = 24; x < end; x += 48) {
     r.rect(x, top - 3, 2, 17, P.ink);
     r.rect(x - 1, top - 4, 4, 1, P.ink);
@@ -371,14 +421,19 @@ function railing(r: Raster) {
 
 function lamp(r: Raster, x: number) {
   const foot = CURB + 10;
+  const top = 116; // shorter posts keep the lamps below the bridge's deck
+  // A restrained stepped halo, drawn as flat pixels around the lantern.
+  r.rect(x - 4, top + 5, 10, 12, P.lampHalo);
+  r.rect(x - 6, top + 8, 14, 6, P.lampHalo);
   r.rect(x - 2, foot - 3, 6, 3, P.ink);
-  r.rect(x, 118, 2, foot - 121, P.ink);
-  r.rect(x - 1, 146, 4, 2, P.ink);
-  r.rect(x - 3, 106, 8, 12, P.ink);
-  r.rect(x - 2, 108, 6, 8, P.glass);
-  r.rect(x, 108, 2, 8, P.ink);
-  r.rect(x - 2, 104, 6, 2, P.ink);
-  r.rect(x, 101, 2, 3, P.ink);
+  r.rect(x, top + 17, 2, foot - top - 20, P.ink);
+  r.rect(x - 1, 153, 4, 2, P.ink);
+  r.rect(x - 3, top + 5, 8, 12, P.ink);
+  r.rect(x - 2, top + 7, 6, 8, P.lampLight);
+  r.rect(x - 2, top + 9, 6, 4, P.lampCore);
+  r.rect(x, top + 7, 2, 8, P.ink);
+  r.rect(x - 2, top + 3, 6, 2, P.ink);
+  r.rect(x, top, 2, 3, P.ink);
 }
 
 function bench(r: Raster, x: number) {
@@ -464,11 +519,12 @@ const cyclist = [
   ),
 ];
 
-const cars = [P.gold, P.brick, P.paper, P.blue, P.stone2, P.brick, P.paper, P.gold];
+const cars = [P.paper, P.blue, P.stone2, P.paper];
 
 const loop = (v: number, span: number) => ((v % span) + span) % span;
 
-function animate(paint: Painter, t: number) {
+function animate(paint: Painter, elapsed: number) {
+  const t = elapsed * 0.65;
   // Clouds drift east, slowly.
   cloudShapes.forEach((cloud, i) => {
     const speed = [1.1, 0.8, 0.6][i]!;
@@ -477,9 +533,14 @@ function animate(paint: Painter, t: number) {
     paint.stamp(cloud, Math.round(x), y);
   });
 
+  for (const { cells, phase } of windowCells) {
+    const ink = P.windowLight + lightLevel(elapsed, phase);
+    for (const [x, y] of cells) paint.px(x, y, ink);
+  }
+
   // Ripples: each row of the river sways a cell either way.
   for (let y = WATER + 2; y < CURB - 1; y++) {
-    const dx = Math.round(Math.sin(t * 1.6 + y * 0.9));
+    const dx = Math.round(Math.sin(t * 0.7 + y * 0.9));
     if (dx !== 0) paint.shiftRow(y, dx, 0, QUAY);
   }
   // Light catching the water.
@@ -512,6 +573,19 @@ function animate(paint: Painter, t: number) {
 
   paint.front();
 
+  for (const { x, y, phase, halo, core } of lanternCells) {
+    const level = lightLevel(elapsed, phase);
+    const ink = halo ? P.lanternHalo + level : P.lanternLight + Math.min(7, level + (core ? 1 : 0));
+    paint.px(x, y, ink);
+  }
+  // A few warm paving stones tie each lantern's light to a physical surface.
+  for (const x of [150, 330, 602]) {
+    const level = Math.floor(lightLevel(elapsed, x * 0.075) / 2);
+    paint.rect(x - 4, CURB + 11, 10, 1, P.lanternHalo + level);
+    paint.rect(x - 7, CURB + 13, 16, 1, P.lanternHalo + level);
+    paint.rect(x - 3, CURB + 15, 8, 1, P.lanternHalo + Math.max(0, level - 1));
+  }
+
   // People on the promenade.
   walkers.forEach((frames, i) => {
     const dir = i % 2 === 0 ? 1 : -1;
@@ -520,16 +594,45 @@ function animate(paint: Painter, t: number) {
   });
   paint.stamp(cyclist[0]!, Math.round(loop(t * 12, W + 40) - 20), CURB + 8);
 
+  // A discreet local joke: a duck and two ducklings cross the river.
+  // Small enough to discover, and separate from the product story.
+  const duck = sprite(["   pp ", "   pi ", " ppppg", "ppppp ", " ppp  "], { p: P.paper, i: P.ink, g: P.gold });
+  const duckling = sprite([" pp ", " ppg", "ppp "], { p: P.paper, g: P.gold });
+  const dx = Math.round(loop(t * 2.4 + 180, QUAY + 70) - 30);
+  const bob = Math.floor(t * 1.2) % 2;
+  paint.stamp(duck, dx, WATER + 24 + bob);
+  paint.stamp(duckling, dx - 10, WATER + 26);
+  paint.stamp(duckling, dx - 18, WATER + 26 + (1 - bob));
+
   // Place Ville Marie's beacon turns.
   if (Math.floor(t * 1.5) % 2 === 0) paint.rect(440, 58, 2, 1, P.gold);
+}
+
+const still = back();
+const front = foreground();
+// Resolve occlusion once: lights stay behind bridge trusses, roofs and trees.
+const windowCells = windows.map(({ x, y, w, h, phase }) => {
+  const cells: [number, number][] = [];
+  for (let dy = 0; dy < h; dy++) for (let dx = 0; dx < w; dx++) {
+    if (still.get(x + dx, y + dy) === P.window) cells.push([x + dx, y + dy]);
+  }
+  return { cells, phase };
+});
+const lanternCells: { x: number; y: number; phase: number; halo: boolean; core: boolean }[] = [];
+for (let y = 116; y < 133; y++) for (let x = 0; x < W; x++) {
+  const ink = front.get(x, y);
+  if (ink !== P.lampHalo && ink !== P.lampLight && ink !== P.lampCore) continue;
+  const post = [150, 330, 602].reduce((a, b) => Math.abs(x - a) < Math.abs(x - b) ? a : b);
+  lanternCells.push({ x, y, phase: post * 0.075, halo: ink === P.lampHalo, core: ink === P.lampCore });
 }
 
 export const heroScene: Scene = {
   width: W,
   height: H,
   palette,
-  still: back(),
-  front: foreground(),
+  still,
+  front,
+  ...bottomAssembly(still, 186),
   focus: 0.5,
   animate,
 };

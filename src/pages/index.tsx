@@ -33,12 +33,12 @@ export const pages = {
       en: {
         title: "Cocoon Lab | Build better places, faster and safer",
         description:
-          "Cocoon Lab helps teams test, check, and improve plans early, before work begins: Cocoon Triage for temporary street plans and Cocoon Code for building-code checks.",
+          "Software to prepare temporary signage plans and check building drawings before work begins.",
       },
       fr: {
         title: "Cocoon Lab | De meilleurs milieux de vie, plus vite et plus sûrement",
         description:
-          "Cocoon Lab aide les équipes à tester, vérifier et améliorer leurs plans en amont, avant le début des travaux : Cocoon Triage pour les plans de signalisation temporaire et Cocoon Code pour les vérifications du code du bâtiment.",
+          "Des logiciels pour préparer les plans de signalisation temporaire et vérifier les plans de bâtiments avant le début des travaux.",
       },
     },
     render: () => <Home />,
@@ -50,12 +50,12 @@ export const pages = {
     meta: {
       en: {
         title: "Cocoon Triage | Cocoon Lab",
-        description: "Temporary street plans, reviewed faster. Review work-zone signage, lane closures, and detours before a street is closed.",
+        description: "Prepare temporary signage plans. Prepare work-zone signage, lane closures, and detours before work begins.",
       },
       fr: {
         title: "Cocoon Triage | Cocoon Lab",
         description:
-          "Plans de signalisation temporaire, examinés plus vite. Examinez la signalisation de chantier, les fermetures de voies et les détours avant qu’une rue soit fermée.",
+          "Préparez vos plans de signalisation temporaire. Préparez la signalisation de chantier, les fermetures de voies et les détours avant le début des travaux.",
       },
     },
     render: () => <Product product="triage" />,

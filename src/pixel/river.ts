@@ -25,18 +25,18 @@ const P = {
 
 const palette = [
   "",
-  "#d9e0d5", // mount
-  "#cdd8d6", // far
-  "#b6c6c7", // far2
-  "#9cb1b5", // mid
-  "#1f4d58", // steel
-  "#dfe8e7", // water
-  "#cbdada", // water2
-  "#b3c7c9", // water3
-  "#f7f7f2", // paper
-  "#e8a900", // gold
-  "#3a606e", // blue
-  "#86ab9c", // copper
+  "#252f26", // mount
+  "#303d33", // far
+  "#415148", // far2
+  "#62786d", // mid
+  "#526b5e", // steel: the same quiet bridge ink as the hero
+  "#151c18", // water
+  "#25372e", // water2
+  "#3d5547", // water3
+  "#d7d0c4", // paper
+  "#d8be8f", // gold
+  "#8aa5a2", // blue
+  "#87977e", // copper
 ] as const;
 
 const W = 640;
@@ -133,7 +133,8 @@ const signal = sprite(["  g  ", " ggg ", "ggggg", " ggg ", "  g  "], { g: P.gold
 
 const loop = (v: number, span: number) => ((v % span) + span) % span;
 
-function animate(paint: Painter, t: number) {
+function animate(paint: Painter, elapsed: number) {
+  const t = elapsed * 0.65;
   for (let y = SHORE + 2; y < H; y++) {
     const dx = Math.round(Math.sin(t * 1.4 + y * 0.8));
     if (dx !== 0) paint.shiftRow(y, dx, 0, W);
@@ -145,7 +146,7 @@ function animate(paint: Painter, t: number) {
   const span = W - 60;
   const s = loop(t * 18, span * 2);
   const gx = 30 + (s < span ? s : span * 2 - s);
-  paint.stamp(signal, Math.round(gx), SHORE - 3);
+  paint.rect(Math.round(gx), SHORE - 1, 3, 1, P.blue);
 }
 
 export const riverScene: Scene = {

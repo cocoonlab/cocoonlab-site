@@ -56,7 +56,7 @@ export function PressKit() {
         <div className="flex aspect-[1200/630] items-center justify-center bg-white/70">
           <img src={href(`${KIT}/03_Lockups/SVG/Cocoon_Lockup_Horizontal_Ink.svg`)} alt={text.lockup} className="h-auto w-[58%]" />
         </div>
-        <div className="flex aspect-[1200/630] items-center justify-center bg-ink">
+        <div className="flex aspect-[1200/630] items-center justify-center bg-[#1c201b]">
           <img src={href(`${KIT}/03_Lockups/SVG/Cocoon_Lockup_Horizontal_OnInk.svg`)} alt={text.lockupOnInk} className="h-auto w-[58%]" />
         </div>
       </figure>

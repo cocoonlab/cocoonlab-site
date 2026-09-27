@@ -1,16 +1,18 @@
 import { Raster, seeded, sprite } from "./raster.ts";
 import { type View, view } from "./iso.ts";
 import type { Painter, Scene } from "./scene.ts";
+import { scanLine, scanPalette } from "./scan.ts";
+import { pixelAssembly } from "./cellular.ts";
 
 /**
  * Cocoon Code — Habitat 67 in axonometric: prefabricated concrete homes
  * stacked on the Cité du Havre, each roof the garden of the home above,
- * with the river behind. A gold plane rises through the stack level by
+ * with the river behind. A sage plane rises through the stack level by
  * level and leaves a check beside each level it clears, the evidence.
  */
 
 // Every ink is a Cocoon brand colour (Ink, Warm White, Stone, Mist Blue,
-// Sage, Sand, Graphite) or an even mix of two; gold is kept for the check.
+// Sage, Sand, Graphite) or an even mix of two.
 // The ground itself is left open, so the site sits on the page.
 const P = {
   path: 1,
@@ -39,28 +41,28 @@ const P = {
 
 const palette = [
   "",
-  "#d7d0c4", // path: stone
-  "#abaca5", // road: graphite and stone
-  "#fefcf8", // line: warm white
-  "#c9d9da", // water: mist blue
-  "#dee5e2", // water2: mist blue and ivory
-  "#fefcf8", // top: warm white
-  "#e8e2d8", // face: stone and ivory, in sun
-  "#b2b2aa", // shade: stone and graphite
-  "#d7d0c4", // joint: stone
-  "#545a56", // window: ink and graphite
-  "#1c201b", // windowShade: ink
-  "#c9d9da", // glass: mist blue
-  "#b4bcaa", // leaf: sage, lit
-  "#87977e", // leaf2: sage
-  "#545a56", // trunk: ink and graphite
+  "#566150", // path
+  "#3b483c", // road
+  "#7f9281", // line: recedes behind the building and its scan
+  "#22352e", // water
+  "#30483d", // water2
+  "#bdcbbf", // concrete roof, kept below the scan highlight
+  "#92a291", // face
+  "#4f6557", // shade
+  "#617665", // joint
+  "#2b453b", // window
+  "#182c24", // windowShade
+  "#698c7f", // glass
+  "#87977e", // leaf
+  "#4d6549", // leaf2
+  "#475a43", // trunk
   "#1c201b", // ink
-  "#e8a900", // gold
-  "#fefcf8", // paper: warm white
+  "#b7cba8", // confirmation
+  "#f8f4ec", // paper
   "#c9d9da", // mist blue
   "#d8be8f", // sand
-  "#d7d0c4", // curb: stone
-  "#8d9490", // jointShade: graphite
+  "#758571", // curb
+  "#3f5346", // jointShade
 ] as const;
 
 
@@ -194,6 +196,9 @@ function home(r: Raster, v: View, h: Box, rand: () => number) {
   // The joint where each home rests on the one below.
   v.wallJ(r, j1, i, i1, z, z + 1, P.joint);
   v.wallI(r, i1, j, j1, z, z + 1, P.jointShade);
+  // A recessed sill gives the glazing depth without adding outlines to every box.
+  if (li > lj) v.wallI(r, i1, j + 0.5, j1 - 0.5, z + 0.5, z + 1, P.jointShade);
+  else v.wallJ(r, j1, i + 0.5, i1 - 0.5, z + 0.5, z + 1, P.jointShade);
 
   // Roof garden where the roof is open: planters along the edge in the sun.
   if (open(i + li / 2, j + lj / 2, roof)) {
@@ -216,7 +221,7 @@ const SHORE = -14; // the river runs along j < SHORE
 const ROAD = J1 + 9; // Avenue Pierre-Dupuy, in front
 const ROAD_W = 7;
 
-/** Inks of the homes and trees, which hide the far side of the gold plane. */
+/** Inks of the homes and trees, which hide the far side of the scan. */
 const hidden = new Set<number>([
   P.top,
   P.face,
@@ -236,10 +241,10 @@ const boat = sprite(["  pp  ", "pppppp", " pppp "], { p: P.paper });
 const person = sprite([" h ", "sss", " s ", "i i"], { h: P.ink, s: P.sand, i: P.ink });
 
 /** Seconds per inspection: rise through the levels, hold, then start over. */
-const CYCLE = 11;
-const RISE = 7;
+const CYCLE = 12;
+const RISE = 10;
 
-/** How many levels the gold plane has cleared at `t`. */
+/** How many levels the scan has cleared at `t`. */
 function checksDone(t: number) {
   const phase = ((t % CYCLE) + CYCLE) % CYCLE;
   const levels = TOP / LEVEL;
@@ -274,7 +279,7 @@ function habitat(o: SiteOptions): Scene {
   v.plane(r, ri0, riverBack, ri1, SHORE, 0, P.water);
   v.plane(r, ri0, SHORE, ri1, SHORE + 2, 0, P.path);
   const rand = seeded(67);
-  for (let k = 0; k < 70; k++) {
+  for (let k = 0; k < 28; k++) {
     const i = ri0 === -far ? -40 + rand() * 120 : ri0 + 3 + rand() * (ri1 - ri0 - 10);
     const j = SHORE - 3 - rand() * Math.min(60, SHORE - riverBack - 6);
     v.plane(r, i, j, i + 1.5 + rand() * 2, j + 0.5, 0, P.water2);
@@ -294,6 +299,48 @@ function habitat(o: SiteOptions): Scene {
   tree(r, v, -6, J1 + 4);
   tree(r, v, 6, J1 + 5, 0.9);
   tree(r, v, 34, J1 + 5);
+
+  const scan = scanPalette(palette);
+  // Record the height of each visible building pixel in painter's order.
+  // The travelling light follows the real faces instead of washing over the image.
+  const elevations = new Float32Array(o.width * o.height).fill(-1);
+  const mask = new Raster(o.width, o.height);
+  for (const h of paintOrder(homes)) {
+    const i1 = h.i + h.li;
+    const j1 = h.j + h.lj;
+    const roof = h.z + LEVEL;
+    for (const face of ["j", "i", "roof"] as const) {
+      mask.data.fill(0);
+      if (face === "j") v.wallJ(mask, j1, h.i, i1, h.z, roof, 1);
+      else if (face === "i") v.wallI(mask, i1, h.j, j1, h.z, roof, 1);
+      else v.plane(mask, h.i, h.j, i1, j1, roof, 1);
+      for (let k = 0; k < mask.data.length; k++) {
+        if (!mask.data[k]) continue;
+        const x = k % o.width;
+        const y = Math.floor(k / o.width);
+        elevations[k] = face === "roof" ? roof : face === "j"
+          ? o.oy + 2 * j1 + (x - o.ox) / 2 - y
+          : o.oy + 2 * i1 - (x - o.ox) / 2 - y;
+      }
+    }
+  }
+  const facade = new Set<number>([P.top, P.face, P.shade, P.joint, P.jointShade, P.window, P.windowShade, P.glass]);
+  const surfaces = Array.from(elevations, (z, k) => ({
+    x: k % o.width, y: Math.floor(k / o.width), z, ink: r.data[k]!,
+  })).filter((cell) => cell.z >= 0 && facade.has(cell.ink));
+
+  // A pale stippled plane reads as transparent while preserving square pixels.
+  const sheets = Array.from({ length: Math.ceil(TOP) + 1 }, (_, z) => {
+    const sheet = new Raster(o.width, o.height);
+    v.plane(sheet, I0 - 2, J0 - 2, I1 + 2, J1 + 2, z, 1);
+    for (let k = 0; k < sheet.data.length; k++) {
+      if (!sheet.data[k]) continue;
+      const x = k % o.width;
+      const y = Math.floor(k / o.width);
+      sheet.data[k] = !hidden.has(r.data[k]!) && (x + y) % 3 === 0 ? scan.soft(r.data[k]!) : 0;
+    }
+    return sheet;
+  });
 
   function animate(paint: Painter, t: number) {
     if (o.ground === "avenue") {
@@ -315,29 +362,38 @@ function habitat(o: SiteOptions): Scene {
     const [px, py] = v.pt(Math.min(ri1 - 3, 70) - loop(t * 1.5, walk), SHORE + 1);
     paint.stamp(person, px - 1, py - 4);
 
-    // The gold plane: an outline round the whole stack at the height it checks.
-    // Its two far edges pass behind the homes, so they hide wherever a home is.
-    const phase = ((t % CYCLE) + CYCLE) % CYCLE;
+    // A translucent slice rises through the model, with a lit edge and short trail.
+    const phase = (((t + 1.4) % CYCLE) + CYCLE) % CYCLE;
     if (phase < RISE) {
-      const z = Math.round((phase / RISE) * TOP);
+      const z = (phase / RISE) * TOP;
+      paint.stamp(sheets[Math.round(z)]!, 0, 0);
+      for (const cell of surfaces) {
+        const behind = z - cell.z;
+        if (behind >= 0 && behind < 6) {
+          paint.px(cell.x, cell.y, behind < 2.5 ? scan.lit(cell.ink) : scan.soft(cell.ink));
+        }
+      }
       const behindHomes = (x: number, y: number) => {
-        if (!hidden.has(r.get(x, y)) && !hidden.has(r.get(x + 1, y))) paint.rect(x, y, 2, 1, P.gold);
+        if (!hidden.has(r.get(x, y)) && !hidden.has(r.get(x + 1, y))) paint.rect(x, y, 2, 1, scan.edge);
       };
       for (let i = I0 - 2; i <= I1 + 2; i++) {
         const [x1, y1] = v.pt(i, J1 + 2, z);
         const [x2, y2] = v.pt(i, J0 - 2, z);
-        paint.rect(x1, y1, 2, 1, P.gold);
+        paint.rect(x1, y1, 2, 1, scan.edge);
         behindHomes(x2, y2);
       }
       for (let j = J0 - 2; j <= J1 + 2; j++) {
         const [x1, y1] = v.pt(I1 + 2, j, z);
         const [x2, y2] = v.pt(I0 - 2, j, z);
-        paint.rect(x1 - 2, y1, 2, 1, P.gold);
+        paint.rect(x1 - 2, y1, 2, 1, scan.edge);
         behindHomes(x2 - 2, y2);
       }
+      const corner = v.pt(I1 + 2, J1 + 2, z);
+      scanLine(paint, v.pt(I1 - 2, J1 + 2, z), corner, scan.light);
+      scanLine(paint, corner, v.pt(I1 + 2, J1 - 2, z), scan.light);
     }
-    // A gold check beside every level already cleared.
-    const done = checksDone(t);
+    // Three quiet confirmations follow the scan through the model.
+    const done = Math.min(3, checksDone(t + 1.4));
     for (let f = 0; f < done; f++) {
       const [x, y] = v.pt(I1 + 4, J0, f * LEVEL + 3);
       paint.px(x + 2, y + 1, P.gold);
@@ -348,11 +404,12 @@ function habitat(o: SiteOptions): Scene {
     }
   }
 
-  return { width: o.width, height: o.height, palette, still: r, focus: 0.5, animate };
+  const cells = pixelAssembly(r, new Set([P.path, P.road, P.line, P.water, P.water2, P.curb]), 19);
+  return { width: o.width, height: o.height, palette: scan.palette, still: r, ...cells, focus: 0.5, animate };
 }
 
 /** The homepage panel: the whole site between the river and the avenue. */
-export const codeScene = habitat({ width: 240, height: 140, ox: 94, oy: 58, ground: "avenue" });
+export const codeScene = habitat({ width: 272, height: 184, ox: 110, oy: 74, ground: "avenue" });
 
 /** The product page: the homes on a cut of the Cité du Havre, river behind. */
 export const codeLandingScene = habitat({ width: 230, height: 150, ox: 116, oy: 76, ground: "island" });
