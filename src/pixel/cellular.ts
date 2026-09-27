@@ -124,7 +124,8 @@ function assembly(r: Raster, coverage: (x: number, y: number) => number,
   };
 }
 
-export function pixelAssembly(r: Raster, ground: ReadonlySet<number>, seed: number) {
+/** With `intro`, the drawing first gathers from scattered pieces; without it, it starts whole. */
+export function pixelAssembly(r: Raster, ground: ReadonlySet<number>, seed: number, intro = true) {
   const d = distances(r);
   const { width: w, height: h } = r;
   const at = (x: number, y: number) => d[Math.max(0, Math.min(h - 1, y)) * w + Math.max(0, Math.min(w - 1, x))]!;
@@ -139,7 +140,7 @@ export function pixelAssembly(r: Raster, ground: ReadonlySet<number>, seed: numb
     if (!dx && !dy) { dx = (x - w / 2) / w; dy = (y - h / 2) / h; }
     const length = Math.hypot(dx, dy) || 1;
     return [dx / length, dy / length];
-  }, seed, true) };
+  }, seed, intro) };
 }
 
 /** The promenade becomes irregular islands, then individual cells. */

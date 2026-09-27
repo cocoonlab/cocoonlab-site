@@ -11,7 +11,7 @@ The approved design is the default on every route; no preview parameter or theme
 
 ## Review
 
-Run `npm run dev`, then view `/`, `/triage/`, and `/code/`. Switch between English and French and open Cookie preferences in the footer. Screenshots show individual moments of the live animation.
+Run `npm run dev`, then view `/`, `/triage/`, and `/code/`. Switch between English and French (the French pages are under `/fr/`). Screenshots show individual moments of the live animation.
 
 ![Homepage](homepage.png)
 

@@ -15,26 +15,27 @@ const productScenes = {
 const copy = {
   en: {
     heroTitle: "We make it faster and safer to build better places for people.",
-    heroLead: "Software to prepare temporary signage plans and check building drawings before work begins.",
-    heroCta: "Explore products",
-    heroScene:
-      "Montréal in pixels, from the Old Port: the Jacques-Cartier Bridge over the St. Lawrence, the Biosphère, the Olympic Stadium, Habitat 67, and downtown under Mount Royal.",
+    heroLead: "Cocoon Triage prepares temporary signage plans. Cocoon Code checks building drawings against the code, with evidence.",
+    heroCta: "Request a demo",
+    heroScene: "Pixel view of Montréal from the Old Port, with the Jacques-Cartier Bridge and downtown.",
     productsTitle: "Products",
     more: "Explore",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
-        description: "Prepare temporary signage plans.",
+        description: "Prepare work-zone signage, lane closures, and detours before work begins.",
+        audience: "For contractors and the permit teams that review their plans.",
         href: "/triage/",
-        scene: "A signage plan on Rue Saint-Paul, with Bonsecours Market and the chapel. A RUE BARRÉE sign and barrier close the left end for construction. The adjacent DÉTOUR sign directs approaching cars into the side street before the barrier. Living pixel colonies emerge, gather, and dissolve along the scene’s edges.",
+        scene: "Pixel view of Rue Saint-Paul, closed for work with RUE BARRÉE and DÉTOUR signs.",
       },
       {
         id: "code",
         name: "Cocoon Code",
-        description: "Building-code checks, with evidence.",
+        description: "Run building-code rules on drawings and review verdicts you can verify.",
+        audience: "For architects, engineers, and building inspectors.",
         href: "/code/",
-        scene: "Habitat 67 in pixels: a luminous scan travels through the building, illuminating each reviewed level.",
+        scene: "Habitat 67 in pixels, scanned level by level.",
       },
     ],
     companyTitle: "Company",
@@ -47,26 +48,28 @@ const copy = {
   },
   fr: {
     heroTitle: "Nous rendons plus rapide et plus sûre la construction de meilleurs milieux de vie.",
-    heroLead: "Des logiciels pour préparer les plans de signalisation temporaire et vérifier les plans de bâtiments avant le début des travaux.",
-    heroCta: "Découvrir les produits",
-    heroScene:
-      "Montréal en pixels, depuis le Vieux-Port : le pont Jacques-Cartier sur le Saint-Laurent, la Biosphère, le Stade olympique, Habitat 67 et le centre-ville sous le mont Royal.",
+    heroLead:
+      "Cocoon Triage prépare les plans de signalisation temporaire. Cocoon Code vérifie les plans de bâtiment selon le code, preuves à l’appui.",
+    heroCta: "Demander une démo",
+    heroScene: "Vue en pixels de Montréal depuis le Vieux-Port, avec le pont Jacques-Cartier et le centre-ville.",
     productsTitle: "Produits",
     more: "Découvrir",
     products: [
       {
         id: "triage",
         name: "Cocoon Triage",
-        description: "Préparez vos plans de signalisation temporaire.",
+        description: "Préparez la signalisation de chantier, les fermetures de voies et les détours avant le début des travaux.",
+        audience: "Pour les entrepreneurs et les équipes qui approuvent leurs plans.",
         href: "/triage/",
-        scene: "Plan de signalisation sur la rue Saint-Paul : le marché Bonsecours et la chapelle. Un panneau RUE BARRÉE et une barrière ferment le bout gauche de la rue pour travaux. Le panneau DÉTOUR adjacent dirige les véhicules vers la rue transversale avant la barrière. Des colonies de pixels naissent, se rassemblent et se dissolvent aux bords de la scène.",
+        scene: "Vue en pixels de la rue Saint-Paul, fermée pour travaux avec des panneaux RUE BARRÉE et DÉTOUR.",
       },
       {
         id: "code",
         name: "Cocoon Code",
-        description: "Vérifications du code du bâtiment, preuves à l’appui.",
+        description: "Appliquez les règles du code du bâtiment aux plans et examinez des verdicts vérifiables.",
+        audience: "Pour les architectes, les ingénieurs et les inspecteurs en bâtiment.",
         href: "/code/",
-        scene: "Habitat 67 en pixels : un plan lumineux traverse les bâtiments et illumine chaque niveau vérifié.",
+        scene: "Habitat 67 en pixels, balayé niveau par niveau.",
       },
     ],
     companyTitle: "Entreprise",
@@ -97,11 +100,11 @@ export function Home() {
             {text.heroLead}
           </p>
           <a
-            href="#products"
+            href={href("/contact/?intent=studio-demo#contact-form")}
             className="enter enter-late group mt-9 inline-flex h-12 items-center gap-4 bg-ink pl-5 pr-[1.125rem] font-body text-[0.9375rem] font-medium text-paper transition-colors duration-200 hover:bg-civic"
           >
             {text.heroCta}
-            <Glyph glyph={glyphs.arrowDown} className="transition-transform duration-200 group-hover:translate-y-0.5" />
+            <Glyph glyph={glyphs.arrowRight} className="transition-transform duration-200 group-hover:translate-x-0.5" />
           </a>
         </div>
         <PixelScene scene={heroScene} className="hero-scene" label={text.heroScene} />
@@ -122,8 +125,10 @@ export function Home() {
                   {product.name}
                 </a>
               </h3>
-              <p className="mt-3 max-w-[24rem] text-pretty font-body text-[1.0625rem] leading-[1.5] text-muted sm:text-[1.125rem]">
-                {product.description}
+              {/* It grows so both cards' links and scenes line up, whatever the length of the text. */}
+              <p className="mt-3 max-w-[24rem] grow text-pretty font-body text-[1.0625rem] leading-[1.5] text-muted sm:text-[1.125rem]">
+                {product.description}{" "}
+                <span className="mt-2 block">{product.audience}</span>
               </p>
               <p
                 aria-hidden="true"

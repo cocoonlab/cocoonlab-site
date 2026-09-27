@@ -15,9 +15,9 @@ import { Team } from "./Team.tsx";
 type Meta = { title: string; description: string };
 
 export type Page = {
-  /** The public URL path. */
+  /** The public URL path in English; the French page is the same path under `/fr/`. */
   path: string;
-  /** Where the prerendered page is written, relative to dist/. */
+  /** Where the prerendered English page is written, relative to dist/; French goes under dist/fr/. */
   file: string;
   meta: Record<Locale, Meta>;
   /** `screen` pages fill one screen on their own, without the site's header and footer. */
@@ -31,12 +31,12 @@ export const pages = {
     file: "index.html",
     meta: {
       en: {
-        title: "Cocoon Lab | Build better places, faster and safer",
+        title: "Cocoon Lab | Temporary signage plans & building-code checks",
         description:
           "Software to prepare temporary signage plans and check building drawings before work begins.",
       },
       fr: {
-        title: "Cocoon Lab | De meilleurs milieux de vie, plus vite et plus sûrement",
+        title: "Cocoon Lab | Signalisation temporaire et code du bâtiment",
         description:
           "Des logiciels pour préparer les plans de signalisation temporaire et vérifier les plans de bâtiments avant le début des travaux.",
       },
@@ -135,7 +135,7 @@ export const pages = {
     path: "/monograph/",
     file: "monograph/index.html",
     meta: {
-      en: { title: "Monograph | Cocoon Lab", description: "Every place starts as a plan. The thesis, ideals, and founding position behind Cocoon Lab." },
+      en: { title: "Manifesto | Cocoon Lab", description: "Every place starts as a plan. The thesis, ideals, and founding position behind Cocoon Lab." },
       fr: { title: "Manifeste | Cocoon Lab", description: "Tout lieu commence par un plan. La thèse, les principes et la position fondatrice de Cocoon Lab." },
     },
     render: () => <Monograph />,
@@ -193,9 +193,9 @@ export type PageId = keyof typeof pages;
 
 export const isPageId = (value: unknown): value is PageId => typeof value === "string" && value in pages;
 
-/** The page for a URL path, for the dev server where every route serves index.html. */
+/** The page for a URL path in either language, for the dev server where every route serves index.html. */
 export function pageForPath(pathname: string): PageId {
-  const path = pathname.replace(/index\.html$/, "");
+  const path = pathname.replace(/^\/fr(?=\/|$)/, "").replace(/index\.html$/, "") || "/";
   const match = (Object.keys(pages) as PageId[]).find((id) => pages[id].path === path || pages[id].path === `${path}/`);
   return match ?? "not-found";
 }

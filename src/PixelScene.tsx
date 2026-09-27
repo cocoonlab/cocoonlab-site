@@ -1,5 +1,5 @@
-import type { CSSProperties } from "react";
-import { useEffect, useRef } from "react";
+import type { CSSProperties, ReactNode } from "react";
+import { Component, useEffect, useRef } from "react";
 import { hexToRgb, type Raster } from "./pixel/raster.ts";
 import type { Painter, Scene } from "./pixel/scene.ts";
 
@@ -50,14 +50,43 @@ type PixelSceneProps = {
   label?: string;
 };
 
+/** Whatever goes wrong in a scene stays in its frame; the page around it keeps rendering. */
+class SceneBoundary extends Component<{ fallback: ReactNode; children: ReactNode }, { failed: boolean }> {
+  state = { failed: false };
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    return this.state.failed ? this.props.fallback : this.props.children;
+  }
+}
+
 /**
  * Paints a pixel scene on a canvas at one canvas pixel per cell. CSS picks the
  * whole-number unit (`--u`) and how many rows show (`--rows`); the canvas is
  * scaled with `image-rendering: pixelated`, cropped around the scene's focus,
  * animated at 12 fps (24 for cellular assembly) while on screen, and held
- * still when motion is reduced.
+ * still when motion is reduced. A scene that fails leaves its frame empty.
  */
-export function PixelScene({ scene, className, label }: PixelSceneProps) {
+export function PixelScene(props: PixelSceneProps) {
+  const { scene, className } = props;
+  const empty = (
+    <div
+      className={`pixel-scene${className ? ` ${className}` : ""}`}
+      style={{ "--rows": scene.height } as CSSProperties}
+      aria-hidden="true"
+    />
+  );
+  return (
+    <SceneBoundary fallback={empty}>
+      <LiveScene {...props} />
+    </SceneBoundary>
+  );
+}
+
+function LiveScene({ scene, className, label }: PixelSceneProps) {
   const frameRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -115,7 +144,9 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
       },
     };
 
+    let laidOut = false;
     const draw = () => {
+      if (!laidOut) return;
       ctx.clearRect(0, 0, cols, scene.height);
       ctx.drawImage(back, offset, 0, cols, scene.height, 0, 0, cols, scene.height);
       if (scene.animate) scene.animate(painter, time);
@@ -148,17 +179,24 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
     };
 
     const layout = () => {
+      const width = frame.clientWidth;
+      // A frame with no width yet (hidden, or not laid out) has nothing to
+      // paint, and a zero-width canvas cannot be drawn from. The observer
+      // calls again once the frame has a size.
+      if (!width) return;
       const styles = getComputedStyle(frame);
       const requestedUnit = Math.max(1, Math.round(parseFloat(styles.getPropertyValue("--u")) || 2));
       const focus = parseFloat(styles.getPropertyValue("--focus"));
       const align = parseFloat(styles.getPropertyValue("--align"));
-      const width = frame.clientWidth;
       const fit = styles.getPropertyValue("--fit-whole").trim() === "1";
+      // Up to this share of a fitted scene's width may be cropped at its
+      // edges to reach the next whole pixel, so the scene fills its frame.
+      const crop = Math.min(0.5, Math.max(0, parseFloat(styles.getPropertyValue("--fit-crop")) || 0));
       // Fit product models in whole physical pixels. On a Retina display a
       // 1.5 CSS-pixel cell is three crisp screen pixels, avoiding the abrupt
       // half-size drop between desktop and tablet columns.
       const pixelRatio = Math.max(1, window.devicePixelRatio || 1);
-      const fittedUnit = Math.floor(width / scene.width * pixelRatio) / pixelRatio;
+      const fittedUnit = Math.floor(width / (scene.width * (1 - crop)) * pixelRatio) / pixelRatio;
       const unit = fit ? Math.max(1, Math.min(requestedUnit, fittedUnit)) : requestedUnit;
       if (fit) frame.style.height = `${scene.height * unit}px`;
       cols = Math.min(scene.width, Math.ceil(width / unit));
@@ -169,7 +207,9 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
       canvas.style.height = `${scene.height * unit}px`;
       canvas.style.left = `${Math.floor((width - cols * unit) * (Number.isFinite(align) ? align : 0.5))}px`;
       ctx.imageSmoothingEnabled = false;
+      laidOut = true;
       draw();
+      frame.dataset.ready = "true";
     };
 
     let raf = 0;
@@ -209,7 +249,6 @@ export function PixelScene({ scene, className, label }: PixelSceneProps) {
     };
 
     layout();
-    frame.dataset.ready = "true";
 
     const resize = new ResizeObserver(layout);
     resize.observe(frame);

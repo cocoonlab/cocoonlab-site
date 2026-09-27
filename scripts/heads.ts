@@ -1,10 +1,12 @@
+import { type Locale, localizePath } from "../src/locale.ts";
 import { type PageId, pages } from "../src/pages/index.tsx";
 import { posts } from "../src/pages/posts.ts";
 
 /**
- * The <head> of each prerendered inner page: English title and description
- * (the page switches them for French at runtime), canonical URL, social
- * cards and structured data. The homepage keeps its own head in index.html.
+ * The <head> of each prerendered page in each language: title and
+ * description, canonical URL, the page's address in both languages, social
+ * cards and, on English pages, structured data. The English homepage keeps
+ * its own head in index.html.
  */
 
 const SITE = "https://cocoonlab.ai";
@@ -48,7 +50,8 @@ type Extra = {
   jsonLd?: object;
 };
 
-const extras: Record<Exclude<PageId, "home">, Extra> = {
+const extras: Record<PageId, Extra> = {
+  home: {},
   team: {
     jsonLd: {
       "@context": "https://schema.org",
@@ -130,7 +133,7 @@ const extras: Record<Exclude<PageId, "home">, Extra> = {
     jsonLd: {
       "@context": "https://schema.org",
       "@type": "AboutPage",
-      name: "Monograph | Cocoon Lab",
+      name: "Manifesto | Cocoon Lab",
       url: `${SITE}/monograph/`,
       description: pages.monograph.meta.en.description,
       about: organization,
@@ -185,12 +188,15 @@ const extras: Record<Exclude<PageId, "home">, Extra> = {
 
 const esc = (value: string) => value.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-export function headFor(id: Exclude<PageId, "home">) {
+/** The page's public address in `locale`. */
+const urlFor = (id: PageId, locale: Locale) => `${SITE}${localizePath(pages[id].path, locale)}`;
+
+export function headFor(id: PageId, locale: Locale) {
   const page = pages[id];
-  const { title, description } = page.meta.en;
+  const { title, description } = page.meta[locale];
   const extra = extras[id];
   const indexable = extra.index !== false;
-  const url = `${SITE}${page.path}`;
+  const url = urlFor(id, locale);
   const lines = [
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${esc(description)}" />`,
@@ -200,10 +206,13 @@ export function headFor(id: Exclude<PageId, "home">) {
   if (indexable) {
     lines.push(
       `<link rel="canonical" href="${url}" />`,
+      `<link rel="alternate" hreflang="en" href="${urlFor(id, "en")}" />`,
+      `<link rel="alternate" hreflang="fr" href="${urlFor(id, "fr")}" />`,
+      `<link rel="alternate" hreflang="x-default" href="${urlFor(id, "en")}" />`,
       `<meta property="og:type" content="${extra.type ?? "website"}" />`,
       `<meta property="og:site_name" content="Cocoon Lab" />`,
-      `<meta property="og:locale" content="en_CA" />`,
-      `<meta property="og:locale:alternate" content="fr_CA" />`,
+      `<meta property="og:locale" content="${locale === "fr" ? "fr_CA" : "en_CA"}" />`,
+      `<meta property="og:locale:alternate" content="${locale === "fr" ? "en_CA" : "fr_CA"}" />`,
       `<meta property="og:title" content="${esc(title)}" />`,
       `<meta property="og:description" content="${esc(description)}" />`,
       `<meta property="og:url" content="${url}" />`,
@@ -229,7 +238,8 @@ export function headFor(id: Exclude<PageId, "home">) {
   if (extra.feed) {
     lines.push(`<link rel="alternate" type="application/rss+xml" title="Cocoon Lab Blog" href="${SITE}/feed.xml" />`);
   }
-  if (extra.jsonLd) {
+  // Structured data, written in English, describes each thing once, on its English page.
+  if (extra.jsonLd && locale === "en") {
     lines.push(`<script type="application/ld+json">${JSON.stringify(extra.jsonLd).replace(/</g, "\\u003c")}</script>`);
   }
   return lines.join("\n    ");

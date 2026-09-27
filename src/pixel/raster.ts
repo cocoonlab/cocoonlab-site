@@ -140,3 +140,9 @@ export function hexToRgb(hex: string): [number, number, number] {
   const n = parseInt(hex.replace("#", ""), 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
+
+/** `hex` moved `amount` (0–1) of the way toward Warm White. */
+export function lighten(hex: string, amount: number) {
+  const light = hexToRgb("#f8f4ec");
+  return `#${hexToRgb(hex).map((value, i) => Math.round(value + (light[i]! - value) * amount).toString(16).padStart(2, "0")).join("")}`;
+}

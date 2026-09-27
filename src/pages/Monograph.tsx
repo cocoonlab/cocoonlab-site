@@ -23,7 +23,7 @@ const copy = {
       ["Clarity is safety", "Clear plans keep crews, drivers, cyclists, and pedestrians out of harm’s way."],
       ["Rooted in Montréal", "We build from the city we know: its streets, its rules, and its neighbourhoods."],
     ],
-    monographTitle: "Monograph",
+    monographTitle: "Manifesto",
     monograph: [
       { statement: "Cocoon Lab was founded in 2025 by Rashid Mushkani, Hugo Berard, and Shin Koseki." },
       "It grew out of years of work alongside designers, architectural firms, and community organizations in Montréal. Again and again, the same pattern appeared: the decisions that matter most are made early, with incomplete information and little time.",
