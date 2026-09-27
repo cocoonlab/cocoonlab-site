@@ -46,7 +46,7 @@ const copy = {
     ],
   },
   fr: {
-    heroTitle: "Nous rendons plus rapide et plus sûre la construction de meilleurs milieux de vie.",
+    heroTitle: "Rendre plus rapide et plus sûre la création de meilleurs milieux de vie.",
     heroLead: "Des logiciels pour préparer les plans de signalisation temporaire et vérifier les plans de bâtiments avant le début des travaux.",
     heroCta: "Découvrir les produits",
     heroScene:
